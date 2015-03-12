@@ -11,6 +11,21 @@
     <AssemblyName>FetchItClassLib</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,8 +45,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,16 +65,23 @@
   <ItemGroup>
     <Compile Include="Comment\CommentHandler.cs" />
     <Compile Include="Comment\CommentModel.cs" />
+    <Compile Include="Entity.cs" />
     <Compile Include="Feedback\FeedbackHandler.cs" />
     <Compile Include="Feedback\FeedbackModel.cs" />
     <Compile Include="Issue\IssueHandler.cs" />
     <Compile Include="Issue\IssueModel.cs" />
     <Compile Include="Language\LanguageHandler.cs" />
+    <Compile Include="Language\LanguageModel.cs" />
+    <Compile Include="Payment\PaymentModel.cs" />
+    <Compile Include="Payment\PaymentStatus.cs" />
+    <Compile Include="Payment\PaymentType.cs" />
     <Compile Include="Payment\ExamplePaymentProviderPayment.cs" />
     <Compile Include="Payment\PaymentHandler.cs" />
     <Compile Include="Persistence\IPersist.cs" />
     <Compile Include="Persistence\PersistenceHandler.cs" />
     <Compile Include="Persistence\SqlPersistence.cs" />
+    <Compile Include="Profile\ProfileLevel.cs" />
+    <Compile Include="Profile\ProfileStatus.cs" />
     <Compile Include="Profile\ProfileHandler.cs" />
     <Compile Include="Profile\ProfileModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,8 +89,36 @@
     <Compile Include="Task\TaskModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FetchItDatabase.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FetchItDatabase_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>FetchItDatabase.mdf</DependentUpon>
+    </Content>
     <Content Include="Language\Danish.xml" />
     <Content Include="Language\English.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
