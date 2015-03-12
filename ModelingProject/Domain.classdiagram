@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="4e2a1aa4-78b4-4e2c-962d-e4e684eb37e0" name="Domain" linkedPackageId="47a0ad42-b25f-4734-bc67-d1cf0779cb74" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="029d7869-c60a-47de-b93d-b775c3777366">
+      <profileInstance Id="3bf21b72-1184-4e29-bc7c-ace4008d686d" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="aa9e0cbe-c45a-42bb-8a18-17231b39418f">
+      <profileInstance Id="1b09a35d-e290-412b-a167-f3b731bcb74b" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="18fbd721-8c2d-43da-bc77-41278ccaa1cf" name="Profil" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="526e5e08-ff8c-427f-aeb6-c2fa504052a7" />
+        <targetEnds>
+          <association Id="40b5db17-b3ea-448e-bd7b-65de6ec58b6b" isDerived="false" sourceEndRoleName="Profil" targetEndRoleName="Issue" isLeaf="false" isAbstract="false">
+            <classMoniker Id="bf130e37-f18f-4e57-83ee-b752e2200d52" LastKnownName="Issue" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="037dec93-13b2-4c11-ae2d-c4b3054e1bd7" name="Profil" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="46c880fa-63cd-4a81-a7a9-306dd52ec3a4" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="3b09ecc5-40d4-455f-9e70-cb70a68e2c21" name="Issue" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="0a335cdd-7d75-4f24-8e9a-0ecbd27a5d04" name="Lower" value="0">
+                      <elementDefinition Id="af3c324a-b039-4438-8133-a8da80c96a02" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="3bf58285-2beb-4f42-b1d4-0d1695a92f26" name="Upper" value="*">
+                      <elementDefinition Id="a8c7fdfe-7d0a-45db-a91b-124e57f62998" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="1ba58d8f-315d-41a3-a144-50cd0c561700" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="a28bcafe-aa8b-4f3c-89ce-257beca7b47b" />
+          </association>
+          <association Id="7a099d8a-9b14-4d7d-a936-d70ab87a36af" isDerived="false" sourceEndRoleName="Profil" targetEndRoleName="Task" isLeaf="false" isAbstract="false">
+            <classMoniker Id="693611c8-64c3-4b0a-a35f-41035f5e9674" LastKnownName="Task" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="92d47656-cfc4-4a77-ade0-50e06d167daa" name="Profil" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="420adc2c-8e28-4789-a659-b52e6cd33d96" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="27501e15-bcf8-4b4f-ac6a-85d4390a05e8" name="Task" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="1e5096f9-84b7-40ff-b68b-5ded7b31eba6" name="Lower" value="0">
+                      <elementDefinition Id="c7553036-d760-4ca8-b7f7-bba07cd6f699" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="2a16aa29-4caf-4597-a17d-8f481c6207db" name="Upper" value="*">
+                      <elementDefinition Id="4320e903-a9c2-4eaa-987e-e5d0637f3010" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="c6e80176-d447-4ebf-a5a9-e68b72dc3e41" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="f8a06b25-04e0-49da-9b5d-f1004be105e6" />
+          </association>
+          <association Id="429ca6bf-a239-4e80-8b9d-6d2c2c540ce1" isDerived="false" sourceEndRoleName="Profil" targetEndRoleName="Feedback" isLeaf="false" isAbstract="false">
+            <classMoniker Id="e93e2795-8325-48f5-b3a1-c879add2a668" LastKnownName="Feedback" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="a6019517-909c-4b62-abae-1b52273c0afc" name="Profil" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="de32c4f6-f7c0-440f-85b4-427b7c1d5863" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="9879c564-a313-4dc1-a856-8e08c86ee0ea" name="Feedback" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="55cd2863-abf3-4160-8fa0-207745c4eb1c" name="Lower" value="0">
+                      <elementDefinition Id="c33e0aa6-c7fe-476a-aaf1-8e0b562f40af" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="cd01c8a4-b4f4-47d4-a20d-68c2e608fa96" name="Upper" value="*">
+                      <elementDefinition Id="e0dde856-e418-4316-a914-898ae36d294f" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="fb081253-4a4d-4380-847a-e09fda8ffab1" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="73360c78-5eb4-404a-9937-86824fb801ce" />
+          </association>
+          <association Id="dbe9d057-e1da-4739-baf6-340bbe8b54fb" isDerived="false" sourceEndRoleName="Profil" targetEndRoleName="Payment" isLeaf="false" isAbstract="false">
+            <classMoniker Id="06b29759-977a-4f45-890e-6fb356bd895e" LastKnownName="Payment" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="9d2b4c57-5ace-44da-af7a-29d5efeb2e1a" name="Profil" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="81b2d7ef-d054-414a-85e6-b201fada4e7c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="2351f0bb-c227-49a2-bf39-e610c78af7fb" name="Payment" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="0edddbf4-12d9-4a37-a327-7311e02e234a" name="Lower" value="0">
+                      <elementDefinition Id="a6712a25-7ff4-4bfd-8d3f-0b578de6db41" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="feb3e724-896a-4fbf-9994-3f94061c5f57" name="Upper" value="*">
+                      <elementDefinition Id="dd064db3-ffc4-4ecb-a3e9-840a8f603e55" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="a83d3bd1-b3bf-4fb2-9111-d21850234056" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="5f742548-c5cb-4d91-a8ab-5a3f52f6c024" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="693611c8-64c3-4b0a-a35f-41035f5e9674" name="Task" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="3cb2e387-126b-421d-a31c-fbdb28f1547b" />
+        <targetEnds>
+          <association Id="534e2a43-5358-43c6-9f64-52c185877024" isDerived="false" sourceEndRoleName="Task" targetEndRoleName="Comment" isLeaf="false" isAbstract="false">
+            <classMoniker Id="327155e1-ec29-4676-a15a-69562f729f43" LastKnownName="Comment" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f0b2fa0b-f49c-41ae-8453-28e90dea82dd" name="Task" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="856d64c4-f6ca-4933-8bfd-255b4308ec10" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8e9d5a06-f9ee-4403-851f-9d86a6e65f56" name="Comment" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="64f55631-4da2-4b06-af89-2abac6f2e8d9" name="Lower" value="0">
+                      <elementDefinition Id="e11a573f-eac7-44ca-8009-2b423ec3dc9c" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="8737dab1-77e7-4e02-8b4b-0e7e3f4121e6" name="Upper" value="*">
+                      <elementDefinition Id="86ec2a4c-b447-4037-8cbf-dfc161b47cd0" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="8e6d8380-f33e-4e42-ae43-97d39201b58a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="36b62b63-dfc7-4030-ba8b-e028c51f7a67" />
+          </association>
+          <association Id="eb6dfa8e-fe3a-4181-af14-1be3772d668a" isDerived="false" sourceEndRoleName="Task" targetEndRoleName="Payment" isLeaf="false" isAbstract="false">
+            <classMoniker Id="06b29759-977a-4f45-890e-6fb356bd895e" LastKnownName="Payment" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="044588f3-16b3-40f7-9613-d9a3732a7cbd" name="Task" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="a98bb6c5-8bdd-4411-9934-72073536897a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c25e32ff-ceeb-4df8-aad8-3d9bc8584592" name="Payment" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="1fcee386-97bf-430c-9fe7-673734f876b2" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="d9272d76-0abe-45c7-865e-cefd35874320" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="e93e2795-8325-48f5-b3a1-c879add2a668" name="Feedback" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="47b317e9-5961-4107-80d4-8ee6ee769dfd" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="978e996c-c4fd-40e4-af76-ad29056491d8" name="Language" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="13c388c9-e003-4993-b023-83c275c06ec9" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="06b29759-977a-4f45-890e-6fb356bd895e" name="Payment" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="6bb3ed6f-81ed-49bf-8db2-6c5127009134" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="327155e1-ec29-4676-a15a-69562f729f43" name="Comment" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="6bf32391-c1d5-483f-9201-451f1886c917" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="bf130e37-f18f-4e57-83ee-b752e2200d52" name="Issue" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="a69bacbb-eaf1-4446-8c73-6c3c0d7d896d" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="47a0ad42-b25f-4734-bc67-d1cf0779cb74" name="ModelingProject">
+    <elementDefinition Id="6427fc07-d01e-4594-96d3-4905bbe5cdc3" />
+  </package>
+</logicalClassDesignerModel>
