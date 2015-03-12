@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace FetchItClassLib.Payment
 {
-    // Use strategy pattern
-    class PaymentHandler
+    class ExamplePaymentProviderPayment
     {
     }
 }

@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="9c9a8530-4d46-4839-84a6-a003ec4f5e9d" name="Classes" linkedPackageId="603be963-7a7c-4e09-9a27-069ceb7a5115" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="8dd76efd-2172-49de-aea7-5fdb4855b017" name="LanguageHandler" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="b3b94b3e-b885-44f0-8c2d-7dcb2f39d426" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="6037d0ed-18df-4f00-aac3-43914f20bf4c" name="IssueHandler" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="7a9f5397-2de0-4dde-9bb0-b07d0cb777c4" />
+        <targetEnds>
+          <association Id="6d05f530-816e-48d1-a1ef-5dca87e5ca67" isDerived="false" sourceEndRoleName="IssueHandler" targetEndRoleName="PersistenceHandler" isLeaf="false" isAbstract="false">
+            <classMoniker Id="99315238-e1e4-4793-9237-5e26ff4ffcc9" LastKnownName="PersistenceHandler" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="dd9be911-d778-4618-a034-70a3310d6614" name="IssueHandler" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="329846c6-172f-4e31-b569-da14bb684035" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="4cd010fe-da82-44ad-ac0a-e6bc1c4336a0" name="PersistenceHandler" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="eead2c98-be79-4e69-b9f8-262d55140027" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="acad6009-b1ad-4d3e-812c-00f4aec87ee7" />
+          </association>
+          <association Id="9cf7592d-5203-425e-bfe7-5f3be5038f8c" isDerived="false" sourceEndRoleName="IssueHandler" targetEndRoleName="IssueModel" isLeaf="false" isAbstract="false">
+            <classMoniker Id="04d7cc71-e97c-4de4-9ad7-4a69d47d83e1" LastKnownName="IssueModel" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="286550c1-ef53-4499-99a7-3d3cc8c332b4" name="IssueHandler" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="1a4320d0-7f5e-4cb7-bfec-127d59c0a777" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="94bf9d20-c1f0-4672-9617-3bdd19397fd7" name="IssueModel" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="d857bc93-aa67-4427-92cb-2fdc64635230" name="Lower" value="0">
+                      <elementDefinition Id="7082e951-3d70-4a44-9d15-c8b884bdf0ad" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="d1018f53-8031-42ad-aeb5-0d0b3b131ba6" name="Upper" value="*">
+                      <elementDefinition Id="291c07ca-548c-48e9-a2e8-56a1feed83a1" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="3c0da44a-77e8-4bf4-a31b-9740d3e0b647" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="9b7b2859-d3f2-4a5c-9d45-cbfb89aab081" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="11c80aae-d190-483c-9c48-7810e2782765" name="PaymentHandler" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ac4d14f6-334b-4761-85b9-304056098fa4" />
+        <suppliersInternal>
+          <dependency Id="a8e17990-d033-4e1b-9116-bf822c69f6b8">
+            <classMoniker Id="77cd0299-1495-4c1f-9676-ec49d0bc91c2" LastKnownName="ExamplePaymentProviderPayment" />
+            <elementDefinition Id="44a6693e-1c7f-482d-9227-2c65c45d98c7" />
+          </dependency>
+        </suppliersInternal>
+        <targetEnds>
+          <association Id="354c4dd2-faed-449a-af00-a686317be3ae" isDerived="false" sourceEndRoleName="PaymentHandler" targetEndRoleName="PersistenceHandler" isLeaf="false" isAbstract="false">
+            <classMoniker Id="99315238-e1e4-4793-9237-5e26ff4ffcc9" LastKnownName="PersistenceHandler" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="6849aa31-f8c8-48b7-a193-5c46b7c4c7c8" name="PaymentHandler" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="829fe5ba-1939-43a5-9ebd-6b41e6761b62" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5beba831-7a11-4243-8eba-10d768d6b496" name="PersistenceHandler" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="1a282e21-43e5-49cf-8984-4db0b9c41895" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="cc57e239-ef2e-476c-be3e-746c38a0a93b" />
+          </association>
+          <association Id="dd1bb4a7-2ffb-4458-aa12-f4f5c04434e1" isDerived="false" sourceEndRoleName="PaymentHandler" targetEndRoleName="IPaymentProvider" isLeaf="false" isAbstract="false">
+            <interfaceMoniker Id="9475c28e-0e0e-44ac-acd3-901bf9471264" LastKnownName="IPaymentProvider" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="917569d4-d7dc-4ff1-910d-548d79c917d7" name="PaymentHandler" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="16076502-6ec2-4d55-8184-4ff49c922d1a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="03494cff-eaa8-42ae-9dc2-c12b8c27a67c" name="IPaymentProvider" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="410fefea-081a-4545-91cb-ab9cd9bac235" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="a0fe5dd9-dfbe-420f-97a8-1d95f5a9797d" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="c7cc7765-c471-463b-b3b5-883ce29997b2" name="TaskHandler" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="6971ef17-c797-4785-a473-52359bf307bb" />
+        <targetEnds>
+          <association Id="e9675008-2cba-4bcb-b8cc-8e2de22f58b3" isDerived="false" sourceEndRoleName="TaskHandler" targetEndRoleName="TaskModel" isLeaf="false" isAbstract="false">
+            <classMoniker Id="0ac01014-0d35-4e8e-9940-a236d0ea2b11" LastKnownName="TaskModel" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e79e6321-1098-4cf3-83d8-946221c4b5d4" name="TaskHandler" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="a6ce55d4-5126-453f-a521-7c13a473932f" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c9b4864c-3f6b-40d7-9684-568cb33d748a" name="TaskModel" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="2627019c-cce0-4aa4-96e0-0636749524f5" name="Lower" value="0">
+                      <elementDefinition Id="7e0869b6-d3c7-49b9-baf2-fc72f466b8e4" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="b3b58d58-2f60-47dc-a3c9-cc8054820c77" name="Upper" value="*">
+                      <elementDefinition Id="e52fec00-57c2-45a5-85c5-926715ecd473" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="a4238f75-bcd3-49b4-a844-3d48a12ea662" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="8a2c9d87-e42e-497b-ac67-d5ef32554ee0" />
+          </association>
+          <association Id="d0d81b32-53cb-492e-8f56-c45bdcb7790d" isDerived="false" sourceEndRoleName="TaskHandler" targetEndRoleName="PersistenceHandler" isLeaf="false" isAbstract="false">
+            <classMoniker Id="99315238-e1e4-4793-9237-5e26ff4ffcc9" LastKnownName="PersistenceHandler" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5198ea16-cf61-4468-899d-33bd55ad0cba" name="TaskHandler" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="c9751161-6069-4427-b047-a3ccc91d634a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="78f58934-a92b-48ca-9f12-c8e46fa8794a" name="PersistenceHandler" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="d5ccbf31-f1a2-402e-a7d1-4b28b85bd1f0" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="4a0b261a-e049-482b-9fc0-78e0144904b1" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="672f2f1b-07d7-41ba-a566-b3a563886b4e" name="ProfileHandler" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="389795d4-a834-4fc1-b0e9-08082e451e2c" />
+        <targetEnds>
+          <association Id="78df1261-6d5f-4f36-868d-b0397182eb0e" isDerived="false" sourceEndRoleName="ProfileHandler" targetEndRoleName="ProfileModel" isLeaf="false" isAbstract="false">
+            <classMoniker Id="6df00125-8473-4da8-bae3-620e37557bfd" LastKnownName="ProfileModel" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e7ad336b-f54c-423f-8aaa-45849c66e2ec" name="ProfileHandler" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="1d76df50-2f81-400d-8946-4a3b35a411a8" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="22f54cb3-d9b1-452b-97e4-34a244d0db91" name="ProfileModel" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="ec967cad-1149-4657-82c5-4bc2cfa40d37" name="Lower" value="0">
+                      <elementDefinition Id="20f0bdfd-5209-4e58-909a-8db40fceb7cc" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="f83033d5-61d8-407b-b36e-f9328e86dbe2" name="Upper" value="*">
+                      <elementDefinition Id="3e88c6cd-3989-4f75-8245-1eb5b35d95fd" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="9ea2a2d9-8bba-4b40-8514-c5a392142beb" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="81fb9456-f3e7-4312-9945-dd58c9063c5c" />
+          </association>
+          <association Id="06b2c8ba-69a1-4027-bc85-ec68bdf9a9c7" isDerived="false" sourceEndRoleName="ProfileHandler" targetEndRoleName="PersistenceHandler" isLeaf="false" isAbstract="false">
+            <classMoniker Id="99315238-e1e4-4793-9237-5e26ff4ffcc9" LastKnownName="PersistenceHandler" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="deb49764-b791-468c-becf-41e4c3dc2cc5" name="ProfileHandler" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="e326258f-84b8-4ebc-a9c1-3e7b41a38ba2" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="7d819f20-5ab0-4ddd-a740-7cd932c250e4" name="PersistenceHandler" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="a99b23fe-b95f-4167-8b22-19dbe69a98ed" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="bb54f918-db79-4cca-83f4-055debbfad8c" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="498c2f21-2298-4262-8f43-57930c9b2f99" name="FeedbackHandler" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="69c36669-4adf-4aab-96a5-800067140d03" />
+        <targetEnds>
+          <association Id="4fcf2550-54fc-4088-80c1-ac6376537524" isDerived="false" sourceEndRoleName="FeedbackHandler" targetEndRoleName="FeedbackModel" isLeaf="false" isAbstract="false">
+            <classMoniker Id="9d4bd0b5-652a-4233-b998-1b991d4ad802" LastKnownName="FeedbackModel" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="935a0549-13c9-4d05-9f9b-dff9495bfbd8" name="FeedbackHandler" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="612239be-4ae0-4dad-b117-66a5199fe659" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c335ebe1-bcc3-492f-abc7-99466a316652" name="FeedbackModel" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="4c433ad5-8803-45b7-a32f-ff3cb798df69" name="Lower" value="0">
+                      <elementDefinition Id="3e2b297f-d5ea-4aa6-ae56-5ad45979f1f6" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="34b8a7a0-8fb3-4481-b546-1844adac2002" name="Upper" value="*">
+                      <elementDefinition Id="6d44ad56-be83-4eab-8361-6a2e862b29e3" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="846962da-2573-42ae-af90-c50067273def" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="9abc067f-fffd-4a34-b458-f66e020ce0f5" />
+          </association>
+          <association Id="99e4f89c-beda-4942-bf05-05391488f297" isDerived="false" sourceEndRoleName="FeedbackHandler" targetEndRoleName="PersistenceHandler" isLeaf="false" isAbstract="false">
+            <classMoniker Id="99315238-e1e4-4793-9237-5e26ff4ffcc9" LastKnownName="PersistenceHandler" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="77d3ab8e-d980-4a24-9917-e1b2776a2433" name="FeedbackHandler" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="1116d1c6-0f21-4e48-8611-f10a23815190" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="30484913-964b-447f-8bfe-49a76ddb129b" name="PersistenceHandler" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="a93e5621-875a-4f50-a5f3-bce753201611" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="af999a0f-d2c9-48a9-832a-dcd189cb67d3" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="e563bc51-1a05-4032-8bfe-734ed819d260" name="CommentHandler" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="3fefeb84-bc36-42ff-accf-ab47a3c6a8ea" />
+        <targetEnds>
+          <association Id="2d440efb-2f0d-44e4-a426-ed69a9ae608a" isDerived="false" sourceEndRoleName="CommentHandler" targetEndRoleName="CommentModel" isLeaf="false" isAbstract="false">
+            <classMoniker Id="1f710a8e-ebb1-47c6-9e20-e2fdcfb798d9" LastKnownName="CommentModel" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f0a41532-07d1-4802-b03a-546dfb7f16e3" name="CommentHandler" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="6f1ddcbf-d69e-4956-917c-9cc93f8abc08" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="1c60dc1c-e49a-452e-b56c-67276fcacd70" name="CommentModel" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="7b052bd1-1d49-43aa-9cd6-4d386be7491e" name="Lower" value="0">
+                      <elementDefinition Id="08cfb46c-fb88-453a-8546-a064643fa473" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="b5cfe567-bc9d-46ae-a3a4-6dd9c4686b45" name="Upper" value="*">
+                      <elementDefinition Id="130aee69-748b-4340-b6ad-26c554809fdc" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="1b432457-a3a1-46d2-948a-f9cc27f1ad4a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="e3383f42-b0af-4902-9617-a3a0da502ecd" />
+          </association>
+          <association Id="1610beb4-47cc-4be8-a213-0fe706ba2571" isDerived="false" sourceEndRoleName="CommentHandler" targetEndRoleName="PersistenceHandler" isLeaf="false" isAbstract="false">
+            <classMoniker Id="99315238-e1e4-4793-9237-5e26ff4ffcc9" LastKnownName="PersistenceHandler" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8d0e1d07-07a3-43ff-b658-43b8b4825984" name="CommentHandler" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="17f60d9a-8531-4089-900d-0e9cfaab7bbd" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="68070614-7bbd-4d8b-9aa2-aa9d76a79fc5" name="PersistenceHandler" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="d31faa3d-3120-4e7d-91b6-e853cb9bb48c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="d8562bcf-f96e-4cd9-8cea-d0cbcb1c89c0" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="99315238-e1e4-4793-9237-5e26ff4ffcc9" name="PersistenceHandler" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="b661b3d1-bc95-4550-8f0f-81bd5e240d28" />
+        <suppliersInternal>
+          <dependency Id="a15ea996-e289-48a7-8b14-7e4ce878bcec">
+            <classMoniker Id="2c62bb23-a33f-4c7a-965e-75f98b9dcf93" LastKnownName="SqlPersistence" />
+            <elementDefinition Id="774f6122-fd50-4866-8671-40d2705f63f1" />
+          </dependency>
+        </suppliersInternal>
+        <targetEnds>
+          <association Id="2538e1ba-7009-426a-987a-6d3961a8e4bd" isDerived="false" sourceEndRoleName="PersistenceHandler" targetEndRoleName="IPersist" isLeaf="false" isAbstract="false">
+            <interfaceMoniker Id="3372dc0d-5713-4056-9957-c4d64ad889f4" LastKnownName="IPersist" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="204098bf-1d87-4ffd-a922-8ac7de31e251" name="PersistenceHandler" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="5407ded0-678a-4095-9d70-5fb9702e026e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c3c7661e-fc68-4f1e-b654-f718fd177269" name="IPersist" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="fdb9e568-f4e1-484c-bea0-044b14915595" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="151d519b-b279-4c40-bc56-c8f4cffb6485" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="9d4bd0b5-652a-4233-b998-1b991d4ad802" name="FeedbackModel" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="e8818df5-e7ec-49db-bdc6-969258b324f2" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="3372dc0d-5713-4056-9957-c4d64ad889f4" name="IPersist" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="8a54d5b9-8669-4e77-95ba-b31887262d2c" />
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="1f710a8e-ebb1-47c6-9e20-e2fdcfb798d9" name="CommentModel" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="33f85732-c634-4006-9115-6a6bc3f482a9" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="2c62bb23-a33f-4c7a-965e-75f98b9dcf93" name="SqlPersistence" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="80eb9766-d91e-4e6c-8fc7-2a6f7047c2bb" />
+        <suppliersInternal>
+          <interfaceRealization Id="031f1230-826b-45d1-909b-9333633cc9ff">
+            <interfaceMoniker Id="3372dc0d-5713-4056-9957-c4d64ad889f4" LastKnownName="IPersist" />
+            <elementDefinition Id="0d2ca07c-5292-4d32-86ec-ed1241c2d8f0" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="04d7cc71-e97c-4de4-9ad7-4a69d47d83e1" name="IssueModel" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="d6ef08e6-0c58-48d3-86a5-e08a91c99d1a" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="77cd0299-1495-4c1f-9676-ec49d0bc91c2" name="ExamplePaymentProviderPayment" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="0b5fdf81-4f6e-49a7-86ce-9eaafacb3541" />
+        <suppliersInternal>
+          <interfaceRealization Id="4c5a9000-b039-4e5c-8df1-2541d34e8ec7">
+            <interfaceMoniker Id="9475c28e-0e0e-44ac-acd3-901bf9471264" LastKnownName="IPaymentProvider" />
+            <elementDefinition Id="5c2ef75d-6656-4a52-95d9-43f4cd9d63c1" />
+          </interfaceRealization>
+        </suppliersInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="9475c28e-0e0e-44ac-acd3-901bf9471264" name="IPaymentProvider" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="d6ff15e4-c485-4eb4-b346-d3ba7adf32cb" />
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="6df00125-8473-4da8-bae3-620e37557bfd" name="ProfileModel" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="e05109d3-0a2a-4260-bf0b-ad13a17f2b11" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="0ac01014-0d35-4e8e-9940-a236d0ea2b11" name="TaskModel" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="e4503c85-e47b-4f8f-9c7e-c2d0fc3a749a" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="603be963-7a7c-4e09-9a27-069ceb7a5115" name="ModelingProject">
+    <elementDefinition Id="6427fc07-d01e-4594-96d3-4905bbe5cdc3" />
+    <profileInstances>
+      <packageHasProfileInstances Id="fec15a0e-3a39-47f7-a30e-92a37d3d4abb">
+        <profileInstance Id="d4b0f6db-dc7c-472a-a6d6-69c8459fb915" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="cbf62453-2e9a-4857-b698-6104d62903ac">
+        <profileInstance Id="f1e47cc9-7da7-4e0c-b44a-0ca56e6532da" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</logicalClassDesignerModel>

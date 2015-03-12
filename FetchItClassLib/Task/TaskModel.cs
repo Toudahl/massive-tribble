@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FetchItClassLib.Payment
+namespace FetchItClassLib.Task
 {
-    // Use strategy pattern
-    class PaymentHandler
+    class TaskModel
     {
     }
 }

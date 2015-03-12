@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FetchItClassLib.Payment
+namespace FetchItClassLib.Persistence
 {
-    // Use strategy pattern
-    class PaymentHandler
+    class SqlPersistence<T>
     {
+        // This should use entity framework
     }
 }

@@ -50,10 +50,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Comment\Comment.cs" />
     <Compile Include="Feedback\Feedback.cs" />
     <Compile Include="Issue\Issue.cs" />
     <Compile Include="Language\Language.cs" />
     <Compile Include="Payment\Payment.cs" />
+    <Compile Include="Persistence\Persistence.cs" />
     <Compile Include="Profile\Profile.cs" />
     <Compile Include="Task\Task.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
