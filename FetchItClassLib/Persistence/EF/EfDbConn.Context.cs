@@ -13,10 +13,10 @@ namespace FetchItClassLib.Persistence.EF
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class FetchItDatabaseEntities3 : DbContext
+    public partial class FetchItDatabaseEntities : DbContext
     {
-        public FetchItDatabaseEntities3()
-            : base("name=FetchItDatabaseEntities3")
+        public FetchItDatabaseEntities()
+            : base("name=FetchItDatabaseEntities")
         {
         }
     

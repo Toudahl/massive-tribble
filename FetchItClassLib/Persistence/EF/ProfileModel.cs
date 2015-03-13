@@ -34,6 +34,7 @@ namespace FetchItClassLib.Persistence.EF
         public bool ProfileIsVerified { get; set; }
         public string ProfileImage { get; set; }
         public string ProfileText { get; set; }
+        public string ProfilePasswordSalt { get; set; }
     
         public virtual ICollection<CommentModel> Comments { get; set; }
         public virtual ProfileLevelModel ProfileLevel { get; set; }

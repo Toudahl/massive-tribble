@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +14,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using FetchItClassLib.Persistence.EF;
-using FetchItClassLib.Profile;
 
 namespace FetchIt.View
 {
@@ -21,15 +22,10 @@ namespace FetchIt.View
     /// </summary>
     public partial class EntryPoint : Window
     {
-        private List<ProfileModel> allProfiles;
 
         public EntryPoint()
         {
             InitializeComponent();
-            allProfiles = new List<ProfileModel>();
-
-            allProfiles.AddRange(ProfileHandler.GetAllProfiles());
-            label_test.Content = allProfiles[0].ProfileName;
         }
 
 

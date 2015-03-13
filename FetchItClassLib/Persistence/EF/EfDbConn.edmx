@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FetchItDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FetchItDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Comments">
           <Key>
             <PropertyRef Name="CommentId" />
@@ -78,14 +78,15 @@
           <Property Name="ProfileAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ProfilePhone" Type="nchar" MaxLength="10" />
           <Property Name="ProfileMobile" Type="nchar" MaxLength="10" />
-          <Property Name="ProfilePassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProfilePassword" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ProfileEmail" Type="nvarchar(max)" Nullable="false" />
           <Property Name="FK_ProfileStatusId" Type="int" Nullable="false" />
-          <Property Name="ProfileLastLoggedIn" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProfileLastLoggedIn" Type="nvarchar" MaxLength="50" />
           <Property Name="FK_ProfileLevelId" Type="int" Nullable="false" />
           <Property Name="ProfileIsVerified" Type="bit" Nullable="false" />
           <Property Name="ProfileImage" Type="nvarchar" MaxLength="100" />
           <Property Name="ProfileText" Type="nvarchar(max)" />
+          <Property Name="ProfilePasswordSalt" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="ProfileStatuses">
           <Key>
@@ -296,8 +297,7 @@
             <End Role="Tasks" EntitySet="Tasks" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FetchItDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -384,10 +384,10 @@
           <Property Name="ProfileAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ProfilePhone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="ProfileMobile" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="ProfilePassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProfilePassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ProfileEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FK_ProfileStatusId" Type="Int32" Nullable="false" />
-          <Property Name="ProfileLastLoggedIn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProfileLastLoggedIn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FK_ProfileLevelId" Type="Int32" Nullable="false" />
           <Property Name="ProfileIsVerified" Type="Boolean" Nullable="false" />
           <Property Name="ProfileImage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -397,6 +397,7 @@
           <NavigationProperty Name="ProfileStatus" Relationship="Self.FK_Profiles_ProfileStatus" FromRole="Profiles" ToRole="ProfileStatuses" />
           <NavigationProperty Name="TasksFetcher" Relationship="Self.FK_TasksFetcher_Profile" FromRole="Profiles" ToRole="Tasks" />
           <NavigationProperty Name="TaskMaster" Relationship="Self.FK_TasksMaster_Profile" FromRole="Profiles" ToRole="Tasks" />
+          <Property Name="ProfilePasswordSalt" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ProfileStatusModel">
           <Key>
@@ -558,7 +559,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="FetchItDatabaseEntities3" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="FetchItDatabaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CommentModels" EntityType="FetchItDatabaseModel.CommentModel" />
           <EntitySet Name="FeedbackModels" EntityType="FetchItDatabaseModel.FeedbackModel" />
           <EntitySet Name="IssueModels" EntityType="FetchItDatabaseModel.IssueModel" />
@@ -619,7 +620,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="FetchItDatabaseModelStoreContainer" CdmEntityContainer="FetchItDatabaseEntities3">
+        <EntityContainerMapping StorageEntityContainer="FetchItDatabaseModelStoreContainer" CdmEntityContainer="FetchItDatabaseEntities">
           <EntitySetMapping Name="CommentModels">
             <EntityTypeMapping TypeName="FetchItDatabaseModel.CommentModel">
               <MappingFragment StoreEntitySet="Comments">
@@ -694,6 +695,7 @@
           <EntitySetMapping Name="ProfileModels">
             <EntityTypeMapping TypeName="FetchItDatabaseModel.ProfileModel">
               <MappingFragment StoreEntitySet="Profiles">
+                <ScalarProperty Name="ProfilePasswordSalt" ColumnName="ProfilePasswordSalt" />
                 <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
                 <ScalarProperty Name="ProfileName" ColumnName="ProfileName" />
                 <ScalarProperty Name="ProfileAddress" ColumnName="ProfileAddress" />
