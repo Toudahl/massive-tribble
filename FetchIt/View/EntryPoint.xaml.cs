@@ -10,19 +10,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FetchItClassLib.Persistence.EF;
+using FetchItClassLib.Profile;
 
-namespace FetchIt
+namespace FetchIt.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for EntryPoint.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class EntryPoint : Window
     {
-        public MainWindow()
+        private List<ProfileModel> allProfiles;
+
+        public EntryPoint()
         {
             InitializeComponent();
+            allProfiles = new List<ProfileModel>();
+
+            allProfiles.AddRange(ProfileHandler.GetAllProfiles());
+            label_test.Content = allProfiles[0].ProfileName;
         }
+
+
     }
 }

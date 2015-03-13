@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f398a27630f24cdb9903c74df3be8ea8" Name="Diagram1">
+        <EntityTypeShape EntityType="FetchItDatabaseModel.CommentModel" Width="2.25" PointX="9.875" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchItDatabaseModel.FeedbackModel" Width="2.125" PointX="6.375" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchItDatabaseModel.IssueModel" Width="1.875" PointX="7.5" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchItDatabaseModel.PaymentModel" Width="2.125" PointX="10.5" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchItDatabaseModel.PaymentStatusModel" Width="2" PointX="8.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchItDatabaseModel.PaymentTypeModel" Width="2.125" PointX="8.25" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchItDatabaseModel.ProfileLevelModel" Width="1.75" PointX="0.625" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchItDatabaseModel.ProfileModel" Width="1.875" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchItDatabaseModel.ProfileStatusModel" Width="2" PointX="0.5" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchItDatabaseModel.TaskModel" Width="1.875" PointX="2.75" PointY="10.625" IsExpanded="true" />
+        <AssociationConnector Association="FetchItDatabaseModel.FK_CommentCreator_Profile" ManuallyRouted="false" />
+        <AssociationConnector Association="FetchItDatabaseModel.FK_CommentsTask" ManuallyRouted="false" />
+        <AssociationConnector Association="FetchItDatabaseModel.FK_FeedbackCreator_Profile" ManuallyRouted="false" />
+        <AssociationConnector Association="FetchItDatabaseModel.FK_IssueTask" ManuallyRouted="false" />
+        <AssociationConnector Association="FetchItDatabaseModel.FK_PaymentFor_Task" ManuallyRouted="false" />
+        <AssociationConnector Association="FetchItDatabaseModel.FK_PaymentStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="FetchItDatabaseModel.FK_PaymentType" ManuallyRouted="false" />
+        <AssociationConnector Association="FetchItDatabaseModel.FK_Profiles_ProfileLevel" ManuallyRouted="false" />
+        <AssociationConnector Association="FetchItDatabaseModel.FK_Profiles_ProfileStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="FetchItDatabaseModel.FK_TasksFetcher_Profile" ManuallyRouted="false" />
+        <AssociationConnector Association="FetchItDatabaseModel.FK_TasksMaster_Profile" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

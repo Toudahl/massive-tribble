@@ -63,30 +63,63 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Comment\CommentHandler.cs" />
-    <Compile Include="Comment\CommentModel.cs" />
-    <Compile Include="Entity.cs" />
-    <Compile Include="Feedback\FeedbackHandler.cs" />
-    <Compile Include="Feedback\FeedbackModel.cs" />
-    <Compile Include="Issue\IssueHandler.cs" />
-    <Compile Include="Issue\IssueModel.cs" />
-    <Compile Include="Language\LanguageHandler.cs" />
-    <Compile Include="Language\LanguageModel.cs" />
-    <Compile Include="Payment\PaymentModel.cs" />
-    <Compile Include="Payment\PaymentStatus.cs" />
-    <Compile Include="Payment\PaymentType.cs" />
+    <Compile Include="Handlers\CommentHandler.cs" />
+    <Compile Include="Handlers\FeedbackHandler.cs" />
+    <Compile Include="Handlers\IssueHandler.cs" />
+    <Compile Include="Handlers\LanguageHandler.cs" />
     <Compile Include="Payment\ExamplePaymentProviderPayment.cs" />
     <Compile Include="Payment\PaymentHandler.cs" />
+    <Compile Include="Persistence\EF\CommentModel.cs">
+      <DependentUpon>EfDbConn.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\EF\EfDbConn.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EfDbConn.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\EF\EfDbConn.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EfDbConn.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\EF\EfDbConn.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EfDbConn.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\EF\FeedbackModel.cs">
+      <DependentUpon>EfDbConn.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\EF\IssueModel.cs">
+      <DependentUpon>EfDbConn.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\EF\PaymentModel.cs">
+      <DependentUpon>EfDbConn.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\EF\PaymentStatusModel.cs">
+      <DependentUpon>EfDbConn.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\EF\PaymentTypeModel.cs">
+      <DependentUpon>EfDbConn.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\EF\ProfileLevelModel.cs">
+      <DependentUpon>EfDbConn.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\EF\ProfileModel.cs">
+      <DependentUpon>EfDbConn.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\EF\ProfileStatusModel.cs">
+      <DependentUpon>EfDbConn.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\EF\TaskModel.cs">
+      <DependentUpon>EfDbConn.tt</DependentUpon>
+    </Compile>
     <Compile Include="Persistence\IPersist.cs" />
     <Compile Include="Persistence\PersistenceHandler.cs" />
     <Compile Include="Persistence\SqlPersistence.cs" />
-    <Compile Include="Profile\ProfileLevel.cs" />
-    <Compile Include="Profile\ProfileStatus.cs" />
-    <Compile Include="Profile\ProfileHandler.cs" />
-    <Compile Include="Profile\ProfileModel.cs" />
+    <Compile Include="Handlers\ProfileHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Task\TaskHandler.cs" />
-    <Compile Include="Task\TaskModel.cs" />
+    <Compile Include="Handlers\TaskHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="FetchItDatabase.mdf">
@@ -102,6 +135,23 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <EntityDeploy Include="Persistence\EF\EfDbConn.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EfDbConn.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Persistence\EF\EfDbConn.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EfDbConn.edmx</DependentUpon>
+      <LastGenOutput>EfDbConn.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Persistence\EF\EfDbConn.edmx.diagram">
+      <DependentUpon>EfDbConn.edmx</DependentUpon>
+    </None>
+    <None Include="Persistence\EF\EfDbConn.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EfDbConn.edmx</DependentUpon>
+      <LastGenOutput>EfDbConn.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -119,6 +169,10 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
