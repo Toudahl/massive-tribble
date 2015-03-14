@@ -15,7 +15,7 @@ namespace FetchItClassLib.Handlers
     /// </summary>
     static public class ProfileHandler
     {
-        // TODO: Should we have a (singleton) class to hold the profile while the user is logged in.
+        // TODO: Should we have a (singleton) class to hold the profile while the user is logged in?
         private static ProfileModel _currentLoggedInProfile;
 
         public static ProfileModel CurrentLoggedInProfile
