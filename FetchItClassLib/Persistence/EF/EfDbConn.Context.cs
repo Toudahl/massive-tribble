@@ -13,9 +13,9 @@ namespace FetchItClassLib.Persistence.EF
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class FetchItDatabaseEntities : DbContext
+    public partial class DbConn : DbContext
     {
-        public FetchItDatabaseEntities()
+        public DbConn()
             : base("name=FetchItDatabaseEntities")
         {
         }

@@ -19,7 +19,7 @@ namespace FetchItClassLib.Handlers
         /// <returns>List of all profiles</returns>
         static public List<ProfileModel> GetAllProfiles()
         {
-            using (var dbConn = new FetchItDatabaseEntities())
+            using (var dbConn = new DbConn())
             {
                 return dbConn.ProfileModels.ToList();
             }
@@ -40,7 +40,7 @@ namespace FetchItClassLib.Handlers
                 FK_ProfileStatusId = 2
             };
 
-                using (var dbConn = new FetchItDatabaseEntities())
+                using (var dbConn = new DbConn())
                 {
                     try
                     {
@@ -51,7 +51,7 @@ namespace FetchItClassLib.Handlers
                     {
                         throw e;
                     }
-
+                    
                 }
         }
 
@@ -63,7 +63,7 @@ namespace FetchItClassLib.Handlers
         /// <returns>The requested profile</returns>
         private static ProfileModel LogIn(string profileName, string password)
         {
-            using (var dbconn = new FetchItDatabaseEntities())
+            using (var dbconn = new DbConn())
             {
                 var selectedProfile =
                     dbconn.ProfileModels.Where(
@@ -72,13 +72,18 @@ namespace FetchItClassLib.Handlers
 
                 if (selectedProfile.Count == 1)
                 {
+                    if (selectedProfile[0].FK_ProfileStatusId != 5)
+                    {
+                        throw new FailedLogIn("Account status: " + selectedProfile[0].ProfileStatus.Status);
+                    }
+
                     var hashedPwd = HashPassword(password, selectedProfile[0].ProfilePasswordSalt);
                     if (selectedProfile[0].ProfilePassword == hashedPwd)
                     {
                         return selectedProfile[0];
                     }
                 }
-                throw new WrongPasswordOrUsername("Wrong username or password");
+                throw new FailedLogIn("Wrong username or password");
             }
         }
 
@@ -120,20 +125,22 @@ namespace FetchItClassLib.Handlers
         }
     }
 
-    public class WrongPasswordOrUsername : Exception
+    public class FailedLogIn : Exception
     {
-        public WrongPasswordOrUsername()
+
+        // TODO: Add logging of this event.
+        public FailedLogIn()
         {
 
         }
 
-        public WrongPasswordOrUsername(string message)
+        public FailedLogIn(string message)
             : base(message)
         {
 
         }
 
-        public WrongPasswordOrUsername(string message, Exception inner)
+        public FailedLogIn(string message, Exception inner)
             : base(message, inner)
         {
 
