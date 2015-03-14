@@ -56,6 +56,34 @@ namespace FetchItClassLib.Handlers
         }
 
         /// <summary>
+        /// This will return a single profile model, to represent the logged in user.
+        /// </summary>
+        /// <param name="profileName">The name of the profile</param>
+        /// <param name="password">The password of the profile</param>
+        /// <returns>The requested profile</returns>
+        private static ProfileModel LogIn(string profileName, string password)
+        {
+            using (var dbconn = new FetchItDatabaseEntities())
+            {
+                var selectedProfile =
+                    dbconn.ProfileModels.Where(
+                    profile =>
+                        profile.ProfileName == profileName).ToList();
+
+                if (selectedProfile.Count == 1)
+                {
+                    var hashedPwd = HashPassword(password, selectedProfile[0].ProfilePasswordSalt);
+                    if (selectedProfile[0].ProfilePassword == hashedPwd)
+                    {
+                        return selectedProfile[0];
+                    }
+                }
+                throw new WrongPasswordOrUsername("Wrong username or password");
+            }
+        }
+
+
+        /// <summary>
         /// This will generate a cryptography grade random string
         /// </summary>
         /// <returns>Random string</returns>
@@ -91,4 +119,25 @@ namespace FetchItClassLib.Handlers
             }
         }
     }
+
+    public class WrongPasswordOrUsername : Exception
+    {
+        public WrongPasswordOrUsername()
+        {
+
+        }
+
+        public WrongPasswordOrUsername(string message)
+            : base(message)
+        {
+
+        }
+
+        public WrongPasswordOrUsername(string message, Exception inner)
+            : base(message, inner)
+        {
+
+        }
+    }
+
 }
