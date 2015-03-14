@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 using FetchItClassLib.Persistence.EF;
@@ -26,9 +27,19 @@ namespace FetchItClassLib.Handlers
             }
         }
 
+        /// <summary>
+        /// This method adds a new user to the profile. By default, it will be inactive
+        /// </summary>
+        /// <param name="name">Name of profile. Not case sensitive, but will display as entered</param>
+        /// <param name="address">The address of the profile</param>
+        /// <param name="phone">Phone number of the profile</param>
+        /// <param name="mobile">Mobile number of the profile</param>
+        /// <param name="password">Password of the profile. Case sensitive. Will be hashed in the database</param>
+        /// <param name="email">contact email.</param>
         static public void AddNewProfile(string name, string address, string phone, string mobile, string password, string email)
         {
             var salt = GenerateSalt();
+            var activationId = GenerateSalt();
             var newProfile = new ProfileModel
             {
                 ProfileName = name,
@@ -47,6 +58,7 @@ namespace FetchItClassLib.Handlers
                     {
                         dbConn.ProfileModels.Add(newProfile);
                         dbConn.SaveChanges();
+                        SendActivationLink(name, activationId, email);
                     }
                     catch (Exception e)
                     {
@@ -54,6 +66,45 @@ namespace FetchItClassLib.Handlers
                     }
                     
                 }
+        }
+
+        /// <summary>
+        /// This method generated the activation link, and sends it by email to the user supplied email.
+        /// </summary>
+        /// <param name="name">Profile name</param>
+        /// <param name="activation">Activation id</param>
+        /// <param name="email">Email that will recieve the activation link</param>
+        private static void SendActivationLink(string name, string activation, string email)
+        {
+            string url = "http://urlOfSite.com";
+            string profileToActivate = name;
+            string profileactivationId = activation;
+            string profileEmail = email;
+
+            url += "?activate=" + profileToActivate;
+            url += "&id=" + profileactivationId;
+
+            try
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+                mail.From = new MailAddress("zibat.fetchit@gmail.com");
+                mail.To.Add(profileEmail);
+                mail.Subject = "Activation email";
+                mail.Body = url;
+
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new NetworkCredential("zibat.fetchit", "password1234.");
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+            }
+            catch (Exception e)
+            {
+                throw new EmailFailed(e.Message);
+            }
+            // TODO: Make the email service work. Add table field, to contain activation string.
         }
 
         /// <summary>
@@ -123,6 +174,26 @@ namespace FetchItClassLib.Handlers
                 // Do it for all the occurances in the byte array, and add all of it to result
                 return sha256.ComputeHash(pwdAsBytesArray).Aggregate(result, (current, next) => current + next);
             }
+        }
+    }
+
+    internal class EmailFailed : Exception
+    {
+        // TODO: Log the event
+
+        public EmailFailed()
+        {
+            
+        }
+
+        public EmailFailed(string message): base(message)
+        {
+            
+        }
+
+        public EmailFailed(string message, Exception inner): base(message,inner)
+        {
+            
         }
     }
 
