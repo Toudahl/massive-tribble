@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using FetchItClassLib.Persistence.EF;
@@ -127,24 +128,59 @@ namespace FetchItClassLib.Handlers
 
     public class FailedLogIn : Exception
     {
+        
+        static private string _externalIp = getExternalIP();
 
-        // TODO: Add logging of this event.
-        public FailedLogIn()
-        {
-
-        }
+        // TODO: Do some actual logging.
 
         public FailedLogIn(string message)
-            : base(message)
+            : base(message + " Logged Ip: " + _externalIp)
         {
 
         }
 
         public FailedLogIn(string message, Exception inner)
-            : base(message, inner)
+            : base(message + " Logged Ip: " + _externalIp, inner)
         {
 
         }
+
+        private static string getExternalIP()
+        {
+            using (WebClient client = new WebClient())
+            {
+                try
+                {
+                    return client.DownloadString("http://canihazip.com/s");
+                }
+                catch (WebException e)
+                {
+                    // this one is offline
+                }
+
+                try
+                {
+                    return client.DownloadString("http://wtfismyip.com/text");
+                }
+                catch (WebException e)
+                {
+                    // offline...
+                }
+
+                try
+                {
+                    return client.DownloadString("http://ip.telize.com/");
+                }
+                catch (WebException e)
+                {
+                    // offline too...
+                }
+
+                // if we got here, all the websites are down, which is unlikely
+                return "No ip found";
+            }
+        }
+
     }
 
 }
