@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -18,6 +19,9 @@ namespace FetchItClassLib.Handlers
         // TODO: Should we have a (singleton) class to hold the profile while the user is logged in?
         private static ProfileModel _currentLoggedInProfile;
 
+        /// <summary>
+        /// Provides access to the currently logged in profile.
+        /// </summary>
         public static ProfileModel CurrentLoggedInProfile
         {
             get { return _currentLoggedInProfile; }
@@ -78,7 +82,7 @@ namespace FetchItClassLib.Handlers
         }
 
         /// <summary>
-        /// This method generated the activation link, and sends it by email to the user supplied email.
+        /// This method generates the activation link, and sends it by email to the user supplied email.
         /// </summary>
         /// <param name="name">Profile name</param>
         /// <param name="activation">Activation id</param>
@@ -120,12 +124,48 @@ namespace FetchItClassLib.Handlers
         }
 
         /// <summary>
-        /// This will return a single profile model, to represent the logged in user.
+        /// This method will check if the <see cref="CurrentLoggedInProfile"/> has the rights to delete a profile.
+        /// And if so, change the status of the selected profile to deleted. Nothing is actually removed from the database.
+        /// </summary>
+        /// <param name="profileIdToDelete">Profile id of the user you wish to delete.</param>
+        /// <returns>True if the operation succeded</returns>
+        public static bool DeleteProfile(int profileIdToDelete)
+        {
+            if (profileIdToDelete > 0)
+            {
+                if (CurrentLoggedInProfile != null && CurrentLoggedInProfile.ProfileId != profileIdToDelete)
+                {
+                    if (CurrentLoggedInProfile.FK_ProfileLevelId >= 9001) // check if the user has admin rights.
+                    {
+                        try
+                        {
+                            using (var dbConn = new DbConn())
+                            {
+                                foreach (var profile in dbConn.ProfileModels.Where(profile => profile.ProfileId == profileIdToDelete))
+                                {
+                                    profile.FK_ProfileStatusId = 6;
+                                }
+                                dbConn.SaveChanges();
+                            }
+                            return true;
+                        }
+                        catch (Exception)
+                        {
+                            throw new ProfileUpdate();
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// This will return true if the login was a success. Otherwise it will throw a FailedLogIn exception.
         /// </summary>
         /// <param name="profileName">The name of the profile</param>
         /// <param name="password">The password of the profile</param>
         /// <returns>The requested profile</returns>
-        private static ProfileModel LogIn(string profileName, string password)
+        public static bool LogIn(string profileName, string password)
         {
             using (var dbconn = new DbConn())
             {
@@ -150,7 +190,7 @@ namespace FetchItClassLib.Handlers
                     if (selectedProfile[0].ProfilePassword == hashedPwd)
                     {
                         CurrentLoggedInProfile = selectedProfile[0];
-                        return CurrentLoggedInProfile;
+                        return true;
                     }
                 }
                 throw new FailedLogIn("Wrong username or password");
@@ -195,7 +235,28 @@ namespace FetchItClassLib.Handlers
         }
     }
 
-    internal class EmailFailed : Exception
+    public class ProfileUpdate : Exception
+    {
+        // TODO: Log the event?
+
+        public ProfileUpdate()
+        {
+            
+        }
+
+        public ProfileUpdate(string message): base(message)
+        {
+            
+        }
+
+        public ProfileUpdate(string message, Exception inner)
+            : base(message, inner)
+        {
+            
+        }
+    }
+
+    public class EmailFailed : Exception
     {
         // TODO: Log the event
 
