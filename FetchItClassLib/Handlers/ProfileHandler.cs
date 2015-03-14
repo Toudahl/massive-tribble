@@ -15,6 +15,15 @@ namespace FetchItClassLib.Handlers
     /// </summary>
     static public class ProfileHandler
     {
+        // TODO: Should we have a (singleton) class to hold the profile while the user is logged in.
+        private static ProfileModel _currentLoggedInProfile;
+
+        public static ProfileModel CurrentLoggedInProfile
+        {
+            get { return _currentLoggedInProfile; }
+            private set { _currentLoggedInProfile = value; }
+        }
+
         /// <summary>
         /// This method will give you a list of all profiles in the database
         /// </summary>
@@ -127,6 +136,11 @@ namespace FetchItClassLib.Handlers
 
                 if (selectedProfile.Count == 1)
                 {
+                    if (selectedProfile[0].FK_ProfileStatusId == 6)
+                    {
+                        throw new FailedLogIn("The account " + selectedProfile[0].ProfileName + " has been deleted.");
+                    }
+
                     if (selectedProfile[0].FK_ProfileStatusId != 5)
                     {
                         throw new FailedLogIn("Account status: " + selectedProfile[0].ProfileStatus.Status);
@@ -135,7 +149,8 @@ namespace FetchItClassLib.Handlers
                     var hashedPwd = HashPassword(password, selectedProfile[0].ProfilePasswordSalt);
                     if (selectedProfile[0].ProfilePassword == hashedPwd)
                     {
-                        return selectedProfile[0];
+                        CurrentLoggedInProfile = selectedProfile[0];
+                        return CurrentLoggedInProfile;
                     }
                 }
                 throw new FailedLogIn("Wrong username or password");
