@@ -28,7 +28,5 @@ namespace FetchIt.View
         {
             InitializeComponent();
         }
-
-
     }
 }

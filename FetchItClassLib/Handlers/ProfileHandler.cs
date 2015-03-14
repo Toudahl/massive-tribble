@@ -76,35 +76,38 @@ namespace FetchItClassLib.Handlers
         /// <param name="email">Email that will recieve the activation link</param>
         private static void SendActivationLink(string name, string activation, string email)
         {
-            string url = "http://urlOfSite.com";
-            string profileToActivate = name;
-            string profileactivationId = activation;
-            string profileEmail = email;
+            var url = "http://urlOfSite.com";
+            var profileToActivate = name;
+            var profileactivationId = activation;
+            var profileEmail = email;
 
             url += "?activate=" + profileToActivate;
             url += "&id=" + profileactivationId;
 
             try
             {
-                MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                var mail = new MailMessage();
+                var smtpServer = new SmtpClient("smtp.gmail.com")
+                {
+                    Port = 587,
+                    Credentials = new NetworkCredential("zibat.fetchit", "password1234."),
+                    EnableSsl = true
+                };
+
 
                 mail.From = new MailAddress("zibat.fetchit@gmail.com");
                 mail.To.Add(profileEmail);
                 mail.Subject = "Activation email";
                 mail.Body = url;
 
-                SmtpServer.Port = 587;
-                SmtpServer.Credentials = new NetworkCredential("zibat.fetchit", "password1234.");
-                SmtpServer.EnableSsl = true;
 
-                SmtpServer.Send(mail);
+                smtpServer.Send(mail);
             }
             catch (Exception e)
             {
                 throw new EmailFailed(e.Message);
             }
-            // TODO: Make the email service work. Add table field, to contain activation string.
+            // TODO: Add table columm, to contain activation string.
         }
 
         /// <summary>
@@ -224,7 +227,7 @@ namespace FetchItClassLib.Handlers
                 {
                     return client.DownloadString("http://canihazip.com/s");
                 }
-                catch (WebException e)
+                catch (WebException)
                 {
                     // this one is offline
                 }
@@ -233,7 +236,7 @@ namespace FetchItClassLib.Handlers
                 {
                     return client.DownloadString("http://wtfismyip.com/text");
                 }
-                catch (WebException e)
+                catch (WebException)
                 {
                     // offline...
                 }
@@ -242,7 +245,7 @@ namespace FetchItClassLib.Handlers
                 {
                     return client.DownloadString("http://ip.telize.com/");
                 }
-                catch (WebException e)
+                catch (WebException)
                 {
                     // offline too...
                 }
