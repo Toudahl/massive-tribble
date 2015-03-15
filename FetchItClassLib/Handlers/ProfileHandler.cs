@@ -33,7 +33,13 @@ namespace FetchItClassLib.Handlers
             Administartor = 9001,
         }
 
-        // TODO: Should we have a (singleton) class to hold the profile while the user is logged in?
+        enum EmailTypes
+        {
+            activation,
+            newemail,
+            newpassword,
+        }
+
         private static ProfileModel _currentLoggedInProfile;
         private static ProfileHandler _handler;
 
@@ -85,7 +91,7 @@ namespace FetchItClassLib.Handlers
         public void AddNewProfile(string name, string address, string phone, string mobile, string password, string email)
         {
             var salt = GenerateSalt();
-            var activationId = GenerateSalt();
+            var activationId = GenerateSalt(); // TODO: Save activation id to table
             var newProfile = new ProfileModel
             {
                 ProfileName = name,
@@ -104,7 +110,7 @@ namespace FetchItClassLib.Handlers
                     {
                         dbConn.ProfileModels.Add(newProfile);
                         dbConn.SaveChanges();
-                        SendActivationLink(name, activationId, email);
+                        SendEmail(name, activationId, email, "Activation email", EmailTypes.activation);
                     }
                     catch (Exception e)
                     {
@@ -120,14 +126,14 @@ namespace FetchItClassLib.Handlers
         /// <param name="name">Profile name</param>
         /// <param name="activation">Activation id</param>
         /// <param name="email">Email that will recieve the activation link</param>
-        private void SendActivationLink(string name, string activation, string email)
+        private void SendEmail(string name, string activation, string email, string subject, EmailTypes emailType) // TODO: fix this to be universally usable.
         {
             var url = "http://urlOfSite.com";
             var profileToActivate = name;
             var profileactivationId = activation;
             var profileEmail = email;
 
-            url += "?activate=" + profileToActivate;
+            url += "?"+emailType+"=" + profileToActivate;
             url += "&id=" + profileactivationId;
 
             try
@@ -143,7 +149,7 @@ namespace FetchItClassLib.Handlers
 
                 mail.From = new MailAddress("zibat.fetchit@gmail.com");
                 mail.To.Add(profileEmail);
-                mail.Subject = "Activation email";
+                mail.Subject = subject;
                 mail.Body = url;
 
 
@@ -190,6 +196,79 @@ namespace FetchItClassLib.Handlers
                     }
                 }
             }
+            return false;
+        }
+
+        /// <summary>
+        /// This method will update the specified profile.
+        /// If you change email, it will need confirmation before completing the change. (Not fully implemented)
+        /// If you change password, it will send the new password to the associated email.
+        /// </summary>
+        /// <param name="profileIdToUpdate">Profile id of the user you wish to update</param>
+        /// <param name="name">Name of profile. Not case sensitive, but will display as entered</param>
+        /// <param name="address">The address of the profile</param>
+        /// <param name="phone">Phone number of the profile</param>
+        /// <param name="mobile">Mobile number of the profile</param>
+        /// <param name="password">Password of the profile. Case sensitive. Will be hashed in the database</param>
+        /// <param name="email">contact email.</param>
+        /// <returns></returns>
+        public bool UpdateProfile(int profileIdToUpdate,
+            string password, string email, string address,
+            string phone, string mobile, string name)
+        {
+
+            if (profileIdToUpdate > 0)
+            {
+                if (CurrentLoggedInProfile != null)
+                {
+                    try
+                    {
+                        using (var dbConn = new DbConn())
+                        {
+                            foreach (var profile in dbConn.ProfileModels
+                                .Where(profile => profile.ProfileId == profileIdToUpdate))
+                            {
+                                if (profile.ProfileName != name)
+                                {
+                                    if (CurrentLoggedInProfile.FK_ProfileLevelId >= (int)ProfileLevel.Administartor)
+                                    {
+                                        profile.ProfileName = name;
+                                    }
+                                }
+                                if (profile.ProfilePassword != HashPassword(password,profile.ProfilePasswordSalt))
+                                {
+                                    profile.ProfilePassword = HashPassword(password, profile.ProfilePasswordSalt);
+                                    //SendEmail(profile.ProfileName, profile.ProfileEmail); // TODO: Create overloaded method just for notifications.
+                                }
+                                if (profile.ProfileEmail != email)
+                                {
+                                    var activationId = GenerateSalt(); //TODO: save activation id to table.
+                                    SendEmail(profile.ProfileName, profile.ProfileEmail, activationId, "New email address associated with account", EmailTypes.newemail);
+                                }
+                                if (profile.ProfileAddress != address)
+                                {
+                                    profile.ProfileAddress = address;
+                                }
+                                if (profile.ProfilePhone != phone)
+                                {
+                                    profile.ProfilePhone = phone;
+                                }
+                                if (profile.ProfileMobile != mobile)
+                                {
+                                    profile.ProfileMobile = mobile;
+                                }
+                            }
+                            dbConn.SaveChanges();
+                        }
+                        return true;
+                    }
+                    catch (Exception)
+                    {
+                        throw new ProfileUpdate("Failed to Update the profile.");
+                    }
+                }
+            }
+
             return false;
         }
 
@@ -251,7 +330,7 @@ namespace FetchItClassLib.Handlers
         }
 
         /// <summary>
-        /// This will generate a cryptography grade random string
+        /// This will generate a cryptographic grade random string
         /// </summary>
         /// <returns>Random string</returns>
         private string GenerateSalt()
