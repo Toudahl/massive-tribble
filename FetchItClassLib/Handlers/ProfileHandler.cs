@@ -75,6 +75,7 @@ namespace FetchItClassLib.Handlers
         /// <returns>List of all profiles</returns>
         public List<ProfileModel> GetAllProfiles()
         {
+            //TODO: decide on filters, if any, on the returned list.
             using (var dbConn = new DbConn())
             {
                 return dbConn.ProfileModels.ToList();
@@ -131,6 +132,7 @@ namespace FetchItClassLib.Handlers
         /// <param name="email">Email that will recieve the activation link</param>
         private void SendEmail(string name, string activation, string email, string subject, EmailTypes emailType) 
         {
+            //TODO: refactor this into a class by it self.
             var url = "http://fetchit.mortentoudahl.dk";
             var profileToActivate = name;
             var profileActivationId = activation;
