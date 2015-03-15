@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f398a27630f24cdb9903c74df3be8ea8" Name="Diagram1" ZoomLevel="105" DisplayType="true">
+      <Diagram DiagramId="f398a27630f24cdb9903c74df3be8ea8" Name="Diagram1" ZoomLevel="98" DisplayType="true">
         <EntityTypeShape EntityType="FetchItDatabaseModel.CommentModel" Width="2.625" PointX="6.625" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="FetchItDatabaseModel.FeedbackModel" Width="2.5" PointX="3.375" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="FetchItDatabaseModel.IssueModel" Width="2.625" PointX="5.75" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="FetchItDatabaseModel.PaymentModel" Width="2.125" PointX="9.625" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="FetchItDatabaseModel.PaymentStatusModel" Width="2" PointX="11.875" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="FetchItDatabaseModel.PaymentTypeModel" Width="2.125" PointX="8.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchItDatabaseModel.PaymentModel" Width="2.125" PointX="0.5" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchItDatabaseModel.PaymentStatusModel" Width="2" PointX="0.625" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchItDatabaseModel.PaymentTypeModel" Width="2.125" PointX="8.875" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="FetchItDatabaseModel.ProfileLevelModel" Width="1.75" PointX="9" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="FetchItDatabaseModel.ProfileModel" Width="2.125" PointX="0.5" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchItDatabaseModel.ProfileModel" Width="2.125" PointX="11.5" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="FetchItDatabaseModel.ProfileStatusModel" Width="2" PointX="0.5" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="FetchItDatabaseModel.TaskModel" Width="2.25" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FetchItDatabaseModel.TaskModel" Width="2.25" PointX="3" PointY="3.625" IsExpanded="true" />
         <AssociationConnector Association="FetchItDatabaseModel.FK_CommentCreator_Profile" ManuallyRouted="false" />
         <AssociationConnector Association="FetchItDatabaseModel.FK_CommentsTask" ManuallyRouted="false" />
         <AssociationConnector Association="FetchItDatabaseModel.FK_FeedbackCreator_Profile" ManuallyRouted="false" />

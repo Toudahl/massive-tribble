@@ -87,6 +87,9 @@
           <Property Name="ProfileImage" Type="nvarchar" MaxLength="100" />
           <Property Name="ProfileText" Type="nvarchar(max)" />
           <Property Name="ProfilePasswordSalt" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ProfileActivationId" Type="nvarchar" MaxLength="200" />
+          <Property Name="ProfileNewEmail" Type="nvarchar" MaxLength="200" />
+          <Property Name="ProfileNewPassword" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="ProfileStatuses">
           <Key>
@@ -398,6 +401,9 @@
           <NavigationProperty Name="TasksFetcher" Relationship="Self.FK_TasksFetcher_Profile" FromRole="Profiles" ToRole="Tasks" />
           <NavigationProperty Name="TaskMaster" Relationship="Self.FK_TasksMaster_Profile" FromRole="Profiles" ToRole="Tasks" />
           <Property Name="ProfilePasswordSalt" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProfileActivationId" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ProfileNewEmail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ProfileNewPassword" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ProfileStatusModel">
           <Key>
@@ -559,7 +565,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="FetchItDatabaseEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DbConn" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CommentModels" EntityType="FetchItDatabaseModel.CommentModel" />
           <EntitySet Name="FeedbackModels" EntityType="FetchItDatabaseModel.FeedbackModel" />
           <EntitySet Name="IssueModels" EntityType="FetchItDatabaseModel.IssueModel" />
@@ -620,7 +626,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="FetchItDatabaseModelStoreContainer" CdmEntityContainer="FetchItDatabaseEntities">
+        <EntityContainerMapping StorageEntityContainer="FetchItDatabaseModelStoreContainer" CdmEntityContainer="DbConn">
           <EntitySetMapping Name="CommentModels">
             <EntityTypeMapping TypeName="FetchItDatabaseModel.CommentModel">
               <MappingFragment StoreEntitySet="Comments">
@@ -695,6 +701,9 @@
           <EntitySetMapping Name="ProfileModels">
             <EntityTypeMapping TypeName="FetchItDatabaseModel.ProfileModel">
               <MappingFragment StoreEntitySet="Profiles">
+                <ScalarProperty Name="ProfileNewPassword" ColumnName="ProfileNewPassword" />
+                <ScalarProperty Name="ProfileNewEmail" ColumnName="ProfileNewEmail" />
+                <ScalarProperty Name="ProfileActivationId" ColumnName="ProfileActivationId" />
                 <ScalarProperty Name="ProfilePasswordSalt" ColumnName="ProfilePasswordSalt" />
                 <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
                 <ScalarProperty Name="ProfileName" ColumnName="ProfileName" />

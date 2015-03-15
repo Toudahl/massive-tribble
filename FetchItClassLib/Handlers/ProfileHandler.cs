@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -91,7 +93,7 @@ namespace FetchItClassLib.Handlers
         public void AddNewProfile(string name, string address, string phone, string mobile, string password, string email)
         {
             var salt = GenerateSalt();
-            var activationId = GenerateSalt(); // TODO: Save activation id to table
+            var activationId = GenerateSalt();
             var newProfile = new ProfileModel
             {
                 ProfileName = name,
@@ -101,7 +103,8 @@ namespace FetchItClassLib.Handlers
                 ProfileEmail = email,
                 ProfilePasswordSalt = salt,
                 ProfilePassword = HashPassword(password, salt),
-                FK_ProfileStatusId = (int)ProfileStatus.Inactive
+                FK_ProfileStatusId = (int)ProfileStatus.Inactive,
+                ProfileActivationId = activationId
             };
 
                 using (var dbConn = new DbConn())
@@ -126,15 +129,15 @@ namespace FetchItClassLib.Handlers
         /// <param name="name">Profile name</param>
         /// <param name="activation">Activation id</param>
         /// <param name="email">Email that will recieve the activation link</param>
-        private void SendEmail(string name, string activation, string email, string subject, EmailTypes emailType) // TODO: fix this to be universally usable.
+        private void SendEmail(string name, string activation, string email, string subject, EmailTypes emailType) 
         {
-            var url = "http://urlOfSite.com";
+            var url = "http://fetchit.mortentoudahl.dk";
             var profileToActivate = name;
-            var profileactivationId = activation;
+            var profileActivationId = activation;
             var profileEmail = email;
 
             url += "?"+emailType+"=" + profileToActivate;
-            url += "&id=" + profileactivationId;
+            url += "&id=" + profileActivationId;
 
             try
             {
@@ -159,7 +162,6 @@ namespace FetchItClassLib.Handlers
             {
                 throw new EmailFailed(e.Message);
             }
-            // TODO: Add table columm, to contain activation string.
         }
 
         /// <summary>
@@ -213,8 +215,8 @@ namespace FetchItClassLib.Handlers
         /// <param name="email">contact email.</param>
         /// <returns></returns>
         public bool UpdateProfile(int profileIdToUpdate,
-            string password, string email, string address,
-            string phone, string mobile, string name)
+            string name, string email, string address,
+            string phone, string mobile, string password = "")
         {
 
             if (profileIdToUpdate > 0)
@@ -230,20 +232,29 @@ namespace FetchItClassLib.Handlers
                             {
                                 if (profile.ProfileName != name)
                                 {
-                                    if (CurrentLoggedInProfile.FK_ProfileLevelId >= (int)ProfileLevel.Administartor)
+                                    if (CurrentLoggedInProfile.FK_ProfileLevelId >= (int) ProfileLevel.Administartor)
                                     {
                                         profile.ProfileName = name;
                                     }
                                 }
-                                if (profile.ProfilePassword != HashPassword(password,profile.ProfilePasswordSalt))
+                                if (profile.ProfilePassword != HashPassword(password, profile.ProfilePasswordSalt) &&
+                                    password != "")
                                 {
-                                    profile.ProfilePassword = HashPassword(password, profile.ProfilePasswordSalt);
-                                    //SendEmail(profile.ProfileName, profile.ProfileEmail); // TODO: Create overloaded method just for notifications.
+                                    var newPw = HashPassword(password, profile.ProfilePasswordSalt);
+                                    var activationId = GenerateSalt();
+                                    profile.ProfileNewPassword = newPw;
+                                    profile.ProfileActivationId = activationId;
+                                    SendEmail(profile.ProfileName, activationId, profile.ProfileEmail,
+                                        "New password for FetchIt", EmailTypes.newpassword);
                                 }
                                 if (profile.ProfileEmail != email)
+                                    // TODO: prevent password and email reset at the same time.
                                 {
-                                    var activationId = GenerateSalt(); //TODO: save activation id to table.
-                                    SendEmail(profile.ProfileName, profile.ProfileEmail, activationId, "New email address associated with account", EmailTypes.newemail);
+                                    var activationId = GenerateSalt();
+                                    profile.ProfileActivationId = activationId;
+                                    profile.ProfileNewEmail = email;
+                                    SendEmail(profile.ProfileName, activationId, profile.ProfileEmail,
+                                        "New email address associated with account", EmailTypes.newemail);
                                 }
                                 if (profile.ProfileAddress != address)
                                 {
@@ -262,9 +273,21 @@ namespace FetchItClassLib.Handlers
                         }
                         return true;
                     }
-                    catch (Exception)
+                    catch (DbEntityValidationException e)
                     {
-                        throw new ProfileUpdate("Failed to Update the profile.");
+                        foreach (var eve in e.EntityValidationErrors)
+                        {
+                            Debug.Write("Entity of type \"" + eve.Entry.Entity.GetType().Name + "\" in state \"" + eve.Entry.State + "\" has the following validation errors:");
+                            foreach (var ve in eve.ValidationErrors)
+                            {
+                                Debug.Write("- Property: \"" + ve.PropertyName + "\", Error: \"" + ve.ErrorMessage + "\"");
+                            }
+                        }
+                        throw;
+                    }
+                    catch (Exception e)
+                    {
+                        throw new ProfileUpdate("Failed to Update the profile: " +e.Message);
                     }
                 }
             }
@@ -290,7 +313,7 @@ namespace FetchItClassLib.Handlers
                         dbconn.ProfileModels.Where(
                         profile =>
                             profile.ProfileName == profileName).ToList();
-
+                    // TODO: Add last logged in.
                     if (selectedProfile.Count == 1)
                     {
                         if (selectedProfile[0].FK_ProfileStatusId == (int)ProfileStatus.Deleted)
@@ -330,7 +353,7 @@ namespace FetchItClassLib.Handlers
         }
 
         /// <summary>
-        /// This will generate a cryptographic grade random string
+        /// This will generates a cryptographic grade random string
         /// </summary>
         /// <returns>Random string</returns>
         private string GenerateSalt()
@@ -340,7 +363,12 @@ namespace FetchItClassLib.Handlers
             using (var random = new RNGCryptoServiceProvider())
             {
                 random.GetBytes(bytes);
-                return Convert.ToBase64String(bytes);
+                string result = "";
+                foreach (byte b in bytes)
+                {
+                    result += b;
+                }
+                return result;
             }
         }
 

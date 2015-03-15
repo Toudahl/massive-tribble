@@ -27,7 +27,6 @@ namespace FetchIt.View
         public EntryPoint()
         {
             InitializeComponent();
-
         }
     }
 }

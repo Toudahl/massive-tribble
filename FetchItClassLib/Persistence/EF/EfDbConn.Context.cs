@@ -16,7 +16,7 @@ namespace FetchItClassLib.Persistence.EF
     public partial class DbConn : DbContext
     {
         public DbConn()
-            : base("name=FetchItDatabaseEntities")
+            : base("name=DbConn")
         {
         }
     
