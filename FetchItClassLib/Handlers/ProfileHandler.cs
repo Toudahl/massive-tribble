@@ -171,14 +171,15 @@ namespace FetchItClassLib.Handlers
         /// If modifying the profile status fails, it will throw a <see cref="ProfileUpdate"/> exception.
         /// </summary>
         /// <param name="profileIdToDelete">Profile id of the user you wish to delete.</param>
-        /// <returns>True if the operation succeded</returns>
+        /// <returns>True if the operation succeded. False if the user is not high enough level</returns>
         public bool DeleteProfile(int profileIdToDelete)
         {
             if (profileIdToDelete > 0)
             {
-                if (CurrentLoggedInProfile != null && CurrentLoggedInProfile.ProfileId != profileIdToDelete)
+                if (CurrentLoggedInProfile.FK_ProfileLevelId >= (int)ProfileLevel.Administartor) // check if the user has admin rights.
                 {
-                    if (CurrentLoggedInProfile.FK_ProfileLevelId >= (int)ProfileLevel.Administartor) // check if the user has admin rights.
+
+                    if (CurrentLoggedInProfile != null && CurrentLoggedInProfile.ProfileId != profileIdToDelete)
                     {
                         try
                         {
@@ -199,7 +200,81 @@ namespace FetchItClassLib.Handlers
                         {
                             throw new ProfileUpdate("Failed to delete the profile.");
                         }
+                    } 
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// This method will disable an account. This if for use on your own account.
+        /// </summary>
+        /// <param name="profileIdToDisable">Id of the profile to disable</param>
+        /// <returns>true if success. False if otherwise</returns>
+        public bool DisableProfile(int profileIdToDisable)
+        {
+            if (profileIdToDisable > 0)
+            {
+                if (CurrentLoggedInProfile != null && CurrentLoggedInProfile.ProfileId == profileIdToDisable)
+                {
+                    try
+                    {
+                        using (var dbConn = new DbConn())
+                        {
+                            if (dbConn.ProfileModels.Count(profile => profile.ProfileId == profileIdToDisable) == 1)
+                            {
+                                foreach (var profile in dbConn.ProfileModels.Where(profile => profile.ProfileId == profileIdToDisable))
+                                {
+                                    profile.FK_ProfileStatusId = (int)ProfileStatus.Disabled;
+                                }
+                                dbConn.SaveChanges();
+                            }
+                        }
+                        return true;
                     }
+                    catch (Exception)
+                    {
+                        throw new ProfileUpdate("Failed to disable the profile.");
+                    }
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// This method will disable an account. This if for use on your own account.
+        /// </summary>
+        /// <param name="profileIdToSuspend">Id of the profile to disable</param>
+        /// <returns>true if success. False if user is does not have the rights</returns>
+        public bool SuspendProfile(int profileIdToSuspend)
+        {
+            if (profileIdToSuspend > 0)
+            {
+                if (CurrentLoggedInProfile.FK_ProfileLevelId >= (int)ProfileLevel.Administartor)
+                {
+                    if (CurrentLoggedInProfile != null && CurrentLoggedInProfile.ProfileId != profileIdToSuspend)
+                    {
+                        try
+                        {
+                            using (var dbConn = new DbConn())
+                            {
+                                if (dbConn.ProfileModels.Count(profile => profile.ProfileId == profileIdToSuspend) == 1)
+                                {
+                                    foreach (var profile in dbConn.ProfileModels.Where(profile => profile.ProfileId == profileIdToSuspend))
+                                    {
+                                        profile.FK_ProfileStatusId = (int)ProfileStatus.Suspended;
+                                    }
+                                    dbConn.SaveChanges();
+                                }
+                            }
+                            return true;
+                        }
+                        catch (Exception)
+                        {
+                            throw new ProfileUpdate("Failed to disable the profile.");
+                        }
+                    }
+
                 }
             }
             return false;
@@ -317,7 +392,7 @@ namespace FetchItClassLib.Handlers
                         dbconn.ProfileModels.Where(
                         profile =>
                             profile.ProfileName == profileName).ToList();
-                    // TODO: Add last logged in.
+                    // TODO: Add last logged in time.
                     if (selectedProfile.Count == 1)
                     {
                         if (selectedProfile[0].FK_ProfileStatusId == (int)ProfileStatus.Deleted)
@@ -368,6 +443,7 @@ namespace FetchItClassLib.Handlers
             {
                 random.GetBytes(bytes);
                 string result = "";
+                // TODO: look into stringbuilders
                 foreach (byte b in bytes)
                 {
                     result += b;

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f398a27630f24cdb9903c74df3be8ea8" Name="Diagram1" ZoomLevel="98" DisplayType="true">
+      <Diagram DiagramId="f398a27630f24cdb9903c74df3be8ea8" Name="Diagram1" ZoomLevel="112" DisplayType="true">
         <EntityTypeShape EntityType="FetchItDatabaseModel.CommentModel" Width="2.625" PointX="6.625" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="FetchItDatabaseModel.FeedbackModel" Width="2.5" PointX="3.375" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="FetchItDatabaseModel.IssueModel" Width="2.625" PointX="5.75" PointY="4.125" IsExpanded="true" />
