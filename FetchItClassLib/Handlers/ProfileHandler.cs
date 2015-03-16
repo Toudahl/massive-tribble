@@ -19,14 +19,13 @@ namespace FetchItClassLib.Handlers
     /// </summary>
     public class ProfileHandler
     {
-
         enum ProfileStatus
         {
             Inactive = 2,
-            Suspended,
-            Disabled,
-            Active,
-            Deleted,
+            Suspended = 3,
+            Disabled = 4,
+            Active = 5,
+            Deleted = 6,
         }
 
         enum ProfileLevel
@@ -185,11 +184,14 @@ namespace FetchItClassLib.Handlers
                         {
                             using (var dbConn = new DbConn())
                             {
-                                foreach (var profile in dbConn.ProfileModels.Where(profile => profile.ProfileId == profileIdToDelete))
+                                if (dbConn.ProfileModels.Count(profile => profile.ProfileId == profileIdToDelete) == 1)
                                 {
-                                    profile.FK_ProfileStatusId = (int)ProfileStatus.Deleted;
+                                    foreach (var profile in dbConn.ProfileModels.Where(profile => profile.ProfileId == profileIdToDelete))
+                                    {
+                                        profile.FK_ProfileStatusId = (int)ProfileStatus.Deleted;
+                                    }
+                                    dbConn.SaveChanges();
                                 }
-                                dbConn.SaveChanges();
                             }
                             return true;
                         }
