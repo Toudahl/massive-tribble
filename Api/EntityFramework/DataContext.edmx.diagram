@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4d972ab2907a461894897e6ea3798bef" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.CommentModel" Width="1.5" PointX="0.625" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.FeedbackModel" Width="2.375" PointX="5.5" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.FeedbackStatusModel" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.IssueDetailModel" Width="2" PointX="13.125" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.Issue" Width="2.5" PointX="13.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.IssueStatusModel" Width="1.75" PointX="5.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.LogModel" Width="1.5" PointX="0.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.NotificationModel" Width="2.125" PointX="7.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.NotificationStatusModel" Width="2.125" PointX="2.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.PaymentModel" Width="1.875" PointX="8.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.PaymentStatusModel" Width="1.5" PointX="10.875" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.PaymentTypeModel" Width="1.5" PointX="8.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.ProfileLevelModel" Width="1.875" PointX="0.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.ProfileModel" Width="2.125" PointX="2.875" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.ProfileStatusModel" Width="1.875" PointX="0.5" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.ProfileVerificationTypeModel" Width="2.125" PointX="0.5" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.ReportModel" Width="2.125" PointX="10.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.SessionModel" Width="1.5" PointX="0.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.TaskLocationInfoModel" Width="1.75" PointX="11.125" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.TaskModel" Width="2.25" PointX="5.625" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.TaskStatus" Width="1.5" PointX="2.75" PointY="14.5" IsExpanded="true" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Comments_Profiles" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Comments_Tasks" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Feedbacks_FeedbackStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Feedbacks_Tasks" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_IssueDetails_Issues" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Table_IssueStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Table_IssueTask" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Table_ProfilesCreator" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Table_ProfilesTarget" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Notifications_NotificationStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Notifications_ProfilesFrom" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Notifications_ProfilesTo" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Payment_PaymentStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Payment_PaymentTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Payment_Tasks" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Profiles_ProfileLevels" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Profiles_ProfileStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Profiles_ProfileVerificationTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Reports_ReportedProfile" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Reports_ReportingProfile" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Sessions_Profiles" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Tasks_ProfilesTaskFetcher" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Tasks_ProfilesTaskMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_TaskLocationInfos_Tasks" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Tasks_TaskStatuses" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,1598 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DB_9BC69B_fetchitModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_CommentNotificationReferenceId" Type="nvarchar" MaxLength="10" />
+          <Property Name="CommentText" Type="text" Nullable="false" />
+          <Property Name="CommentTimeCreated" Type="datetime" Nullable="false" />
+          <Property Name="FK_CommentCreator" Type="int" Nullable="false" />
+          <Property Name="FK_CommentTask" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Feedbacks">
+          <Key>
+            <PropertyRef Name="FeedbackId" />
+          </Key>
+          <Property Name="FeedbackId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FeedbackRating" Type="tinyint" Nullable="false" />
+          <Property Name="FK_FeedbackNotificationReferenceId" Type="nvarchar" MaxLength="10" />
+          <Property Name="FeedbackComment" Type="text" />
+          <Property Name="FK_FeedbackForTask" Type="int" Nullable="false" />
+          <Property Name="FK_FeedbackStatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FeedbackStatuses">
+          <Key>
+            <PropertyRef Name="FeedbackStatusId" />
+          </Key>
+          <Property Name="FeedbackStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FeedbackStatus" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="IssueDetails">
+          <Key>
+            <PropertyRef Name="IssueDetailId" />
+          </Key>
+          <Property Name="IssueDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_Issue" Type="int" Nullable="false" />
+          <Property Name="IssueDetailFromCreator" Type="bit" Nullable="false" />
+          <Property Name="IssueImage" Type="varbinary(max)" />
+          <Property Name="IssueDetailText" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Issues">
+          <Key>
+            <PropertyRef Name="IssueId" />
+          </Key>
+          <Property Name="IssueId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_IssueNotificationReferenceId" Type="nvarchar" MaxLength="10" />
+          <Property Name="FK_IssueCreator" Type="int" Nullable="false" />
+          <Property Name="FK_IssueTarget" Type="int" Nullable="false" />
+          <Property Name="IssueTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IssueDescription" Type="text" Nullable="false" />
+          <Property Name="IssueTimeCreated" Type="datetime" Nullable="false" />
+          <Property Name="IssueTimeResolved" Type="datetime" />
+          <Property Name="FK_IssueStatus" Type="int" Nullable="false" />
+          <Property Name="IssueDidCreatorWin" Type="bit" Nullable="false" />
+          <Property Name="FK_IssueTask" Type="int" Nullable="false" />
+          <Property Name="IssueAppealedByCreator" Type="bit" Nullable="false" />
+          <Property Name="IssueHasBeenAppealed" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IssueStatuses">
+          <Key>
+            <PropertyRef Name="IssueStatusId" />
+          </Key>
+          <Property Name="IssueStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IssueStatus" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Logs">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LogMessage" Type="text" Nullable="false" />
+          <Property Name="LogTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Notifications">
+          <Key>
+            <PropertyRef Name="NotificationId" />
+          </Key>
+          <Property Name="NotificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_NotificationReferenceId" Type="nvarchar" MaxLength="20" />
+          <Property Name="FK_NotificationFrom" Type="int" Nullable="false" />
+          <Property Name="FK_NotificationTo" Type="int" Nullable="false" />
+          <Property Name="NotificationContent" Type="ntext" Nullable="false" />
+          <Property Name="FK_NotificationStatus" Type="int" Nullable="false" />
+          <Property Name="NotificationSent" Type="datetime" Nullable="false" />
+          <Property Name="NotificationRead" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NotificationStatuses">
+          <Key>
+            <PropertyRef Name="NotificationStatusId" />
+          </Key>
+          <Property Name="NotificationStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NotificationStatus" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="PaymentId" />
+          </Key>
+          <Property Name="PaymentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_PaymentNotificationReferenceId" Type="nvarchar" MaxLength="10" />
+          <Property Name="FK_PaymentStatus" Type="int" Nullable="false" />
+          <Property Name="PaymentAmount" Type="money" Nullable="false" />
+          <Property Name="FK_PaymentForTask" Type="int" Nullable="false" />
+          <Property Name="FK_PaymentType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentStatuses">
+          <Key>
+            <PropertyRef Name="PaymentStatusId" />
+          </Key>
+          <Property Name="PaymentStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentStatus" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentTypes">
+          <Key>
+            <PropertyRef Name="PaymentTypeId" />
+          </Key>
+          <Property Name="PaymentTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentType" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProfileLevels">
+          <Key>
+            <PropertyRef Name="ProfileLevelId" />
+          </Key>
+          <Property Name="ProfileLevelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProfileLevelTitle" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Profiles">
+          <Key>
+            <PropertyRef Name="ProfileId" />
+          </Key>
+          <Property Name="ProfileId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProfileName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ProfileAddress" Type="text" Nullable="false" />
+          <Property Name="ProfilePhone" Type="varchar" MaxLength="15" />
+          <Property Name="ProfileMobile" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="ProfilePassword" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ProfileEmail" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FK_ProfileStatus" Type="int" Nullable="false" />
+          <Property Name="ProfileLastLoggedIn" Type="datetime" />
+          <Property Name="FK_ProfileLevel" Type="int" Nullable="false" />
+          <Property Name="ProfileIsVerified" Type="bit" Nullable="false" />
+          <Property Name="ProfileImage" Type="varbinary(max)" />
+          <Property Name="ProfileText" Type="text" />
+          <Property Name="ProfilePasswordSalt" Type="bigint" Nullable="false" />
+          <Property Name="FK_ProfileVerificationType" Type="int" Nullable="false" />
+          <Property Name="ProfileAuthCode" Type="bigint" />
+          <Property Name="ProfileNewEmail" Type="nvarchar(max)" />
+          <Property Name="ProfileNewPassword" Type="nvarchar(max)" />
+          <Property Name="ProfileCanReport" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProfileStatuses">
+          <Key>
+            <PropertyRef Name="ProfileStatusId" />
+          </Key>
+          <Property Name="ProfileStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProfileStatus" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProfileVerificationTypes">
+          <Key>
+            <PropertyRef Name="ProfileVerificationTypeId" />
+          </Key>
+          <Property Name="ProfileVerificationTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProfileVerificationType" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reports">
+          <Key>
+            <PropertyRef Name="ReportId" />
+          </Key>
+          <Property Name="ReportId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_ReportingProfile" Type="int" Nullable="false" />
+          <Property Name="ReportMessage" Type="text" Nullable="false" />
+          <Property Name="ReportTime" Type="datetime" Nullable="false" />
+          <Property Name="FK_ReportedProfile" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sessions">
+          <Key>
+            <PropertyRef Name="SessionId" />
+          </Key>
+          <Property Name="SessionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_ProfileId" Type="int" Nullable="false" />
+          <Property Name="SessionIp" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="SessionStart" Type="datetime" Nullable="false" />
+          <Property Name="SessionEnd" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TaskLocationInfos">
+          <Key>
+            <PropertyRef Name="TaskLocationInfoId" />
+          </Key>
+          <Property Name="TaskLocationInfoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_TaskId" Type="int" Nullable="false" />
+          <Property Name="TaskLocationAddress" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="TaskId" />
+          </Key>
+          <Property Name="TaskId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_TaskNotificationReferenceId" Type="nvarchar" MaxLength="10" />
+          <Property Name="FK_TaskMaster" Type="int" Nullable="false" />
+          <Property Name="FK_TaskFetcher" Type="int" />
+          <Property Name="TaskDescription" Type="text" Nullable="false" />
+          <Property Name="TaskTimeCreated" Type="datetime" Nullable="false" />
+          <Property Name="TaskDeadline" Type="datetime" Nullable="false" />
+          <Property Name="TaskItemPrice" Type="money" Nullable="false" />
+          <Property Name="TaskFee" Type="money" Nullable="false" />
+          <Property Name="FK_TaskStatus" Type="int" Nullable="false" />
+          <Property Name="TaskEndPointAddress" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaskStatuses">
+          <Key>
+            <PropertyRef Name="TaskStatusId" />
+          </Key>
+          <Property Name="TaskStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskStatus" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Comments_Profiles">
+          <End Role="Profiles" Type="Self.Profiles" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="FK_CommentCreator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Tasks">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="TaskId" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="FK_CommentTask" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedbacks_FeedbackStatuses">
+          <End Role="FeedbackStatuses" Type="Self.FeedbackStatuses" Multiplicity="1" />
+          <End Role="Feedbacks" Type="Self.Feedbacks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FeedbackStatuses">
+              <PropertyRef Name="FeedbackStatusId" />
+            </Principal>
+            <Dependent Role="Feedbacks">
+              <PropertyRef Name="FK_FeedbackStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedbacks_Tasks">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="1" />
+          <End Role="Feedbacks" Type="Self.Feedbacks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="TaskId" />
+            </Principal>
+            <Dependent Role="Feedbacks">
+              <PropertyRef Name="FK_FeedbackForTask" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IssueDetails_Issues">
+          <End Role="Issues" Type="Self.Issues" Multiplicity="1" />
+          <End Role="IssueDetails" Type="Self.IssueDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Issues">
+              <PropertyRef Name="IssueId" />
+            </Principal>
+            <Dependent Role="IssueDetails">
+              <PropertyRef Name="FK_Issue" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_NotificationStatuses">
+          <End Role="NotificationStatuses" Type="Self.NotificationStatuses" Multiplicity="1" />
+          <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NotificationStatuses">
+              <PropertyRef Name="NotificationStatusId" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="FK_NotificationStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_ProfilesFrom">
+          <End Role="Profiles" Type="Self.Profiles" Multiplicity="1" />
+          <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="FK_NotificationFrom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_ProfilesTo">
+          <End Role="Profiles" Type="Self.Profiles" Multiplicity="1" />
+          <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="FK_NotificationTo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_PaymentStatuses">
+          <End Role="PaymentStatuses" Type="Self.PaymentStatuses" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentStatuses">
+              <PropertyRef Name="PaymentStatusId" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="FK_PaymentStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_PaymentTypes">
+          <End Role="PaymentTypes" Type="Self.PaymentTypes" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentTypes">
+              <PropertyRef Name="PaymentTypeId" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="FK_PaymentType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_Tasks">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="TaskId" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="FK_PaymentForTask" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profiles_ProfileLevels">
+          <End Role="ProfileLevels" Type="Self.ProfileLevels" Multiplicity="1" />
+          <End Role="Profiles" Type="Self.Profiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfileLevels">
+              <PropertyRef Name="ProfileLevelId" />
+            </Principal>
+            <Dependent Role="Profiles">
+              <PropertyRef Name="FK_ProfileLevel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profiles_ProfileStatuses">
+          <End Role="ProfileStatuses" Type="Self.ProfileStatuses" Multiplicity="1" />
+          <End Role="Profiles" Type="Self.Profiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfileStatuses">
+              <PropertyRef Name="ProfileStatusId" />
+            </Principal>
+            <Dependent Role="Profiles">
+              <PropertyRef Name="FK_ProfileStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profiles_ProfileVerificationTypes">
+          <End Role="ProfileVerificationTypes" Type="Self.ProfileVerificationTypes" Multiplicity="1" />
+          <End Role="Profiles" Type="Self.Profiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfileVerificationTypes">
+              <PropertyRef Name="ProfileVerificationTypeId" />
+            </Principal>
+            <Dependent Role="Profiles">
+              <PropertyRef Name="FK_ProfileVerificationType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_ReportedProfile">
+          <End Role="Profiles" Type="Self.Profiles" Multiplicity="1" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="FK_ReportedProfile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_ReportingProfile">
+          <End Role="Profiles" Type="Self.Profiles" Multiplicity="1" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="FK_ReportingProfile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sessions_Profiles">
+          <End Role="Profiles" Type="Self.Profiles" Multiplicity="1" />
+          <End Role="Sessions" Type="Self.Sessions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="Sessions">
+              <PropertyRef Name="FK_ProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_IssueStatuses">
+          <End Role="IssueStatuses" Type="Self.IssueStatuses" Multiplicity="1" />
+          <End Role="Issues" Type="Self.Issues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IssueStatuses">
+              <PropertyRef Name="IssueStatusId" />
+            </Principal>
+            <Dependent Role="Issues">
+              <PropertyRef Name="FK_IssueStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_IssueTask">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="1" />
+          <End Role="Issues" Type="Self.Issues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="TaskId" />
+            </Principal>
+            <Dependent Role="Issues">
+              <PropertyRef Name="FK_IssueTask" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_ProfilesCreator">
+          <End Role="Profiles" Type="Self.Profiles" Multiplicity="1" />
+          <End Role="Issues" Type="Self.Issues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="Issues">
+              <PropertyRef Name="FK_IssueCreator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_ProfilesTarget">
+          <End Role="Profiles" Type="Self.Profiles" Multiplicity="1" />
+          <End Role="Issues" Type="Self.Issues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="Issues">
+              <PropertyRef Name="FK_IssueTarget" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskLocationInfos_Tasks">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="1" />
+          <End Role="TaskLocationInfos" Type="Self.TaskLocationInfos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="TaskId" />
+            </Principal>
+            <Dependent Role="TaskLocationInfos">
+              <PropertyRef Name="FK_TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasks_ProfilesTaskFetcher">
+          <End Role="Profiles" Type="Self.Profiles" Multiplicity="0..1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="FK_TaskFetcher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasks_ProfilesTaskMaster">
+          <End Role="Profiles" Type="Self.Profiles" Multiplicity="1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="FK_TaskMaster" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasks_TaskStatuses">
+          <End Role="TaskStatuses" Type="Self.TaskStatuses" Multiplicity="1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskStatuses">
+              <PropertyRef Name="TaskStatusId" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="FK_TaskStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_9BC69B_fetchitModelStoreContainer">
+          <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feedbacks" EntityType="Self.Feedbacks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FeedbackStatuses" EntityType="Self.FeedbackStatuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IssueDetails" EntityType="Self.IssueDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Issues" EntityType="Self.Issues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IssueStatuses" EntityType="Self.IssueStatuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Logs" EntityType="Self.Logs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notifications" EntityType="Self.Notifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NotificationStatuses" EntityType="Self.NotificationStatuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentStatuses" EntityType="Self.PaymentStatuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentTypes" EntityType="Self.PaymentTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfileLevels" EntityType="Self.ProfileLevels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profiles" EntityType="Self.Profiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfileStatuses" EntityType="Self.ProfileStatuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfileVerificationTypes" EntityType="Self.ProfileVerificationTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sessions" EntityType="Self.Sessions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskLocationInfos" EntityType="Self.TaskLocationInfos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskStatuses" EntityType="Self.TaskStatuses" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Comments_Profiles" Association="Self.FK_Comments_Profiles">
+            <End Role="Profiles" EntitySet="Profiles" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Tasks" Association="Self.FK_Comments_Tasks">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedbacks_FeedbackStatuses" Association="Self.FK_Feedbacks_FeedbackStatuses">
+            <End Role="FeedbackStatuses" EntitySet="FeedbackStatuses" />
+            <End Role="Feedbacks" EntitySet="Feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedbacks_Tasks" Association="Self.FK_Feedbacks_Tasks">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="Feedbacks" EntitySet="Feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IssueDetails_Issues" Association="Self.FK_IssueDetails_Issues">
+            <End Role="Issues" EntitySet="Issues" />
+            <End Role="IssueDetails" EntitySet="IssueDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_NotificationStatuses" Association="Self.FK_Notifications_NotificationStatuses">
+            <End Role="NotificationStatuses" EntitySet="NotificationStatuses" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_ProfilesFrom" Association="Self.FK_Notifications_ProfilesFrom">
+            <End Role="Profiles" EntitySet="Profiles" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_ProfilesTo" Association="Self.FK_Notifications_ProfilesTo">
+            <End Role="Profiles" EntitySet="Profiles" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_PaymentStatuses" Association="Self.FK_Payment_PaymentStatuses">
+            <End Role="PaymentStatuses" EntitySet="PaymentStatuses" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_PaymentTypes" Association="Self.FK_Payment_PaymentTypes">
+            <End Role="PaymentTypes" EntitySet="PaymentTypes" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_Tasks" Association="Self.FK_Payment_Tasks">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profiles_ProfileLevels" Association="Self.FK_Profiles_ProfileLevels">
+            <End Role="ProfileLevels" EntitySet="ProfileLevels" />
+            <End Role="Profiles" EntitySet="Profiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profiles_ProfileStatuses" Association="Self.FK_Profiles_ProfileStatuses">
+            <End Role="ProfileStatuses" EntitySet="ProfileStatuses" />
+            <End Role="Profiles" EntitySet="Profiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profiles_ProfileVerificationTypes" Association="Self.FK_Profiles_ProfileVerificationTypes">
+            <End Role="ProfileVerificationTypes" EntitySet="ProfileVerificationTypes" />
+            <End Role="Profiles" EntitySet="Profiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_ReportedProfile" Association="Self.FK_Reports_ReportedProfile">
+            <End Role="Profiles" EntitySet="Profiles" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_ReportingProfile" Association="Self.FK_Reports_ReportingProfile">
+            <End Role="Profiles" EntitySet="Profiles" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sessions_Profiles" Association="Self.FK_Sessions_Profiles">
+            <End Role="Profiles" EntitySet="Profiles" />
+            <End Role="Sessions" EntitySet="Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_IssueStatuses" Association="Self.FK_Table_IssueStatuses">
+            <End Role="IssueStatuses" EntitySet="IssueStatuses" />
+            <End Role="Issues" EntitySet="Issues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_IssueTask" Association="Self.FK_Table_IssueTask">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="Issues" EntitySet="Issues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_ProfilesCreator" Association="Self.FK_Table_ProfilesCreator">
+            <End Role="Profiles" EntitySet="Profiles" />
+            <End Role="Issues" EntitySet="Issues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_ProfilesTarget" Association="Self.FK_Table_ProfilesTarget">
+            <End Role="Profiles" EntitySet="Profiles" />
+            <End Role="Issues" EntitySet="Issues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskLocationInfos_Tasks" Association="Self.FK_TaskLocationInfos_Tasks">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="TaskLocationInfos" EntitySet="TaskLocationInfos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_ProfilesTaskFetcher" Association="Self.FK_Tasks_ProfilesTaskFetcher">
+            <End Role="Profiles" EntitySet="Profiles" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_ProfilesTaskMaster" Association="Self.FK_Tasks_ProfilesTaskMaster">
+            <End Role="Profiles" EntitySet="Profiles" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_TaskStatuses" Association="Self.FK_Tasks_TaskStatuses">
+            <End Role="TaskStatuses" EntitySet="TaskStatuses" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_9BC69B_fetchitModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CommentModel">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_CommentNotificationReferenceId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CommentText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CommentTimeCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FK_CommentCreator" Type="Int32" Nullable="false" />
+          <Property Name="FK_CommentTask" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Profile" Relationship="Self.FK_Comments_Profiles" FromRole="Comments" ToRole="Profiles" />
+          <NavigationProperty Name="Task" Relationship="Self.FK_Comments_Tasks" FromRole="Comments" ToRole="Tasks" />
+        </EntityType>
+        <EntityType Name="FeedbackModel">
+          <Key>
+            <PropertyRef Name="FeedbackId" />
+          </Key>
+          <Property Name="FeedbackId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FeedbackRating" Type="Byte" Nullable="false" />
+          <Property Name="FK_FeedbackNotificationReferenceId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FeedbackComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FK_FeedbackForTask" Type="Int32" Nullable="false" />
+          <Property Name="FK_FeedbackStatus" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FeedbackStatus" Relationship="Self.FK_Feedbacks_FeedbackStatuses" FromRole="Feedbacks" ToRole="FeedbackStatuses" />
+          <NavigationProperty Name="Task" Relationship="Self.FK_Feedbacks_Tasks" FromRole="Feedbacks" ToRole="Tasks" />
+        </EntityType>
+        <EntityType Name="FeedbackStatusModel">
+          <Key>
+            <PropertyRef Name="FeedbackStatusId" />
+          </Key>
+          <Property Name="FeedbackStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FeedbackStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Feedbacks" Relationship="Self.FK_Feedbacks_FeedbackStatuses" FromRole="FeedbackStatuses" ToRole="Feedbacks" />
+        </EntityType>
+        <EntityType Name="IssueDetailModel">
+          <Key>
+            <PropertyRef Name="IssueDetailId" />
+          </Key>
+          <Property Name="IssueDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Issue" Type="Int32" Nullable="false" />
+          <Property Name="IssueDetailFromCreator" Type="Boolean" Nullable="false" />
+          <Property Name="IssueImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IssueDetailText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Issue" Relationship="Self.FK_IssueDetails_Issues" FromRole="IssueDetails" ToRole="Issues" />
+        </EntityType>
+        <EntityType Name="Issue">
+          <Key>
+            <PropertyRef Name="IssueId" />
+          </Key>
+          <Property Name="IssueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_IssueNotificationReferenceId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FK_IssueCreator" Type="Int32" Nullable="false" />
+          <Property Name="FK_IssueTarget" Type="Int32" Nullable="false" />
+          <Property Name="IssueTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IssueDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IssueTimeCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IssueTimeResolved" Type="DateTime" Precision="3" />
+          <Property Name="FK_IssueStatus" Type="Int32" Nullable="false" />
+          <Property Name="IssueDidCreatorWin" Type="Boolean" Nullable="false" />
+          <Property Name="FK_IssueTask" Type="Int32" Nullable="false" />
+          <Property Name="IssueAppealedByCreator" Type="Boolean" Nullable="false" />
+          <Property Name="IssueHasBeenAppealed" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="IssueDetails" Relationship="Self.FK_IssueDetails_Issues" FromRole="Issues" ToRole="IssueDetails" />
+          <NavigationProperty Name="IssueStatus" Relationship="Self.FK_Table_IssueStatuses" FromRole="Issues" ToRole="IssueStatuses" />
+          <NavigationProperty Name="Task" Relationship="Self.FK_Table_IssueTask" FromRole="Issues" ToRole="Tasks" />
+          <NavigationProperty Name="IssueCreator" Relationship="Self.FK_Table_ProfilesCreator" FromRole="Issues" ToRole="Profiles" />
+          <NavigationProperty Name="IssueTarget" Relationship="Self.FK_Table_ProfilesTarget" FromRole="Issues" ToRole="Profiles" />
+        </EntityType>
+        <EntityType Name="IssueStatusModel">
+          <Key>
+            <PropertyRef Name="IssueStatusId" />
+          </Key>
+          <Property Name="IssueStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IssueStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Issues" Relationship="Self.FK_Table_IssueStatuses" FromRole="IssueStatuses" ToRole="Issues" />
+        </EntityType>
+        <EntityType Name="LogModel">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LogMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LogTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="NotificationModel">
+          <Key>
+            <PropertyRef Name="NotificationId" />
+          </Key>
+          <Property Name="NotificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_NotificationReferenceId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FK_NotificationFrom" Type="Int32" Nullable="false" />
+          <Property Name="FK_NotificationTo" Type="Int32" Nullable="false" />
+          <Property Name="NotificationContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FK_NotificationStatus" Type="Int32" Nullable="false" />
+          <Property Name="NotificationSent" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NotificationRead" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="NotificationStatus" Relationship="Self.FK_Notifications_NotificationStatuses" FromRole="Notifications" ToRole="NotificationStatuses" />
+          <NavigationProperty Name="FromProfile" Relationship="Self.FK_Notifications_ProfilesFrom" FromRole="Notifications" ToRole="Profiles" />
+          <NavigationProperty Name="ToProfile" Relationship="Self.FK_Notifications_ProfilesTo" FromRole="Notifications" ToRole="Profiles" />
+        </EntityType>
+        <EntityType Name="NotificationStatusModel">
+          <Key>
+            <PropertyRef Name="NotificationStatusId" />
+          </Key>
+          <Property Name="NotificationStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NotificationStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Notifications" Relationship="Self.FK_Notifications_NotificationStatuses" FromRole="NotificationStatuses" ToRole="Notifications" />
+        </EntityType>
+        <EntityType Name="PaymentModel">
+          <Key>
+            <PropertyRef Name="PaymentId" />
+          </Key>
+          <Property Name="PaymentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_PaymentNotificationReferenceId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FK_PaymentStatus" Type="Int32" Nullable="false" />
+          <Property Name="PaymentAmount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="FK_PaymentForTask" Type="Int32" Nullable="false" />
+          <Property Name="FK_PaymentType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PaymentStatus" Relationship="Self.FK_Payment_PaymentStatuses" FromRole="Payment" ToRole="PaymentStatuses" />
+          <NavigationProperty Name="PaymentType" Relationship="Self.FK_Payment_PaymentTypes" FromRole="Payment" ToRole="PaymentTypes" />
+          <NavigationProperty Name="Task" Relationship="Self.FK_Payment_Tasks" FromRole="Payment" ToRole="Tasks" />
+        </EntityType>
+        <EntityType Name="PaymentStatusModel">
+          <Key>
+            <PropertyRef Name="PaymentStatusId" />
+          </Key>
+          <Property Name="PaymentStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK_Payment_PaymentStatuses" FromRole="PaymentStatuses" ToRole="Payment" />
+        </EntityType>
+        <EntityType Name="PaymentTypeModel">
+          <Key>
+            <PropertyRef Name="PaymentTypeId" />
+          </Key>
+          <Property Name="PaymentTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK_Payment_PaymentTypes" FromRole="PaymentTypes" ToRole="Payment" />
+        </EntityType>
+        <EntityType Name="ProfileLevelModel">
+          <Key>
+            <PropertyRef Name="ProfileLevelId" />
+          </Key>
+          <Property Name="ProfileLevelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProfileLevelTitle" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Profiles" Relationship="Self.FK_Profiles_ProfileLevels" FromRole="ProfileLevels" ToRole="Profiles" />
+        </EntityType>
+        <EntityType Name="ProfileModel">
+          <Key>
+            <PropertyRef Name="ProfileId" />
+          </Key>
+          <Property Name="ProfileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProfileName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProfileAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProfilePhone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ProfileMobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProfilePassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProfileEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FK_ProfileStatus" Type="Int32" Nullable="false" />
+          <Property Name="ProfileLastLoggedIn" Type="DateTime" Precision="3" />
+          <Property Name="FK_ProfileLevel" Type="Int32" Nullable="false" />
+          <Property Name="ProfileIsVerified" Type="Boolean" Nullable="false" />
+          <Property Name="ProfileImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProfileText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ProfilePasswordSalt" Type="Int64" Nullable="false" />
+          <Property Name="FK_ProfileVerificationType" Type="Int32" Nullable="false" />
+          <Property Name="ProfileAuthCode" Type="Int64" />
+          <Property Name="ProfileNewEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProfileNewPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProfileCanReport" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Profiles" FromRole="Profiles" ToRole="Comments" />
+          <NavigationProperty Name="IssueCreator" Relationship="Self.FK_Table_ProfilesCreator" FromRole="Profiles" ToRole="Issues" />
+          <NavigationProperty Name="IssueTarget" Relationship="Self.FK_Table_ProfilesTarget" FromRole="Profiles" ToRole="Issues" />
+          <NavigationProperty Name="NotificationFromProfile" Relationship="Self.FK_Notifications_ProfilesFrom" FromRole="Profiles" ToRole="Notifications" />
+          <NavigationProperty Name="NotificationToProfile" Relationship="Self.FK_Notifications_ProfilesTo" FromRole="Profiles" ToRole="Notifications" />
+          <NavigationProperty Name="ProfileLevel" Relationship="Self.FK_Profiles_ProfileLevels" FromRole="Profiles" ToRole="ProfileLevels" />
+          <NavigationProperty Name="ProfileStatus" Relationship="Self.FK_Profiles_ProfileStatuses" FromRole="Profiles" ToRole="ProfileStatuses" />
+          <NavigationProperty Name="ProfileVerificationType" Relationship="Self.FK_Profiles_ProfileVerificationTypes" FromRole="Profiles" ToRole="ProfileVerificationTypes" />
+          <NavigationProperty Name="ReportedProfile" Relationship="Self.FK_Reports_ReportedProfile" FromRole="Profiles" ToRole="Reports" />
+          <NavigationProperty Name="ReportingProfile" Relationship="Self.FK_Reports_ReportingProfile" FromRole="Profiles" ToRole="Reports" />
+          <NavigationProperty Name="Sessions" Relationship="Self.FK_Sessions_Profiles" FromRole="Profiles" ToRole="Sessions" />
+          <NavigationProperty Name="TaskFetcherProfile" Relationship="Self.FK_Tasks_ProfilesTaskFetcher" FromRole="Profiles" ToRole="Tasks" />
+          <NavigationProperty Name="TaskMasterProfile" Relationship="Self.FK_Tasks_ProfilesTaskMaster" FromRole="Profiles" ToRole="Tasks" />
+        </EntityType>
+        <EntityType Name="ProfileStatusModel">
+          <Key>
+            <PropertyRef Name="ProfileStatusId" />
+          </Key>
+          <Property Name="ProfileStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProfileStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Profiles" Relationship="Self.FK_Profiles_ProfileStatuses" FromRole="ProfileStatuses" ToRole="Profiles" />
+        </EntityType>
+        <EntityType Name="ProfileVerificationTypeModel">
+          <Key>
+            <PropertyRef Name="ProfileVerificationTypeId" />
+          </Key>
+          <Property Name="ProfileVerificationTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProfileVerificationType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Profiles" Relationship="Self.FK_Profiles_ProfileVerificationTypes" FromRole="ProfileVerificationTypes" ToRole="Profiles" />
+        </EntityType>
+        <EntityType Name="ReportModel">
+          <Key>
+            <PropertyRef Name="ReportId" />
+          </Key>
+          <Property Name="ReportId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_ReportingProfile" Type="Int32" Nullable="false" />
+          <Property Name="ReportMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ReportTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FK_ReportedProfile" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ReportedProfile" Relationship="Self.FK_Reports_ReportedProfile" FromRole="Reports" ToRole="Profiles" />
+          <NavigationProperty Name="ReportingProfile" Relationship="Self.FK_Reports_ReportingProfile" FromRole="Reports" ToRole="Profiles" />
+        </EntityType>
+        <EntityType Name="SessionModel">
+          <Key>
+            <PropertyRef Name="SessionId" />
+          </Key>
+          <Property Name="SessionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_ProfileId" Type="Int32" Nullable="false" />
+          <Property Name="SessionIp" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="SessionStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SessionEnd" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Profile" Relationship="Self.FK_Sessions_Profiles" FromRole="Sessions" ToRole="Profiles" />
+        </EntityType>
+        <EntityType Name="TaskLocationInfoModel">
+          <Key>
+            <PropertyRef Name="TaskLocationInfoId" />
+          </Key>
+          <Property Name="TaskLocationInfoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_TaskId" Type="Int32" Nullable="false" />
+          <Property Name="TaskLocationAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Task" Relationship="Self.FK_TaskLocationInfos_Tasks" FromRole="TaskLocationInfos" ToRole="Tasks" />
+        </EntityType>
+        <EntityType Name="TaskModel">
+          <Key>
+            <PropertyRef Name="TaskId" />
+          </Key>
+          <Property Name="TaskId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_TaskNotificationReferenceId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FK_TaskMaster" Type="Int32" Nullable="false" />
+          <Property Name="FK_TaskFetcher" Type="Int32" />
+          <Property Name="TaskDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TaskTimeCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TaskDeadline" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TaskItemPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="TaskFee" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="FK_TaskStatus" Type="Int32" Nullable="false" />
+          <Property Name="TaskEndPointAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Tasks" FromRole="Tasks" ToRole="Comments" />
+          <NavigationProperty Name="Feedbacks" Relationship="Self.FK_Feedbacks_Tasks" FromRole="Tasks" ToRole="Feedbacks" />
+          <NavigationProperty Name="Issues" Relationship="Self.FK_Table_IssueTask" FromRole="Tasks" ToRole="Issues" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK_Payment_Tasks" FromRole="Tasks" ToRole="Payment" />
+          <NavigationProperty Name="FetcherProfile" Relationship="Self.FK_Tasks_ProfilesTaskFetcher" FromRole="Tasks" ToRole="Profiles" />
+          <NavigationProperty Name="MasterProfile" Relationship="Self.FK_Tasks_ProfilesTaskMaster" FromRole="Tasks" ToRole="Profiles" />
+          <NavigationProperty Name="TaskLocationInfos" Relationship="Self.FK_TaskLocationInfos_Tasks" FromRole="Tasks" ToRole="TaskLocationInfos" />
+          <NavigationProperty Name="TaskStatus" Relationship="Self.FK_Tasks_TaskStatuses" FromRole="Tasks" ToRole="TaskStatuses" />
+        </EntityType>
+        <EntityType Name="TaskStatus">
+          <Key>
+            <PropertyRef Name="TaskStatusId" />
+          </Key>
+          <Property Name="TaskStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskStatus1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Tasks" Relationship="Self.FK_Tasks_TaskStatuses" FromRole="TaskStatuses" ToRole="Tasks" />
+        </EntityType>
+        <Association Name="FK_Comments_Profiles">
+          <End Role="Profiles" Type="DB_9BC69B_fetchitModel.ProfileModel" Multiplicity="1" />
+          <End Role="Comments" Type="DB_9BC69B_fetchitModel.CommentModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="FK_CommentCreator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Tasks">
+          <End Role="Tasks" Type="DB_9BC69B_fetchitModel.TaskModel" Multiplicity="1" />
+          <End Role="Comments" Type="DB_9BC69B_fetchitModel.CommentModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="TaskId" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="FK_CommentTask" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedbacks_FeedbackStatuses">
+          <End Role="FeedbackStatuses" Type="DB_9BC69B_fetchitModel.FeedbackStatusModel" Multiplicity="1" />
+          <End Role="Feedbacks" Type="DB_9BC69B_fetchitModel.FeedbackModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FeedbackStatuses">
+              <PropertyRef Name="FeedbackStatusId" />
+            </Principal>
+            <Dependent Role="Feedbacks">
+              <PropertyRef Name="FK_FeedbackStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedbacks_Tasks">
+          <End Role="Tasks" Type="DB_9BC69B_fetchitModel.TaskModel" Multiplicity="1" />
+          <End Role="Feedbacks" Type="DB_9BC69B_fetchitModel.FeedbackModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="TaskId" />
+            </Principal>
+            <Dependent Role="Feedbacks">
+              <PropertyRef Name="FK_FeedbackForTask" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IssueDetails_Issues">
+          <End Role="Issues" Type="Self.Issue" Multiplicity="1" />
+          <End Role="IssueDetails" Type="DB_9BC69B_fetchitModel.IssueDetailModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Issues">
+              <PropertyRef Name="IssueId" />
+            </Principal>
+            <Dependent Role="IssueDetails">
+              <PropertyRef Name="FK_Issue" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_IssueStatuses">
+          <End Role="IssueStatuses" Type="DB_9BC69B_fetchitModel.IssueStatusModel" Multiplicity="1" />
+          <End Role="Issues" Type="Self.Issue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IssueStatuses">
+              <PropertyRef Name="IssueStatusId" />
+            </Principal>
+            <Dependent Role="Issues">
+              <PropertyRef Name="FK_IssueStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_IssueTask">
+          <End Role="Tasks" Type="DB_9BC69B_fetchitModel.TaskModel" Multiplicity="1" />
+          <End Role="Issues" Type="Self.Issue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="TaskId" />
+            </Principal>
+            <Dependent Role="Issues">
+              <PropertyRef Name="FK_IssueTask" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_ProfilesCreator">
+          <End Role="Profiles" Type="DB_9BC69B_fetchitModel.ProfileModel" Multiplicity="1" />
+          <End Role="Issues" Type="Self.Issue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="Issues">
+              <PropertyRef Name="FK_IssueCreator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_ProfilesTarget">
+          <End Role="Profiles" Type="DB_9BC69B_fetchitModel.ProfileModel" Multiplicity="1" />
+          <End Role="Issues" Type="Self.Issue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="Issues">
+              <PropertyRef Name="FK_IssueTarget" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_NotificationStatuses">
+          <End Role="NotificationStatuses" Type="DB_9BC69B_fetchitModel.NotificationStatusModel" Multiplicity="1" />
+          <End Role="Notifications" Type="DB_9BC69B_fetchitModel.NotificationModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NotificationStatuses">
+              <PropertyRef Name="NotificationStatusId" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="FK_NotificationStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_ProfilesFrom">
+          <End Role="Profiles" Type="DB_9BC69B_fetchitModel.ProfileModel" Multiplicity="1" />
+          <End Role="Notifications" Type="DB_9BC69B_fetchitModel.NotificationModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="FK_NotificationFrom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_ProfilesTo">
+          <End Role="Profiles" Type="DB_9BC69B_fetchitModel.ProfileModel" Multiplicity="1" />
+          <End Role="Notifications" Type="DB_9BC69B_fetchitModel.NotificationModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="FK_NotificationTo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_PaymentStatuses">
+          <End Role="PaymentStatuses" Type="DB_9BC69B_fetchitModel.PaymentStatusModel" Multiplicity="1" />
+          <End Role="Payment" Type="DB_9BC69B_fetchitModel.PaymentModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentStatuses">
+              <PropertyRef Name="PaymentStatusId" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="FK_PaymentStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_PaymentTypes">
+          <End Role="PaymentTypes" Type="DB_9BC69B_fetchitModel.PaymentTypeModel" Multiplicity="1" />
+          <End Role="Payment" Type="DB_9BC69B_fetchitModel.PaymentModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentTypes">
+              <PropertyRef Name="PaymentTypeId" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="FK_PaymentType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_Tasks">
+          <End Role="Tasks" Type="DB_9BC69B_fetchitModel.TaskModel" Multiplicity="1" />
+          <End Role="Payment" Type="DB_9BC69B_fetchitModel.PaymentModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="TaskId" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="FK_PaymentForTask" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profiles_ProfileLevels">
+          <End Role="ProfileLevels" Type="DB_9BC69B_fetchitModel.ProfileLevelModel" Multiplicity="1" />
+          <End Role="Profiles" Type="DB_9BC69B_fetchitModel.ProfileModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfileLevels">
+              <PropertyRef Name="ProfileLevelId" />
+            </Principal>
+            <Dependent Role="Profiles">
+              <PropertyRef Name="FK_ProfileLevel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profiles_ProfileStatuses">
+          <End Role="ProfileStatuses" Type="DB_9BC69B_fetchitModel.ProfileStatusModel" Multiplicity="1" />
+          <End Role="Profiles" Type="DB_9BC69B_fetchitModel.ProfileModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfileStatuses">
+              <PropertyRef Name="ProfileStatusId" />
+            </Principal>
+            <Dependent Role="Profiles">
+              <PropertyRef Name="FK_ProfileStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profiles_ProfileVerificationTypes">
+          <End Role="ProfileVerificationTypes" Type="DB_9BC69B_fetchitModel.ProfileVerificationTypeModel" Multiplicity="1" />
+          <End Role="Profiles" Type="DB_9BC69B_fetchitModel.ProfileModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfileVerificationTypes">
+              <PropertyRef Name="ProfileVerificationTypeId" />
+            </Principal>
+            <Dependent Role="Profiles">
+              <PropertyRef Name="FK_ProfileVerificationType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_ReportedProfile">
+          <End Role="Profiles" Type="DB_9BC69B_fetchitModel.ProfileModel" Multiplicity="1" />
+          <End Role="Reports" Type="DB_9BC69B_fetchitModel.ReportModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="FK_ReportedProfile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_ReportingProfile">
+          <End Role="Profiles" Type="DB_9BC69B_fetchitModel.ProfileModel" Multiplicity="1" />
+          <End Role="Reports" Type="DB_9BC69B_fetchitModel.ReportModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="FK_ReportingProfile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sessions_Profiles">
+          <End Role="Profiles" Type="DB_9BC69B_fetchitModel.ProfileModel" Multiplicity="1" />
+          <End Role="Sessions" Type="DB_9BC69B_fetchitModel.SessionModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="Sessions">
+              <PropertyRef Name="FK_ProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasks_ProfilesTaskFetcher">
+          <End Role="Profiles" Type="DB_9BC69B_fetchitModel.ProfileModel" Multiplicity="0..1" />
+          <End Role="Tasks" Type="DB_9BC69B_fetchitModel.TaskModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="FK_TaskFetcher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasks_ProfilesTaskMaster">
+          <End Role="Profiles" Type="DB_9BC69B_fetchitModel.ProfileModel" Multiplicity="1" />
+          <End Role="Tasks" Type="DB_9BC69B_fetchitModel.TaskModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="ProfileId" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="FK_TaskMaster" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskLocationInfos_Tasks">
+          <End Role="Tasks" Type="DB_9BC69B_fetchitModel.TaskModel" Multiplicity="1" />
+          <End Role="TaskLocationInfos" Type="DB_9BC69B_fetchitModel.TaskLocationInfoModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="TaskId" />
+            </Principal>
+            <Dependent Role="TaskLocationInfos">
+              <PropertyRef Name="FK_TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasks_TaskStatuses">
+          <End Role="TaskStatuses" Type="Self.TaskStatus" Multiplicity="1" />
+          <End Role="Tasks" Type="DB_9BC69B_fetchitModel.TaskModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskStatuses">
+              <PropertyRef Name="TaskStatusId" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="FK_TaskStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="fetchitEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CommentModels" EntityType="DB_9BC69B_fetchitModel.CommentModel" />
+          <EntitySet Name="FeedbackModels" EntityType="DB_9BC69B_fetchitModel.FeedbackModel" />
+          <EntitySet Name="FeedbackStatuses" EntityType="DB_9BC69B_fetchitModel.FeedbackStatusModel" />
+          <EntitySet Name="IssueDetailModels" EntityType="DB_9BC69B_fetchitModel.IssueDetailModel" />
+          <EntitySet Name="Issues" EntityType="Self.Issue" />
+          <EntitySet Name="IssueStatuses" EntityType="DB_9BC69B_fetchitModel.IssueStatusModel" />
+          <EntitySet Name="LogModels" EntityType="DB_9BC69B_fetchitModel.LogModel" />
+          <EntitySet Name="NotificationModels" EntityType="DB_9BC69B_fetchitModel.NotificationModel" />
+          <EntitySet Name="NotificationStatuses" EntityType="DB_9BC69B_fetchitModel.NotificationStatusModel" />
+          <EntitySet Name="PaymentModels" EntityType="DB_9BC69B_fetchitModel.PaymentModel" />
+          <EntitySet Name="PaymentStatuses" EntityType="DB_9BC69B_fetchitModel.PaymentStatusModel" />
+          <EntitySet Name="PaymentTypeModels" EntityType="DB_9BC69B_fetchitModel.PaymentTypeModel" />
+          <EntitySet Name="ProfileLevelModels" EntityType="DB_9BC69B_fetchitModel.ProfileLevelModel" />
+          <EntitySet Name="ProfileModels" EntityType="DB_9BC69B_fetchitModel.ProfileModel" />
+          <EntitySet Name="ProfileStatuses" EntityType="DB_9BC69B_fetchitModel.ProfileStatusModel" />
+          <EntitySet Name="ProfileVerificationTypeModels" EntityType="DB_9BC69B_fetchitModel.ProfileVerificationTypeModel" />
+          <EntitySet Name="ReportModels" EntityType="DB_9BC69B_fetchitModel.ReportModel" />
+          <EntitySet Name="SessionModels" EntityType="DB_9BC69B_fetchitModel.SessionModel" />
+          <EntitySet Name="TaskLocationInfos" EntityType="DB_9BC69B_fetchitModel.TaskLocationInfoModel" />
+          <EntitySet Name="TaskModels" EntityType="DB_9BC69B_fetchitModel.TaskModel" />
+          <EntitySet Name="TaskStatuses" EntityType="Self.TaskStatus" />
+          <AssociationSet Name="FK_Comments_Profiles" Association="Self.FK_Comments_Profiles">
+            <End Role="Profiles" EntitySet="ProfileModels" />
+            <End Role="Comments" EntitySet="CommentModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Tasks" Association="Self.FK_Comments_Tasks">
+            <End Role="Tasks" EntitySet="TaskModels" />
+            <End Role="Comments" EntitySet="CommentModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedbacks_FeedbackStatuses" Association="Self.FK_Feedbacks_FeedbackStatuses">
+            <End Role="FeedbackStatuses" EntitySet="FeedbackStatuses" />
+            <End Role="Feedbacks" EntitySet="FeedbackModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedbacks_Tasks" Association="Self.FK_Feedbacks_Tasks">
+            <End Role="Tasks" EntitySet="TaskModels" />
+            <End Role="Feedbacks" EntitySet="FeedbackModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IssueDetails_Issues" Association="Self.FK_IssueDetails_Issues">
+            <End Role="Issues" EntitySet="Issues" />
+            <End Role="IssueDetails" EntitySet="IssueDetailModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_IssueStatuses" Association="Self.FK_Table_IssueStatuses">
+            <End Role="IssueStatuses" EntitySet="IssueStatuses" />
+            <End Role="Issues" EntitySet="Issues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_IssueTask" Association="Self.FK_Table_IssueTask">
+            <End Role="Tasks" EntitySet="TaskModels" />
+            <End Role="Issues" EntitySet="Issues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_ProfilesCreator" Association="Self.FK_Table_ProfilesCreator">
+            <End Role="Profiles" EntitySet="ProfileModels" />
+            <End Role="Issues" EntitySet="Issues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_ProfilesTarget" Association="Self.FK_Table_ProfilesTarget">
+            <End Role="Profiles" EntitySet="ProfileModels" />
+            <End Role="Issues" EntitySet="Issues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_NotificationStatuses" Association="Self.FK_Notifications_NotificationStatuses">
+            <End Role="NotificationStatuses" EntitySet="NotificationStatuses" />
+            <End Role="Notifications" EntitySet="NotificationModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_ProfilesFrom" Association="Self.FK_Notifications_ProfilesFrom">
+            <End Role="Profiles" EntitySet="ProfileModels" />
+            <End Role="Notifications" EntitySet="NotificationModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_ProfilesTo" Association="Self.FK_Notifications_ProfilesTo">
+            <End Role="Profiles" EntitySet="ProfileModels" />
+            <End Role="Notifications" EntitySet="NotificationModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_PaymentStatuses" Association="Self.FK_Payment_PaymentStatuses">
+            <End Role="PaymentStatuses" EntitySet="PaymentStatuses" />
+            <End Role="Payment" EntitySet="PaymentModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_PaymentTypes" Association="Self.FK_Payment_PaymentTypes">
+            <End Role="PaymentTypes" EntitySet="PaymentTypeModels" />
+            <End Role="Payment" EntitySet="PaymentModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_Tasks" Association="Self.FK_Payment_Tasks">
+            <End Role="Tasks" EntitySet="TaskModels" />
+            <End Role="Payment" EntitySet="PaymentModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profiles_ProfileLevels" Association="Self.FK_Profiles_ProfileLevels">
+            <End Role="ProfileLevels" EntitySet="ProfileLevelModels" />
+            <End Role="Profiles" EntitySet="ProfileModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profiles_ProfileStatuses" Association="Self.FK_Profiles_ProfileStatuses">
+            <End Role="ProfileStatuses" EntitySet="ProfileStatuses" />
+            <End Role="Profiles" EntitySet="ProfileModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profiles_ProfileVerificationTypes" Association="Self.FK_Profiles_ProfileVerificationTypes">
+            <End Role="ProfileVerificationTypes" EntitySet="ProfileVerificationTypeModels" />
+            <End Role="Profiles" EntitySet="ProfileModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_ReportedProfile" Association="Self.FK_Reports_ReportedProfile">
+            <End Role="Profiles" EntitySet="ProfileModels" />
+            <End Role="Reports" EntitySet="ReportModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_ReportingProfile" Association="Self.FK_Reports_ReportingProfile">
+            <End Role="Profiles" EntitySet="ProfileModels" />
+            <End Role="Reports" EntitySet="ReportModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sessions_Profiles" Association="Self.FK_Sessions_Profiles">
+            <End Role="Profiles" EntitySet="ProfileModels" />
+            <End Role="Sessions" EntitySet="SessionModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_ProfilesTaskFetcher" Association="Self.FK_Tasks_ProfilesTaskFetcher">
+            <End Role="Profiles" EntitySet="ProfileModels" />
+            <End Role="Tasks" EntitySet="TaskModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_ProfilesTaskMaster" Association="Self.FK_Tasks_ProfilesTaskMaster">
+            <End Role="Profiles" EntitySet="ProfileModels" />
+            <End Role="Tasks" EntitySet="TaskModels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskLocationInfos_Tasks" Association="Self.FK_TaskLocationInfos_Tasks">
+            <End Role="Tasks" EntitySet="TaskModels" />
+            <End Role="TaskLocationInfos" EntitySet="TaskLocationInfos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_TaskStatuses" Association="Self.FK_Tasks_TaskStatuses">
+            <End Role="TaskStatuses" EntitySet="TaskStatuses" />
+            <End Role="Tasks" EntitySet="TaskModels" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_9BC69B_fetchitModelStoreContainer" CdmEntityContainer="fetchitEntities">
+          <EntitySetMapping Name="CommentModels">
+            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.CommentModel">
+              <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+                <ScalarProperty Name="FK_CommentNotificationReferenceId" ColumnName="FK_CommentNotificationReferenceId" />
+                <ScalarProperty Name="CommentText" ColumnName="CommentText" />
+                <ScalarProperty Name="CommentTimeCreated" ColumnName="CommentTimeCreated" />
+                <ScalarProperty Name="FK_CommentCreator" ColumnName="FK_CommentCreator" />
+                <ScalarProperty Name="FK_CommentTask" ColumnName="FK_CommentTask" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FeedbackModels">
+            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.FeedbackModel">
+              <MappingFragment StoreEntitySet="Feedbacks">
+                <ScalarProperty Name="FeedbackId" ColumnName="FeedbackId" />
+                <ScalarProperty Name="FeedbackRating" ColumnName="FeedbackRating" />
+                <ScalarProperty Name="FK_FeedbackNotificationReferenceId" ColumnName="FK_FeedbackNotificationReferenceId" />
+                <ScalarProperty Name="FeedbackComment" ColumnName="FeedbackComment" />
+                <ScalarProperty Name="FK_FeedbackForTask" ColumnName="FK_FeedbackForTask" />
+                <ScalarProperty Name="FK_FeedbackStatus" ColumnName="FK_FeedbackStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FeedbackStatuses">
+            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.FeedbackStatusModel">
+              <MappingFragment StoreEntitySet="FeedbackStatuses">
+                <ScalarProperty Name="FeedbackStatusId" ColumnName="FeedbackStatusId" />
+                <ScalarProperty Name="FeedbackStatus" ColumnName="FeedbackStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IssueDetailModels">
+            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.IssueDetailModel">
+              <MappingFragment StoreEntitySet="IssueDetails">
+                <ScalarProperty Name="IssueDetailId" ColumnName="IssueDetailId" />
+                <ScalarProperty Name="FK_Issue" ColumnName="FK_Issue" />
+                <ScalarProperty Name="IssueDetailFromCreator" ColumnName="IssueDetailFromCreator" />
+                <ScalarProperty Name="IssueImage" ColumnName="IssueImage" />
+                <ScalarProperty Name="IssueDetailText" ColumnName="IssueDetailText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Issues">
+            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.Issue">
+              <MappingFragment StoreEntitySet="Issues">
+                <ScalarProperty Name="IssueId" ColumnName="IssueId" />
+                <ScalarProperty Name="FK_IssueNotificationReferenceId" ColumnName="FK_IssueNotificationReferenceId" />
+                <ScalarProperty Name="FK_IssueCreator" ColumnName="FK_IssueCreator" />
+                <ScalarProperty Name="FK_IssueTarget" ColumnName="FK_IssueTarget" />
+                <ScalarProperty Name="IssueTitle" ColumnName="IssueTitle" />
+                <ScalarProperty Name="IssueDescription" ColumnName="IssueDescription" />
+                <ScalarProperty Name="IssueTimeCreated" ColumnName="IssueTimeCreated" />
+                <ScalarProperty Name="IssueTimeResolved" ColumnName="IssueTimeResolved" />
+                <ScalarProperty Name="FK_IssueStatus" ColumnName="FK_IssueStatus" />
+                <ScalarProperty Name="IssueDidCreatorWin" ColumnName="IssueDidCreatorWin" />
+                <ScalarProperty Name="FK_IssueTask" ColumnName="FK_IssueTask" />
+                <ScalarProperty Name="IssueAppealedByCreator" ColumnName="IssueAppealedByCreator" />
+                <ScalarProperty Name="IssueHasBeenAppealed" ColumnName="IssueHasBeenAppealed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IssueStatuses">
+            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.IssueStatusModel">
+              <MappingFragment StoreEntitySet="IssueStatuses">
+                <ScalarProperty Name="IssueStatusId" ColumnName="IssueStatusId" />
+                <ScalarProperty Name="IssueStatus" ColumnName="IssueStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogModels">
+            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.LogModel">
+              <MappingFragment StoreEntitySet="Logs">
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+                <ScalarProperty Name="LogMessage" ColumnName="LogMessage" />
+                <ScalarProperty Name="LogTime" ColumnName="LogTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotificationModels">
+            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.NotificationModel">
+              <MappingFragment StoreEntitySet="Notifications">
+                <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+                <ScalarProperty Name="FK_NotificationReferenceId" ColumnName="FK_NotificationReferenceId" />
+                <ScalarProperty Name="FK_NotificationFrom" ColumnName="FK_NotificationFrom" />
+                <ScalarProperty Name="FK_NotificationTo" ColumnName="FK_NotificationTo" />
+                <ScalarProperty Name="NotificationContent" ColumnName="NotificationContent" />
+                <ScalarProperty Name="FK_NotificationStatus" ColumnName="FK_NotificationStatus" />
+                <ScalarProperty Name="NotificationSent" ColumnName="NotificationSent" />
+                <ScalarProperty Name="NotificationRead" ColumnName="NotificationRead" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotificationStatuses">
+            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.NotificationStatusModel">
+              <MappingFragment StoreEntitySet="NotificationStatuses">
+                <ScalarProperty Name="NotificationStatusId" ColumnName="NotificationStatusId" />
+                <ScalarProperty Name="NotificationStatus" ColumnName="NotificationStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentModels">
+            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.PaymentModel">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+                <ScalarProperty Name="FK_PaymentNotificationReferenceId" ColumnName="FK_PaymentNotificationReferenceId" />
+                <ScalarProperty Name="FK_PaymentStatus" ColumnName="FK_PaymentStatus" />
+                <ScalarProperty Name="PaymentAmount" ColumnName="PaymentAmount" />
+                <ScalarProperty Name="FK_PaymentForTask" ColumnName="FK_PaymentForTask" />
+                <ScalarProperty Name="FK_PaymentType" ColumnName="FK_PaymentType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentStatuses">
+            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.PaymentStatusModel">
+              <MappingFragment StoreEntitySet="PaymentStatuses">
+                <ScalarProperty Name="PaymentStatusId" ColumnName="PaymentStatusId" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentTypeModels">
+            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.PaymentTypeModel">
+              <MappingFragment StoreEntitySet="PaymentTypes">
+                <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfileLevelModels">
+            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.ProfileLevelModel">
+              <MappingFragment StoreEntitySet="ProfileLevels">
+                <ScalarProperty Name="ProfileLevelId" ColumnName="ProfileLevelId" />
+                <ScalarProperty Name="ProfileLevelTitle" ColumnName="ProfileLevelTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfileModels">
+            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.ProfileModel">
+              <MappingFragment StoreEntitySet="Profiles">
+                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+                <ScalarProperty Name="ProfileName" ColumnName="ProfileName" />
+                <ScalarProperty Name="ProfileAddress" ColumnName="ProfileAddress" />
+                <ScalarProperty Name="ProfilePhone" ColumnName="ProfilePhone" />
+                <ScalarProperty Name="ProfileMobile" ColumnName="ProfileMobile" />
+                <ScalarProperty Name="ProfilePassword" ColumnName="ProfilePassword" />
+                <ScalarProperty Name="ProfileEmail" ColumnName="ProfileEmail" />
+                <ScalarProperty Name="FK_ProfileStatus" ColumnName="FK_ProfileStatus" />
+                <ScalarProperty Name="ProfileLastLoggedIn" ColumnName="ProfileLastLoggedIn" />
+                <ScalarProperty Name="FK_ProfileLevel" ColumnName="FK_ProfileLevel" />
+                <ScalarProperty Name="ProfileIsVerified" ColumnName="ProfileIsVerified" />
+                <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+                <ScalarProperty Name="ProfileText" ColumnName="ProfileText" />
+                <ScalarProperty Name="ProfilePasswordSalt" ColumnName="ProfilePasswordSalt" />
+                <ScalarProperty Name="FK_ProfileVerificationType" ColumnName="FK_ProfileVerificationType" />
+                <ScalarProperty Name="ProfileAuthCode" ColumnName="ProfileAuthCode" />
+                <ScalarProperty Name="ProfileNewEmail" ColumnName="ProfileNewEmail" />
+                <ScalarProperty Name="ProfileNewPassword" ColumnName="ProfileNewPassword" />
+                <ScalarProperty Name="ProfileCanReport" ColumnName="ProfileCanReport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfileStatuses">
+            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.ProfileStatusModel">
+              <MappingFragment StoreEntitySet="ProfileStatuses">
+                <ScalarProperty Name="ProfileStatusId" ColumnName="ProfileStatusId" />
+                <ScalarProperty Name="ProfileStatus" ColumnName="ProfileStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfileVerificationTypeModels">
+            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.ProfileVerificationTypeModel">
+              <MappingFragment StoreEntitySet="ProfileVerificationTypes">
+                <ScalarProperty Name="ProfileVerificationTypeId" ColumnName="ProfileVerificationTypeId" />
+                <ScalarProperty Name="ProfileVerificationType" ColumnName="ProfileVerificationType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReportModels">
+            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.ReportModel">
+              <MappingFragment StoreEntitySet="Reports">
+                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+                <ScalarProperty Name="FK_ReportingProfile" ColumnName="FK_ReportingProfile" />
+                <ScalarProperty Name="ReportMessage" ColumnName="ReportMessage" />
+                <ScalarProperty Name="ReportTime" ColumnName="ReportTime" />
+                <ScalarProperty Name="FK_ReportedProfile" ColumnName="FK_ReportedProfile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SessionModels">
+            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.SessionModel">
+              <MappingFragment StoreEntitySet="Sessions">
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+                <ScalarProperty Name="FK_ProfileId" ColumnName="FK_ProfileId" />
+                <ScalarProperty Name="SessionIp" ColumnName="SessionIp" />
+                <ScalarProperty Name="SessionStart" ColumnName="SessionStart" />
+                <ScalarProperty Name="SessionEnd" ColumnName="SessionEnd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskLocationInfos">
+            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.TaskLocationInfoModel">
+              <MappingFragment StoreEntitySet="TaskLocationInfos">
+                <ScalarProperty Name="TaskLocationInfoId" ColumnName="TaskLocationInfoId" />
+                <ScalarProperty Name="FK_TaskId" ColumnName="FK_TaskId" />
+                <ScalarProperty Name="TaskLocationAddress" ColumnName="TaskLocationAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskModels">
+            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.TaskModel">
+              <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="FK_TaskNotificationReferenceId" ColumnName="FK_TaskNotificationReferenceId" />
+                <ScalarProperty Name="FK_TaskMaster" ColumnName="FK_TaskMaster" />
+                <ScalarProperty Name="FK_TaskFetcher" ColumnName="FK_TaskFetcher" />
+                <ScalarProperty Name="TaskDescription" ColumnName="TaskDescription" />
+                <ScalarProperty Name="TaskTimeCreated" ColumnName="TaskTimeCreated" />
+                <ScalarProperty Name="TaskDeadline" ColumnName="TaskDeadline" />
+                <ScalarProperty Name="TaskItemPrice" ColumnName="TaskItemPrice" />
+                <ScalarProperty Name="TaskFee" ColumnName="TaskFee" />
+                <ScalarProperty Name="FK_TaskStatus" ColumnName="FK_TaskStatus" />
+                <ScalarProperty Name="TaskEndPointAddress" ColumnName="TaskEndPointAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskStatuses">
+            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.TaskStatus">
+              <MappingFragment StoreEntitySet="TaskStatuses">
+                <ScalarProperty Name="TaskStatusId" ColumnName="TaskStatusId" />
+                <ScalarProperty Name="TaskStatus1" ColumnName="TaskStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
