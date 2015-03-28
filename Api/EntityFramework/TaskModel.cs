@@ -18,7 +18,7 @@ namespace Api.EntityFramework
         {
             this.Comments = new HashSet<CommentModel>();
             this.Feedbacks = new HashSet<FeedbackModel>();
-            this.Issues = new HashSet<Issue>();
+            this.Issues = new HashSet<IssueModel>();
             this.Payments = new HashSet<PaymentModel>();
             this.TaskLocationInfos = new HashSet<TaskLocationInfoModel>();
         }
@@ -37,11 +37,11 @@ namespace Api.EntityFramework
     
         public virtual ICollection<CommentModel> Comments { get; set; }
         public virtual ICollection<FeedbackModel> Feedbacks { get; set; }
-        public virtual ICollection<Issue> Issues { get; set; }
+        public virtual ICollection<IssueModel> Issues { get; set; }
         public virtual ICollection<PaymentModel> Payments { get; set; }
         public virtual ProfileModel FetcherProfile { get; set; }
         public virtual ProfileModel MasterProfile { get; set; }
         public virtual ICollection<TaskLocationInfoModel> TaskLocationInfos { get; set; }
-        public virtual TaskStatus TaskStatus { get; set; }
+        public virtual TaskStatusModel TaskStatus { get; set; }
     }
 }

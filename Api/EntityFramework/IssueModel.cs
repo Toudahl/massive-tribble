@@ -12,9 +12,9 @@ namespace Api.EntityFramework
     using System;
     using System.Collections.Generic;
     
-    public partial class Issue
+    public partial class IssueModel
     {
-        public Issue()
+        public IssueModel()
         {
             this.IssueDetails = new HashSet<IssueDetailModel>();
         }

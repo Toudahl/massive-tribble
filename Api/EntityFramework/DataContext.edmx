@@ -691,7 +691,7 @@
           <Property Name="IssueDetailText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Issue" Relationship="Self.FK_IssueDetails_Issues" FromRole="IssueDetails" ToRole="Issues" />
         </EntityType>
-        <EntityType Name="Issue">
+        <EntityType Name="IssueModel">
           <Key>
             <PropertyRef Name="IssueId" />
           </Key>
@@ -901,12 +901,12 @@
           <NavigationProperty Name="TaskLocationInfos" Relationship="Self.FK_TaskLocationInfos_Tasks" FromRole="Tasks" ToRole="TaskLocationInfos" />
           <NavigationProperty Name="TaskStatus" Relationship="Self.FK_Tasks_TaskStatuses" FromRole="Tasks" ToRole="TaskStatuses" />
         </EntityType>
-        <EntityType Name="TaskStatus">
+        <EntityType Name="TaskStatusModel">
           <Key>
             <PropertyRef Name="TaskStatusId" />
           </Key>
           <Property Name="TaskStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TaskStatus1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TaskStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Tasks" Relationship="Self.FK_Tasks_TaskStatuses" FromRole="TaskStatuses" ToRole="Tasks" />
         </EntityType>
         <Association Name="FK_Comments_Profiles">
@@ -958,7 +958,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_IssueDetails_Issues">
-          <End Role="Issues" Type="Self.Issue" Multiplicity="1" />
+          <End Role="Issues" Type="DB_9BC69B_fetchitModel.IssueModel" Multiplicity="1" />
           <End Role="IssueDetails" Type="DB_9BC69B_fetchitModel.IssueDetailModel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Issues">
@@ -971,7 +971,7 @@
         </Association>
         <Association Name="FK_Table_IssueStatuses">
           <End Role="IssueStatuses" Type="DB_9BC69B_fetchitModel.IssueStatusModel" Multiplicity="1" />
-          <End Role="Issues" Type="Self.Issue" Multiplicity="*" />
+          <End Role="Issues" Type="DB_9BC69B_fetchitModel.IssueModel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="IssueStatuses">
               <PropertyRef Name="IssueStatusId" />
@@ -983,7 +983,7 @@
         </Association>
         <Association Name="FK_Table_IssueTask">
           <End Role="Tasks" Type="DB_9BC69B_fetchitModel.TaskModel" Multiplicity="1" />
-          <End Role="Issues" Type="Self.Issue" Multiplicity="*" />
+          <End Role="Issues" Type="DB_9BC69B_fetchitModel.IssueModel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tasks">
               <PropertyRef Name="TaskId" />
@@ -995,7 +995,7 @@
         </Association>
         <Association Name="FK_Table_ProfilesCreator">
           <End Role="Profiles" Type="DB_9BC69B_fetchitModel.ProfileModel" Multiplicity="1" />
-          <End Role="Issues" Type="Self.Issue" Multiplicity="*" />
+          <End Role="Issues" Type="DB_9BC69B_fetchitModel.IssueModel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Profiles">
               <PropertyRef Name="ProfileId" />
@@ -1007,7 +1007,7 @@
         </Association>
         <Association Name="FK_Table_ProfilesTarget">
           <End Role="Profiles" Type="DB_9BC69B_fetchitModel.ProfileModel" Multiplicity="1" />
-          <End Role="Issues" Type="Self.Issue" Multiplicity="*" />
+          <End Role="Issues" Type="DB_9BC69B_fetchitModel.IssueModel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Profiles">
               <PropertyRef Name="ProfileId" />
@@ -1198,7 +1198,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Tasks_TaskStatuses">
-          <End Role="TaskStatuses" Type="Self.TaskStatus" Multiplicity="1" />
+          <End Role="TaskStatuses" Type="DB_9BC69B_fetchitModel.TaskStatusModel" Multiplicity="1" />
           <End Role="Tasks" Type="DB_9BC69B_fetchitModel.TaskModel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TaskStatuses">
@@ -1214,7 +1214,7 @@
           <EntitySet Name="FeedbackModels" EntityType="DB_9BC69B_fetchitModel.FeedbackModel" />
           <EntitySet Name="FeedbackStatuses" EntityType="DB_9BC69B_fetchitModel.FeedbackStatusModel" />
           <EntitySet Name="IssueDetailModels" EntityType="DB_9BC69B_fetchitModel.IssueDetailModel" />
-          <EntitySet Name="Issues" EntityType="Self.Issue" />
+          <EntitySet Name="IssueModels" EntityType="DB_9BC69B_fetchitModel.IssueModel" />
           <EntitySet Name="IssueStatuses" EntityType="DB_9BC69B_fetchitModel.IssueStatusModel" />
           <EntitySet Name="LogModels" EntityType="DB_9BC69B_fetchitModel.LogModel" />
           <EntitySet Name="NotificationModels" EntityType="DB_9BC69B_fetchitModel.NotificationModel" />
@@ -1230,7 +1230,7 @@
           <EntitySet Name="SessionModels" EntityType="DB_9BC69B_fetchitModel.SessionModel" />
           <EntitySet Name="TaskLocationInfos" EntityType="DB_9BC69B_fetchitModel.TaskLocationInfoModel" />
           <EntitySet Name="TaskModels" EntityType="DB_9BC69B_fetchitModel.TaskModel" />
-          <EntitySet Name="TaskStatuses" EntityType="Self.TaskStatus" />
+          <EntitySet Name="TaskStatuses" EntityType="DB_9BC69B_fetchitModel.TaskStatusModel" />
           <AssociationSet Name="FK_Comments_Profiles" Association="Self.FK_Comments_Profiles">
             <End Role="Profiles" EntitySet="ProfileModels" />
             <End Role="Comments" EntitySet="CommentModels" />
@@ -1248,24 +1248,24 @@
             <End Role="Feedbacks" EntitySet="FeedbackModels" />
           </AssociationSet>
           <AssociationSet Name="FK_IssueDetails_Issues" Association="Self.FK_IssueDetails_Issues">
-            <End Role="Issues" EntitySet="Issues" />
+            <End Role="Issues" EntitySet="IssueModels" />
             <End Role="IssueDetails" EntitySet="IssueDetailModels" />
           </AssociationSet>
           <AssociationSet Name="FK_Table_IssueStatuses" Association="Self.FK_Table_IssueStatuses">
             <End Role="IssueStatuses" EntitySet="IssueStatuses" />
-            <End Role="Issues" EntitySet="Issues" />
+            <End Role="Issues" EntitySet="IssueModels" />
           </AssociationSet>
           <AssociationSet Name="FK_Table_IssueTask" Association="Self.FK_Table_IssueTask">
             <End Role="Tasks" EntitySet="TaskModels" />
-            <End Role="Issues" EntitySet="Issues" />
+            <End Role="Issues" EntitySet="IssueModels" />
           </AssociationSet>
           <AssociationSet Name="FK_Table_ProfilesCreator" Association="Self.FK_Table_ProfilesCreator">
             <End Role="Profiles" EntitySet="ProfileModels" />
-            <End Role="Issues" EntitySet="Issues" />
+            <End Role="Issues" EntitySet="IssueModels" />
           </AssociationSet>
           <AssociationSet Name="FK_Table_ProfilesTarget" Association="Self.FK_Table_ProfilesTarget">
             <End Role="Profiles" EntitySet="ProfileModels" />
-            <End Role="Issues" EntitySet="Issues" />
+            <End Role="Issues" EntitySet="IssueModels" />
           </AssociationSet>
           <AssociationSet Name="FK_Notifications_NotificationStatuses" Association="Self.FK_Notifications_NotificationStatuses">
             <End Role="NotificationStatuses" EntitySet="NotificationStatuses" />
@@ -1381,8 +1381,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Issues">
-            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.Issue">
+          <EntitySetMapping Name="IssueModels">
+            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.IssueModel">
               <MappingFragment StoreEntitySet="Issues">
                 <ScalarProperty Name="IssueId" ColumnName="IssueId" />
                 <ScalarProperty Name="FK_IssueNotificationReferenceId" ColumnName="FK_IssueNotificationReferenceId" />
@@ -1565,10 +1565,10 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TaskStatuses">
-            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.TaskStatus">
+            <EntityTypeMapping TypeName="DB_9BC69B_fetchitModel.TaskStatusModel">
               <MappingFragment StoreEntitySet="TaskStatuses">
                 <ScalarProperty Name="TaskStatusId" ColumnName="TaskStatusId" />
-                <ScalarProperty Name="TaskStatus1" ColumnName="TaskStatus" />
+                <ScalarProperty Name="TaskStatus" ColumnName="TaskStatus" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

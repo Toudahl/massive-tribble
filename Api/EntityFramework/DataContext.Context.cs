@@ -29,7 +29,7 @@ namespace Api.EntityFramework
         public virtual DbSet<FeedbackModel> FeedbackModels { get; set; }
         public virtual DbSet<FeedbackStatusModel> FeedbackStatuses { get; set; }
         public virtual DbSet<IssueDetailModel> IssueDetailModels { get; set; }
-        public virtual DbSet<Issue> Issues { get; set; }
+        public virtual DbSet<IssueModel> IssueModels { get; set; }
         public virtual DbSet<IssueStatusModel> IssueStatuses { get; set; }
         public virtual DbSet<LogModel> LogModels { get; set; }
         public virtual DbSet<NotificationModel> NotificationModels { get; set; }
@@ -45,6 +45,6 @@ namespace Api.EntityFramework
         public virtual DbSet<SessionModel> SessionModels { get; set; }
         public virtual DbSet<TaskLocationInfoModel> TaskLocationInfos { get; set; }
         public virtual DbSet<TaskModel> TaskModels { get; set; }
-        public virtual DbSet<TaskStatus> TaskStatuses { get; set; }
+        public virtual DbSet<TaskStatusModel> TaskStatuses { get; set; }
     }
 }

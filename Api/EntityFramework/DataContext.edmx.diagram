@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.FeedbackModel" Width="2.375" PointX="5.5" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.FeedbackStatusModel" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.IssueDetailModel" Width="2" PointX="13.125" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.Issue" Width="2.5" PointX="13.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.IssueModel" Width="2.5" PointX="13.25" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.IssueStatusModel" Width="1.75" PointX="5.75" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.LogModel" Width="1.5" PointX="0.5" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.NotificationModel" Width="2.125" PointX="7.875" PointY="0.5" IsExpanded="true" />
@@ -25,7 +25,7 @@
         <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.SessionModel" Width="1.5" PointX="0.5" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.TaskLocationInfoModel" Width="1.75" PointX="11.125" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.TaskModel" Width="2.25" PointX="5.625" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.TaskStatus" Width="1.5" PointX="2.75" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_9BC69B_fetchitModel.TaskStatusModel" Width="1.5" PointX="2.75" PointY="14.5" IsExpanded="true" />
         <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Comments_Profiles" ManuallyRouted="false" />
         <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Comments_Tasks" ManuallyRouted="false" />
         <AssociationConnector Association="DB_9BC69B_fetchitModel.FK_Feedbacks_FeedbackStatuses" ManuallyRouted="false" />

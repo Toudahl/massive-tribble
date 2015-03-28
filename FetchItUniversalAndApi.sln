@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FetchItUniversalAndApi.Wind
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{AB64115D-4808-4347-9F1B-6288527AC80C}"
 EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "Modeling", "Modeling\Modeling.modelproj", "{E209BCF2-C865-483B-9C98-1F74AF20ACD5}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		FetchItUniversalAndApi\FetchItUniversalAndApi.Shared\FetchItUniversalAndApi.Shared.projitems*{edcb4cca-56d6-4ef4-b367-677a0db5c321}*SharedItemsImports = 13
@@ -84,6 +86,16 @@ Global
 		{AB64115D-4808-4347-9F1B-6288527AC80C}.Release|ARM.ActiveCfg = Release|Any CPU
 		{AB64115D-4808-4347-9F1B-6288527AC80C}.Release|x64.ActiveCfg = Release|Any CPU
 		{AB64115D-4808-4347-9F1B-6288527AC80C}.Release|x86.ActiveCfg = Release|Any CPU
+		{E209BCF2-C865-483B-9C98-1F74AF20ACD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E209BCF2-C865-483B-9C98-1F74AF20ACD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E209BCF2-C865-483B-9C98-1F74AF20ACD5}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{E209BCF2-C865-483B-9C98-1F74AF20ACD5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E209BCF2-C865-483B-9C98-1F74AF20ACD5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E209BCF2-C865-483B-9C98-1F74AF20ACD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E209BCF2-C865-483B-9C98-1F74AF20ACD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E209BCF2-C865-483B-9C98-1F74AF20ACD5}.Release|ARM.ActiveCfg = Release|Any CPU
+		{E209BCF2-C865-483B-9C98-1F74AF20ACD5}.Release|x64.ActiveCfg = Release|Any CPU
+		{E209BCF2-C865-483B-9C98-1F74AF20ACD5}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

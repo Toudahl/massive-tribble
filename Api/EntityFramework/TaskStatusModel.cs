@@ -12,15 +12,15 @@ namespace Api.EntityFramework
     using System;
     using System.Collections.Generic;
     
-    public partial class TaskStatus
+    public partial class TaskStatusModel
     {
-        public TaskStatus()
+        public TaskStatusModel()
         {
             this.Tasks = new HashSet<TaskModel>();
         }
     
         public int TaskStatusId { get; set; }
-        public string TaskStatus1 { get; set; }
+        public string TaskStatus { get; set; }
     
         public virtual ICollection<TaskModel> Tasks { get; set; }
     }

@@ -17,8 +17,8 @@ namespace Api.EntityFramework
         public ProfileModel()
         {
             this.Comments = new HashSet<CommentModel>();
-            this.IssueCreator = new HashSet<Issue>();
-            this.IssueTarget = new HashSet<Issue>();
+            this.IssueCreator = new HashSet<IssueModel>();
+            this.IssueTarget = new HashSet<IssueModel>();
             this.NotificationFromProfile = new HashSet<NotificationModel>();
             this.NotificationToProfile = new HashSet<NotificationModel>();
             this.ReportedProfile = new HashSet<ReportModel>();
@@ -49,8 +49,8 @@ namespace Api.EntityFramework
         public byte ProfileCanReport { get; set; }
     
         public virtual ICollection<CommentModel> Comments { get; set; }
-        public virtual ICollection<Issue> IssueCreator { get; set; }
-        public virtual ICollection<Issue> IssueTarget { get; set; }
+        public virtual ICollection<IssueModel> IssueCreator { get; set; }
+        public virtual ICollection<IssueModel> IssueTarget { get; set; }
         public virtual ICollection<NotificationModel> NotificationFromProfile { get; set; }
         public virtual ICollection<NotificationModel> NotificationToProfile { get; set; }
         public virtual ProfileLevelModel ProfileLevel { get; set; }

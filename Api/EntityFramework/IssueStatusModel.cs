@@ -16,12 +16,12 @@ namespace Api.EntityFramework
     {
         public IssueStatusModel()
         {
-            this.Issues = new HashSet<Issue>();
+            this.Issues = new HashSet<IssueModel>();
         }
     
         public int IssueStatusId { get; set; }
         public string IssueStatus { get; set; }
     
-        public virtual ICollection<Issue> Issues { get; set; }
+        public virtual ICollection<IssueModel> Issues { get; set; }
     }
 }

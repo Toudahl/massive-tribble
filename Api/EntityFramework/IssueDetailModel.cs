@@ -20,6 +20,6 @@ namespace Api.EntityFramework
         public byte[] IssueImage { get; set; }
         public string IssueDetailText { get; set; }
     
-        public virtual Issue Issue { get; set; }
+        public virtual IssueModel Issue { get; set; }
     }
 }
