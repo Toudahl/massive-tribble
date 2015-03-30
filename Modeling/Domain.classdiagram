@@ -1,30 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="5e76a6a4-646a-477c-be5e-8ddd807e3940" name="Domain" linkedPackageId="17071d15-8f17-4610-a00b-ac7b88dfcb59" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
-  <profileInstances>
-    <packageHasProfileInstances Id="7669609a-2235-4361-bb46-503ee08873bb">
-      <profileInstance Id="42020984-e22c-4dc4-ad54-32aec4ce005c" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="4c70e204-5dbc-4e6e-845d-87ff0acda66b">
-      <profileInstance Id="614df91e-a130-4d79-a18c-256a4c2c7925" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="39c845f4-9d2e-45e0-9ffb-d89c32d19191">
-      <profileInstance Id="e29b7d81-6e7f-41c5-93d6-1185f6a58f02" name="CSharpProfile">
-        <elementDefinition Id="c4b480f9-c7ad-4604-8b2f-777fdd5081a6" />
-      </profileInstance>
-      <elementDefinition Id="4a113a37-affa-40a5-a8a6-4b9aca9811d8" />
-    </packageHasProfileInstances>
-  </profileInstances>
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
       <class Id="09bf619d-64d9-440f-9221-2b22955574f5" name="CommentModel" isAbstract="false" isLeaf="false" isActiveClass="false">
         <referencesInternal>
-          <reference Id="6998c3c3-d66c-4c80-a81f-2275553f6e52" handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DCommentModel" tag="ViewCode">
+          <reference Id="6998c3c3-d66c-4c80-a81f-2275553f6e52" handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DCommentModel" tag="ViewCode">
             <elementDefinition Id="1cb3b128-679d-400c-b690-d2ac8bc01989" />
           </reference>
         </referencesInternal>
@@ -707,7 +687,7 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="ee65af56-5d4e-4b4b-a233-e09e346837c6" name="FeedbackModel" isAbstract="false" isLeaf="false" isActiveClass="false">
         <referencesInternal>
-          <reference Id="ccb8c082-d7a4-4bf0-9ac0-21b7a8d73977" handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackModel" tag="ViewCode">
+          <reference Id="ccb8c082-d7a4-4bf0-9ac0-21b7a8d73977" handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackModel" tag="ViewCode">
             <elementDefinition Id="2af573f8-ee96-4c9a-97f2-37ae8ac6e879" />
           </reference>
         </referencesInternal>
@@ -791,7 +771,7 @@
         <ownedAttributesInternal>
           <property Id="8d57eee6-ddf0-4a8d-b8a0-5bb233995053" name="FeedbackId" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="b1675834-90ee-4ccb-b52e-8de6efc57ada" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackModel Member%3DFeedbackId" tag="ViewCode">
+              <reference Id="b1675834-90ee-4ccb-b52e-8de6efc57ada" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackModel Member%3DFeedbackId" tag="ViewCode">
                 <elementDefinition Id="56119351-3b64-4b24-abdc-9bd1889d0f35" />
               </reference>
             </referencesInternal>
@@ -851,7 +831,7 @@
           </property>
           <property Id="9d9dce48-8932-41ec-86ec-ab5649a55f41" name="FeedbackRating" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="90e7480b-19af-4cdc-9789-04ebba70d106" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackModel Member%3DFeedbackRating" tag="ViewCode">
+              <reference Id="90e7480b-19af-4cdc-9789-04ebba70d106" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackModel Member%3DFeedbackRating" tag="ViewCode">
                 <elementDefinition Id="16bcfb9a-66c3-494f-97dd-635ef3b7feed" />
               </reference>
             </referencesInternal>
@@ -911,7 +891,7 @@
           </property>
           <property Id="b3e18e60-3db4-4317-ad2d-35400c410481" name="FK_FeedbackNotificationReferenceId" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="b8a49b56-1e6e-4ed8-be30-ec94a8b63725" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackModel Member%3DFK_FeedbackNotificationReferenceId" tag="ViewCode">
+              <reference Id="b8a49b56-1e6e-4ed8-be30-ec94a8b63725" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackModel Member%3DFK_FeedbackNotificationReferenceId" tag="ViewCode">
                 <elementDefinition Id="6b97be66-9836-4e52-8ea3-0f5322c919e1" />
               </reference>
             </referencesInternal>
@@ -971,7 +951,7 @@
           </property>
           <property Id="53fdc624-9e73-4c39-96a1-ed766bde8382" name="FeedbackComment" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="08cc4faf-db58-4e09-abb3-329882ecf7df" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackModel Member%3DFeedbackComment" tag="ViewCode">
+              <reference Id="08cc4faf-db58-4e09-abb3-329882ecf7df" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackModel Member%3DFeedbackComment" tag="ViewCode">
                 <elementDefinition Id="535933b2-0bbd-47bc-9f9e-67a350efb76c" />
               </reference>
             </referencesInternal>
@@ -1031,7 +1011,7 @@
           </property>
           <property Id="bf530cd7-21ec-4d3c-ae7b-e8057fe36ab8" name="FK_FeedbackForTask" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="156706a9-6925-4545-9a6a-e052178a5475" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackModel Member%3DFK_FeedbackForTask" tag="ViewCode">
+              <reference Id="156706a9-6925-4545-9a6a-e052178a5475" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackModel Member%3DFK_FeedbackForTask" tag="ViewCode">
                 <elementDefinition Id="d3ee918d-d71d-476b-9684-5b1619958b96" />
               </reference>
             </referencesInternal>
@@ -1091,7 +1071,7 @@
           </property>
           <property Id="7fc2e0f6-f41f-4426-aca1-86ca0561de09" name="FK_FeedbackStatus" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="c52208a6-688f-41d0-9a10-834f1595d282" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackModel Member%3DFK_FeedbackStatus" tag="ViewCode">
+              <reference Id="c52208a6-688f-41d0-9a10-834f1595d282" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackModel Member%3DFK_FeedbackStatus" tag="ViewCode">
                 <elementDefinition Id="4600516b-ca34-4348-9c37-eb0950c0be28" />
               </reference>
             </referencesInternal>
@@ -1151,7 +1131,7 @@
           </property>
           <property Id="9b8b9fac-3ae9-4dcb-8f53-8bce29ebf49a" name="FeedbackStatus" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="f8525888-a88a-43ef-acf1-2951dc719da5" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackModel Member%3DFeedbackStatus" tag="ViewCode">
+              <reference Id="f8525888-a88a-43ef-acf1-2951dc719da5" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackModel Member%3DFeedbackStatus" tag="ViewCode">
                 <elementDefinition Id="9c7c7699-a70f-403a-956b-8a21f7e7bbe6" />
               </reference>
             </referencesInternal>
@@ -1211,7 +1191,7 @@
           </property>
           <property Id="55cc8623-397c-4f30-87b4-316ec7e9bc92" name="Task" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="1444cc31-b56c-4e77-9af8-86e0c27f7944" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackModel Member%3DTask" tag="ViewCode">
+              <reference Id="1444cc31-b56c-4e77-9af8-86e0c27f7944" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackModel Member%3DTask" tag="ViewCode">
                 <elementDefinition Id="faa12173-1031-4781-8b17-e9c58f7ef43c" />
               </reference>
             </referencesInternal>
@@ -1271,56 +1251,56 @@
           </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
-          <operation Id="cbc2fd27-d48b-489f-ab9a-d0c5505305f2" name="FeedbackModel" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+          <operation Id="a6f67379-5c97-4f6d-b23e-df814f530105" name="FeedbackModel" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <referencesInternal>
-              <reference Id="dc0c3897-1cfb-4466-b28d-ba72421b4a2b" handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackModel Member%3D.ctor" tag="ViewCode">
-                <elementDefinition Id="f99c1a3a-a013-4edd-b487-92771e607ed4" />
+              <reference Id="e1d0afc8-f246-4fb7-8a19-366601a2cbe4" handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackModel Member%3D.ctor" tag="ViewCode">
+                <elementDefinition Id="966b1f8f-d5fd-4da6-8030-480862a56692" />
               </reference>
             </referencesInternal>
             <appliedStereotypesInternal>
-              <stereotypeInstance Id="d782f1a0-8aef-4e78-9a42-2a5306ec2512" name="method" profile="CSharpProfile">
-                <elementDefinition Id="14da210b-3436-4a38-b129-c8c2f37b0f0e" />
+              <stereotypeInstance Id="2c1e5952-e900-4ba2-b730-7ad8f731f186" name="method" profile="CSharpProfile">
+                <elementDefinition Id="546472fa-ffe4-4839-a333-758c6193591c" />
                 <propertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="96651918-119e-4b3c-a680-378c8cb52230">
-                    <propertyInstance Id="bf57d1f1-bd5d-45b6-8407-116adcc061f9" name="ClrAttributes">
-                      <elementDefinition Id="21ca1a9d-15ff-425f-8518-5763b926e517" />
+                  <stereotypeInstanceHasPropertyInstances Id="358a8744-0c73-4afa-8972-76159bc00cef">
+                    <propertyInstance Id="10b624b3-0126-42b5-952e-44dce7ac5097" name="ClrAttributes">
+                      <elementDefinition Id="1f28d26b-b2e2-46c5-8ee1-9cfdaa41c26a" />
                     </propertyInstance>
-                    <elementDefinition Id="a9e3f5cf-f7df-43d8-855c-8968daa593a5" />
+                    <elementDefinition Id="868f44bc-47a4-43d6-a491-b53a54c1a649" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="bfff1684-a46e-4f1a-a225-eec3c781c372">
-                    <propertyInstance Id="40451a6c-9703-4368-97f6-4d6c26578980" name="IsPartial" value="false">
-                      <elementDefinition Id="e7b342ed-bd74-4100-b53d-ffc425a40315" />
+                  <stereotypeInstanceHasPropertyInstances Id="8a2c969b-e501-4f28-ae33-3c9257bf7608">
+                    <propertyInstance Id="8fb8dfcb-0f1f-481a-9283-9f9c6f3df6ae" name="IsPartial" value="false">
+                      <elementDefinition Id="52851063-34f9-4614-a6da-d2c101b7e779" />
                     </propertyInstance>
-                    <elementDefinition Id="92ab9f5c-7fce-45e2-a752-a226678ef5af" />
+                    <elementDefinition Id="6a64ca79-061b-4619-9fe6-649ff15c2561" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="34442e74-cd01-429d-8f52-9aaa69e3324d">
-                    <propertyInstance Id="d95afe15-4dda-4e97-b577-ec7ebb766e42" name="IsUnsafe" value="false">
-                      <elementDefinition Id="ed66ce8a-922b-401f-a9dc-af64f7d99b7c" />
+                  <stereotypeInstanceHasPropertyInstances Id="9fa70ec3-1376-4a72-9632-eb2b07474a1f">
+                    <propertyInstance Id="ad4592d1-27a4-4e48-b937-3eb82b8fa4e6" name="IsUnsafe" value="false">
+                      <elementDefinition Id="dcd4def3-6af6-45d0-a463-228ab8197781" />
                     </propertyInstance>
-                    <elementDefinition Id="28576b9f-92c0-4d3f-bc75-cd96b1466016" />
+                    <elementDefinition Id="8861bb22-f0a0-4771-ac35-16596a7591a6" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="d112192a-fcf5-4391-9c5e-720fd8d095ee">
-                    <propertyInstance Id="0c94743b-0c3a-40a6-a6a3-7cc3ac7510c9" name="Inheritance" value="none">
-                      <elementDefinition Id="ca01d091-e67d-4c8a-988a-87e8b38d0b96" />
+                  <stereotypeInstanceHasPropertyInstances Id="e6ebda8d-c1c1-46b4-9c13-db2deb352c66">
+                    <propertyInstance Id="c67a7d63-402a-439e-9fe7-9e7337976681" name="Inheritance" value="none">
+                      <elementDefinition Id="3d114882-494f-4d87-8264-a192f545d3c7" />
                     </propertyInstance>
-                    <elementDefinition Id="f175752d-3dc3-4aaa-a0fa-df0a08f477b4" />
+                    <elementDefinition Id="c8545832-e2f0-4e68-9b7f-1b59e8dfc224" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="695cf5fa-3a5e-40a3-a274-a95aba8c4d0f">
-                    <propertyInstance Id="e970be70-7bff-49a9-beba-14d8c68f3113" name="PackageVisibility" value="internal">
-                      <elementDefinition Id="4754b8e0-4875-478d-8047-15bd819e207a" />
+                  <stereotypeInstanceHasPropertyInstances Id="dd295b4f-daac-4900-b1db-df2f7b6d57eb">
+                    <propertyInstance Id="e93d0af5-412b-4dba-83c1-00c19f2931ab" name="PackageVisibility" value="internal">
+                      <elementDefinition Id="d18977da-a49b-4569-a6cf-de2e39bb5018" />
                     </propertyInstance>
-                    <elementDefinition Id="0da8f4c7-e24b-44a2-91b3-ecbccc39d12f" />
+                    <elementDefinition Id="887f7c93-b999-4927-acc3-c76cadfc3326" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="4d86bb9b-5405-4fb6-895b-1be34b515c02">
-                    <propertyInstance Id="21dc87da-c36f-41bb-934d-20926dbd6ea8" name="params" value="false">
-                      <elementDefinition Id="5dddbc80-6b54-465a-b0df-f822b1666d5a" />
+                  <stereotypeInstanceHasPropertyInstances Id="60715d34-027b-4e79-a621-3fea4f6e6608">
+                    <propertyInstance Id="67416241-ade4-4fdb-b371-1f26324c2bba" name="params" value="false">
+                      <elementDefinition Id="71464306-a4e2-4785-a554-123f9a06ef0d" />
                     </propertyInstance>
-                    <elementDefinition Id="cb863c15-871f-4584-ae0b-be4b1ad96f79" />
+                    <elementDefinition Id="58caed7e-93b8-49f4-94e7-62072174504b" />
                   </stereotypeInstanceHasPropertyInstances>
                 </propertyInstances>
               </stereotypeInstance>
             </appliedStereotypesInternal>
-            <elementDefinition Id="4b28451a-6969-493f-85ca-d18a8b0459d6" />
+            <elementDefinition Id="3d80834a-7d20-4655-bf62-7be9e19350f9" />
           </operation>
         </ownedOperationsInternal>
       </class>
@@ -1343,7 +1323,7 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="1cb9f000-a5d3-4c9c-ab17-a9711717bd84" name="IssueModel" isAbstract="false" isLeaf="false" isActiveClass="false">
         <referencesInternal>
-          <reference Id="67667a7a-47f1-4ca2-8a7d-a0d6fa7fc4ca" handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssue" tag="ViewCode">
+          <reference Id="67667a7a-47f1-4ca2-8a7d-a0d6fa7fc4ca" handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssueModel" tag="ViewCode">
             <elementDefinition Id="6c84885f-c7f6-43c7-b8a5-32b14447b231" />
           </reference>
         </referencesInternal>
@@ -1385,123 +1365,10 @@
           </stereotypeInstance>
         </appliedStereotypesInternal>
         <elementDefinition Id="046a2314-ae07-4c79-a7ff-a5ecce8862f1" />
-        <targetEnds>
-          <association Id="09999a5c-e94a-4992-9b09-b427ae92eaef" isDerived="false" sourceEndRoleName="Issue" targetEndRoleName="Task" isLeaf="false" isAbstract="false">
-            <classMoniker Id="890f448f-078f-47f0-96bd-13b889fdc923" LastKnownName="TaskModel" />
-            <description>Property Task references type TaskModel.</description>
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd Id="bb19fa56-7575-41ce-a210-5b054f4a0b94" name="Issue" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
-                  <lowerValueInternal>
-                    <literalString Id="f6cfb5df-f9ae-433e-a58a-65d4dba0ab50" name="Lower" value="*">
-                      <elementDefinition Id="854a06a4-04b5-4dd7-9ee6-11be4daba265" />
-                    </literalString>
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString Id="4ddf6d09-39ef-454b-b030-7c151285fc4b" name="Upper" value="*">
-                      <elementDefinition Id="f3be5cc6-42d9-4cd9-9be5-98186b60a21e" />
-                    </literalString>
-                  </upperValueInternal>
-                  <elementDefinition Id="cf5e4c4e-de7e-4185-9262-f488557d70c8" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd Id="1f295fdb-f255-4462-bf12-fa62fa462a16" name="Task" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <lowerValueInternal>
-                    <literalString Id="6c7e75f5-1624-49a3-a4af-f32fcc0928cc" name="Lower" value="1">
-                      <elementDefinition Id="520cd134-aadf-42fe-97e9-38491119aacb" />
-                    </literalString>
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString Id="b89c9fab-7228-4552-bb23-bb9cca9144f2" name="Upper" value="1">
-                      <elementDefinition Id="67d198a0-4124-4212-91b1-43065a8516bc" />
-                    </literalString>
-                  </upperValueInternal>
-                  <elementDefinition Id="33cca703-861c-439a-bcf5-e22c2b3c1903" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-            <elementDefinition Id="6b48c0b8-d9a4-4c78-976e-d97e55f7d1cb" />
-          </association>
-          <association Id="93cf1996-1f18-4ea6-87a1-902fbcef7dc2" isDerived="false" sourceEndRoleName="Issue" targetEndRoleName="IssueCreator" isLeaf="false" isAbstract="false">
-            <classMoniker Id="4678b561-7405-4f37-81bf-79317e725845" LastKnownName="ProfileModel" />
-            <description>Property IssueCreator references type ProfileModel.</description>
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd Id="a3b478dc-4066-4bec-a4f9-323cfe3ce581" name="Issue" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
-                  <lowerValueInternal>
-                    <literalString Id="5a3b2dad-a7b9-4a38-8d87-9ea14547f3eb" name="Lower" value="*">
-                      <elementDefinition Id="abdb1ada-400f-44e5-8fa9-0cc55e6f7016" />
-                    </literalString>
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString Id="6933a407-71c3-4611-8a06-56c657fd954a" name="Upper" value="*">
-                      <elementDefinition Id="1e8e43ba-d3e1-499f-9071-7170d6fabfa8" />
-                    </literalString>
-                  </upperValueInternal>
-                  <elementDefinition Id="22693907-c355-49e9-93f5-5c8f762956a5" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd Id="94751a08-e374-45fc-9db9-e8d45993f368" name="IssueCreator" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <lowerValueInternal>
-                    <literalString Id="44d47b52-23c0-4b7b-8c20-d52fe5ddcd18" name="Lower" value="1">
-                      <elementDefinition Id="0a8da46d-9e0a-4fff-a2c8-a6acc7a5ed47" />
-                    </literalString>
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString Id="4db8e627-c848-4602-aa36-a8f4a5e1995e" name="Upper" value="1">
-                      <elementDefinition Id="e83c983f-4c74-44b7-81ac-769b77a84986" />
-                    </literalString>
-                  </upperValueInternal>
-                  <elementDefinition Id="b28bf756-a1dd-47da-ba22-fa066ecda0a7" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-            <elementDefinition Id="df5f332c-0ed7-42b4-84f5-861cb8076533" />
-          </association>
-          <association Id="abdcf22f-73dd-465f-9e6e-33019ee1a42a" isDerived="false" sourceEndRoleName="Issue" targetEndRoleName="IssueTarget" isLeaf="false" isAbstract="false">
-            <classMoniker Id="4678b561-7405-4f37-81bf-79317e725845" LastKnownName="ProfileModel" />
-            <description>Property IssueTarget references type ProfileModel.</description>
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd Id="ba33ddec-d9d4-43d3-8419-928686fb2e80" name="Issue" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
-                  <lowerValueInternal>
-                    <literalString Id="ba6ce364-3de1-4eb3-87c4-8590cd80072b" name="Lower" value="*">
-                      <elementDefinition Id="e1d23b58-2a24-43df-adc7-e79d90d48fba" />
-                    </literalString>
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString Id="a1492977-1339-4375-8b9d-f16843201c0a" name="Upper" value="*">
-                      <elementDefinition Id="a125d5c5-13fd-4849-b44d-0fe3c399087c" />
-                    </literalString>
-                  </upperValueInternal>
-                  <elementDefinition Id="e693a975-6002-4363-85de-1e0b88d79a71" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd Id="c19e3e0a-a5fd-40a3-9f35-d0f5c8c5713e" name="IssueTarget" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                  <lowerValueInternal>
-                    <literalString Id="b5a9f7c5-28ea-4334-99b9-52b234eaa651" name="Lower" value="1">
-                      <elementDefinition Id="8f40d67c-d264-4fad-8030-315feb0aa130" />
-                    </literalString>
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString Id="45c96682-c8b6-4adc-adc3-81011d7a2579" name="Upper" value="1">
-                      <elementDefinition Id="e9797ccc-3ea5-4ff7-90ca-a6be1525bee6" />
-                    </literalString>
-                  </upperValueInternal>
-                  <elementDefinition Id="2b8ca6f8-ff8a-4e7a-982a-0598bf4648af" />
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-            <elementDefinition Id="8e64cca2-3073-42a5-bae9-12d5c9464782" />
-          </association>
-        </targetEnds>
         <ownedAttributesInternal>
           <property Id="8e27ae1b-ebd0-422b-9abf-1404673ab655" name="IssueId" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="7c81f812-7f8b-4edb-8d01-f506b009e785" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssue Member%3DIssueId" tag="ViewCode">
+              <reference Id="7c81f812-7f8b-4edb-8d01-f506b009e785" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssueModel Member%3DIssueId" tag="ViewCode">
                 <elementDefinition Id="9ba0f9e4-c181-491d-8c16-c0cc2bafa16b" />
               </reference>
             </referencesInternal>
@@ -1561,7 +1428,7 @@
           </property>
           <property Id="7d3392c1-5498-491b-b1b4-fadf1321d709" name="FK_IssueNotificationReferenceId" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="00846467-8e70-4c68-b49c-b29a356a0749" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssue Member%3DFK_IssueNotificationReferenceId" tag="ViewCode">
+              <reference Id="00846467-8e70-4c68-b49c-b29a356a0749" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssueModel Member%3DFK_IssueNotificationReferenceId" tag="ViewCode">
                 <elementDefinition Id="6068027e-ebbc-4e7f-a20f-0f4476ea0158" />
               </reference>
             </referencesInternal>
@@ -1621,7 +1488,7 @@
           </property>
           <property Id="ff78b0c1-2603-4dd9-ad2e-2ba1c5f31e45" name="FK_IssueCreator" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="6ca1f3eb-5924-4b34-ae9b-353094924c97" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssue Member%3DFK_IssueCreator" tag="ViewCode">
+              <reference Id="6ca1f3eb-5924-4b34-ae9b-353094924c97" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssueModel Member%3DFK_IssueCreator" tag="ViewCode">
                 <elementDefinition Id="a41daa98-e64e-4359-8073-9541da2561ee" />
               </reference>
             </referencesInternal>
@@ -1681,7 +1548,7 @@
           </property>
           <property Id="988f969f-589e-4f3c-a5d0-b666c85ed8aa" name="FK_IssueTarget" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="b0293109-f84d-41d2-a616-ac20ca45bbe5" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssue Member%3DFK_IssueTarget" tag="ViewCode">
+              <reference Id="b0293109-f84d-41d2-a616-ac20ca45bbe5" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssueModel Member%3DFK_IssueTarget" tag="ViewCode">
                 <elementDefinition Id="042e48cc-c296-4c5f-b291-974fb9858c40" />
               </reference>
             </referencesInternal>
@@ -1741,7 +1608,7 @@
           </property>
           <property Id="d869e1b6-2060-4451-b7e7-46acb6e4f8f0" name="IssueTitle" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="889df874-920e-460b-ae79-e32f0e6ab7b9" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssue Member%3DIssueTitle" tag="ViewCode">
+              <reference Id="889df874-920e-460b-ae79-e32f0e6ab7b9" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssueModel Member%3DIssueTitle" tag="ViewCode">
                 <elementDefinition Id="46be2791-0d99-461d-a5a5-82cf3afb9857" />
               </reference>
             </referencesInternal>
@@ -1801,7 +1668,7 @@
           </property>
           <property Id="20c4a7ec-995f-4297-ab8c-e4e9f5e92bc2" name="IssueDescription" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="41bc863f-d8c9-4f61-8770-988e260bc325" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssue Member%3DIssueDescription" tag="ViewCode">
+              <reference Id="41bc863f-d8c9-4f61-8770-988e260bc325" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssueModel Member%3DIssueDescription" tag="ViewCode">
                 <elementDefinition Id="34ce3486-0314-427f-a0d2-7530be0c837b" />
               </reference>
             </referencesInternal>
@@ -1861,7 +1728,7 @@
           </property>
           <property Id="2453da06-cb96-48f8-a064-f7350e3b7fdb" name="IssueTimeCreated" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="498756d1-2013-40bf-9c6f-32bb97d63763" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssue Member%3DIssueTimeCreated" tag="ViewCode">
+              <reference Id="498756d1-2013-40bf-9c6f-32bb97d63763" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssueModel Member%3DIssueTimeCreated" tag="ViewCode">
                 <elementDefinition Id="936e074f-a179-43d4-96f4-85ac99fb8c57" />
               </reference>
             </referencesInternal>
@@ -1921,7 +1788,7 @@
           </property>
           <property Id="1cc0a98c-774b-4de2-8774-9cad8b2acef1" name="IssueTimeResolved" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="f2dfc15b-b45c-40de-ae06-211335d4d607" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssue Member%3DIssueTimeResolved" tag="ViewCode">
+              <reference Id="f2dfc15b-b45c-40de-ae06-211335d4d607" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssueModel Member%3DIssueTimeResolved" tag="ViewCode">
                 <elementDefinition Id="c86a013a-2015-4baf-b88c-f73aa5c669b8" />
               </reference>
             </referencesInternal>
@@ -1981,7 +1848,7 @@
           </property>
           <property Id="ac2d4a37-fd97-4215-9b36-b1c13ac3543d" name="FK_IssueStatus" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="8320a6d1-5174-424d-9375-a6b10c75b7e2" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssue Member%3DFK_IssueStatus" tag="ViewCode">
+              <reference Id="8320a6d1-5174-424d-9375-a6b10c75b7e2" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssueModel Member%3DFK_IssueStatus" tag="ViewCode">
                 <elementDefinition Id="0553ce57-b9bd-4767-95cd-4d82b6fa7b20" />
               </reference>
             </referencesInternal>
@@ -2041,7 +1908,7 @@
           </property>
           <property Id="94d19971-760a-480f-8e65-067f4e4a0ccf" name="IssueDidCreatorWin" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="ea64bb58-5db8-43d4-8e5d-eed8adda6dc2" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssue Member%3DIssueDidCreatorWin" tag="ViewCode">
+              <reference Id="ea64bb58-5db8-43d4-8e5d-eed8adda6dc2" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssueModel Member%3DIssueDidCreatorWin" tag="ViewCode">
                 <elementDefinition Id="8424fe47-efd9-436d-99a9-c7c9b2903256" />
               </reference>
             </referencesInternal>
@@ -2101,7 +1968,7 @@
           </property>
           <property Id="0e3c7337-68e3-4d7f-926b-5036d85b8684" name="FK_IssueTask" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="f19ee0e8-128d-4456-8852-3f448480b876" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssue Member%3DFK_IssueTask" tag="ViewCode">
+              <reference Id="f19ee0e8-128d-4456-8852-3f448480b876" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssueModel Member%3DFK_IssueTask" tag="ViewCode">
                 <elementDefinition Id="2af88803-045b-4bcd-805c-517c2d88179e" />
               </reference>
             </referencesInternal>
@@ -2161,7 +2028,7 @@
           </property>
           <property Id="e0e46d6b-9d28-4f48-8aaa-8f503b4c130d" name="IssueAppealedByCreator" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="bcb7ab61-f8bc-49f4-bc75-2e290a923657" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssue Member%3DIssueAppealedByCreator" tag="ViewCode">
+              <reference Id="bcb7ab61-f8bc-49f4-bc75-2e290a923657" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssueModel Member%3DIssueAppealedByCreator" tag="ViewCode">
                 <elementDefinition Id="6d21d5b6-317f-4063-b192-d288674b80a3" />
               </reference>
             </referencesInternal>
@@ -2221,7 +2088,7 @@
           </property>
           <property Id="efe67601-3d11-448e-96a8-9066d0b9c4f9" name="IssueHasBeenAppealed" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="52ecd9eb-cd2b-42ee-9d2c-4364e9e73343" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssue Member%3DIssueHasBeenAppealed" tag="ViewCode">
+              <reference Id="52ecd9eb-cd2b-42ee-9d2c-4364e9e73343" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssueModel Member%3DIssueHasBeenAppealed" tag="ViewCode">
                 <elementDefinition Id="b50c51e6-7765-46ec-b160-d0d1b2947731" />
               </reference>
             </referencesInternal>
@@ -2281,7 +2148,7 @@
           </property>
           <property Id="ce25eec3-5503-4b1d-917e-61f9b38fe54d" name="IssueDetails" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="8ada6161-5061-4f62-a3bb-24b16bd2737d" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssue Member%3DIssueDetails" tag="ViewCode">
+              <reference Id="8ada6161-5061-4f62-a3bb-24b16bd2737d" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssueModel Member%3DIssueDetails" tag="ViewCode">
                 <elementDefinition Id="25a66a4d-7e1d-456f-b5b9-f4dead228943" />
               </reference>
             </referencesInternal>
@@ -2341,7 +2208,7 @@
           </property>
           <property Id="1734880e-008d-4cbe-a735-f2631a3c6f32" name="IssueStatus" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="b7ad6506-a420-421f-a516-c889f1c340c5" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssue Member%3DIssueStatus" tag="ViewCode">
+              <reference Id="b7ad6506-a420-421f-a516-c889f1c340c5" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssueModel Member%3DIssueStatus" tag="ViewCode">
                 <elementDefinition Id="7d3569be-8661-4fa2-a7c3-f0e87e1fa423" />
               </reference>
             </referencesInternal>
@@ -2401,7 +2268,7 @@
           </property>
           <property Id="be8d2ac6-7f07-46cd-bf7a-fab4a78c386c" name="Task" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="3082b5d1-ee0f-420a-abc3-0b2bca1186e6" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssue Member%3DTask" tag="ViewCode">
+              <reference Id="3082b5d1-ee0f-420a-abc3-0b2bca1186e6" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssueModel Member%3DTask" tag="ViewCode">
                 <elementDefinition Id="79244e2c-f1f4-4c16-b59d-4af15212d5cd" />
               </reference>
             </referencesInternal>
@@ -2461,7 +2328,7 @@
           </property>
           <property Id="4c9bd610-3e0b-414c-afeb-b8a755acf9a6" name="IssueCreator" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="b41ac6cf-0b73-4d11-bfc8-b1fc6200b8ce" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssue Member%3DIssueCreator" tag="ViewCode">
+              <reference Id="b41ac6cf-0b73-4d11-bfc8-b1fc6200b8ce" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssueModel Member%3DIssueCreator" tag="ViewCode">
                 <elementDefinition Id="ae7d7ad7-13b5-400c-b61b-aa2e46984655" />
               </reference>
             </referencesInternal>
@@ -2521,7 +2388,7 @@
           </property>
           <property Id="0c257e40-6689-4bcd-a1e3-b934e562e281" name="IssueTarget" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="eda6ef28-c478-4df5-82c3-78a345a10360" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssue Member%3DIssueTarget" tag="ViewCode">
+              <reference Id="eda6ef28-c478-4df5-82c3-78a345a10360" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssueModel Member%3DIssueTarget" tag="ViewCode">
                 <elementDefinition Id="cb12d30d-d7c7-4361-a148-d28c6eb2b32d" />
               </reference>
             </referencesInternal>
@@ -2581,56 +2448,56 @@
           </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
-          <operation Id="bd12c53b-4b7d-4338-a84e-c82ed9994dad" name="Issue" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+          <operation Id="554402c5-21e8-465d-941a-10610d2bd15a" name="IssueModel" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <referencesInternal>
-              <reference Id="dfe4f586-68a4-4e34-bcd1-f554536b74bd" handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssue Member%3D.ctor" tag="ViewCode">
-                <elementDefinition Id="da80d3b5-862b-4fe9-93eb-d393338c02ce" />
+              <reference Id="7ca92a67-1e63-4aa3-848a-3f5d408d1af7" handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DIssueModel Member%3D.ctor" tag="ViewCode">
+                <elementDefinition Id="35f67148-c985-423e-8131-a1ea2661d292" />
               </reference>
             </referencesInternal>
             <appliedStereotypesInternal>
-              <stereotypeInstance Id="62ebb5c5-71c4-4eb7-b69a-076b454b9e28" name="method" profile="CSharpProfile">
-                <elementDefinition Id="e77c9976-c19e-4388-980a-b7406ec81bd4" />
+              <stereotypeInstance Id="36b0a578-27b0-48cd-acea-65de2290c527" name="method" profile="CSharpProfile">
+                <elementDefinition Id="13f9e01c-62d0-4ee4-af37-10a6516d5da9" />
                 <propertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="a15c4eb3-486a-4c53-b1bd-0d10dfb27889">
-                    <propertyInstance Id="d0a5c8b1-2f6d-4b27-855a-bfab5d687528" name="ClrAttributes">
-                      <elementDefinition Id="47497b59-2355-4c80-9cc5-aeb1ecba218d" />
+                  <stereotypeInstanceHasPropertyInstances Id="286a9549-3424-4d19-9bf9-eb1cf7396b05">
+                    <propertyInstance Id="0daa9706-6179-4d83-837b-3d1fa5dc3e14" name="ClrAttributes">
+                      <elementDefinition Id="8a381306-47d5-451f-8f1d-5d405fa5590a" />
                     </propertyInstance>
-                    <elementDefinition Id="ec51f592-8849-4efc-9d7f-ebb1dc07dec5" />
+                    <elementDefinition Id="fa4d4a9e-d5e0-4788-8456-16d82469b336" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="8a5a8d61-6c69-47e6-a0a7-adfe031bfb7b">
-                    <propertyInstance Id="3fc8d03c-59f9-4a88-8502-8318a973669f" name="IsPartial" value="false">
-                      <elementDefinition Id="ac7b18c0-d4f5-4a21-a290-ee264e9b4d2a" />
+                  <stereotypeInstanceHasPropertyInstances Id="201b7866-166f-4097-a715-c8089d2da2a0">
+                    <propertyInstance Id="1f54e3a9-5bfd-4d3c-8e04-4af28b620075" name="IsPartial" value="false">
+                      <elementDefinition Id="dc2bea39-a96d-4921-881d-f372b5786e76" />
                     </propertyInstance>
-                    <elementDefinition Id="884d2b70-708b-432d-af13-abcdb07ddd6d" />
+                    <elementDefinition Id="241f619f-042a-4dd7-98e2-2392358a51c3" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="a2d52c22-2f77-4317-8f36-da34f65ca3b2">
-                    <propertyInstance Id="4740ddfe-da7e-46ea-8305-f8430dbbe16e" name="IsUnsafe" value="false">
-                      <elementDefinition Id="8ebd56c6-af8f-42e4-a93e-1401dd6578d5" />
+                  <stereotypeInstanceHasPropertyInstances Id="271131dd-960e-4949-9b06-d25458d24c62">
+                    <propertyInstance Id="725473e1-51b4-41e6-812d-0c51c863a07d" name="IsUnsafe" value="false">
+                      <elementDefinition Id="aafe1930-bdf5-4610-81b3-e344c2dc714a" />
                     </propertyInstance>
-                    <elementDefinition Id="67bd0b18-5343-45dc-8a51-13695f02cb2c" />
+                    <elementDefinition Id="d53a7350-d385-44d4-a37b-06bd50df8a77" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="43783d83-a621-4dc4-ab24-a023dd287ee8">
-                    <propertyInstance Id="b97aaaa6-fdf8-4dde-b793-e8a1be2800e7" name="Inheritance" value="none">
-                      <elementDefinition Id="522ac262-07b9-4b3d-8946-3df99aa8f5b3" />
+                  <stereotypeInstanceHasPropertyInstances Id="d00e8989-988a-4f5d-b193-e72d53c6ecaa">
+                    <propertyInstance Id="52f50a54-b8aa-476b-9875-e0d938384a35" name="Inheritance" value="none">
+                      <elementDefinition Id="a9b3a7f5-1f5c-4ef0-9ec1-3b2826ff7e46" />
                     </propertyInstance>
-                    <elementDefinition Id="ac5b3989-e745-43ba-bbaf-6c5f7caeda88" />
+                    <elementDefinition Id="2648bdd8-d6e0-4fdb-964f-42bb065c5920" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="d8c0f940-3326-4bd5-aa06-f3dfee9104cb">
-                    <propertyInstance Id="ecd46957-bea5-4723-9415-7dac2253e53d" name="PackageVisibility" value="internal">
-                      <elementDefinition Id="89c3555f-c0cb-44c9-a447-584ebbda4868" />
+                  <stereotypeInstanceHasPropertyInstances Id="b74bd635-fa15-4f70-8bf9-43e537b31ee0">
+                    <propertyInstance Id="a9b28caf-b615-4139-b983-8e1265c3017d" name="PackageVisibility" value="internal">
+                      <elementDefinition Id="2656e7b9-b630-42e1-934c-08a8c9a59db0" />
                     </propertyInstance>
-                    <elementDefinition Id="8725a96c-3675-490f-bcc5-3e115c6fb97a" />
+                    <elementDefinition Id="24ca323d-499b-4100-b15e-c07875bb5fb7" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="0a3cc209-9512-4e2f-90e2-db0f6355bea7">
-                    <propertyInstance Id="059fe5b3-b537-44ed-93d8-8d6a6d70504c" name="params" value="false">
-                      <elementDefinition Id="6b1fc2c4-fc81-43d9-b2ad-5d65ddb157e3" />
+                  <stereotypeInstanceHasPropertyInstances Id="2d66218f-fdfd-41e4-a10b-ebac19a6c705">
+                    <propertyInstance Id="b25eabe6-9566-44a3-909f-91fae7867d5c" name="params" value="false">
+                      <elementDefinition Id="e39d9189-d1f9-4f88-93c0-5b9d21caf940" />
                     </propertyInstance>
-                    <elementDefinition Id="241e19f8-61d8-4fea-9d71-c89776422001" />
+                    <elementDefinition Id="0b7f4912-5bf4-490b-9889-2fb1a85d42f2" />
                   </stereotypeInstanceHasPropertyInstances>
                 </propertyInstances>
               </stereotypeInstance>
             </appliedStereotypesInternal>
-            <elementDefinition Id="c9107f02-1539-4a95-acde-026a47cf58f8" />
+            <elementDefinition Id="62b62b2c-1d45-4ff0-8342-c5b089fc3acb" />
           </operation>
         </ownedOperationsInternal>
       </class>
@@ -2663,7 +2530,7 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="9e7bbc25-e184-4ca0-bd80-479e2bd5f285" name="LogModel" isAbstract="false" isLeaf="false" isActiveClass="false">
         <referencesInternal>
-          <reference Id="3b1ad63d-c705-4466-88bd-04ee37f56873" handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DLogModel" tag="ViewCode">
+          <reference Id="3b1ad63d-c705-4466-88bd-04ee37f56873" handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DLogModel" tag="ViewCode">
             <elementDefinition Id="db76740f-e523-4048-b1ee-8d49e27c9779" />
           </reference>
         </referencesInternal>
@@ -2708,7 +2575,7 @@
         <ownedAttributesInternal>
           <property Id="3fe6f8c7-8b1d-4aac-b7f8-a641424c3e23" name="LogId" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="9ecf3f47-38df-4eec-932a-752076befd11" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DLogModel Member%3DLogId" tag="ViewCode">
+              <reference Id="9ecf3f47-38df-4eec-932a-752076befd11" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DLogModel Member%3DLogId" tag="ViewCode">
                 <elementDefinition Id="8490c6a0-7b72-4a83-9fe2-45101852bfd4" />
               </reference>
             </referencesInternal>
@@ -2768,7 +2635,7 @@
           </property>
           <property Id="6713d515-75cd-4d0f-85d9-77e321a9a9b5" name="LogMessage" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="9b1aa71c-1988-46d8-97c2-3dfd79ce120f" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DLogModel Member%3DLogMessage" tag="ViewCode">
+              <reference Id="9b1aa71c-1988-46d8-97c2-3dfd79ce120f" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DLogModel Member%3DLogMessage" tag="ViewCode">
                 <elementDefinition Id="048b1164-72ba-47e6-97b0-e22ae903fd19" />
               </reference>
             </referencesInternal>
@@ -2828,7 +2695,7 @@
           </property>
           <property Id="8c476586-21b6-4403-8349-566e6e6b1f17" name="LogTime" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="8acfb162-1228-427f-b19d-323876a54d19" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DLogModel Member%3DLogTime" tag="ViewCode">
+              <reference Id="8acfb162-1228-427f-b19d-323876a54d19" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DLogModel Member%3DLogTime" tag="ViewCode">
                 <elementDefinition Id="4db5ba57-99aa-4e2d-a635-a4de6f434293" />
               </reference>
             </referencesInternal>
@@ -2887,65 +2754,12 @@
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
-        <ownedOperationsInternal>
-          <operation Id="7306a3a9-37d3-4089-a062-5ffdf8dd0975" name="LogModel" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
-            <referencesInternal>
-              <reference Id="e4bb79b6-dcc6-45e5-823c-31efe6434624" handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DLogModel Member%3D.ctor" tag="ViewCode">
-                <elementDefinition Id="97a28cbf-3e45-4a3e-b866-401f355d4825" />
-              </reference>
-            </referencesInternal>
-            <appliedStereotypesInternal>
-              <stereotypeInstance Id="feedbba7-6e7b-4261-a9b7-5a653bff6250" name="method" profile="CSharpProfile">
-                <elementDefinition Id="3c908522-cc08-42cb-bdbb-db2e8ab4bd9a" />
-                <propertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="212fb1a8-a19a-4e34-878a-0d73b0463a89">
-                    <propertyInstance Id="f7b7d3c9-02ed-49c8-9dce-5301cacac989" name="ClrAttributes">
-                      <elementDefinition Id="6656da41-0e66-429f-ac1e-8c1d709c3052" />
-                    </propertyInstance>
-                    <elementDefinition Id="51c8d480-e5c1-4a24-be8b-31a767edebf9" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="55426bc3-417d-4a64-9b37-69e3650664cc">
-                    <propertyInstance Id="ee7880e1-057d-4aa4-8303-9af4aa5d7501" name="IsPartial" value="false">
-                      <elementDefinition Id="58d2bd7f-5100-47fe-8656-7c97fb07241c" />
-                    </propertyInstance>
-                    <elementDefinition Id="08fd600a-2cc5-4c0c-b9a9-7c628b05b84c" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="31e73845-5b94-4857-a85e-414a9094c401">
-                    <propertyInstance Id="e74360e4-b20c-4a7e-8242-88feb463b8f8" name="IsUnsafe" value="false">
-                      <elementDefinition Id="cade5aa9-a327-4e5e-a7f6-fedeb68b2840" />
-                    </propertyInstance>
-                    <elementDefinition Id="d8c8f37f-f549-4f28-9dec-ae3ece166c8d" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="6119c9d3-2a69-4fef-9976-94921f01ca9a">
-                    <propertyInstance Id="8e6d7c52-da01-4ba1-8792-2d384235c93d" name="Inheritance" value="none">
-                      <elementDefinition Id="4cb4671d-8e5d-4b30-8376-8b5ce732a755" />
-                    </propertyInstance>
-                    <elementDefinition Id="91d7b1df-0bf0-432a-a09d-2e8206986b61" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="5dc35366-aadf-461a-886c-1bc027ea621c">
-                    <propertyInstance Id="01cde8c1-af68-46f1-baa2-4b135dcc709c" name="PackageVisibility" value="internal">
-                      <elementDefinition Id="3889f912-e380-433e-b5a1-d12cd1c3067a" />
-                    </propertyInstance>
-                    <elementDefinition Id="94d288ba-1bbd-4a34-9e9d-1ce1923e1288" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="cac4d51e-9bdd-4f59-ab3c-f4a2ca60026c">
-                    <propertyInstance Id="4d0a972f-f8f5-4b26-91ee-d41bf863e228" name="params" value="false">
-                      <elementDefinition Id="79fe4329-cc78-43ef-8e84-ccf7d3887001" />
-                    </propertyInstance>
-                    <elementDefinition Id="a69f3555-2713-4088-9d5f-384e2a6fbc2b" />
-                  </stereotypeInstanceHasPropertyInstances>
-                </propertyInstances>
-              </stereotypeInstance>
-            </appliedStereotypesInternal>
-            <elementDefinition Id="07eb5c7e-b119-4ad3-899b-0bbbd5499b09" />
-          </operation>
-        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
       <class Id="d0ed6288-f7cd-40a6-aab7-54d7ba502913" name="NotificationModel" isAbstract="false" isLeaf="false" isActiveClass="false">
         <referencesInternal>
-          <reference Id="bce48cfc-d9b4-46a6-ac49-cf28d5e0b5d9" handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel" tag="ViewCode">
+          <reference Id="bce48cfc-d9b4-46a6-ac49-cf28d5e0b5d9" handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel" tag="ViewCode">
             <elementDefinition Id="37e1bf0a-a4f2-446f-af8d-23582b27f4ee" />
           </reference>
         </referencesInternal>
@@ -3066,7 +2880,7 @@
         <ownedAttributesInternal>
           <property Id="fb1b39a0-9e3e-4209-85ee-d257da148d96" name="NotificationId" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="56605046-3867-4edd-b986-f3af20ae8e34" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel Member%3DNotificationId" tag="ViewCode">
+              <reference Id="56605046-3867-4edd-b986-f3af20ae8e34" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel Member%3DNotificationId" tag="ViewCode">
                 <elementDefinition Id="dc4a2252-0d6f-4537-80e7-26723dca928b" />
               </reference>
             </referencesInternal>
@@ -3126,7 +2940,7 @@
           </property>
           <property Id="b383bdd1-64e9-42e0-ac23-64f6ce65db37" name="FK_NotificationReferenceId" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="3fe819f1-b1ce-49d8-808f-cb677ec37a64" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel Member%3DFK_NotificationReferenceId" tag="ViewCode">
+              <reference Id="3fe819f1-b1ce-49d8-808f-cb677ec37a64" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel Member%3DFK_NotificationReferenceId" tag="ViewCode">
                 <elementDefinition Id="2e1e33fa-38e7-49c9-a603-100bcae12ddf" />
               </reference>
             </referencesInternal>
@@ -3186,7 +3000,7 @@
           </property>
           <property Id="82507708-b9aa-406f-8547-21bdc570850b" name="FK_NotificationFrom" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="64fac1b4-f05c-4fb6-8f66-a8065f259619" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel Member%3DFK_NotificationFrom" tag="ViewCode">
+              <reference Id="64fac1b4-f05c-4fb6-8f66-a8065f259619" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel Member%3DFK_NotificationFrom" tag="ViewCode">
                 <elementDefinition Id="717af76d-5d45-403c-bc0d-693d3cf3af4e" />
               </reference>
             </referencesInternal>
@@ -3246,7 +3060,7 @@
           </property>
           <property Id="3545af40-f551-44cd-bf50-82a8e40a36d4" name="FK_NotificationTo" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="50f98f95-ffe4-4773-be46-49a668950d05" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel Member%3DFK_NotificationTo" tag="ViewCode">
+              <reference Id="50f98f95-ffe4-4773-be46-49a668950d05" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel Member%3DFK_NotificationTo" tag="ViewCode">
                 <elementDefinition Id="589cabc9-7378-4425-8660-7340160d7141" />
               </reference>
             </referencesInternal>
@@ -3306,7 +3120,7 @@
           </property>
           <property Id="981ab0e5-a5d3-4b62-b032-ddcfa841a6f1" name="NotificationContent" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="55551028-5961-46cf-ac19-7e4972ba8b23" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel Member%3DNotificationContent" tag="ViewCode">
+              <reference Id="55551028-5961-46cf-ac19-7e4972ba8b23" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel Member%3DNotificationContent" tag="ViewCode">
                 <elementDefinition Id="5cd2e993-31ee-4b71-b0ad-f50f0a753569" />
               </reference>
             </referencesInternal>
@@ -3366,7 +3180,7 @@
           </property>
           <property Id="574ffd35-62ce-4d45-b623-1e79238886d4" name="FK_NotificationStatus" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="14f6c31a-f5b0-4236-811b-6cb704513d12" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel Member%3DFK_NotificationStatus" tag="ViewCode">
+              <reference Id="14f6c31a-f5b0-4236-811b-6cb704513d12" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel Member%3DFK_NotificationStatus" tag="ViewCode">
                 <elementDefinition Id="7332249d-faf9-4334-b8bb-d454c61d01ad" />
               </reference>
             </referencesInternal>
@@ -3426,7 +3240,7 @@
           </property>
           <property Id="34b53fe6-1682-42c6-96e5-363264211c4f" name="NotificationSent" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="d9a4a2c3-9c5c-4800-a71c-7750b4d79548" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel Member%3DNotificationSent" tag="ViewCode">
+              <reference Id="d9a4a2c3-9c5c-4800-a71c-7750b4d79548" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel Member%3DNotificationSent" tag="ViewCode">
                 <elementDefinition Id="25662d02-4e56-46bb-b1ee-437139657ebb" />
               </reference>
             </referencesInternal>
@@ -3486,7 +3300,7 @@
           </property>
           <property Id="9f8d0cc6-4164-48cb-93c0-0ac8dccad7e1" name="NotificationRead" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="55a985ca-462a-4167-b60f-9feef14e7dad" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel Member%3DNotificationRead" tag="ViewCode">
+              <reference Id="55a985ca-462a-4167-b60f-9feef14e7dad" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel Member%3DNotificationRead" tag="ViewCode">
                 <elementDefinition Id="489b34a9-bafe-4f7c-b787-85ee33280650" />
               </reference>
             </referencesInternal>
@@ -3546,7 +3360,7 @@
           </property>
           <property Id="f80f04d4-669c-431e-92a7-767fe1bb2c92" name="NotificationStatus" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="c9fd1785-09a8-4148-8f63-913218631c90" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel Member%3DNotificationStatus" tag="ViewCode">
+              <reference Id="c9fd1785-09a8-4148-8f63-913218631c90" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel Member%3DNotificationStatus" tag="ViewCode">
                 <elementDefinition Id="e262e943-e291-44ff-bdc9-52ab01d836a6" />
               </reference>
             </referencesInternal>
@@ -3606,7 +3420,7 @@
           </property>
           <property Id="d827e2c3-fdf2-413c-80c4-9786ddba2543" name="FromProfile" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="88e9e246-b12c-4b0e-8ce5-49c5d59c41d0" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel Member%3DFromProfile" tag="ViewCode">
+              <reference Id="88e9e246-b12c-4b0e-8ce5-49c5d59c41d0" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel Member%3DFromProfile" tag="ViewCode">
                 <elementDefinition Id="700d3d86-a71e-4985-b226-2af92d78f13a" />
               </reference>
             </referencesInternal>
@@ -3666,7 +3480,7 @@
           </property>
           <property Id="52e7b745-9d67-4a75-834f-0b99fdf172d4" name="ToProfile" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="626c7073-b255-4a6d-ab4b-a96e6621b499" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel Member%3DToProfile" tag="ViewCode">
+              <reference Id="626c7073-b255-4a6d-ab4b-a96e6621b499" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel Member%3DToProfile" tag="ViewCode">
                 <elementDefinition Id="789a7ad7-dd62-4347-9fb5-60439ec2784d" />
               </reference>
             </referencesInternal>
@@ -3726,56 +3540,56 @@
           </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
-          <operation Id="ca0b45dc-325c-46d4-af33-f30de676b378" name="NotificationModel" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+          <operation Id="25c54d31-4f94-4a29-8e45-0f71c7d7e762" name="NotificationModel" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <referencesInternal>
-              <reference Id="2f8de165-1579-474b-b6b2-9e21c3974526" handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel Member%3D.ctor" tag="ViewCode">
-                <elementDefinition Id="6a2cd8d4-428d-4d00-a0c3-4b61738fb94b" />
+              <reference Id="58fca336-a356-4280-834b-052c890e0be5" handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DNotificationModel Member%3D.ctor" tag="ViewCode">
+                <elementDefinition Id="c979caeb-c69b-4334-a223-cb185b47cb14" />
               </reference>
             </referencesInternal>
             <appliedStereotypesInternal>
-              <stereotypeInstance Id="69db3282-48c3-4848-8c1a-a79a27c92f23" name="method" profile="CSharpProfile">
-                <elementDefinition Id="92e5fe72-9665-4e94-a304-013e706921da" />
+              <stereotypeInstance Id="c044935d-2b96-41c9-90b2-34c8d2642026" name="method" profile="CSharpProfile">
+                <elementDefinition Id="f874cdf0-7662-4696-99fb-e5bd95771e22" />
                 <propertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="5b47d4bc-b566-4b82-8028-63be43533bc9">
-                    <propertyInstance Id="37f75952-2b35-41a9-8f62-9ba7056ec40f" name="ClrAttributes">
-                      <elementDefinition Id="b8ffa286-e8fb-4960-b003-fe14435a9dcb" />
+                  <stereotypeInstanceHasPropertyInstances Id="10cf713c-2e8c-4322-b3fd-779dbf6a990c">
+                    <propertyInstance Id="954afd67-788d-4566-bebd-45ff56bd8e89" name="ClrAttributes">
+                      <elementDefinition Id="570ac2a5-1051-4b14-aa2e-e85d7e933e99" />
                     </propertyInstance>
-                    <elementDefinition Id="98ade6bb-959e-4984-b718-693a98c90256" />
+                    <elementDefinition Id="7d173330-2487-4a5c-a5f3-f9060edf836f" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="a3c0c10e-a1a8-457c-a1ba-c42bd703b92c">
-                    <propertyInstance Id="fc73bf8f-5621-42f3-88d0-48ea239f5d30" name="IsPartial" value="false">
-                      <elementDefinition Id="2b7535cf-83bb-41f0-bdaf-649f6a4389fc" />
+                  <stereotypeInstanceHasPropertyInstances Id="8aa26f86-af87-48cb-aa52-159b553fae37">
+                    <propertyInstance Id="fbb4ed3f-2af1-4da4-a0a9-10aeb578814c" name="IsPartial" value="false">
+                      <elementDefinition Id="9fc0a22d-1273-43ec-b3ed-d3df62aaf769" />
                     </propertyInstance>
-                    <elementDefinition Id="2d99f277-6adb-40e1-9ae4-0b1e03f85f6c" />
+                    <elementDefinition Id="b9dd5ae1-d034-4a6c-a305-249150c076ad" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="38d76cec-9e94-480a-a0ea-9b10fcb40b0d">
-                    <propertyInstance Id="0edbe875-997c-4b2f-9b29-59517979653a" name="IsUnsafe" value="false">
-                      <elementDefinition Id="7cf23386-092b-4763-b122-d1fdb40de9db" />
+                  <stereotypeInstanceHasPropertyInstances Id="24a7654e-5169-486e-ad35-e19d393d1028">
+                    <propertyInstance Id="7a8d6121-c27b-413e-af64-78e70d4b9538" name="IsUnsafe" value="false">
+                      <elementDefinition Id="7e1ee18a-c6e5-44cd-9252-4f1276780298" />
                     </propertyInstance>
-                    <elementDefinition Id="b092e5b9-3ad9-4543-931e-244db5fd0a27" />
+                    <elementDefinition Id="d8eb476d-c426-4e24-9817-20e7bdbbcb8f" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="2fd59098-bf87-4c32-a159-eee9221e1d13">
-                    <propertyInstance Id="057e410d-bee4-43f1-af41-476c76dedb90" name="Inheritance" value="none">
-                      <elementDefinition Id="9dfb86e8-3d4e-4459-bb18-2387fcde6442" />
+                  <stereotypeInstanceHasPropertyInstances Id="27ddf52e-2fe0-43dc-a84a-ebd73c4333aa">
+                    <propertyInstance Id="55460302-38fa-47b5-a69f-9201b5e9ee83" name="Inheritance" value="none">
+                      <elementDefinition Id="2078f913-c428-4b70-a924-c2e1c4a79419" />
                     </propertyInstance>
-                    <elementDefinition Id="0c8a354e-a0f1-4c7d-848c-f16704c06b36" />
+                    <elementDefinition Id="36500ba1-bedd-44a9-a845-6a9e671fc683" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="300657d2-144d-424f-aac8-9cb01db78d9c">
-                    <propertyInstance Id="1eea2c92-a429-4d99-b9ba-8189a60dd441" name="PackageVisibility" value="internal">
-                      <elementDefinition Id="4e647952-a4a0-469f-9db0-0e91765e94bf" />
+                  <stereotypeInstanceHasPropertyInstances Id="9ebf60d1-e363-473e-adc7-960768a25561">
+                    <propertyInstance Id="4675ef68-8996-4d7f-bfb5-736db20dd734" name="PackageVisibility" value="internal">
+                      <elementDefinition Id="9ecb403d-bf36-4374-bf50-d1c499892fc8" />
                     </propertyInstance>
-                    <elementDefinition Id="0653579b-d855-4fe3-b460-330571ec4f98" />
+                    <elementDefinition Id="d7ddbe36-401a-4f74-83ee-7be78a8a4029" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="28976a64-1d2e-4d91-a475-f24ab39bdb08">
-                    <propertyInstance Id="e6de13cf-29c5-4c79-a70d-dc749fd1ba82" name="params" value="false">
-                      <elementDefinition Id="9a9dd908-9029-4b18-bd27-525ebda9ca22" />
+                  <stereotypeInstanceHasPropertyInstances Id="08d37344-9204-40dc-af1f-3730d7182f9d">
+                    <propertyInstance Id="1f5c0a0e-4f7c-4c6a-956a-43f9e1e70537" name="params" value="false">
+                      <elementDefinition Id="adee9e38-ab46-45e9-ae7f-0e0e07c2eba4" />
                     </propertyInstance>
-                    <elementDefinition Id="81483ac0-6a5d-4f43-9346-b68a31fd0bb7" />
+                    <elementDefinition Id="6a3ff2e5-6cf9-4add-a71b-f7fcd580e045" />
                   </stereotypeInstanceHasPropertyInstances>
                 </propertyInstances>
               </stereotypeInstance>
             </appliedStereotypesInternal>
-            <elementDefinition Id="47667190-0c05-4e0b-a78e-4a38eedb8055" />
+            <elementDefinition Id="82a85d8d-6955-4e28-a932-25ff28eba716" />
           </operation>
         </ownedOperationsInternal>
       </class>
@@ -3793,7 +3607,7 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="da375d70-8fc9-4cf1-aeee-4e1f4c35935a" name="PaymentModel" isAbstract="false" isLeaf="false" isActiveClass="false">
         <referencesInternal>
-          <reference Id="892a1d09-9321-40c4-bba2-79d0176525ab" handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DPaymentModel" tag="ViewCode">
+          <reference Id="892a1d09-9321-40c4-bba2-79d0176525ab" handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DPaymentModel" tag="ViewCode">
             <elementDefinition Id="97cc586f-6047-41c3-a3b9-52627fbb33e0" />
           </reference>
         </referencesInternal>
@@ -3877,7 +3691,7 @@
         <ownedAttributesInternal>
           <property Id="fc37702e-cd31-4d72-a13f-c85cf8d3ffef" name="PaymentId" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="1442b9e0-769c-4158-9023-5377181ca856" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DPaymentModel Member%3DPaymentId" tag="ViewCode">
+              <reference Id="1442b9e0-769c-4158-9023-5377181ca856" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DPaymentModel Member%3DPaymentId" tag="ViewCode">
                 <elementDefinition Id="a48b43ac-1579-4182-b21d-57e825ab9c62" />
               </reference>
             </referencesInternal>
@@ -3937,7 +3751,7 @@
           </property>
           <property Id="3b2e7c77-e0d6-48d4-a312-9ff5fedcdb45" name="FK_PaymentNotificationReferenceId" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="a70059c1-a0f1-4cad-8a0b-23c9d5428801" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DPaymentModel Member%3DFK_PaymentNotificationReferenceId" tag="ViewCode">
+              <reference Id="a70059c1-a0f1-4cad-8a0b-23c9d5428801" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DPaymentModel Member%3DFK_PaymentNotificationReferenceId" tag="ViewCode">
                 <elementDefinition Id="34e05c50-2e34-4ab4-8519-54316a0dec46" />
               </reference>
             </referencesInternal>
@@ -3997,7 +3811,7 @@
           </property>
           <property Id="81d7935e-4123-48ae-8862-3dea4af4d727" name="FK_PaymentStatus" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="916b47a5-fbcb-4822-a78c-98aee37572ee" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DPaymentModel Member%3DFK_PaymentStatus" tag="ViewCode">
+              <reference Id="916b47a5-fbcb-4822-a78c-98aee37572ee" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DPaymentModel Member%3DFK_PaymentStatus" tag="ViewCode">
                 <elementDefinition Id="21fe6fdf-1eb9-4525-8376-6b8a7b1e0b05" />
               </reference>
             </referencesInternal>
@@ -4057,7 +3871,7 @@
           </property>
           <property Id="909644fc-7aa1-474e-b1e3-e060350d8103" name="PaymentAmount" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="831e4d4b-3c61-4a4a-acd6-93d28e005b05" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DPaymentModel Member%3DPaymentAmount" tag="ViewCode">
+              <reference Id="831e4d4b-3c61-4a4a-acd6-93d28e005b05" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DPaymentModel Member%3DPaymentAmount" tag="ViewCode">
                 <elementDefinition Id="3a9991db-13b0-460a-a512-d80b198b31b0" />
               </reference>
             </referencesInternal>
@@ -4117,7 +3931,7 @@
           </property>
           <property Id="41f38dba-27e0-4241-acdf-9f5feceaa0a9" name="FK_PaymentForTask" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="4c881767-0800-4bbc-9814-d61a96e187cf" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DPaymentModel Member%3DFK_PaymentForTask" tag="ViewCode">
+              <reference Id="4c881767-0800-4bbc-9814-d61a96e187cf" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DPaymentModel Member%3DFK_PaymentForTask" tag="ViewCode">
                 <elementDefinition Id="6121275c-deeb-4305-a5ae-66d484a2f8cf" />
               </reference>
             </referencesInternal>
@@ -4177,7 +3991,7 @@
           </property>
           <property Id="26fbb987-de06-4972-81c8-af6d99d46909" name="FK_PaymentType" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="e346eca8-2e5e-4519-b4a8-54cdc6271ac0" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DPaymentModel Member%3DFK_PaymentType" tag="ViewCode">
+              <reference Id="e346eca8-2e5e-4519-b4a8-54cdc6271ac0" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DPaymentModel Member%3DFK_PaymentType" tag="ViewCode">
                 <elementDefinition Id="6d1af89f-3d5a-40a7-8c76-a634f27f95c0" />
               </reference>
             </referencesInternal>
@@ -4237,7 +4051,7 @@
           </property>
           <property Id="23b3393c-4120-477b-bcfc-f911ee302e4b" name="PaymentStatus" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="6151f1f4-27ba-44d7-b112-5c860460751a" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DPaymentModel Member%3DPaymentStatus" tag="ViewCode">
+              <reference Id="6151f1f4-27ba-44d7-b112-5c860460751a" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DPaymentModel Member%3DPaymentStatus" tag="ViewCode">
                 <elementDefinition Id="1233eae6-0b64-4db7-8e72-4f87240f46f0" />
               </reference>
             </referencesInternal>
@@ -4297,7 +4111,7 @@
           </property>
           <property Id="e474f37a-4cee-4a2a-9624-375e462573af" name="PaymentType" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="b0ba5d65-7779-43c8-89da-d108b9af865c" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DPaymentModel Member%3DPaymentType" tag="ViewCode">
+              <reference Id="b0ba5d65-7779-43c8-89da-d108b9af865c" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DPaymentModel Member%3DPaymentType" tag="ViewCode">
                 <elementDefinition Id="9d90a646-d5b3-4b4a-a6a7-f32ed1093ef6" />
               </reference>
             </referencesInternal>
@@ -4357,7 +4171,7 @@
           </property>
           <property Id="206b419c-37bb-48e7-a464-e41b09675997" name="Task" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="e7de1ff4-c0ad-4bba-98b6-8c3c623e31a2" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DPaymentModel Member%3DTask" tag="ViewCode">
+              <reference Id="e7de1ff4-c0ad-4bba-98b6-8c3c623e31a2" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DPaymentModel Member%3DTask" tag="ViewCode">
                 <elementDefinition Id="aabfacad-5037-4538-a1df-b82823936668" />
               </reference>
             </referencesInternal>
@@ -4417,56 +4231,56 @@
           </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
-          <operation Id="6b4dd475-2ce5-4235-9526-f7a7be11caca" name="PaymentModel" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+          <operation Id="2da7007e-81d9-472d-b1ea-91256afb58c2" name="PaymentModel" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <referencesInternal>
-              <reference Id="ba05bce2-044f-44f7-9884-1ce8962dcba8" handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DPaymentModel Member%3D.ctor" tag="ViewCode">
-                <elementDefinition Id="68b5a868-9714-4103-bc61-a153173e6a15" />
+              <reference Id="c458878e-260c-400e-8a96-ba248c479ae2" handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DPaymentModel Member%3D.ctor" tag="ViewCode">
+                <elementDefinition Id="75fd37a8-f221-4b11-b1bb-c8112beb4f66" />
               </reference>
             </referencesInternal>
             <appliedStereotypesInternal>
-              <stereotypeInstance Id="a766d4d1-048e-4cc3-9f7c-fae04ca77918" name="method" profile="CSharpProfile">
-                <elementDefinition Id="9592ea8c-e69a-4b4d-b1b1-9079b7653441" />
+              <stereotypeInstance Id="989ec9f7-0abc-46e3-b39c-8d6b874f36b1" name="method" profile="CSharpProfile">
+                <elementDefinition Id="7ffb7f9f-0ae7-4aa5-bc11-1d6db7a3fa4a" />
                 <propertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="4b5d36a6-05e1-488e-a6de-1c381703d234">
-                    <propertyInstance Id="640c7666-b0e4-4125-9bc4-ae884c34dc48" name="ClrAttributes">
-                      <elementDefinition Id="098b6cd0-aae4-42f2-b4fd-1a77aa7936e9" />
+                  <stereotypeInstanceHasPropertyInstances Id="5a82ef64-f9e7-4d87-ba38-37b3264210fb">
+                    <propertyInstance Id="acac71ea-b496-4d81-84f0-14298cd1f532" name="ClrAttributes">
+                      <elementDefinition Id="4ed59157-080a-4705-b2ad-2d98468152f4" />
                     </propertyInstance>
-                    <elementDefinition Id="1e171f27-7569-4057-b6a4-3f530da28573" />
+                    <elementDefinition Id="e6add7ca-c6f6-4150-a8c8-5ac32e02d044" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="49b6cba6-53b2-439c-a98c-11148563d823">
-                    <propertyInstance Id="102a8165-7ce7-4e54-b39c-df479784e315" name="IsPartial" value="false">
-                      <elementDefinition Id="8cbdb907-a179-4416-9cf7-f95ef14ab911" />
+                  <stereotypeInstanceHasPropertyInstances Id="a5881ee2-1c6c-434f-b185-a3f5f682051f">
+                    <propertyInstance Id="9c78dd72-f7cd-47df-b921-f53bce4cdde1" name="IsPartial" value="false">
+                      <elementDefinition Id="bf3e0007-57a3-4340-82a2-1d087ec7a333" />
                     </propertyInstance>
-                    <elementDefinition Id="0015a167-25ab-48ab-b2ca-2d64cff69daf" />
+                    <elementDefinition Id="88edf14a-42a0-4873-8708-52541c86a37d" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="59b5b0c7-4eb3-4752-80b4-dcfe7c01197a">
-                    <propertyInstance Id="68020fdf-dd18-4046-a76e-f0e8b3fe9d86" name="IsUnsafe" value="false">
-                      <elementDefinition Id="b98e4840-6bcf-465a-9a5d-e62a6532458a" />
+                  <stereotypeInstanceHasPropertyInstances Id="1eb6821c-ada2-4af0-a71e-579111b3a6bd">
+                    <propertyInstance Id="c16f0a70-7766-4a2c-b7c6-7ee2638c80b3" name="IsUnsafe" value="false">
+                      <elementDefinition Id="4a5f5c75-8f02-42b5-8ca7-04e3a9c64f61" />
                     </propertyInstance>
-                    <elementDefinition Id="568df85c-192a-4e0d-95c4-5457b87459d6" />
+                    <elementDefinition Id="727ab014-70bc-41a8-b7f5-9f1f5acf3307" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="f082cb4a-e59d-4f9d-bdfb-3beb2bbd3dcc">
-                    <propertyInstance Id="22f9f6a3-6e11-4c67-b9bf-7b4fa6891265" name="Inheritance" value="none">
-                      <elementDefinition Id="0bdd78dc-e3a6-4a81-ae68-1adcb89f7c85" />
+                  <stereotypeInstanceHasPropertyInstances Id="4340c978-3d1f-41df-b348-b5c0e6666b47">
+                    <propertyInstance Id="7951c0c2-7c6b-4bfa-9844-075b16798f0b" name="Inheritance" value="none">
+                      <elementDefinition Id="9acaf6ca-84bf-46ee-8205-608a9a32270c" />
                     </propertyInstance>
-                    <elementDefinition Id="04595aa3-2dc7-45ab-9073-415c745903a7" />
+                    <elementDefinition Id="3cf16f71-a1b1-4742-83e2-2caefa327f77" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="9407cc79-801e-4c0a-bb7e-73294bea3aea">
-                    <propertyInstance Id="1c190463-5686-4933-b6e1-226995d91c7d" name="PackageVisibility" value="internal">
-                      <elementDefinition Id="44449355-d55b-4489-a408-0ead3959ef38" />
+                  <stereotypeInstanceHasPropertyInstances Id="35745ba0-ddb4-4830-8377-0d6884f2175b">
+                    <propertyInstance Id="1fef28aa-b109-423f-b3ca-356a3d2fd3c8" name="PackageVisibility" value="internal">
+                      <elementDefinition Id="e00f21f6-23fa-41f4-89c6-f12eff231da0" />
                     </propertyInstance>
-                    <elementDefinition Id="991cbc03-731d-4437-bb07-5f7e98f0e25d" />
+                    <elementDefinition Id="e67bf73e-d9dd-472a-af77-691e9b385533" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="4272485f-3e22-401d-bb76-9cdf73b4aea8">
-                    <propertyInstance Id="e971d9fa-f679-4852-a5d6-c236663f9940" name="params" value="false">
-                      <elementDefinition Id="a1acfe5b-fa77-4264-b260-82b2f84e5a7e" />
+                  <stereotypeInstanceHasPropertyInstances Id="480cad93-78e8-447f-adb6-0388900ae369">
+                    <propertyInstance Id="22388404-aaa2-4a37-98a7-27ad103dfd5e" name="params" value="false">
+                      <elementDefinition Id="420cf4c3-2828-4b0e-a18f-a0ecbfa06223" />
                     </propertyInstance>
-                    <elementDefinition Id="42b20698-c513-457a-8f38-f1ec2b816912" />
+                    <elementDefinition Id="017e437f-27d1-44a6-ae07-b25ad84c41c3" />
                   </stereotypeInstanceHasPropertyInstances>
                 </propertyInstances>
               </stereotypeInstance>
             </appliedStereotypesInternal>
-            <elementDefinition Id="deda77cd-990e-453f-92e5-df64ba50ace3" />
+            <elementDefinition Id="a304ea75-7d47-40d8-a465-bcd4b68ef71c" />
           </operation>
         </ownedOperationsInternal>
       </class>
@@ -4494,7 +4308,7 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="4678b561-7405-4f37-81bf-79317e725845" name="ProfileModel" isAbstract="false" isLeaf="false" isActiveClass="false">
         <referencesInternal>
-          <reference Id="bca0faa2-a338-4e67-a591-8cf46febcebe" handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DProfileModel" tag="ViewCode">
+          <reference Id="bca0faa2-a338-4e67-a591-8cf46febcebe" handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DProfileModel" tag="ViewCode">
             <elementDefinition Id="7b5d22b3-8912-456b-af14-39693774eb5c" />
           </reference>
         </referencesInternal>
@@ -6468,6 +6282,59 @@
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="9d007f9b-4f63-465d-b37f-c38e79a5f7a1" name="ProfileModel" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <referencesInternal>
+              <reference Id="6b9e6d68-7e41-4af8-bb43-9f480ea3fc7f" handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DProfileModel Member%3D.ctor" tag="ViewCode">
+                <elementDefinition Id="f306c4d1-7913-42b8-a6c3-c5e04f1c3a9b" />
+              </reference>
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance Id="84cf2f51-3885-47d4-a612-e844558e35b3" name="method" profile="CSharpProfile">
+                <elementDefinition Id="0c3e40c7-3b74-4f29-bcb1-ea5024fcc4d1" />
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances Id="e52ddb4b-5276-4d88-8900-c5cef6e1c559">
+                    <propertyInstance Id="2e1efcf0-c38a-47b4-a1c6-a65a1b6e7b59" name="ClrAttributes">
+                      <elementDefinition Id="1f703215-fb91-43b5-b392-2a03090ca8ea" />
+                    </propertyInstance>
+                    <elementDefinition Id="9888b180-7970-449a-bad4-1130ac27d830" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances Id="363502b5-1040-4bbc-bafa-2d27bda5a1a6">
+                    <propertyInstance Id="3cca8147-011c-45f8-ab1e-5e13ea30f8cd" name="IsPartial" value="false">
+                      <elementDefinition Id="00bd38e7-1d51-46cd-9d05-ecb6577301c3" />
+                    </propertyInstance>
+                    <elementDefinition Id="453952f8-b503-4f4e-9a0f-efdb574d708c" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances Id="a75ba71c-a1e8-46fc-8127-38f7902c0512">
+                    <propertyInstance Id="258161f0-ac2f-4431-8532-d3d4de6fd7ad" name="IsUnsafe" value="false">
+                      <elementDefinition Id="7a598d04-450c-4850-a0c4-9719eb32399b" />
+                    </propertyInstance>
+                    <elementDefinition Id="a2107ed2-8fe2-4522-8bab-fc7453804e11" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances Id="23873d34-03cb-41bf-8c14-879c462c739f">
+                    <propertyInstance Id="e2b9dcb0-bd4a-4a69-b370-49f69e474fd3" name="Inheritance" value="none">
+                      <elementDefinition Id="da56d955-3cc0-4732-85f5-bf9e8b5e9ef5" />
+                    </propertyInstance>
+                    <elementDefinition Id="c0679a8e-8f2b-477e-98d4-1955ef63e27e" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances Id="c005ea88-9820-4aaf-8a19-719ea03bc236">
+                    <propertyInstance Id="a7a37a76-eccf-4c82-8f32-8ad266819cd1" name="PackageVisibility" value="internal">
+                      <elementDefinition Id="440c3746-b79e-4524-abc6-9f2e5f6457e9" />
+                    </propertyInstance>
+                    <elementDefinition Id="15d8f291-3c3e-4691-98cd-bb414e41aafe" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances Id="1ae3410f-7000-453f-81d4-2e30ed9c84a2">
+                    <propertyInstance Id="59f37714-b5fb-4dd2-82f0-b85ad3b4f62e" name="params" value="false">
+                      <elementDefinition Id="61ed3875-d6b2-4639-baef-83769e4c875f" />
+                    </propertyInstance>
+                    <elementDefinition Id="2b597107-9817-4666-93e4-5108664be0bf" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <elementDefinition Id="ede6954d-d780-4154-9c3f-6ce352ad1700" />
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <packageHasNamedElement>
@@ -6518,7 +6385,7 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="0193f101-cc14-4279-8d04-bfd6baa24e0a" name="ReportModel" isAbstract="false" isLeaf="false" isActiveClass="false">
         <referencesInternal>
-          <reference Id="3dc53162-cec8-4273-8441-1b95731452d5" handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DReportModel" tag="ViewCode">
+          <reference Id="3dc53162-cec8-4273-8441-1b95731452d5" handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DReportModel" tag="ViewCode">
             <elementDefinition Id="baa19f26-0efc-47e9-a125-a26ab9be6b47" />
           </reference>
         </referencesInternal>
@@ -6639,7 +6506,7 @@
         <ownedAttributesInternal>
           <property Id="982d425c-0bc8-4b5a-9e09-55414aff9481" name="ReportId" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="fc02217a-756c-4ff3-b89a-ed1bb38480a1" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DReportModel Member%3DReportId" tag="ViewCode">
+              <reference Id="fc02217a-756c-4ff3-b89a-ed1bb38480a1" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DReportModel Member%3DReportId" tag="ViewCode">
                 <elementDefinition Id="5e492d3c-170d-4bce-9f98-182b6f8713b8" />
               </reference>
             </referencesInternal>
@@ -6699,7 +6566,7 @@
           </property>
           <property Id="ba75fc8f-c0de-4142-bc1b-89ce821a169c" name="FK_ReportingProfile" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="c83b8b6d-02e8-4d3e-8be8-e6d0ac441df5" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DReportModel Member%3DFK_ReportingProfile" tag="ViewCode">
+              <reference Id="c83b8b6d-02e8-4d3e-8be8-e6d0ac441df5" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DReportModel Member%3DFK_ReportingProfile" tag="ViewCode">
                 <elementDefinition Id="5d930513-fa45-4728-8d0a-23e902971054" />
               </reference>
             </referencesInternal>
@@ -6759,7 +6626,7 @@
           </property>
           <property Id="1bb88c1e-372f-47f7-b7ca-671da7d2a825" name="ReportMessage" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="edf5bb82-c1b6-4cc3-b457-daf03d5d8350" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DReportModel Member%3DReportMessage" tag="ViewCode">
+              <reference Id="edf5bb82-c1b6-4cc3-b457-daf03d5d8350" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DReportModel Member%3DReportMessage" tag="ViewCode">
                 <elementDefinition Id="4aa4e4c5-af72-4ce1-8152-9007913f4251" />
               </reference>
             </referencesInternal>
@@ -6819,7 +6686,7 @@
           </property>
           <property Id="9a107783-9bb1-40d9-928a-a13d20d2cb29" name="ReportTime" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="c172924a-74ca-4d6d-a90d-c92e5dc80e58" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DReportModel Member%3DReportTime" tag="ViewCode">
+              <reference Id="c172924a-74ca-4d6d-a90d-c92e5dc80e58" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DReportModel Member%3DReportTime" tag="ViewCode">
                 <elementDefinition Id="9481bf54-873c-4812-a736-51d0c838d368" />
               </reference>
             </referencesInternal>
@@ -6879,7 +6746,7 @@
           </property>
           <property Id="ab8c9589-5bf1-4d3f-bb1b-fd817b2cf575" name="FK_ReportedProfile" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="15c7c612-841a-4aba-bd1e-b5ef056f25e2" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DReportModel Member%3DFK_ReportedProfile" tag="ViewCode">
+              <reference Id="15c7c612-841a-4aba-bd1e-b5ef056f25e2" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DReportModel Member%3DFK_ReportedProfile" tag="ViewCode">
                 <elementDefinition Id="05315380-00ff-4c4d-ac34-c88d2d804f29" />
               </reference>
             </referencesInternal>
@@ -6939,7 +6806,7 @@
           </property>
           <property Id="97e217de-4913-4c7e-8b0a-0666d9abbec4" name="ReportedProfile" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="256da4f0-b198-467d-9383-493c9c5eb31d" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DReportModel Member%3DReportedProfile" tag="ViewCode">
+              <reference Id="256da4f0-b198-467d-9383-493c9c5eb31d" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DReportModel Member%3DReportedProfile" tag="ViewCode">
                 <elementDefinition Id="d4770306-6623-4895-8304-4d6dc58e062e" />
               </reference>
             </referencesInternal>
@@ -6999,7 +6866,7 @@
           </property>
           <property Id="79ff7377-b35e-4db7-b939-ff795bf2357c" name="ReportingProfile" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="bf7ad15e-4f1a-4b72-8d63-f2eb9e810027" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DReportModel Member%3DReportingProfile" tag="ViewCode">
+              <reference Id="bf7ad15e-4f1a-4b72-8d63-f2eb9e810027" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DReportModel Member%3DReportingProfile" tag="ViewCode">
                 <elementDefinition Id="7503570e-7e24-430c-a4ac-f5ec451bc372" />
               </reference>
             </referencesInternal>
@@ -7059,56 +6926,56 @@
           </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
-          <operation Id="5c0380f0-2a28-4982-8886-4107f4258bd8" name="ReportModel" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+          <operation Id="5f220998-d3b5-421e-b529-b03cd9624366" name="ReportModel" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <referencesInternal>
-              <reference Id="6bc88670-7b95-46f2-8489-d5cde94fb81f" handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DReportModel Member%3D.ctor" tag="ViewCode">
-                <elementDefinition Id="ef2ba542-157e-49e1-9988-3211a8a49f25" />
+              <reference Id="2ba7ad47-e2e9-4cc6-bb50-ea29575f0472" handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DReportModel Member%3D.ctor" tag="ViewCode">
+                <elementDefinition Id="9c5d175d-53ea-4e33-ad8c-06da03469240" />
               </reference>
             </referencesInternal>
             <appliedStereotypesInternal>
-              <stereotypeInstance Id="dbc9fa06-6825-448f-92df-2de618bd17c8" name="method" profile="CSharpProfile">
-                <elementDefinition Id="d546e37d-a2c4-4baa-972c-e9c965a3c312" />
+              <stereotypeInstance Id="5c6e6b16-1748-4714-8c82-ee092ed21f33" name="method" profile="CSharpProfile">
+                <elementDefinition Id="07230122-79f9-493e-aec1-fb25e9c65777" />
                 <propertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="75a41504-c04b-4d0e-98a2-2e3159f9128f">
-                    <propertyInstance Id="9ca3ba38-f665-43b4-9910-0c1d30b92c01" name="ClrAttributes">
-                      <elementDefinition Id="05182c5a-5625-46d0-b62f-efe08dabb56c" />
+                  <stereotypeInstanceHasPropertyInstances Id="65ef0896-796c-4dc6-9159-575e2827cfd7">
+                    <propertyInstance Id="78deb5eb-713e-40c3-be40-c7ae0ba32505" name="ClrAttributes">
+                      <elementDefinition Id="83a7e607-2995-4aeb-9eb9-96ff3436f70d" />
                     </propertyInstance>
-                    <elementDefinition Id="2f22a473-4774-418a-b955-c86c9d3fe17a" />
+                    <elementDefinition Id="4b0e381d-ef7f-40d9-93d9-24025f9ca09b" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="adeb08c8-425f-4f93-ad00-89d8352fdfdb">
-                    <propertyInstance Id="31a842b9-fc3c-4357-925a-b4aab59250af" name="IsPartial" value="false">
-                      <elementDefinition Id="6bcf23d3-919d-46a6-bafe-275cb35a2637" />
+                  <stereotypeInstanceHasPropertyInstances Id="7eb2cffd-697f-49a4-a225-48cd05897028">
+                    <propertyInstance Id="f5fdcebe-6f49-4eb8-930d-3dce8acf5979" name="IsPartial" value="false">
+                      <elementDefinition Id="e079033c-d970-4cb5-a041-a2a0a71cb64b" />
                     </propertyInstance>
-                    <elementDefinition Id="4cf3ce3f-329c-40fd-a4a0-aaa96ab3641e" />
+                    <elementDefinition Id="996146c5-082e-4b28-a4e1-3fbdbd99e8b0" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="42acab23-a46f-47ab-96c3-c7851dcee1e5">
-                    <propertyInstance Id="5911f2e2-c52d-4aad-81c7-d2fc8f11e0c4" name="IsUnsafe" value="false">
-                      <elementDefinition Id="2f286dcb-cbe0-4ab3-855a-8917741b01db" />
+                  <stereotypeInstanceHasPropertyInstances Id="de478390-bb98-4e0c-96d1-0c35ff4b89ba">
+                    <propertyInstance Id="c6524e94-cc12-49e3-8af4-3011fc603909" name="IsUnsafe" value="false">
+                      <elementDefinition Id="be6cebde-c815-4e27-abbf-6a227feb40f0" />
                     </propertyInstance>
-                    <elementDefinition Id="415213d5-d03e-40f0-a5fd-cfa7f3fef50b" />
+                    <elementDefinition Id="98cf075d-ba40-44f2-8532-1fed21255fd3" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="942495df-fecd-43a4-a562-1ca784215dd6">
-                    <propertyInstance Id="693d6f4d-f8c1-43ae-a7b3-9d6518b6e9da" name="Inheritance" value="none">
-                      <elementDefinition Id="bbff1cb8-6e21-439c-8bf8-5021ff095ffa" />
+                  <stereotypeInstanceHasPropertyInstances Id="f7cb165e-f762-41cc-8f61-abd1c61ecd17">
+                    <propertyInstance Id="a31ab8f2-dc38-478c-aafb-31b090b1ff54" name="Inheritance" value="none">
+                      <elementDefinition Id="e6ea830d-0859-4343-b443-cb2ab6e47e35" />
                     </propertyInstance>
-                    <elementDefinition Id="8cba81e9-009f-4b04-8e2a-8953925e0c81" />
+                    <elementDefinition Id="af905367-078a-40a4-b835-c5b20a08a044" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="e8fc1664-1f26-41ba-bbf0-d3b7b11db2a6">
-                    <propertyInstance Id="20aee57d-9a9b-422c-8259-edb115b41aea" name="PackageVisibility" value="internal">
-                      <elementDefinition Id="d6267d1f-327e-46ff-a3b7-922eb33d2623" />
+                  <stereotypeInstanceHasPropertyInstances Id="93879f1b-b122-4f0b-83c9-c5b201d1706e">
+                    <propertyInstance Id="c23dcdf4-a681-4f91-95d5-5956b571581f" name="PackageVisibility" value="internal">
+                      <elementDefinition Id="ca7f5dd5-4677-438c-a3ee-e14771aa2d54" />
                     </propertyInstance>
-                    <elementDefinition Id="1308a9b4-ae59-46a6-99b9-709bf1e504c0" />
+                    <elementDefinition Id="1b0f6681-0f48-4695-8328-904e2140c493" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="68c35d64-0eef-4a81-a444-fe35f5151765">
-                    <propertyInstance Id="31aee418-6edd-435b-8be2-f6ce699a6d30" name="params" value="false">
-                      <elementDefinition Id="a7aa537a-c344-407b-b72c-02a907639467" />
+                  <stereotypeInstanceHasPropertyInstances Id="38a8c069-5f70-4b16-a423-4e94659e75a2">
+                    <propertyInstance Id="3bf29cec-84c8-4d2e-9565-46a486dcc6cf" name="params" value="false">
+                      <elementDefinition Id="ec81cc54-3afe-4655-84db-1fb09c870758" />
                     </propertyInstance>
-                    <elementDefinition Id="7ef28cfe-82a6-4968-a1e5-adc2802345e0" />
+                    <elementDefinition Id="b2d9355c-3291-4460-90e3-fe0aea75ae14" />
                   </stereotypeInstanceHasPropertyInstances>
                 </propertyInstances>
               </stereotypeInstance>
             </appliedStereotypesInternal>
-            <elementDefinition Id="fa316c29-854e-4049-98d5-71deddcd4ba4" />
+            <elementDefinition Id="fb4d8261-f99d-455b-9ac1-1ca1e1ddde6b" />
           </operation>
         </ownedOperationsInternal>
       </class>
@@ -7116,7 +6983,7 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="890f448f-078f-47f0-96bd-13b889fdc923" name="TaskModel" isAbstract="false" isLeaf="false" isActiveClass="false">
         <referencesInternal>
-          <reference Id="8a0d8ed2-63f4-4ff3-9fc5-b7a3ec3837ce" handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel" tag="ViewCode">
+          <reference Id="8a0d8ed2-63f4-4ff3-9fc5-b7a3ec3837ce" handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel" tag="ViewCode">
             <elementDefinition Id="578fb101-21cb-4a24-9272-b79525cce1a8" />
           </reference>
         </referencesInternal>
@@ -7233,11 +7100,37 @@
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="2e0f2f6b-b1a9-4bf2-a1eb-a180324d9c38" />
           </association>
+          <association Id="59084726-d277-47fc-bf23-16b8c61addd0" isDerived="false" sourceEndRoleName="TaskModel" targetEndRoleName="IssueModel" isLeaf="false" isAbstract="false">
+            <classMoniker Id="1cb9f000-a5d3-4c9c-ab17-a9711717bd84" LastKnownName="IssueModel" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="474bea1a-a115-446c-8235-13b1bd5e6d4d" name="TaskModel" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="400fb7b2-7615-4f81-b6a4-94154b089a47" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="1c9f2e71-a623-4e1f-9417-57948a7bc563" name="IssueModel" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <lowerValueInternal>
+                    <literalString Id="f36721f4-5842-424f-87df-8a212a09ea5c" name="Lower" value="0-*">
+                      <elementDefinition Id="c9e5da6f-369f-435e-8154-05ac4f93ff16" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="40dc033d-0b8a-4c39-bc04-567d2ba8e8a4" name="Upper" value="0-*">
+                      <elementDefinition Id="3e530db2-187a-465d-a6b3-ec982f4e8107" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="cdaad986-ff03-472e-9e0e-52a2967425f6" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="fd333ff6-6909-476c-9ab0-167a8ea24a9f" />
+          </association>
         </targetEnds>
         <ownedAttributesInternal>
           <property Id="53757768-ed9c-43b9-999e-5593945cfb3e" name="TaskId" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="7ca93c4b-c4bf-4b1f-8daf-9f2fac219c20" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DTaskId" tag="ViewCode">
+              <reference Id="7ca93c4b-c4bf-4b1f-8daf-9f2fac219c20" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DTaskId" tag="ViewCode">
                 <elementDefinition Id="39ec1048-fa08-4766-8321-e41c3e8ad25d" />
               </reference>
             </referencesInternal>
@@ -7297,7 +7190,7 @@
           </property>
           <property Id="36922baf-d54c-4447-9edb-87a2900421d9" name="FK_TaskNotificationReferenceId" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="387bc20a-df71-4354-b5e9-47629cbc6c35" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DFK_TaskNotificationReferenceId" tag="ViewCode">
+              <reference Id="387bc20a-df71-4354-b5e9-47629cbc6c35" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DFK_TaskNotificationReferenceId" tag="ViewCode">
                 <elementDefinition Id="8c1d5230-e694-4452-8dad-860b5c952ca3" />
               </reference>
             </referencesInternal>
@@ -7357,7 +7250,7 @@
           </property>
           <property Id="02bd0aaf-99bd-4af4-9fd1-f1d39afb7f4d" name="FK_TaskMaster" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="a11c4697-f431-4496-b4cd-4db52e40a609" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DFK_TaskMaster" tag="ViewCode">
+              <reference Id="a11c4697-f431-4496-b4cd-4db52e40a609" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DFK_TaskMaster" tag="ViewCode">
                 <elementDefinition Id="30fbb69a-629f-4a86-a7a1-399a949a44eb" />
               </reference>
             </referencesInternal>
@@ -7417,7 +7310,7 @@
           </property>
           <property Id="ae3c3bf4-b446-4ec0-82dd-26628ecdb8b7" name="FK_TaskFetcher" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="70072c5e-d440-4f95-9ecb-72b6e34ba62b" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DFK_TaskFetcher" tag="ViewCode">
+              <reference Id="70072c5e-d440-4f95-9ecb-72b6e34ba62b" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DFK_TaskFetcher" tag="ViewCode">
                 <elementDefinition Id="a9c80e10-3bb1-4d7a-b5b8-98dd02bd3912" />
               </reference>
             </referencesInternal>
@@ -7477,7 +7370,7 @@
           </property>
           <property Id="e448c89e-fd6e-47ff-abaa-09f9be19978a" name="TaskDescription" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="92339b01-2a10-4fee-9a82-599cfdf6321e" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DTaskDescription" tag="ViewCode">
+              <reference Id="92339b01-2a10-4fee-9a82-599cfdf6321e" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DTaskDescription" tag="ViewCode">
                 <elementDefinition Id="77e84fc1-cb42-401e-9cac-e2753106aa0f" />
               </reference>
             </referencesInternal>
@@ -7537,7 +7430,7 @@
           </property>
           <property Id="02acc140-33e4-4554-994c-91a5be40a82a" name="TaskTimeCreated" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="05a8fb70-c318-43c5-a613-59ede11f26a4" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DTaskTimeCreated" tag="ViewCode">
+              <reference Id="05a8fb70-c318-43c5-a613-59ede11f26a4" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DTaskTimeCreated" tag="ViewCode">
                 <elementDefinition Id="bbdac63c-be11-4be7-82c5-4637bd895b42" />
               </reference>
             </referencesInternal>
@@ -7597,7 +7490,7 @@
           </property>
           <property Id="4caf6017-1dde-4cc4-9e4e-5f53bd40a5f1" name="TaskDeadline" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="0c126d19-8869-4261-bb59-3e7db19595c8" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DTaskDeadline" tag="ViewCode">
+              <reference Id="0c126d19-8869-4261-bb59-3e7db19595c8" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DTaskDeadline" tag="ViewCode">
                 <elementDefinition Id="df33ee4c-98e7-4e1c-995a-e705afb9e559" />
               </reference>
             </referencesInternal>
@@ -7657,7 +7550,7 @@
           </property>
           <property Id="1ec02e0a-ac4d-4f42-8e3e-b5c8cf3cbbe7" name="TaskItemPrice" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="5d5a35da-8c95-485f-9890-d124c1dfcb96" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DTaskItemPrice" tag="ViewCode">
+              <reference Id="5d5a35da-8c95-485f-9890-d124c1dfcb96" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DTaskItemPrice" tag="ViewCode">
                 <elementDefinition Id="5e58174e-d4ea-48d2-bd04-cd0b80eac30a" />
               </reference>
             </referencesInternal>
@@ -7717,7 +7610,7 @@
           </property>
           <property Id="ad696a6b-c861-40f8-b24e-6d69ccef21a5" name="TaskFee" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="a354df4e-4829-46e3-bed6-e4e5145f4b03" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DTaskFee" tag="ViewCode">
+              <reference Id="a354df4e-4829-46e3-bed6-e4e5145f4b03" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DTaskFee" tag="ViewCode">
                 <elementDefinition Id="b1dba102-38cd-4d40-ba22-aeee95c0dd61" />
               </reference>
             </referencesInternal>
@@ -7777,7 +7670,7 @@
           </property>
           <property Id="73367264-5c29-4502-91ab-3bdd73bdfb34" name="FK_TaskStatus" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="efe37900-3273-4f95-80ce-1a34f66452ad" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DFK_TaskStatus" tag="ViewCode">
+              <reference Id="efe37900-3273-4f95-80ce-1a34f66452ad" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DFK_TaskStatus" tag="ViewCode">
                 <elementDefinition Id="c47a6c17-7f86-4172-9ce6-02dfe85cab0a" />
               </reference>
             </referencesInternal>
@@ -7837,7 +7730,7 @@
           </property>
           <property Id="601047a2-3e5b-4387-9255-662ce35dfb97" name="TaskEndPointAddress" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="b3cc9d85-69bd-4a56-bec6-256310eb1ba3" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DTaskEndPointAddress" tag="ViewCode">
+              <reference Id="b3cc9d85-69bd-4a56-bec6-256310eb1ba3" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DTaskEndPointAddress" tag="ViewCode">
                 <elementDefinition Id="68d3050c-2424-40f2-8c04-153f4c136b3f" />
               </reference>
             </referencesInternal>
@@ -7897,7 +7790,7 @@
           </property>
           <property Id="b50034ef-4416-4cee-a239-e94ae838be49" name="Comments" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="3508dc6e-db46-49a3-b91e-c7c07ab16e5a" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DComments" tag="ViewCode">
+              <reference Id="3508dc6e-db46-49a3-b91e-c7c07ab16e5a" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DComments" tag="ViewCode">
                 <elementDefinition Id="f0bfd3c3-0b21-43f4-8a0a-ea769789ec5a" />
               </reference>
             </referencesInternal>
@@ -7957,7 +7850,7 @@
           </property>
           <property Id="bdf63472-63f3-40ba-8df9-009a1a80f7f5" name="Feedbacks" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="908e1127-81b8-4025-b759-9ec5d0d595cf" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DFeedbacks" tag="ViewCode">
+              <reference Id="908e1127-81b8-4025-b759-9ec5d0d595cf" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DFeedbacks" tag="ViewCode">
                 <elementDefinition Id="cc8df11b-b295-4219-8837-a0a404de20dd" />
               </reference>
             </referencesInternal>
@@ -8017,7 +7910,7 @@
           </property>
           <property Id="2b66de02-b9e2-4ddb-bff5-f877b8b79a30" name="Issues" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="4a124648-0d58-4066-b8ee-d9845df742da" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DIssues" tag="ViewCode">
+              <reference Id="4a124648-0d58-4066-b8ee-d9845df742da" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DIssues" tag="ViewCode">
                 <elementDefinition Id="3cd3ad75-34bd-44a3-8eea-b2247cfcd91c" />
               </reference>
             </referencesInternal>
@@ -8077,7 +7970,7 @@
           </property>
           <property Id="a5b71b55-e6e4-4142-9d19-c798bdb31b99" name="Payments" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="eda72e15-7f4c-45bd-a459-e87603c9c4c7" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DPayments" tag="ViewCode">
+              <reference Id="eda72e15-7f4c-45bd-a459-e87603c9c4c7" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DPayments" tag="ViewCode">
                 <elementDefinition Id="f810689d-edc8-4d82-9797-2cfd860c306d" />
               </reference>
             </referencesInternal>
@@ -8137,7 +8030,7 @@
           </property>
           <property Id="354bea12-972c-46e2-82b9-a53e987604b7" name="FetcherProfile" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="10f3836d-6ad9-4ec0-b135-8eab60bc3eaa" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DFetcherProfile" tag="ViewCode">
+              <reference Id="10f3836d-6ad9-4ec0-b135-8eab60bc3eaa" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DFetcherProfile" tag="ViewCode">
                 <elementDefinition Id="6563b2f6-4fa4-424b-b918-796fe08ef51a" />
               </reference>
             </referencesInternal>
@@ -8197,7 +8090,7 @@
           </property>
           <property Id="1a28dae7-9111-476a-9a2c-7c41be369359" name="MasterProfile" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="aee4f7d4-e34b-4b82-b420-dc8b06a7ff56" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DMasterProfile" tag="ViewCode">
+              <reference Id="aee4f7d4-e34b-4b82-b420-dc8b06a7ff56" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DMasterProfile" tag="ViewCode">
                 <elementDefinition Id="303fbfef-4098-403a-bfad-a812e8f16aeb" />
               </reference>
             </referencesInternal>
@@ -8257,7 +8150,7 @@
           </property>
           <property Id="50fbf2a1-ff33-474c-9b13-3fb691bf7d4e" name="TaskLocationInfos" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="fe45b647-3a9e-4703-8d67-38ce3e7a38a0" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DTaskLocationInfos" tag="ViewCode">
+              <reference Id="fe45b647-3a9e-4703-8d67-38ce3e7a38a0" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DTaskLocationInfos" tag="ViewCode">
                 <elementDefinition Id="f9a9d141-33bf-46f0-85e9-b837aa23979c" />
               </reference>
             </referencesInternal>
@@ -8317,7 +8210,7 @@
           </property>
           <property Id="fba9fca3-65d2-45cc-8ad1-da1008c131a8" name="TaskStatus" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <referencesInternal>
-              <reference Id="020cf659-2f19-4c58-8b4c-03128670bf64" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DTaskStatus" tag="ViewCode">
+              <reference Id="020cf659-2f19-4c58-8b4c-03128670bf64" handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3DTaskStatus" tag="ViewCode">
                 <elementDefinition Id="63ffe5ef-1a36-41b1-a091-c2873f5dd089" />
               </reference>
             </referencesInternal>
@@ -8377,56 +8270,56 @@
           </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
-          <operation Id="4c37fcb4-22ef-4b0c-8f47-99a67f27b222" name="TaskModel" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+          <operation Id="49b7d8cf-abb3-428f-a2c3-d88866f062e7" name="TaskModel" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <referencesInternal>
-              <reference Id="5bc5f4af-4c45-4315-a5c7-d1406666b61e" handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3D.ctor" tag="ViewCode">
-                <elementDefinition Id="eda9060a-0091-4616-abbe-81f7d50d8863" />
+              <reference Id="2b79a821-9151-4506-8e58-b8f04495942a" handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DTaskModel Member%3D.ctor" tag="ViewCode">
+                <elementDefinition Id="7c30dacb-dcb2-4619-998f-81dbc06e1e31" />
               </reference>
             </referencesInternal>
             <appliedStereotypesInternal>
-              <stereotypeInstance Id="4d91e505-e4d2-4525-bdbc-e8c288d04a87" name="method" profile="CSharpProfile">
-                <elementDefinition Id="88b84545-486c-467a-8bfa-ff8e4c7bcedb" />
+              <stereotypeInstance Id="c1de9732-8f47-42a9-b377-926fca3ee460" name="method" profile="CSharpProfile">
+                <elementDefinition Id="ba43e0a1-7cc2-448c-b3d6-56ac10c145eb" />
                 <propertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="f4afed38-cee4-4f11-b964-ef24c5a0c0fa">
-                    <propertyInstance Id="7a176b9d-9d60-498a-b96f-b0d59cc98321" name="ClrAttributes">
-                      <elementDefinition Id="77f22f0d-2977-4e04-b39d-21c393739143" />
+                  <stereotypeInstanceHasPropertyInstances Id="c5442a51-0087-4554-9151-a9b400f1fa82">
+                    <propertyInstance Id="cce45be3-dceb-459e-a0a4-71a7d96ce7bf" name="ClrAttributes">
+                      <elementDefinition Id="ba05395d-ef04-4ce3-ae23-8faa471ec20e" />
                     </propertyInstance>
-                    <elementDefinition Id="f053477d-9259-4404-bca7-c081e865a238" />
+                    <elementDefinition Id="22eb00bc-cc1a-42a3-97c1-0bdb9a252315" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="f0fdb1fc-160c-48ca-90f8-91bb383cc13b">
-                    <propertyInstance Id="c2a5b925-a197-4be0-bbd0-501d4c417dd2" name="IsPartial" value="false">
-                      <elementDefinition Id="859d7d49-0859-40a8-af06-5b3f848b2532" />
+                  <stereotypeInstanceHasPropertyInstances Id="b9273078-5174-46fc-af7c-cef2c6594e6c">
+                    <propertyInstance Id="3516d65d-5116-4073-b4af-f68fae32560f" name="IsPartial" value="false">
+                      <elementDefinition Id="f6f30be0-3ae1-471f-9da5-c3c5695411ca" />
                     </propertyInstance>
-                    <elementDefinition Id="73b6e3bd-d4b0-4e31-8563-731dbab19f9a" />
+                    <elementDefinition Id="f3f543e4-549a-4a58-8a00-602ae3841e62" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="d43a9343-75c4-476e-8380-a154a65260a8">
-                    <propertyInstance Id="ea752a1b-8578-49a1-b396-6a22618fc81e" name="IsUnsafe" value="false">
-                      <elementDefinition Id="318d2c0e-e260-4347-b469-3310c416718b" />
+                  <stereotypeInstanceHasPropertyInstances Id="158b679a-0562-4ee4-b135-9d32f7aa1ef1">
+                    <propertyInstance Id="ac39c30e-9587-490b-9518-c8fcc32112d0" name="IsUnsafe" value="false">
+                      <elementDefinition Id="6fc368e5-c545-4af1-b343-69711d3352a7" />
                     </propertyInstance>
-                    <elementDefinition Id="f1ef06e7-1335-4279-b084-d05f6f69cd22" />
+                    <elementDefinition Id="7c3b25de-a15c-4c54-915b-1b9d2c404a86" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="6fd9bbbd-8dc2-4b93-b479-d7ca0aed9b0e">
-                    <propertyInstance Id="107df831-c862-47cd-8855-62b786127de4" name="Inheritance" value="none">
-                      <elementDefinition Id="2bbaf155-ab69-40a2-9850-2edd328085d8" />
+                  <stereotypeInstanceHasPropertyInstances Id="12b03df2-abec-4b3e-8612-8d349b1df558">
+                    <propertyInstance Id="0b82f9e3-63a3-40c5-88c7-66291a4b98f2" name="Inheritance" value="none">
+                      <elementDefinition Id="55f8b198-6072-45bd-89b3-b98cd8cb590c" />
                     </propertyInstance>
-                    <elementDefinition Id="6696ecb7-c2d6-402e-845c-c2cd7de18ff6" />
+                    <elementDefinition Id="6ed41c05-7b9f-4d72-82e1-6779bf0fc0d2" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="da94b9d7-b880-4995-becb-a8de8c2fd55a">
-                    <propertyInstance Id="66dba68d-c065-49b2-ad32-b5d1d32c6ff8" name="PackageVisibility" value="internal">
-                      <elementDefinition Id="6975f4d4-6a40-4d2b-bceb-a748eb54fb65" />
+                  <stereotypeInstanceHasPropertyInstances Id="94f86f79-aea0-42ac-b30f-81f79e69b84b">
+                    <propertyInstance Id="cdb224f4-fc5a-4a80-9e0e-18e8d70b4490" name="PackageVisibility" value="internal">
+                      <elementDefinition Id="2a750c82-16fe-469c-bc3b-70b914674ed1" />
                     </propertyInstance>
-                    <elementDefinition Id="deb0bfaa-569a-4db4-a0c0-9ef5dc177c49" />
+                    <elementDefinition Id="5e74dc24-0b2d-4757-a997-2d8eb5ff2ec5" />
                   </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances Id="6426411e-2c49-4f0a-9a24-0d07c5893f51">
-                    <propertyInstance Id="91615996-dd09-427f-aa64-d4dd1f746714" name="params" value="false">
-                      <elementDefinition Id="15941f8e-ce84-42b3-8e19-d7b645158f63" />
+                  <stereotypeInstanceHasPropertyInstances Id="aae5f8e7-e847-47f0-9d39-ff0edabe0d8e">
+                    <propertyInstance Id="46dc4729-ced3-4cae-8b55-49144ecd3ba6" name="params" value="false">
+                      <elementDefinition Id="d15a41c3-f0ff-49a8-b458-c7452f011dc6" />
                     </propertyInstance>
-                    <elementDefinition Id="e24a5027-d914-411f-99ea-3bdf3565c787" />
+                    <elementDefinition Id="7127ff37-4f7d-4ed9-b27e-77ee059c576d" />
                   </stereotypeInstanceHasPropertyInstances>
                 </propertyInstances>
               </stereotypeInstance>
             </appliedStereotypesInternal>
-            <elementDefinition Id="d53305e4-3695-4057-873a-3ceca2d4fefe" />
+            <elementDefinition Id="ae6ba482-32d5-4852-8a3a-dd37853eacae" />
           </operation>
         </ownedOperationsInternal>
       </class>
@@ -8449,5 +8342,25 @@
   </packagedElements>
   <package Id="17071d15-8f17-4610-a00b-ac7b88dfcb59" name="Modeling">
     <elementDefinition Id="f33e40ee-c47f-4355-93ba-37a5d0a6e81a" />
+    <profileInstances>
+      <packageHasProfileInstances Id="7669609a-2235-4361-bb46-503ee08873bb">
+        <profileInstance Id="42020984-e22c-4dc4-ad54-32aec4ce005c" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="4c70e204-5dbc-4e6e-845d-87ff0acda66b">
+        <profileInstance Id="614df91e-a130-4d79-a18c-256a4c2c7925" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="39c845f4-9d2e-45e0-9ffb-d89c32d19191">
+        <profileInstance Id="e29b7d81-6e7f-41c5-93d6-1185f6a58f02" name="CSharpProfile">
+          <elementDefinition Id="c4b480f9-c7ad-4604-8b2f-777fdd5081a6" />
+        </profileInstance>
+        <elementDefinition Id="4a113a37-affa-40a5-a8a6-4b9aca9811d8" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </logicalClassDesignerModel>

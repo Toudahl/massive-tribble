@@ -283,7 +283,7 @@
                   <actuals>
                     <classMoniker
                       Id="046a2314-ae07-4c79-a7ff-a5ecce8862f1"
-                      LastKnownName="Issue"
+                      LastKnownName="IssueModel"
                       LastKnownLocation="Package1_1302.uml" />
                   </actuals>
                   <formal>
@@ -844,6 +844,76 @@
                     <classMoniker
                       Id="87ccd2b2-fe56-49b5-bb35-32f4c86b6315"
                       LastKnownName="TaskLocationInfoModel"
+                      LastKnownLocation="Package1_1302.uml" />
+                  </actuals>
+                  <formal>
+                    <classifierTemplateParameterMoniker
+                      Id="fd7b6a55-3255-402c-bf9f-68e116746201"
+                      LastKnownLocation="Package4_1302.uml" />
+                  </formal>
+                </templateParameterSubstitution>
+              </templateBindingHasTemplateParameterSubstitution>
+            </relationshipOwnedElementsInternal>
+          </templateBinding>
+        </signatures>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="7cd68737-afe8-4d39-967b-7e2eacad7a80"
+        name="ICollection&lt;IssueModel‎&gt;"
+        isAbstract="false"
+        isLeaf="false">
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="edd6ae3d-93d1-490a-b6a8-01fbce3f9047"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a866eaf3-2d19-42a6-aa0a-b549c5f6e01d">
+                <propertyInstance
+                  Id="4ddc5f8b-06fe-435b-b27a-9c016702bbe7"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="795e2a32-6907-4b9a-9776-0160a153fb19">
+                <propertyInstance
+                  Id="610d33a7-2253-40d3-b059-ec42937729cf"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8f4caa71-35ef-4ed1-8437-20bb5661bd86">
+                <propertyInstance
+                  Id="629b14a0-be53-4b7a-bb5c-bc9fe1032755"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b4c1198b-3e90-41b7-96b3-5c56a956bd9f">
+                <propertyInstance
+                  Id="bfebb99f-12a6-4d9e-9d10-355a9d18dc70"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <signatures>
+          <templateBinding
+            Id="a400a757-81f5-4efa-af2a-272d28bbd152">
+            <redefinableTemplateSignatureMoniker
+              Id="24dd749e-4b25-43d6-8aa1-66d13c14004b"
+              LastKnownLocation="Package4_1302.uml" />
+            <relationshipOwnedElementsInternal>
+              <templateBindingHasTemplateParameterSubstitution>
+                <templateParameterSubstitution
+                  Id="48a469ca-96e4-4c40-a526-242debe01f38">
+                  <actuals>
+                    <classMoniker
+                      Id="046a2314-ae07-4c79-a7ff-a5ecce8862f1"
+                      LastKnownName="IssueModel"
                       LastKnownLocation="Package1_1302.uml" />
                   </actuals>
                   <formal>
