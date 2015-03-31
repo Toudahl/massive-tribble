@@ -21,7 +21,7 @@ namespace Api.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("fetchitEntities", throwIfV1Schema: false)
         {
         }
         
