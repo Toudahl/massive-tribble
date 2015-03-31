@@ -15,6 +15,27 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\CommentModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\FeedbackModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\FeedbackStatusModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\IssueDetailModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\IssueModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\IssueStatusModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LogModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\NotificationModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\NotificationStatusModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PaymentModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PaymentStatusModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PaymentTypeModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ProfileLevelModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ProfileModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ProfileStatusModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ProfileVerificationTypeModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ReportModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\SessionModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\TaskLocationInfoModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\TaskModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\TaskStatusModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Handlers\" />
