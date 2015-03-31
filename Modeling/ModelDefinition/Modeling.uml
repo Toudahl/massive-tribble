@@ -138,7 +138,7 @@
         <ownedAttributesInternal>
           <property
             Id="1eef4534-7f34-4b90-b0ae-be33fe88d891"
-            name="CurrentProfile"
+            name="CurrentLoggedInProfile"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -1054,7 +1054,7 @@
             isAbstract="false">
             <enumerationMoniker
               Id="bb2f9a48-23d4-4b24-aedf-3b72e9fa6df8"
-              LastKnownName="TaskStatus"
+              LastKnownName="StatusOfTask"
               LastKnownLocation="Modeling.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -1290,8 +1290,8 @@
               </operationHasOwnedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="31402719-30ab-4c8b-ae5f-5334de63ab39"
-                  name="TaskStatus value"
+                  Id="3bd75d57-745c-4855-989f-a9b4680031e0"
+                  name="StatusOfTask value"
                   direction="In"
                   isUnique="false" />
               </operationHasOwnedParameters>
@@ -1867,7 +1867,7 @@
     <packageHasNamedElement>
       <enumeration
         Id="bb2f9a48-23d4-4b24-aedf-3b72e9fa6df8"
-        name="TaskStatus"
+        name="StatusOfTask"
         isAbstract="false"
         isLeaf="false" />
     </packageHasNamedElement>
@@ -1949,7 +1949,7 @@
         <ownedOperationsInternal>
           <operation
             Id="0099f5fe-b8b7-4161-82a0-1d97286a5686"
-            name="SetPaymentType"
+            name="SetPaymentProvider"
             isLeaf="false"
             isStatic="false"
             isAbstract="false"
@@ -1958,7 +1958,7 @@
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="5ba56c44-fbbb-4935-ab0a-ed3fbb4e406d"
+                  Id="89b0bfa4-84b6-4c60-9a73-df2a69116115"
                   name="IPaymentProvider provider"
                   direction="In"
                   isUnique="false" />

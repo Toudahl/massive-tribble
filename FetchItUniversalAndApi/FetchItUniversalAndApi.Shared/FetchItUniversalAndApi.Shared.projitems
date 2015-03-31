@@ -15,7 +15,23 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Handlers\ExamplePaymentProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Handlers\Interfaces\ICreate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Handlers\Interfaces\IDelete.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Handlers\Interfaces\IDisable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Handlers\Interfaces\IPaymentProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Handlers\Interfaces\ISearch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Handlers\Interfaces\ISuspend.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Handlers\Interfaces\IUpdate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Handlers\IssueHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Handlers\LogHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Handlers\MessageHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Handlers\PaymentHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Handlers\ProfileHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Handlers\ReportHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Handlers\TaskHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\CommentModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\EmailModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\FeedbackModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\FeedbackStatusModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\IssueDetailModel.cs" />
@@ -36,8 +52,5 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\TaskLocationInfoModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\TaskModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\TaskStatusModel.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Handlers\" />
   </ItemGroup>
 </Project>

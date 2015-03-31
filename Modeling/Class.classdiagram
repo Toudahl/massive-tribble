@@ -3125,10 +3125,10 @@
           </association>
         </targetEnds>
         <ownedAttributesInternal>
-          <property Id="8f55a279-f4ec-45c8-8455-bf905aa0a751" name="CurrentProfile" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+          <property Id="8f55a279-f4ec-45c8-8455-bf905aa0a751" name="CurrentLoggedInProfile" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="1eef4534-7f34-4b90-b0ae-be33fe88d891" />
             <type_NamedElement>
-              <referencedTypeMoniker Id="fed64714-12b9-40c6-b4dd-e0e0bcb24530" LastKnownName="ProfileModel" />
+              <referencedTypeMoniker Id="84a44589-ff49-4842-98fa-ad6aefcd84ef" LastKnownName="ProfileModel" />
             </type_NamedElement>
           </property>
           <property Id="87d10da6-c7df-425a-9e3f-5f998452371d" name="SelectedProfile" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
@@ -6765,7 +6765,7 @@
             <elementDefinition Id="38df0718-eefe-4589-a3a3-2ecb6a7c7637" />
           </association>
           <association Id="7667f3e7-6bdb-49b9-a91a-a7f5ffeea0fe" isDerived="false" sourceEndRoleName="TaskHandler" targetEndRoleName="TaskStatus" isLeaf="false" isAbstract="false">
-            <enumerationMoniker Id="83ba53e2-33cf-45d3-b790-57fb9fe4dc19" LastKnownName="TaskStatus" />
+            <enumerationMoniker Id="83ba53e2-33cf-45d3-b790-57fb9fe4dc19" LastKnownName="StatusOfTask" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd Id="0f9a7167-da05-48c7-9a71-0167db69c68c" name="TaskHandler" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
@@ -6886,8 +6886,8 @@
                 </parameter>
               </operationHasOwnedParameters>
               <operationHasOwnedParameters>
-                <parameter Id="3349b17f-b123-42a5-be9c-25a32103fac0" name="TaskStatus value" direction="In" isUnique="false">
-                  <elementDefinition Id="31402719-30ab-4c8b-ae5f-5334de63ab39" />
+                <parameter Id="747dde06-b7ed-4f51-9730-db982a151dec" name="StatusOfTask value" direction="In" isUnique="false">
+                  <elementDefinition Id="3bd75d57-745c-4855-989f-a9b4680031e0" />
                 </parameter>
               </operationHasOwnedParameters>
             </ownedParameters>
@@ -6903,11 +6903,6 @@
     <packageHasNamedElement>
       <referencedType Id="bcff936a-c947-4feb-b279-3b7dd4bf0e90" name="TaskModel" isAbstract="false" isLeaf="false" cachedFullName="TaskModel">
         <elementDefinition Id="b4e48a30-98bd-4d42-962b-5a6d92e03c23" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <referencedType Id="fed64714-12b9-40c6-b4dd-e0e0bcb24530" name="ProfileModel" isAbstract="false" isLeaf="false" cachedFullName="ProfileModel">
-        <elementDefinition Id="6c7b85a9-a8cb-4af7-a744-d26b47508d93" />
       </referencedType>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -7754,7 +7749,7 @@
       </enumeration>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <enumeration Id="83ba53e2-33cf-45d3-b790-57fb9fe4dc19" name="TaskStatus" isAbstract="false" isLeaf="false">
+      <enumeration Id="83ba53e2-33cf-45d3-b790-57fb9fe4dc19" name="StatusOfTask" isAbstract="false" isLeaf="false">
         <elementDefinition Id="bb2f9a48-23d4-4b24-aedf-3b72e9fa6df8" />
       </enumeration>
     </logicalClassDesignerModelHasTypes>
@@ -8025,12 +8020,12 @@
           </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
-          <operation Id="bd6f4710-7321-4ad8-85f5-2f71e80c18fa" name="SetPaymentType" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+          <operation Id="bd6f4710-7321-4ad8-85f5-2f71e80c18fa" name="SetPaymentProvider" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="0099f5fe-b8b7-4161-82a0-1d97286a5686" />
             <ownedParameters>
               <operationHasOwnedParameters>
-                <parameter Id="118497e4-9229-44e7-9b46-efe6f1d142ee" name="IPaymentProvider provider" direction="In" isUnique="false">
-                  <elementDefinition Id="5ba56c44-fbbb-4935-ab0a-ed3fbb4e406d" />
+                <parameter Id="711da888-26eb-4905-aeaa-18b669629a8d" name="IPaymentProvider provider" direction="In" isUnique="false">
+                  <elementDefinition Id="89b0bfa4-84b6-4c60-9a73-df2a69116115" />
                 </parameter>
               </operationHasOwnedParameters>
             </ownedParameters>
@@ -11787,6 +11782,11 @@
     <packageHasNamedElement>
       <referencedType Id="858a8cb2-a79f-4050-be11-2bd3cdd72118" name="IEnumerable&lt;object&gt;" isAbstract="false" isLeaf="false" cachedFullName="IEnumerable&lt;object&gt;">
         <elementDefinition Id="6ddb3301-4b92-44e5-bd33-d12776ffbf64" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="84a44589-ff49-4842-98fa-ad6aefcd84ef" name="ProfileModel" isAbstract="false" isLeaf="false" cachedFullName="ProfileModel">
+        <elementDefinition Id="6c7b85a9-a8cb-4af7-a744-d26b47508d93" />
       </referencedType>
     </packageHasNamedElement>
   </packagedElements>
