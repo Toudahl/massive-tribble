@@ -53,7 +53,8 @@ namespace FetchItUniversalAndApi.Handlers
                 Client.BaseAddress = new Uri(_serverUrl);
                 try
                 {
-                    //TODO: Find a way to use the Report Status to get the specified reports.
+                    //It is possible to make the url "reports/1" return all statuses numbered 1, etc.
+                    //TODO: Possibly find another way to use the Report Status to get the specified reports.
                     var reportsToReturn = await Client.GetAsync("reports/" + (int)status);
                     if (reportsToReturn.IsSuccessStatusCode)
                     {
