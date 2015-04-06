@@ -12,6 +12,7 @@ namespace FetchItUniversalAndApi.Handlers
 {
     class ReportHandler: ICreate, IDelete, IDisable, ISuspend, IUpdate
     {
+        //TODO: Might need to change the Url.
         private static readonly string _serverUrl = "http://localhost:36904/api/";
         private static Object _lockObject = new object();
         private static ReportHandler _handler;
@@ -164,7 +165,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// <param name="target">The target profile of the report.</param>
         /// <param name="source">The profile that is making the report.</param>
         /// <param name="reportsContent">The comment provided with the report.</param>
-        public static async void PostNewReport(ProfileModel target, ProfileModel source, string reportsContent)
+        public ReportModel CreateNewReport(ProfileModel target, ProfileModel source, string reportsContent)
         {
             ReportModel newReport = null;
             try
@@ -184,25 +185,7 @@ namespace FetchItUniversalAndApi.Handlers
             {
                 new MessageDialog(exception.Message).ShowAsync();
             }
-
-            if (newReport != null)
-            {
-                using (Client = new HttpClient())
-                {
-                    Client.BaseAddress = new Uri(_serverUrl);
-                    Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    try
-                    {
-                        await Client.PostAsJsonAsync("reports", newReport);
-                    }
-
-                    //TODO: Create better exception handling.
-                    catch (Exception exception)
-                    {
-                        new MessageDialog(exception.Message).ShowAsync();
-                    }
-                }
-            }
-        }
+            return newReport;
+         }
     }
 }
