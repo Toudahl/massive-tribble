@@ -2472,6 +2472,182 @@
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="215238d0-4508-474b-a73f-39e278ceed98"
+        name="FeedbackHandler"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <interfaceRealization
+            Id="ba58aa89-5554-4a82-9921-2d840c910a9d">
+            <interfaceMoniker
+              Id="598b48ee-e7f9-495a-8fcd-f2061b974365"
+              LastKnownName="ICreate"
+              LastKnownLocation="Modeling.uml" />
+          </interfaceRealization>
+          <interfaceRealization
+            Id="23f3ebe2-6290-4ef6-b77f-2e0e3c365827">
+            <interfaceMoniker
+              Id="1a491e42-c431-4476-af1b-7da2ef26dee8"
+              LastKnownName="IUpdate"
+              LastKnownLocation="Modeling.uml" />
+          </interfaceRealization>
+          <interfaceRealization
+            Id="8e00740a-3ec5-4fe8-b336-66dee01ba0b9">
+            <interfaceMoniker
+              Id="542885e0-c3c2-4173-94b4-e26005fe9446"
+              LastKnownName="IDelete"
+              LastKnownLocation="Modeling.uml" />
+          </interfaceRealization>
+          <interfaceRealization
+            Id="7360c89e-25b7-4b67-b43c-617a622f46b1">
+            <interfaceMoniker
+              Id="b7bf3bc6-6fa4-4356-adbb-7f1a04dedaf8"
+              LastKnownName="IDisable"
+              LastKnownLocation="Modeling.uml" />
+          </interfaceRealization>
+          <interfaceRealization
+            Id="aad21347-f71b-4464-8b00-bb53123db897">
+            <interfaceMoniker
+              Id="77d3acc6-c7ec-476d-91d0-2251be78b86b"
+              LastKnownName="ISuspend"
+              LastKnownLocation="Modeling.uml" />
+          </interfaceRealization>
+          <interfaceRealization
+            Id="99c55183-9457-4cec-a420-c7d240acde49">
+            <interfaceMoniker
+              Id="ca8ac426-be94-4643-b141-516c8b56ee17"
+              LastKnownName="ISearch"
+              LastKnownLocation="Modeling.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="a6dc9302-f98b-4d9a-bcda-8704f6bae43d"
+            name="Create"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="2b43f039-68ee-40da-a141-faafc2f0e4ba"
+                  name="object obj"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="cbb44871-e79b-4edd-9ddd-d54e92f28380"
+            name="Update"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="e997ac11-2f4f-4c83-aaba-b59ede38395c"
+                  name="object obj"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="c2cef59c-ee20-47ef-b004-36df81850c1d"
+            name="Delete"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="59b3aafd-fd38-4861-85ed-057fee9bfaae"
+                  name="object obj"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="96c9054b-f405-44f3-b36c-8196bd5955b0"
+            name="Disable"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="11074beb-76fa-4247-979c-4c913692c355"
+                  name="object obj"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="3086703f-9b3f-42f4-9e90-93c2c713ff97"
+            name="Suspend"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="b60cb0f1-91f2-4c72-be1b-07b8e825bc9c"
+                  name="object obj"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="cdba6fa1-14ed-4bd3-915b-9871ebea9e07"
+            name="Search"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="36604d0b-89af-4bf3-9b66-7b575884ce78"
+                  name="object obj"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="85ef685c-d650-46b7-b1de-31146f09fb47"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="6ddb3301-4b92-44e5-bd33-d12776ffbf64"
+                      LastKnownName="IEnumerable&lt;object&gt;"
+                      LastKnownLocation="Modeling.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
   </packagedElements>
   <primitiveType
     Id="220a3521-e091-4221-bae9-3ef9018e845c"

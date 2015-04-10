@@ -8328,7 +8328,7 @@
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
-            Id="3d80834a-7d20-4655-bf62-7be9e19350f9"
+            Id="979c5ff9-3e0e-4397-98f8-e35a6e231e4f"
             name="FeedbackModel"
             isLeaf="false"
             isStatic="false"
@@ -8337,54 +8337,54 @@
             isQuery="false">
             <referencesInternal>
               <reference
-                Id="966b1f8f-d5fd-4da6-8030-480862a56692"
+                Id="1da4310e-a2cb-4d33-899e-0746a22cf6de"
                 handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackModel Member%3D.ctor"
                 tag="ViewCode" />
             </referencesInternal>
             <appliedStereotypesInternal>
               <stereotypeInstance
-                Id="546472fa-ffe4-4839-a333-758c6193591c"
+                Id="10548cb7-e9f1-45d5-819f-5a625e547272"
                 name="method"
                 profile="CSharpProfile">
                 <propertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="868f44bc-47a4-43d6-a491-b53a54c1a649">
+                    Id="ae328578-c3f0-4f0b-a4e9-0a45e81d7773">
                     <propertyInstance
-                      Id="1f28d26b-b2e2-46c5-8ee1-9cfdaa41c26a"
+                      Id="be1da775-edc2-4a85-acc4-525805f2f576"
                       name="ClrAttributes" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="6a64ca79-061b-4619-9fe6-649ff15c2561">
+                    Id="aca7feef-115c-4aa8-b2d0-3a23deb5720b">
                     <propertyInstance
-                      Id="52851063-34f9-4614-a6da-d2c101b7e779"
+                      Id="91513617-5b68-40e2-9910-c1903aa34ada"
                       name="IsPartial"
                       value="false" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="8861bb22-f0a0-4771-ac35-16596a7591a6">
+                    Id="fd829776-54a7-44c6-8605-e442145aa9f5">
                     <propertyInstance
-                      Id="dcd4def3-6af6-45d0-a463-228ab8197781"
+                      Id="8a04c292-a56e-45e2-be8f-fc48e257f47b"
                       name="IsUnsafe"
                       value="false" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="c8545832-e2f0-4e68-9b7f-1b59e8dfc224">
+                    Id="f9b0f0ca-feec-4680-a6dd-e8ffe5bf51c6">
                     <propertyInstance
-                      Id="3d114882-494f-4d87-8264-a192f545d3c7"
+                      Id="eef54011-77c7-4ed5-8d97-5afd3cd6ecb5"
                       name="Inheritance"
                       value="none" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="887f7c93-b999-4927-acc3-c76cadfc3326">
+                    Id="d3f8532e-674d-411b-846b-a43c31f6c675">
                     <propertyInstance
-                      Id="d18977da-a49b-4569-a6cf-de2e39bb5018"
+                      Id="59c29c22-d44d-48f6-b061-dd9de6acdf08"
                       name="PackageVisibility"
                       value="internal" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="58caed7e-93b8-49f4-94e7-62072174504b">
+                    Id="072f8a43-8215-4683-8a13-5bcb050ab41a">
                     <propertyInstance
-                      Id="71464306-a4e2-4785-a554-123f9a06ef0d"
+                      Id="bb1674ab-cf1b-45b9-8f8a-4b34bac7c50f"
                       name="params"
                       value="false" />
                   </stereotypeInstanceHasPropertyInstances>
@@ -8533,7 +8533,7 @@
             <referencesInternal>
               <reference
                 Id="810a3441-9f4a-43f2-8d1a-115a7e633c55"
-                handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackStatusModel Member%3DFeedbackStatusId"
+                handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackStatusModel Member%3DFeedbackStatusId"
                 tag="ViewCode" />
             </referencesInternal>
             <appliedStereotypesInternal>
@@ -8613,7 +8613,7 @@
             <referencesInternal>
               <reference
                 Id="98b164e3-c9e7-4275-8e57-904b6a6aba0f"
-                handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackStatusModel Member%3DFeedbackStatus"
+                handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackStatusModel Member%3DFeedbackStatus"
                 tag="ViewCode" />
             </referencesInternal>
             <appliedStereotypesInternal>
@@ -8693,7 +8693,7 @@
             <referencesInternal>
               <reference
                 Id="0cf94ee0-83b6-4617-bfb9-844f7deaa112"
-                handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackStatusModel Member%3DFeedbacks"
+                handle="viewcode://./CodeSchema_Property?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackStatusModel Member%3DFeedbacks"
                 tag="ViewCode" />
             </referencesInternal>
             <appliedStereotypesInternal>
@@ -8763,7 +8763,7 @@
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
-            Id="3c1041a1-b80e-4bfc-a4ec-384ad440df06"
+            Id="3500d43d-fbcc-4e95-a24d-81083da77bcd"
             name="FeedbackStatusModel"
             isLeaf="false"
             isStatic="false"
@@ -8772,54 +8772,54 @@
             isQuery="false">
             <referencesInternal>
               <reference
-                Id="d489ac8d-9f20-47cf-b6aa-42a0e981186b"
-                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackStatusModel Member%3D.ctor"
+                Id="01ee0722-5a58-435b-b669-738b88c2af4c"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2FD:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FApi%2Fbin%2FApi.dll&quot; Namespace%3DApi.EntityFramework Type%3DFeedbackStatusModel Member%3D.ctor"
                 tag="ViewCode" />
             </referencesInternal>
             <appliedStereotypesInternal>
               <stereotypeInstance
-                Id="5b287c98-c58d-4ad9-958d-93aaba24dcbf"
+                Id="0f64997b-4277-44c6-8487-9f3c97ebf39a"
                 name="method"
                 profile="CSharpProfile">
                 <propertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="4eb50a53-ee1c-4d42-906c-6e3590bd72b2">
+                    Id="967788e1-ad42-424a-aa26-3266091b8713">
                     <propertyInstance
-                      Id="2485b6e5-0e47-4ff8-9fc7-9fa1958bea4d"
+                      Id="f8e52ab5-26be-4fd1-b65a-822ca35552a6"
                       name="ClrAttributes" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="45404121-e71c-4cf9-965f-0677015790e8">
+                    Id="e1e94c0b-d89e-4aaf-a65b-a8ae8ca43a76">
                     <propertyInstance
-                      Id="dddeab1f-e061-488e-8781-466fab2ad190"
+                      Id="bf93bee4-96fc-4679-af7e-b6a2df5302d3"
                       name="IsPartial"
                       value="false" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="6d538f29-21b5-4813-b590-c6bb59e727e6">
+                    Id="e2b4df0a-63c7-406e-894d-afa1cefc680d">
                     <propertyInstance
-                      Id="11a74429-bb7d-48f8-907e-39dc75f66b45"
+                      Id="d5d1753b-da65-44fa-b4a0-a6887122956f"
                       name="IsUnsafe"
                       value="false" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="e71c6aaa-29bc-4a70-9ddb-ed16f7ee38c7">
+                    Id="53e654a2-4c1d-4f9f-8bfa-48de56dafa07">
                     <propertyInstance
-                      Id="27a1f139-9ab0-4c82-b681-829d0e16096a"
+                      Id="81cb346d-4c63-4ba3-8ee6-171a7c960a51"
                       name="Inheritance"
                       value="none" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="18ceb4c6-91ff-43de-8004-83241d4b46dd">
+                    Id="08d5cee3-064e-4694-939e-e13b19744bb9">
                     <propertyInstance
-                      Id="b17db82d-edfc-4dcd-9180-996d006fe250"
+                      Id="2c4865e7-7bb4-4d45-88f7-6d36a01170ea"
                       name="PackageVisibility"
                       value="internal" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="728e5d53-a950-4b3e-a207-cd93b7dee3ff">
+                    Id="ff4b80ae-5792-48c8-afde-eb0baacc9ad8">
                     <propertyInstance
-                      Id="cc9cca3b-068d-41cf-b09a-1fff88ebd1b2"
+                      Id="f33afdfb-a177-4872-bf74-5da9916f98d4"
                       name="params"
                       value="false" />
                   </stereotypeInstanceHasPropertyInstances>

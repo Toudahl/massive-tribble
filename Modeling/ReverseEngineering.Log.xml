@@ -6,70 +6,39 @@
   <MessageClass Name="Error" Label="Error" Option="Show errors" />
   <MessageClass Name="Property" Label="Property" Option="Show metadata" />
   <MessageClass Name="Diagnostic" Label="Message" Option="Show diagnostic messages" />
-  <Message Timestamp="2015-03-30T14:03:06" Importance="High" Text="Reverse Engineering Started." />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: '5069277c-7c72-4a38-8561-19dc811c4472' -  (ClassifierTemplateParameter)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Boolean' -  (PrimitiveType)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'fd7b6a55-3255-402c-bf9f-68e116746201' -  (ClassifierTemplateParameter)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Integer' -  (PrimitiveType)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api' -  (Package)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework' -  (Package)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Medium" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueDetailModel' -  (Class)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueDetailModel::FK_Issue' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueDetailModel::Issue' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueDetailModel::IssueDetailFromCreator' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueDetailModel::IssueDetailId' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueDetailModel::IssueDetailModel' -  (Operation)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueDetailModel::IssueDetailText' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueDetailModel::IssueImage' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Medium" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueModel' -  (Class)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueModel::FK_IssueCreator' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueModel::FK_IssueNotificationReferenceId' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueModel::FK_IssueStatus' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueModel::FK_IssueTarget' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueModel::FK_IssueTask' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueModel::IssueAppealedByCreator' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueModel::IssueCreator' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueModel::IssueDescription' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueModel::IssueDetails' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueModel::IssueDidCreatorWin' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueModel::IssueHasBeenAppealed' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueModel::IssueId' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueModel::IssueModel' -  (Operation)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueModel::IssueStatus' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueModel::IssueTarget' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueModel::IssueTimeCreated' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueModel::IssueTimeResolved' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueModel::IssueTitle' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueModel::Task' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Medium" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueStatusModel' -  (Class)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueStatusModel::Issues' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueStatusModel::IssueStatus' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueStatusModel::IssueStatusId' -  (Property)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::IssueStatusModel::IssueStatusModel' -  (Operation)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::ProfileModel' -  (Class)   (partially reverse engineered - definition not updated) " />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::TaskModel' -  (Class)   (partially reverse engineered - definition not updated) " />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::System' -  (Package)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::System::Byte' -  (Class)   (partially reverse engineered - definition not updated) " />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::System::Collections' -  (Package)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::System::Collections::Generic' -  (Package)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::System::Collections::Generic::ICollection' -  (Interface)   (partially reverse engineered - definition not updated) " />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::System::Collections::Generic::ICollection&lt;IssueDetailModel‎&gt;' -  (Interface)   (partially reverse engineered - definition not updated) " />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::System::Collections::Generic::ICollection&lt;IssueModel‎&gt;' -  (Interface)   (partially reverse engineered - definition not updated) " />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::System::DateTime' -  (Class)   (partially reverse engineered - definition not updated) " />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::System::Nullable' -  (Class)   (partially reverse engineered - definition not updated) " />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::System::Nullable&lt;DateTime‎&gt;' -  (Class)   (partially reverse engineered - definition not updated) " />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'String' -  (PrimitiveType)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: Modeling::Api::EntityFramework::IssueDetailModel to Modeling::System::Byte (Association)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: Modeling::Api::EntityFramework::IssueDetailModel to Modeling::Api::EntityFramework::IssueModel (Association)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: Modeling::Api::EntityFramework::IssueModel to Modeling::System::DateTime (Association)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: Modeling::Api::EntityFramework::IssueModel to Modeling::System::Nullable&lt;DateTime‎&gt; (Association)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: Modeling::Api::EntityFramework::IssueModel to Modeling::System::Collections::Generic::ICollection&lt;IssueDetailModel‎&gt; (Association)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: Modeling::Api::EntityFramework::IssueModel to Modeling::Api::EntityFramework::IssueStatusModel (Association)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: Modeling::Api::EntityFramework::IssueModel to Modeling::Api::EntityFramework::TaskModel (Association)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: Modeling::Api::EntityFramework::IssueModel to Modeling::Api::EntityFramework::ProfileModel (Association)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: Modeling::Api::EntityFramework::IssueModel to Modeling::Api::EntityFramework::ProfileModel (Association)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: Modeling::Api::EntityFramework::IssueStatusModel to Modeling::System::Collections::Generic::ICollection&lt;IssueModel‎&gt; (Association)" />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="High" Text="(3) type(s) fully reverse engineered." />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="High" Text="(9) type(s) partially reverse engineered.  These types were not included in the original selection so their full definitions are not reverse engineered.  Instead, this shallow operation has simply ensured these types exist in the UML model because they are needed in order to fully describe other elements." />
-  <Message Timestamp="2015-03-30T14:03:08" Importance="High" Text="The reverse engineering operation completed with (0) error(s), and (0) warning(s)." />
+  <Message Timestamp="2015-03-31T13:25:08" Importance="High" Text="Reverse Engineering Started." />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'fd7b6a55-3255-402c-bf9f-68e116746201' -  (ClassifierTemplateParameter)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Integer' -  (PrimitiveType)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api' -  (Package)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework' -  (Package)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Medium" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::FeedbackModel' -  (Class)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::FeedbackModel::FeedbackComment' -  (Property)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::FeedbackModel::FeedbackId' -  (Property)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::FeedbackModel::FeedbackModel' -  (Operation)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::FeedbackModel::FeedbackRating' -  (Property)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::FeedbackModel::FeedbackStatus' -  (Property)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::FeedbackModel::FK_FeedbackForTask' -  (Property)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::FeedbackModel::FK_FeedbackNotificationReferenceId' -  (Property)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::FeedbackModel::FK_FeedbackStatus' -  (Property)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::FeedbackModel::Task' -  (Property)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Medium" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::FeedbackStatusModel' -  (Class)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::FeedbackStatusModel::Feedbacks' -  (Property)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::FeedbackStatusModel::FeedbackStatus' -  (Property)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::FeedbackStatusModel::FeedbackStatusId' -  (Property)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::FeedbackStatusModel::FeedbackStatusModel' -  (Operation)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::Api::EntityFramework::TaskModel' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::System' -  (Package)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::System::Byte' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::System::Collections' -  (Package)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::System::Collections::Generic' -  (Package)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::System::Collections::Generic::ICollection' -  (Interface)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Modeling::System::Collections::Generic::ICollection&lt;FeedbackModel‎&gt;' -  (Interface)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'String' -  (PrimitiveType)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: Modeling::Api::EntityFramework::FeedbackModel to Modeling::System::Byte (Association)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: Modeling::Api::EntityFramework::FeedbackModel to Modeling::Api::EntityFramework::FeedbackStatusModel (Association)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: Modeling::Api::EntityFramework::FeedbackModel to Modeling::Api::EntityFramework::TaskModel (Association)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: Modeling::Api::EntityFramework::FeedbackStatusModel to Modeling::System::Collections::Generic::ICollection&lt;FeedbackModel‎&gt; (Association)" />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="High" Text="(2) type(s) fully reverse engineered." />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="High" Text="(4) type(s) partially reverse engineered.  These types were not included in the original selection so their full definitions are not reverse engineered.  Instead, this shallow operation has simply ensured these types exist in the UML model because they are needed in order to fully describe other elements." />
+  <Message Timestamp="2015-03-31T13:25:09" Importance="High" Text="The reverse engineering operation completed with (0) error(s), and (0) warning(s)." />
 </Log>
