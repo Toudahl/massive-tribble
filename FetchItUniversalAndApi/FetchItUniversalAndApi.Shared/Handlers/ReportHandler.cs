@@ -12,8 +12,7 @@ namespace FetchItUniversalAndApi.Handlers
 {
     class ReportHandler: ICreate, IDelete, IDisable, ISuspend, IUpdate
     {
-        //TODO: Might need to change the Url.
-        private static readonly string _serverUrl = "http://localhost:36904/api/";
+        private static readonly string _serverUrl = "http://fetchit.mortentoudahl.dk/api/";
         private static Object _lockObject = new object();
         private static ReportHandler _handler;
         private static HttpClient Client { get; set; }
@@ -21,7 +20,10 @@ namespace FetchItUniversalAndApi.Handlers
         // Must be set to the same values as the values in the db.
         public enum ReportStatus
         {
-
+            Active,
+            Suspended,
+            Disabled,
+            Deleted,
         }
 
         private ReportHandler()
@@ -55,16 +57,16 @@ namespace FetchItUniversalAndApi.Handlers
                 {
                     //It is possible to make the url "reports/1" return all statuses numbered 1, etc.
                     //TODO: Possibly find another way to use the Report Status to get the specified reports.
-                    var reportsToReturn = await Client.GetAsync("reports/" + (int)status);
+                    var reportsToReturn = await Client.GetAsync("reportmodels/" + (int)status);
                     if (reportsToReturn.IsSuccessStatusCode)
                     {
-                        var results = reportsToReturn.Content.ReadAsAsync<IEnumerable<ReportModel>>().Result;
+                        var results = await reportsToReturn.Content.ReadAsAsync<IEnumerable<ReportModel>>().Result;
                         return results.ToList();
                     }
                 }
                 catch (Exception exception)
                 {
-                    new MessageDialog(exception.Message).ShowAsync();
+                    throw exception;
                 }
             }
             return new List<ReportModel>();
@@ -85,13 +87,12 @@ namespace FetchItUniversalAndApi.Handlers
                     Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     try
                     {
-                        await Client.PostAsJsonAsync("reports", reportToCreate);
+                        await Client.PostAsJsonAsync("reportmodels", reportToCreate);
                     }
 
-                    //TODO: Create better exception handling.
                     catch (Exception exception)
                     {
-                        new MessageDialog(exception.Message).ShowAsync();
+                        throw exception;
                     }
                 }
             }
@@ -111,25 +112,70 @@ namespace FetchItUniversalAndApi.Handlers
                     Client.BaseAddress = new Uri(_serverUrl);
                     try
                     {
-                        await Client.DeleteAsync("reports/" + reportToDelete.ReportId);
+                        await Client.DeleteAsync("reportmodels/" + reportToDelete.ReportId);
                     }
 
-                    //TODO: Create better exception handling.
                     catch (Exception exception)
                     {
-                        new MessageDialog(exception.Message).ShowAsync();
+                        throw exception;
                     }
                 }
             }
         }
 
-        public void Disable(object obj)
+        /// <summary>
+        /// Changes the status of the Report to Disabled.
+        /// </summary>
+        /// <param name="obj">The report object to disable.</param>
+        public async void Disable(object obj)
         {
+            var reportToDisable = obj as ReportModel;
+            if (reportToDisable != null)
+            {
+                //Todo: Both ReportModel in solution and in Database need a ReportStatusId.
+                reportToDisable.ReportStatusId = (int)ReportStatus.Disabled;
+                using (Client = new HttpClient())
+                {
+                    Client.BaseAddress = new Uri(_serverUrl);
+                    Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    try
+                    {
+                        await Client.PutAsJsonAsync("reportmodels/" + reportToDisable.ReportId, reportToDisable);
+                    }
+                    catch (Exception exception)
+                    {
+                        throw exception;
+                    }
+                }
+            }
             throw new NotImplementedException();
         }
 
-        public void Suspend(object obj)
+        /// <summary>
+        /// Changes the status of the Report to Suspended.
+        /// </summary>
+        /// <param name="obj">The report object to suspend.</param>
+        public async void Suspend(object obj)
         {
+            var reportToSuspend = obj as ReportModel;
+            if (reportToSuspend != null)
+            {
+                //Todo: Both ReportModel in solution and in Database need a ReportStatusId.
+                reportToSuspend.ReportStatusId = (int)ReportStatus.Suspended;
+                using (Client = new HttpClient())
+                {
+                    Client.BaseAddress = new Uri(_serverUrl);
+                    Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    try
+                    {
+                        await Client.PutAsJsonAsync("reportmodels/" + reportToSuspend.ReportId, reportToSuspend);
+                    }
+                    catch (Exception exception)
+                    {
+                        throw exception;
+                    }
+                }
+            }
             throw new NotImplementedException();
         }
 
@@ -148,13 +194,12 @@ namespace FetchItUniversalAndApi.Handlers
                     Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     try
                     {
-                        await Client.PutAsJsonAsync("reports/" + reportToUpdate.ReportId, reportToUpdate);
+                        await Client.PutAsJsonAsync("reportmodels/" + reportToUpdate.ReportId, reportToUpdate);
                     }
 
-                    //TODO: Create better exception handling.
                     catch (Exception exception)
                     {
-                        new MessageDialog(exception.Message).ShowAsync();
+                        throw exception;
                     }
                 }
             }
@@ -184,7 +229,7 @@ namespace FetchItUniversalAndApi.Handlers
             }
             catch (Exception exception)
             {
-                new MessageDialog(exception.Message).ShowAsync();
+                throw exception;
             }
             return newReport;
          }
