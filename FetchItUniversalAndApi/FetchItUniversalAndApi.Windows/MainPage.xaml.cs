@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
+using FetchItUniversalAndApi.Handlers;
+using FetchItUniversalAndApi.Models;
 
 namespace FetchItUniversalAndApi
 {
@@ -25,6 +27,19 @@ namespace FetchItUniversalAndApi
         public MainPage()
         {
             this.InitializeComponent();
+
+            ProfileModel test = new ProfileModel();
+            test.ProfileName = "Morten";
+            test.ProfileAddress = "fake";
+            test.ProfileMobile = "28336567";
+            test.ProfilePassword = "password";
+            test.ProfileEmail = "toudahl@gmail.com";
+            test.ProfileCanReport = 1;
+
+            var ph = ProfileHandler.GetInstance();
+
+            ph.LogIn(test);
+
         }
     }
 }
