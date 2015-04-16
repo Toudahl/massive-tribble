@@ -24,6 +24,7 @@ namespace FetchItUniversalAndApi
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private ProfileHandler ph;
         public MainPage()
         {
             this.InitializeComponent();
@@ -36,10 +37,15 @@ namespace FetchItUniversalAndApi
             test.ProfileEmail = "toudahl@gmail.com";
             test.ProfileCanReport = 1;
 
-            var ph = ProfileHandler.GetInstance();
+            ph = ProfileHandler.GetInstance();
 
-            ph.LogIn(test);
+            //ph.LogIn(test);
 
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            ph.Delete(ph.CurrentLoggedInProfile);
         }
     }
 }

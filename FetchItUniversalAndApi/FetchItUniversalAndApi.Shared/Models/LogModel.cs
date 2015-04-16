@@ -8,6 +8,6 @@ namespace FetchItUniversalAndApi.Models
     {
         public int LogId { get; set; }
         public string LogMessage { get; set; }
-        public System.DateTime LogTime { get; set; }
+        public DateTime LogTime { get; set; }
     }
 }
