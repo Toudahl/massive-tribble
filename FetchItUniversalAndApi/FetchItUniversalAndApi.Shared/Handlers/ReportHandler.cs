@@ -55,14 +55,23 @@ namespace FetchItUniversalAndApi.Handlers
                 Client.BaseAddress = new Uri(_serverUrl);
                 try
                 {
-                    //It is possible to make the url "reports/1" return all statuses numbered 1, etc.
+                    //It is possible to make the url "reportmodels/status/1" return all statuses numbered 1, etc.
                     //TODO: Possibly find another way to use the Report Status to get the specified reports.
-                    var reportsToReturn = await Client.GetAsync("reportmodels/" + (int)status);
+                    var reportsToReturn = await Client.GetAsync("reportmodels/status/" + (int)status);
                     if (reportsToReturn.IsSuccessStatusCode)
                     {
-                        var results = await reportsToReturn.Content.ReadAsAsync<IEnumerable<ReportModel>>().Result;
+                        var results = reportsToReturn.Content.ReadAsAsync<IEnumerable<ReportModel>>().Result;
                         return results.ToList();
                     }
+
+                    //This is another way of doing it
+                    //var reports = await Client.GetAsync("reportmodels");
+                    //if (reports.IsSuccessStatusCode)
+                    //{
+                    //    var results = reports.Content.ReadAsAsync<IEnumerable<ReportModel>>().Result.ToList();
+                    //    var resultsToReturn = results.Select(report => report.ReportStatusId = (int)status);
+                    //    return resultsToReturn;
+                    //}
                 }
                 catch (Exception exception)
                 {
@@ -211,7 +220,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// <param name="target">The target profile of the report.</param>
         /// <param name="source">The profile that is making the report.</param>
         /// <param name="reportsContent">The comment provided with the report.</param>
-        public ReportModel CreateNewReport(ProfileModel target, ProfileModel source, string reportsContent)
+        public ReportModel CreateNewReport(ProfileModel target, string reportsContent)
         {
             ReportModel newReport = null;
             try
@@ -220,11 +229,12 @@ namespace FetchItUniversalAndApi.Handlers
                 {
                     //Fills in all the fields except for the ReportId
                     FK_ReportedProfile = target.ProfileId,
-                    FK_ReportingProfile = source.ProfileId,
+                    FK_ReportingProfile = ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileId,
                     ReportMessage = reportsContent,
                     ReportTime = DateTimeOffset.Now.DateTime,
                     ReportedProfile = target,
-                    ReportingProfile = source
+                    ReportingProfile = ProfileHandler.GetInstance().CurrentLoggedInProfile,
+                    ReportStatusId = (int)ReportStatus.Active,
                 };
             }
             catch (Exception exception)
