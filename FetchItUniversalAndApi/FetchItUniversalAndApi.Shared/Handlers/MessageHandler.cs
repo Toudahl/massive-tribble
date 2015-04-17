@@ -52,6 +52,8 @@ namespace FetchItUniversalAndApi.Handlers
         /// The rating is not optional and must be a number between 1 and 10. It represents how the Taskmaster values the service that the Fetcher provided. 
         /// <param name="optionalText"></param>
         /// OptionalText is optional. Describes in more detail the service the Taskmaster provided.
+        /// <param name="fromTask"></param>
+        /// The Task that the Feedback is assigned to. Get Profile info through here.
         public static async void CreateFeedback(int rating, string optionalText, TaskModel fromTask)
         {
             if (rating < 1 || rating > 10)
@@ -70,8 +72,6 @@ namespace FetchItUniversalAndApi.Handlers
             {
                 throw new InvalidCastException("The rating parameter provided is not castable to byte.");
             }
-            //TODO: Add the Httpclient.PostAsJsonAsync to update the data on the database through the webApi. Missing the reference needed for webapi json calls 
-            //TODO: The object being PUT needs to be formatted so that the webApi can put it in the right database.
             try
             {
                 msgWebClient.PostAsJsonAsync("FeedbackModels", createdFeedback);
@@ -86,6 +86,8 @@ namespace FetchItUniversalAndApi.Handlers
         /// A method that returns a collection of all Feedback objects
         /// </summary>
         /// <returns> A IENumerable collection of Feedback objects</returns>
+        /// <param name="status"></param>
+        /// Tells the API which Feedbacks you want to get (Active/Disabled...)
         public static IEnumerable<FeedbackModel> GetFeedback(FeedbackStatus status)
         {
                 try
@@ -100,14 +102,30 @@ namespace FetchItUniversalAndApi.Handlers
             
         }
 
-        public static void CreateTaskComment(TaskModel taskObj)
+        public static void CreateTaskComment(TaskModel toTask)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Returns IENumerable of Task Comments from the Task provided.
+        /// If there are no Comments then it returns an empty IENumerable.
+        /// </summary>
+        /// <param name="fromTask"></param>
+        /// The Task ti
+        /// <returns></returns>
         public static IEnumerable<CommentModel> GetTaskComments(TaskModel fromTask)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var updatedTask = Task.Run(async () => await msgWebClient.GetAsync("TaskModels/" + fromTask.TaskId));
+                var taskComments = updatedTask.Result.Content.ReadAsAsync<TaskModel>().Result;
+                return taskComments.Comments;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public static void SendEmail(EmailModel email)
