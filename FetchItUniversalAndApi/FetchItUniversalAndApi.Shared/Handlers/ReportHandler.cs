@@ -48,30 +48,22 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="status">The type of status to return.</param>
         /// <returns></returns>
-        public async Task<IEnumerable<ReportModel>> GetReports(ReportStatus status)
+        public IEnumerable<ReportModel> GetReports(ReportStatus status)
         {
             using (Client = new HttpClient())
             {
                 Client.BaseAddress = new Uri(_serverUrl);
+                Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 try
                 {
-                    //It is possible to make the url "reportmodels/status/1" return all statuses numbered 1, etc.
+                    //Does not use the ReportStatusId at this point, now it just returns all the reports from the database.
+                    //TODO: Find a way to use the Report Status to get the specified reports.
+                    var reports = Task.Run(async () => await Client.GetAsync("reportmodels"));
+                    return reports.Result.Content.ReadAsAsync<IEnumerable<ReportModel>>().Result;
+                    
                     //TODO: Possibly find another way to use the Report Status to get the specified reports.
-                    var reportsToReturn = await Client.GetAsync("reportmodels/status/" + (int)status);
-                    if (reportsToReturn.IsSuccessStatusCode)
-                    {
-                        var results = reportsToReturn.Content.ReadAsAsync<IEnumerable<ReportModel>>().Result;
-                        return results.ToList();
-                    }
-
-                    //This is another way of doing it
-                    //var reports = await Client.GetAsync("reportmodels");
-                    //if (reports.IsSuccessStatusCode)
-                    //{
-                    //    var results = reports.Content.ReadAsAsync<IEnumerable<ReportModel>>().Result.ToList();
-                    //    var resultsToReturn = results.Select(report => report.ReportStatusId = (int)status);
-                    //    return resultsToReturn;
-                    //}
+                    //Through something called Attribute routing, it is easily possible to make the 
+                    //url "reportmodels/status/1" return all statuses numbered 1, etc.
                 }
                 catch (Exception exception)
                 {
@@ -93,7 +85,7 @@ namespace FetchItUniversalAndApi.Handlers
                 using (Client = new HttpClient())
                 {
                     Client.BaseAddress = new Uri(_serverUrl);
-                    Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    Client.DefaultRequestHeaders.Accept.Add(new M   ediaTypeWithQualityHeaderValue("application/json"));
                     try
                     {
                         await Client.PostAsJsonAsync("reportmodels", reportToCreate);
@@ -228,6 +220,7 @@ namespace FetchItUniversalAndApi.Handlers
                 newReport = new ReportModel
                 {
                     //Fills in all the fields except for the ReportId
+                    //Todo: Both ReportModel in solution and in Database need a ReportStatusId.
                     FK_ReportedProfile = target.ProfileId,
                     FK_ReportingProfile = ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileId,
                     ReportMessage = reportsContent,
