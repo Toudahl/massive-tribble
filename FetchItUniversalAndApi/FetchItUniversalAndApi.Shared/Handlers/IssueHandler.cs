@@ -1,21 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
-using Windows.UI.Core.AnimationMetrics;
 using FetchItUniversalAndApi.Handlers.Interfaces;
 using FetchItUniversalAndApi.Models;
 
 namespace FetchItUniversalAndApi.Handlers
 {
-    class IssueHandler: ICreate, IDelete, IDisable, ISearch, ISuspend, IUpdate
+  public  class IssueHandler: ICreate, IDelete, IDisable, ISearch, ISuspend, IUpdate
     {
         private IssueModel _newIssue;
         private IssueModel _selectedIssue;
         private IssueHandler _handler;
         private IEnumerable<IssueModel> _currentIssues;
+      private string _userInput;
+      //HttpClient httpClient = new HttpClient();
+        private const string issuemodelurl = "http://fetchit.mortentoudahl.dk/api/IssueModels";
+        public enum IssueStatus
+        {
+            Deleted = 3,
+            Suspended = 4,
+            Disabled = 5,
+            Active = 6,
+            Unactivated = 7
+        }
+      public string UserInput
+      {
+          get { return _userInput; }
+          set { _userInput = value; }
+      }
 
-        public IEnumerable<IssueModel> CurrentIssues
+      public IEnumerable<IssueModel> CurrentIssues
         {
             get { return _currentIssues; }
             set { _currentIssues = value; }
@@ -39,24 +56,42 @@ namespace FetchItUniversalAndApi.Handlers
             set { _selectedIssue = value; }
         }
 
-        public void Create(object obj)
+        public async void Create(object obj)
         {
-            _handler.Create(_newIssue);
+            if (obj is IssueModel)
+            {
+                
+                
+                    using (var client = new HttpClient())
+                    {
+                        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("appliaction/json"));
+                        await client.PostAsJsonAsync(issuemodelurl, obj);
+                    }
+                
+            }
+
+           
         }
 
         public void Delete(object obj)
         {
-            _handler.Delete(_selectedIssue);
+            if (obj is IssueModel)
+            {
+                _selectedIssue.IssueStatus.IssueStatus = IssueStatus.Deleted.ToString();
+            }
         }
 
         public void Disable(object obj)
         {
-            _handler.Disable(_selectedIssue);
+            if (obj is IssueModel)
+            {
+                _selectedIssue.IssueStatus.IssueStatus = IssueStatus.Disabled.ToString();
+            }
         }
 
         public IEnumerable<object> Search(object obj)
         {
-            string userinput = "test input";
+            string userinput = _userInput;
 
             foreach (IssueModel issueModel in _currentIssues.Where(issue => issue.IssueTitle.Contains(userinput)))
             {
@@ -67,12 +102,17 @@ namespace FetchItUniversalAndApi.Handlers
 
         public void Suspend(object obj)
         {
-            throw new NotImplementedException();
+            if (obj is IssueModel)
+            {
+                _selectedIssue.IssueStatus.IssueStatus = IssueStatus.Suspended.ToString();
+            }
         }
 
         public void Update(object obj)
         {
-            throw new NotImplementedException();
+            
         }
+
+     
     }
 }
