@@ -15,7 +15,7 @@ namespace FetchItUniversalAndApi.Handlers
         private IssueModel _selectedIssue;
         private IssueHandler _handler;
         private IEnumerable<IssueModel> _currentIssues;
-      private string _userInput;
+        private string _userInput;
       //HttpClient httpClient = new HttpClient();
         private const string issuemodelurl = "http://fetchit.mortentoudahl.dk/api/IssueModels";
         public enum IssueStatus
@@ -71,7 +71,7 @@ namespace FetchItUniversalAndApi.Handlers
             }
             else
             {
-                throw new WrongModel();
+                throw new WrongModel("The supplied model was not of the expected type");
             }
 
            
@@ -82,11 +82,12 @@ namespace FetchItUniversalAndApi.Handlers
             
             if (obj is IssueModel)
             {
-                _selectedIssue.IssueStatus.IssueStatus = IssueStatus.Deleted.ToString();
+                _selectedIssue.FK_IssueStatus = (int)IssueStatus.Deleted;
+                Update(_selectedIssue);
             }
             else
             {
-                throw new WrongModel();
+                throw new WrongModel("The supplied model was not of the expected type");
             }
         }
 
@@ -94,11 +95,12 @@ namespace FetchItUniversalAndApi.Handlers
         {
             if (obj is IssueModel)
             {
-                _selectedIssue.IssueStatus.IssueStatus = IssueStatus.Disabled.ToString();
+                _selectedIssue.FK_IssueStatus = (int)IssueStatus.Disabled;
+                Update(_selectedIssue);
             }
             else
             {
-                throw new WrongModel();
+                throw new WrongModel("The supplied model was not of the expected type");
             }
         }
 
@@ -113,21 +115,41 @@ namespace FetchItUniversalAndApi.Handlers
             return _currentIssues;
         }
 
-        public void Suspend(object obj)
+        public  void Suspend(object obj)
         {
             if (obj is IssueModel)
             {
-                _selectedIssue.IssueStatus.IssueStatus = IssueStatus.Suspended.ToString();
+                _selectedIssue.FK_IssueStatus = (int)IssueStatus.Suspended;
+                Update(_selectedIssue);
             }
             else
             {
-                throw new WrongModel("Wrong Model");
+                throw new WrongModel("The supplied model was not of the expected type");
             }
         }
 
-        public void Update(object obj)
+        public async void Update(object obj)
         {
-            
+            if (obj is IssueModel)
+            {
+
+                
+                using (HttpClient client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(issuemodelurl);
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    try
+                    {
+                        await client.PutAsJsonAsync("IssueModels/"+_selectedIssue.IssueId,_selectedIssue);
+
+                    }
+                    catch (Exception)
+                    {
+
+                        throw new WrongModel();
+                    }
+                }
+            }
         }
 
      
