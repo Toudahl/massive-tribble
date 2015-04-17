@@ -69,15 +69,24 @@ namespace FetchItUniversalAndApi.Handlers
                     }
                 
             }
+            else
+            {
+                throw new WrongModel();
+            }
 
            
         }
 
         public void Delete(object obj)
         {
+            
             if (obj is IssueModel)
             {
                 _selectedIssue.IssueStatus.IssueStatus = IssueStatus.Deleted.ToString();
+            }
+            else
+            {
+                throw new WrongModel();
             }
         }
 
@@ -86,6 +95,10 @@ namespace FetchItUniversalAndApi.Handlers
             if (obj is IssueModel)
             {
                 _selectedIssue.IssueStatus.IssueStatus = IssueStatus.Disabled.ToString();
+            }
+            else
+            {
+                throw new WrongModel();
             }
         }
 
@@ -106,6 +119,10 @@ namespace FetchItUniversalAndApi.Handlers
             {
                 _selectedIssue.IssueStatus.IssueStatus = IssueStatus.Suspended.ToString();
             }
+            else
+            {
+                throw new WrongModel("Wrong Model");
+            }
         }
 
         public void Update(object obj)
@@ -114,5 +131,23 @@ namespace FetchItUniversalAndApi.Handlers
         }
 
      
+    }
+
+    public class WrongModel : Exception
+    {
+        public WrongModel()
+        {
+            
+        }
+        public WrongModel(string message) :base(message)
+        {
+
+        }
+
+        public WrongModel(string message, Exception inner):base(message,inner)
+        {
+            
+        }
+
     }
 }
