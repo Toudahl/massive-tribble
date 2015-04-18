@@ -62,6 +62,7 @@ namespace FetchItUniversalAndApi
             //testNotification.NotificationContent = "lololol, I hate ya guts";
             //MessageHandler.SendNotification(testNotification);
             IEnumerable<NotificationModel> testCollection = MessageHandler.GetNotifications();
+            EmailModel testEmail = new EmailModel("lol, this is not a joke", "Prufupóstur", "lalli.oni@gmail.com");
         }
     }
 }

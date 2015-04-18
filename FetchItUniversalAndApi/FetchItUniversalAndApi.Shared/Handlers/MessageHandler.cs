@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -8,6 +9,9 @@ using System.Threading.Tasks;
 using Windows.Data.Json;
 using FetchItUniversalAndApi.Handlers.Interfaces;
 using FetchItUniversalAndApi.Models;
+using Limilabs.Mail;
+using Limilabs.Mail.Headers;
+using Limilabs.Client.SMTP;
 
 namespace FetchItUniversalAndApi.Handlers
 {
@@ -188,16 +192,38 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="email"></param>
         /// The EmailModel with receiving e-mail toAddress, subject and message
-        public static void SendEmail(EmailModel email)
+        public static async void SendEmail(EmailModel email, EmailType emailType, ProfileModel receivingProfile)
         {
-            //I love stealing from Morten
-            //var url = "http://fetchit.mortentoudahl.dk";
-            //var profileToActivate = email.;
-            //var profileActivationId = ;
-            //var profileEmail = email;
+            string url = "http://fetchit.mortentoudahl.dk";
+            if (emailType == EmailType.Activation)
+            {
+                url += "?" + emailType + "=" + receivingProfile.ProfileName;
+                url += "&id=" + receivingProfile.ProfileAuthCode;
+            }
 
-            //url += "?" + emailType + "=" + profileToActivate;
-            //url += "&id=" + profileActivationId;
+            MailBuilder emailBuilder = new MailBuilder();
+            #region Build Email
+            emailBuilder.From.Add(new MailBox("zibat.fetchit@gmail.com","Fetch-It"));
+            emailBuilder.To.Add(new MailBox(receivingProfile.ProfileEmail, receivingProfile.ProfileName));
+            emailBuilder.Subject = email.Subject;
+            emailBuilder.Text = email.Message + url;
+            IMail emailSending = emailBuilder.Create();
+            #endregion
+            #region Send Email
+            using (Smtp smtp = new Smtp())
+            {
+                smtp.Connect("smtp.google.com");
+
+                ISendMessageResult result = smtp.SendMessage(emailSending);
+                if (result.Status != SendMessageStatus.Success)
+                {
+                    //TODO: Make it a custom exc.
+                    //throw new Exception("Omg e-mail sending didn't work!");
+                }
+                smtp.Close();
+            }
+
+            #endregion
             throw new NotImplementedException();
         }
 
