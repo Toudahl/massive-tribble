@@ -12,6 +12,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using FetchItUniversalAndApi.Handlers;
+using FetchItUniversalAndApi.Models;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -22,9 +24,23 @@ namespace FetchItUniversalAndApi
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private TaskHandler th;
         public MainPage()
         {
             this.InitializeComponent();
+            TaskModel testTask = new TaskModel();
+
+            testTask.FK_TaskStatus = (int) TaskHandler.TaskStatus.Active;
+            testTask.FK_TaskMaster = 11;
+            testTask.TaskDeadline = DateTime.UtcNow;
+            testTask.TaskDescription = "asdasdasd";
+            testTask.TaskEndPointAddress = "Roskidle";
+            testTask.TaskFee = 123;
+            testTask.TaskItemPrice = 100;
+            testTask.TaskTimeCreated = DateTime.UtcNow;
+
+            th = TaskHandler.GetInstance();
+            th.Create(testTask);
         }
     }
 }
