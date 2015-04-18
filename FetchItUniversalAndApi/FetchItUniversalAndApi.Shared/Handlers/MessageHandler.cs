@@ -61,9 +61,11 @@ namespace FetchItUniversalAndApi.Handlers
                 throw new Exception("Rating is out of bounds. Must be between 1 and 10. Contact Þór for free cookies and milk for discovering the bug.");
             }
             FeedbackModel createdFeedback = new FeedbackModel();
+            #region Build Feedback
             createdFeedback.FeedbackComment = optionalText;
             createdFeedback.FK_FeedbackForTask = fromTask.TaskId;
             createdFeedback.FK_FeedbackStatus = (int) FeedbackStatus.Active;
+            #endregion
             try
             {
                 createdFeedback.FeedbackRating = (byte)rating;
@@ -102,9 +104,43 @@ namespace FetchItUniversalAndApi.Handlers
             
         }
 
-        public static void CreateTaskComment(TaskModel toTask)
+        /// <summary>
+        /// Creates a CommentModel item in the corresponding Task.
+        /// Sets the time created and the author of it.
+        /// </summary>
+        /// <param name="toTask"></param>
+        /// <param name="comment"></param>
+        /// <param name="authorProfile"></param>
+        public static void CreateTaskComment(TaskModel toTask, string comment, ProfileModel authorProfile)
         {
-            throw new NotImplementedException();
+            try
+            {
+                CommentModel newComment = new CommentModel();
+                var updatedTaskStream = Task.Run(async () => await msgWebClient.GetAsync("TaskModels/" + toTask.TaskId));
+                var updatedTask = updatedTaskStream.Result.Content.ReadAsAsync<TaskModel>().Result;
+                #region Build Comment
+                newComment.CommentText = comment;
+                newComment.CommentTimeCreated = DateTime.UtcNow;
+                newComment.FK_CommentTask = toTask.TaskId;
+                newComment.FK_CommentCreator = authorProfile.ProfileId;
+                newComment.Task = toTask;
+                newComment.Profile = authorProfile;
+                #endregion
+                updatedTask.Comments.Add(newComment);
+                try
+                {
+                    //TaskHandler.UpdateTask(updatedTask);
+                }
+                catch (Exception)
+                {
+                    
+                    throw;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -118,9 +154,9 @@ namespace FetchItUniversalAndApi.Handlers
         {
             try
             {
-                var updatedTask = Task.Run(async () => await msgWebClient.GetAsync("TaskModels/" + fromTask.TaskId));
-                var taskComments = updatedTask.Result.Content.ReadAsAsync<TaskModel>().Result;
-                return taskComments.Comments;
+                var updatedTaskStream = Task.Run(async () => await msgWebClient.GetAsync("TaskModels/" + fromTask.TaskId));
+                var updatedTask = updatedTaskStream.Result.Content.ReadAsAsync<TaskModel>().Result;
+                return updatedTask.Comments;
             }
             catch (Exception)
             {
