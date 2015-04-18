@@ -38,21 +38,30 @@ namespace FetchItUniversalAndApi
             this.InitializeComponent();
             msgWebClient.BaseAddress = new Uri(serverLocation);
             msgWebClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            try
-            {
-                var reports = Task.Run(async () => await msgWebClient.GetAsync("TaskModels"));
-                taskList = reports.Result.Content.ReadAsAsync<IEnumerable<TaskModel>>().Result;
-            }
-            catch (Exception)
-            {
+            //try
+            //{
+            //    var reports = Task.Run(async () => await msgWebClient.GetAsync("TaskModels"));
+            //    taskList = reports.Result.Content.ReadAsAsync<IEnumerable<TaskModel>>().Result;
+            //}
+            //catch (Exception)
+            //{
 
-                throw;
-            }
-            TaskModel testTask = taskList.ElementAt(1);
+            //    throw;
+            //}
+            //TaskModel testTask = taskList.ElementAt(1);
             //MessageHandler.CreateFeedback(rating, comment, testTask);
             //IEnumerable<FeedbackModel> testFeedbacks = MessageHandler.GetFeedback(MessageHandler.FeedbackStatus.Active);
             //List<FeedbackModel> testFeedbackList = testFeedbacks.ToList();
-            var testVar = MessageHandler.GetTaskComments(testTask);
+            //var testVar = MessageHandler.GetTaskComments(testTask);
+            //NotificationStatusModel testshit = new NotificationStatusModel();
+            //testshit.NotificationStatus = "Disabled";
+            //msgWebClient.PostAsJsonAsync("NotificationStatusModels", testshit);
+            //NotificationModel testNotification = new NotificationModel();
+            //testNotification.FK_NotificationFrom = 11;
+            //testNotification.FK_NotificationTo = 13;
+            //testNotification.NotificationContent = "lololol, I hate ya guts";
+            //MessageHandler.SendNotification(testNotification);
+            IEnumerable<NotificationModel> testCollection = MessageHandler.GetNotifications();
         }
     }
 }

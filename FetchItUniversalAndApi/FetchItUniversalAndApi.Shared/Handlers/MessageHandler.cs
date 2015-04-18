@@ -20,11 +20,30 @@ namespace FetchItUniversalAndApi.Handlers
     #region Enums
         public enum FeedbackStatus
         {
-            DeleteDeleted = 2,
+            Deleted = 2,
             Suspended = 3,
             Disabled = 4,
             Active = 5,
             Unactivated = 6
+        }
+
+        public enum NotificationStatus
+        {
+            Unread = 1,
+            Read = 2,
+            Disabled = 3,
+        }
+
+        /// <summary>
+        /// The types of E-mails that the Handler can send.
+        /// </summary>
+        public enum EmailType
+        {
+            Activation,
+            NewEmailVerification,
+            NewPasswordVerification,
+            NotificationEmail,
+            AdministratorMessage,
         }
     #endregion
 
@@ -148,8 +167,8 @@ namespace FetchItUniversalAndApi.Handlers
         /// If there are no Comments then it returns an empty IENumerable.
         /// </summary>
         /// <param name="fromTask"></param>
-        /// The Task ti
-        /// <returns></returns>
+        /// The Task that you want the comments from
+        /// <returns>IENumerable of CommentModel</returns>
         public static IEnumerable<CommentModel> GetTaskComments(TaskModel fromTask)
         {
             try
@@ -164,19 +183,61 @@ namespace FetchItUniversalAndApi.Handlers
             }
         }
 
+        /// <summary>
+        /// Sends an E-mail from the system. Doesn't add any text to the message body.
+        /// </summary>
+        /// <param name="email"></param>
+        /// The EmailModel with receiving e-mail toAddress, subject and message
         public static void SendEmail(EmailModel email)
         {
+            //I love stealing from Morten
+            //var url = "http://fetchit.mortentoudahl.dk";
+            //var profileToActivate = email.;
+            //var profileActivationId = ;
+            //var profileEmail = email;
+
+            //url += "?" + emailType + "=" + profileToActivate;
+            //url += "&id=" + profileActivationId;
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Creates a Notification object and sends it to the database server using POST by parsing it to json.
+        /// </summary>
+        /// <param name="notification"></param>
+        /// NotificationModel with everything inputted except NotificationId (should be null!) FK_NotificationStatus and NotificationSent.
         public static void SendNotification(NotificationModel notification)
         {
-            throw new NotImplementedException();
+            #region Build Notification
+            notification.FK_NotificationStatus = 1;
+            notification.NotificationSent = DateTime.UtcNow;
+            #endregion
+            try
+            {
+                msgWebClient.PostAsJsonAsync("NotificationModels", notification);
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
         }
 
+        /// <summary>
+        /// A method that returns a collection of all Feedback objects
+        /// </summary>
+        /// <returns>IENumerable of NotificationModels</returns>
         public static IEnumerable<NotificationModel> GetNotifications()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var notificationsStream = Task.Run(async () => await msgWebClient.GetAsync("NotificationModels"));
+                return notificationsStream.Result.Content.ReadAsAsync<IEnumerable<NotificationModel>>().Result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     #endregion
     }
