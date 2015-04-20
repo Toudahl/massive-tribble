@@ -14,7 +14,7 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
             <TextBox Text="Brugernavn"/>
             <PasswordBox />
-            <Button Content="Log in" HorizontalAlignment="Center" ClickMode="Press" Click="ButtonBase_OnClick"/>
+            <Button Content="Log in" HorizontalAlignment="Center" ClickMode="Press"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -55,6 +55,7 @@ namespace FetchItUniversalAndApi.Handlers
         private const string Apiurl = "http://fetchit.mortentoudahl.dk/api/ProfileModels";
         private ProfileModel _currentLoggedInProfile;
         private ProfileModel _selectedProfile;
+        private IEnumerable<ProfileModel> _allProfiles;
         private static ProfileHandler _handler;
         private static Object _lockObject = new object();
 
@@ -76,6 +77,16 @@ namespace FetchItUniversalAndApi.Handlers
             get { return _selectedProfile; }
             set { _selectedProfile = value; }
         }
+
+        /// <summary>
+        /// Contains all profiles.
+        /// </summary>
+        public IEnumerable<ProfileModel> AllProfiles
+        {
+            get { return _allProfiles; }
+            set { _allProfiles = value; }
+        }
+
         #endregion
 
         #region Singleton section
@@ -162,14 +173,7 @@ namespace FetchItUniversalAndApi.Handlers
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    try
-                    {
-                        await client.PostAsJsonAsync(Apiurl, newProfile);
-                    }
-                    catch (Exception)
-                    {
-                        throw;
-                    }
+                    await client.PostAsJsonAsync(Apiurl, newProfile);
                 }
             }
             else
@@ -259,14 +263,7 @@ namespace FetchItUniversalAndApi.Handlers
                 var url = Apiurl + "/" + profil.ProfileId;
                 using (var client = new HttpClient())
                 {
-                    try
-                    {
-                        await client.PutAsJsonAsync(url, profil);
-                    }
-                    catch (Exception)
-                    {
-                        throw;
-                    }
+                    await client.PutAsJsonAsync(url, profil);
                 }
             }
             throw new WrongModel("The supplied model was not of the expected type");
@@ -377,9 +374,17 @@ namespace FetchItUniversalAndApi.Handlers
                 }
                 catch (Exception)
                 {
-                    //TODO failed to update the db.
-                    throw new NotImplementedException();
+                    throw;
                 }
+            }
+        }
+
+        public async void GetAllProfiles()
+        {
+            using (var client = new HttpClient())
+            {
+                var result = await client.GetStringAsync(Apiurl);
+                AllProfiles = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<ProfileModel>>(result));
             }
         }
 
@@ -431,6 +436,7 @@ namespace FetchItUniversalAndApi.Handlers
         #endregion
     }
 
+    #region exceptions
     internal class FailedLogIn : Exception
     {
         private string _externalIp;
@@ -450,7 +456,7 @@ namespace FetchItUniversalAndApi.Handlers
         {
             lh = LogHandler.GetInstance();
             var logMessage = message + "\nIP associated with the attempt: " + getExternalIP().Result;
-            lh.Create(new LogModel {LogMessage = logMessage});
+            lh.Create(new LogModel {LogMessage = logMessage, LogTime = DateTime.UtcNow});
         }
 
         private static async Task<string> getExternalIP()
@@ -562,4 +568,5 @@ namespace FetchItUniversalAndApi.Handlers
             
         }
     }
+    #endregion
 }

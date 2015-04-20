@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.ServiceModel.Channels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -24,28 +25,10 @@ namespace FetchItUniversalAndApi
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private ProfileHandler ph;
         public MainPage()
         {
             this.InitializeComponent();
-
-            ProfileModel test = new ProfileModel();
-            test.ProfileName = "Morten";
-            test.ProfileAddress = "fake";
-            test.ProfileMobile = "28336567";
-            test.ProfilePassword = "password";
-            test.ProfileEmail = "toudahl@gmail.com";
-            test.ProfileCanReport = 1;
-
-            ph = ProfileHandler.GetInstance();
-
-            //ph.LogIn(test);
-
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            ph.Delete(ph.CurrentLoggedInProfile);
-        }
     }
 }
