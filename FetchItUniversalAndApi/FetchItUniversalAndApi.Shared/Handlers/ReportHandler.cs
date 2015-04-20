@@ -246,9 +246,9 @@ namespace FetchItUniversalAndApi.Handlers
                     FK_ReportedProfile = target.ProfileId,
                     FK_ReportingProfile = ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileId,
                     ReportMessage = reportsContent,
-                    ReportTime = DateTimeOffset.Now.DateTime,
-                    ReportedProfile = target,
-                    ReportingProfile = ProfileHandler.GetInstance().CurrentLoggedInProfile,
+                    ReportTime = DateTime.UtcNow,
+                    //ReportedProfile = target,
+                    //ReportingProfile = ProfileHandler.GetInstance().CurrentLoggedInProfile,
                     //ReportStatusId = (int)ReportStatus.Active,
                 };
             }
