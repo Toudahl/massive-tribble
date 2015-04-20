@@ -10,6 +10,10 @@ using FetchItUniversalAndApi.Models;
 
 namespace FetchItUniversalAndApi.Handlers
 {
+    //Author: Kristinn Þór Jónsson
+    /// <summary>
+    /// Handles getting, deleting, creating and updating Reports.
+    /// </summary>
     class ReportHandler: ICreate, IDelete, IDisable, ISuspend, IUpdate
     {
         private static readonly string _serverUrl = "http://fetchit.mortentoudahl.dk/api/";
@@ -85,7 +89,7 @@ namespace FetchItUniversalAndApi.Handlers
                 using (Client = new HttpClient())
                 {
                     Client.BaseAddress = new Uri(_serverUrl);
-                    Client.DefaultRequestHeaders.Accept.Add(new M   ediaTypeWithQualityHeaderValue("application/json"));
+                    Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     try
                     {
                         await Client.PostAsJsonAsync("reportmodels", reportToCreate);
@@ -96,6 +100,10 @@ namespace FetchItUniversalAndApi.Handlers
                         throw exception;
                     }
                 }
+            }
+            else
+            {
+                throw new WrongModel("The supplied model was not of the expected type");
             }
         }
 
@@ -121,6 +129,10 @@ namespace FetchItUniversalAndApi.Handlers
                         throw exception;
                     }
                 }
+            }
+            else
+            {
+                throw new WrongModel("The supplied model was not of the expected type");
             }
         }
 
@@ -149,7 +161,10 @@ namespace FetchItUniversalAndApi.Handlers
                     }
                 }
             }
-            throw new NotImplementedException();
+            else
+            {
+                throw new WrongModel("The supplied model was not of the expected type");
+            }
         }
 
         /// <summary>
@@ -177,7 +192,10 @@ namespace FetchItUniversalAndApi.Handlers
                     }
                 }
             }
-            throw new NotImplementedException();
+            else
+            {
+                throw new WrongModel("The supplied model was not of the expected type");
+            }
         }
 
         /// <summary>
@@ -203,6 +221,10 @@ namespace FetchItUniversalAndApi.Handlers
                         throw exception;
                     }
                 }
+            }
+            else
+            {
+                throw new WrongModel("The supplied model was not of the expected type");
             }
         }
 
@@ -236,5 +258,25 @@ namespace FetchItUniversalAndApi.Handlers
             }
             return newReport;
          }
+
+        //Template for some future Exception handling
+
+        //public class SomethingWentWrong : Exception
+        //{
+        //    public SomethingWentWrong()
+        //    {
+                
+        //    }
+
+        //    public SomethingWentWrong(string message) : base(message)
+        //    {
+
+        //    }
+
+        //    public SomethingWentWrong(string message, Exception inner) : base(message, inner)
+        //    {
+
+        //    }
+        //}
     }
 }
