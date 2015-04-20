@@ -9,9 +9,6 @@ using System.Threading.Tasks;
 using Windows.Data.Json;
 using FetchItUniversalAndApi.Handlers.Interfaces;
 using FetchItUniversalAndApi.Models;
-using Limilabs.Mail;
-using Limilabs.Mail.Headers;
-using Limilabs.Client.SMTP;
 
 namespace FetchItUniversalAndApi.Handlers
 {
@@ -59,7 +56,7 @@ namespace FetchItUniversalAndApi.Handlers
         private static readonly string serverLocation = "http://fetchit.mortentoudahl.dk/api/";
     #endregion
 
-    #region Methods
+        #region Methods
         #region Constructor
         static MessageHandler()
         {
@@ -95,6 +92,7 @@ namespace FetchItUniversalAndApi.Handlers
             }
             catch (Exception)
             {
+                //Add standardized error handling (fx. LogHandler.GetInstance().LogEvent(exception.message) and MessageBox.Show("Yo user, something went wrong!"));
                 throw new InvalidCastException("The rating parameter provided is not castable to byte.");
             }
             try
@@ -103,6 +101,7 @@ namespace FetchItUniversalAndApi.Handlers
             }
             catch (Exception)
             {
+                //Add standardized error handling (fx. LogHandler.GetInstance().LogEvent(exception.message) and MessageBox.Show("Yo user, something went wrong!"));
                 throw;
             }
         }
@@ -122,6 +121,7 @@ namespace FetchItUniversalAndApi.Handlers
                 }
                 catch (Exception exception)
                 {
+                    //Add standardized error handling (fx. LogHandler.GetInstance().LogEvent(exception.message) and MessageBox.Show("Yo user, something went wrong!"));
                     throw exception;
                 }
             
@@ -156,12 +156,13 @@ namespace FetchItUniversalAndApi.Handlers
                 }
                 catch (Exception)
                 {
-                    
+                    //Add standardized error handling (fx. LogHandler.GetInstance().LogEvent(exception.message) and MessageBox.Show("Yo user, something went wrong!"));
                     throw;
                 }
             }
             catch (Exception)
             {
+                //Add standardized error handling (fx. LogHandler.GetInstance().LogEvent(exception.message) and MessageBox.Show("Yo user, something went wrong!"));
                 throw;
             }
         }
@@ -183,48 +184,52 @@ namespace FetchItUniversalAndApi.Handlers
             }
             catch (Exception)
             {
+                //Add standardized error handling (fx. LogHandler.GetInstance().LogEvent(exception.message) and MessageBox.Show("Yo user, something went wrong!"));
                 throw;
             }
         }
 
         /// <summary>
+        /// NOT WORKING. Decided it's not high priority and complicated to implement.
+        /// It should also be on the server anywyas.
         /// Sends an E-mail from the system. Doesn't add any text to the message body.
         /// </summary>
         /// <param name="email"></param>
         /// The EmailModel with receiving e-mail toAddress, subject and message
-        public static async void SendEmail(EmailModel email, EmailType emailType, ProfileModel receivingProfile)
+        public static void SendEmail(EmailModel email, EmailType emailType, ProfileModel receivingProfile)
         {
-            string url = "http://fetchit.mortentoudahl.dk";
-            if (emailType == EmailType.Activation)
-            {
-                url += "?" + emailType + "=" + receivingProfile.ProfileName;
-                url += "&id=" + receivingProfile.ProfileAuthCode;
-            }
+            #region Not working code, just for reference
+            //string url = "http://fetchit.mortentoudahl.dk";
+            //if (emailType == EmailType.Activation)
+            //{
+            //    url += "?" + emailType + "=" + receivingProfile.ProfileName;
+            //    url += "&id=" + receivingProfile.ProfileAuthCode;
+            //}
+            //MailBuilder emailBuilder = new MailBuilder();
+            //#region Build Email
+            //emailBuilder.From.Add(new MailBox("zibat.fetchit@gmail.com","Fetch-It"));
+            //emailBuilder.To.Add(new MailBox(receivingProfile.ProfileEmail, receivingProfile.ProfileName));
+            //emailBuilder.Subject = email.Subject;
+            //emailBuilder.Text = email.Message + url;
+            //IMail emailSending = emailBuilder.Create();
+            //#endregion
+            //#region Send Email
+            //using (Smtp smtp = new Smtp())
+            //{
+            //    smtp.Connect("smtp.google.com");
 
-            MailBuilder emailBuilder = new MailBuilder();
-            #region Build Email
-            emailBuilder.From.Add(new MailBox("zibat.fetchit@gmail.com","Fetch-It"));
-            emailBuilder.To.Add(new MailBox(receivingProfile.ProfileEmail, receivingProfile.ProfileName));
-            emailBuilder.Subject = email.Subject;
-            emailBuilder.Text = email.Message + url;
-            IMail emailSending = emailBuilder.Create();
+            //    ISendMessageResult result = smtp.SendMessage(emailSending);
+            //    if (result.Status != SendMessageStatus.Success)
+            //    {
+            //        //TODO: Make it a custom exc.
+            //        //throw new Exception("Omg e-mail sending didn't work!");
+            //    }
+            //    smtp.Close();
+            //}
+
+            //#endregion
             #endregion
-            #region Send Email
-            using (Smtp smtp = new Smtp())
-            {
-                smtp.Connect("smtp.google.com");
-
-                ISendMessageResult result = smtp.SendMessage(emailSending);
-                if (result.Status != SendMessageStatus.Success)
-                {
-                    //TODO: Make it a custom exc.
-                    //throw new Exception("Omg e-mail sending didn't work!");
-                }
-                smtp.Close();
-            }
-
-            #endregion
-            throw new NotImplementedException();
+            throw new NotImplementedException("Talk to Lárus Þór if you need this implemented. If you don't NEED this, think of this is low priority.");
         }
 
         /// <summary>
@@ -244,7 +249,7 @@ namespace FetchItUniversalAndApi.Handlers
             }
             catch (Exception)
             {
-                
+                //Add standardized error handling (fx. LogHandler.GetInstance().LogEvent(exception.message) and MessageBox.Show("Yo user, something went wrong!"));
                 throw;
             }
         }
@@ -262,6 +267,7 @@ namespace FetchItUniversalAndApi.Handlers
             }
             catch (Exception)
             {
+                //Add standardized error handling (fx. LogHandler.GetInstance().LogEvent(exception.message) and MessageBox.Show("Yo user, something went wrong!"));
                 throw;
             }
         }
