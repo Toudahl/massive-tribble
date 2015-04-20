@@ -5,9 +5,16 @@
     xmlns:local="using:FetchItUniversalAndApi"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:FetchItUniversalAndApi.ViewModel"
     mc:Ignorable="d">
-
+<Page.DataContext>
+        <viewModel:MainPageViewModel/>
+</Page.DataContext>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
+            <TextBox Text="Brugernavn"/>
+            <PasswordBox />
+            <Button Content="Log in" HorizontalAlignment="Center" ClickMode="Press"/>
+        </StackPanel>
     </Grid>
 </Page>

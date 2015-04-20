@@ -18,6 +18,7 @@ namespace Api.EntityFramework
         public fetchitEntities()
             : base("name=fetchitEntities")
         {
+            Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
