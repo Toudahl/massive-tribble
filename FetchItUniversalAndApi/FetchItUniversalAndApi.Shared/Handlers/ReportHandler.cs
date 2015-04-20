@@ -146,7 +146,7 @@ namespace FetchItUniversalAndApi.Handlers
             if (reportToDisable != null)
             {
                 //Todo: Both ReportModel in solution and in Database need a ReportStatusId.
-                reportToDisable.ReportStatusId = (int)ReportStatus.Disabled;
+                //reportToDisable.ReportStatusId = (int)ReportStatus.Disabled;
                 using (Client = new HttpClient())
                 {
                     Client.BaseAddress = new Uri(_serverUrl);
@@ -177,7 +177,7 @@ namespace FetchItUniversalAndApi.Handlers
             if (reportToSuspend != null)
             {
                 //Todo: Both ReportModel in solution and in Database need a ReportStatusId.
-                reportToSuspend.ReportStatusId = (int)ReportStatus.Suspended;
+                //reportToSuspend.ReportStatusId = (int)ReportStatus.Suspended;
                 using (Client = new HttpClient())
                 {
                     Client.BaseAddress = new Uri(_serverUrl);
@@ -249,7 +249,7 @@ namespace FetchItUniversalAndApi.Handlers
                     ReportTime = DateTimeOffset.Now.DateTime,
                     ReportedProfile = target,
                     ReportingProfile = ProfileHandler.GetInstance().CurrentLoggedInProfile,
-                    ReportStatusId = (int)ReportStatus.Active,
+                    //ReportStatusId = (int)ReportStatus.Active,
                 };
             }
             catch (Exception exception)
