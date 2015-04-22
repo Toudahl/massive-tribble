@@ -16,8 +16,8 @@ namespace FetchItUniversalAndApi.Handlers
         private IssueHandler _handler;
         private IEnumerable<IssueModel> _currentIssues;
         private string _userInput;
-      //HttpClient httpClient = new HttpClient();
         private const string issuemodelurl = "http://fetchit.mortentoudahl.dk/api/IssueModels";
+
         public enum IssueStatus
         {
             Deleted = 3,
@@ -71,8 +71,8 @@ namespace FetchItUniversalAndApi.Handlers
             }
             else
             {
-                throw new WrongModel("The supplied model was not of the expected type");
-            }
+                CreateLog();
+              }
 
            
         }
@@ -87,7 +87,7 @@ namespace FetchItUniversalAndApi.Handlers
             }
             else
             {
-                throw new WrongModel("The supplied model was not of the expected type");
+                CreateLog();
             }
         }
 
@@ -100,7 +100,7 @@ namespace FetchItUniversalAndApi.Handlers
             }
             else
             {
-                throw new WrongModel("The supplied model was not of the expected type");
+                    CreateLog();                
             }
         }
 
@@ -124,7 +124,7 @@ namespace FetchItUniversalAndApi.Handlers
             }
             else
             {
-                throw new WrongModel("The supplied model was not of the expected type");
+           CreateLog(); 
             }
         }
 
@@ -145,15 +145,26 @@ namespace FetchItUniversalAndApi.Handlers
                     }
                     catch (Exception)
                     {
-
-                        throw new WrongModel();
+                        
                     }
                 }
             }
         }
 
+      public void CreateLog()
+      {
+          LogModel logModel = new LogModel
+          {
+              LogMessage = "The supplied model was not of the expected type",
+              LogTime = DateTime.UtcNow
+          };
+          var lh = LogHandler.GetInstance();
+          lh.Create(logModel);
+      }
+
      
     }
+
 
     public class WrongModel : Exception
     {
@@ -172,4 +183,6 @@ namespace FetchItUniversalAndApi.Handlers
         }
 
     }
+    
+    
 }

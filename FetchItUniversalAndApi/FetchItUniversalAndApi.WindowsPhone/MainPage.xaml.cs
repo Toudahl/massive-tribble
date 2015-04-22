@@ -24,17 +24,12 @@ namespace FetchItUniversalAndApi
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private IssueHandler ih;
         public MainPage()
         {            
 
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
-            IssueModel testmodel=new IssueModel();
-            testmodel.IssueTitle = "fuckfuck";
-            testmodel.IssueStatus.IssueStatus = "fucked";
-            ih.Create(testmodel);
 
         }
 

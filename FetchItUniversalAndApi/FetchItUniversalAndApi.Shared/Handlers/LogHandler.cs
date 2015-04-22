@@ -29,7 +29,7 @@ namespace FetchItUniversalAndApi.Handlers
             }
         }
 
-        public void Create(object obj)
+        public  void Create(object obj)
         {
             throw new NotImplementedException();
         }
@@ -49,5 +49,6 @@ namespace FetchItUniversalAndApi.Handlers
             throw new NotImplementedException();
         }
 
+        
     }
 }
