@@ -7,6 +7,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Data.Json;
+using Windows.UI.Popups;
 using FetchItUniversalAndApi.Handlers.Interfaces;
 using FetchItUniversalAndApi.Models;
 
@@ -78,7 +79,8 @@ namespace FetchItUniversalAndApi.Handlers
         {
             if (rating < 1 || rating > 10)
             {
-                throw new Exception("Rating is out of bounds. Must be between 1 and 10. Contact Þór for free cookies and milk for discovering the bug.");
+                MessageDialog errorDialogWrongInpt = new MessageDialog("Rating is out of bounds. Must be between 1 and 10.", "Rating out of bounds.");
+                errorDialogWrongInpt.ShowAsync();
             }
             FeedbackModel createdFeedback = new FeedbackModel();
             #region Build Feedback
