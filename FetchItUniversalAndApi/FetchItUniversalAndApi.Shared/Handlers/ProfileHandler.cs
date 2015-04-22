@@ -7,6 +7,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Security.Cryptography.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml.Media;
 using FetchItUniversalAndApi.Handlers.Interfaces;
 using FetchItUniversalAndApi.Models;
@@ -346,7 +347,12 @@ namespace FetchItUniversalAndApi.Handlers
                     }
                 }
             }
-            throw new ArgumentNullException();
+            else
+            {
+                //throw new ArgumentNullException();
+                var dialog = new MessageDialog("You must input both username and password", "Failed to log in");
+                await dialog.ShowAsync();
+            }
         }
         #endregion
 
@@ -440,7 +446,6 @@ namespace FetchItUniversalAndApi.Handlers
     #region exceptions
     internal class FailedLogIn : Exception
     {
-        private string _externalIp;
         private LogHandler lh;
 
         public FailedLogIn(string message) : base(message)

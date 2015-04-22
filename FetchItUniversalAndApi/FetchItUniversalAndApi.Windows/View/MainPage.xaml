@@ -12,9 +12,9 @@
 </Page.DataContext>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
-            <TextBox Text="Brugernavn"/>
-            <PasswordBox />
-            <Button Content="Log in" Command="{Binding LogInCommand}" HorizontalAlignment="Center"/>
+            <TextBox Text="{Binding Username, Mode=TwoWay}" PlaceholderText="Input username"/>
+            <PasswordBox Password="{Binding Password, Mode=TwoWay}" PlaceholderText="Input password" />
+            <Button Content="Log in" Command="{Binding LogInCommand}" Click="ButtonBase_OnClick" HorizontalAlignment="Center"/>
         </StackPanel>
     </Grid>
 </Page>

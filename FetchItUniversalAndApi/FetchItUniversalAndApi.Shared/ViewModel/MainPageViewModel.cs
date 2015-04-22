@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Input;
 using Windows.UI.Popups;
@@ -13,10 +15,15 @@ namespace FetchItUniversalAndApi.ViewModel
     {
         private ProfileHandler ph;
         private ICommand _logInCommand;
+        private string _username;
+        private string _password;
 
         public ProfileModel LoggedInUser
         {
-            get { return ph.CurrentLoggedInProfile; } 
+            get
+            {
+                return ph.CurrentLoggedInProfile;
+            }
         }
 
         public MainPageViewModel()
@@ -24,8 +31,17 @@ namespace FetchItUniversalAndApi.ViewModel
             ph = ProfileHandler.GetInstance();
         }
 
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public string Username
+        {
+            get { return _username; }
+            set { _username = value; }
+        }
+
+        public string Password
+        {
+            get { return _password; }
+            set { _password = value; }
+        }
 
         public ICommand LogInCommand
         {
@@ -41,19 +57,13 @@ namespace FetchItUniversalAndApi.ViewModel
 
         private void LogIn()
         {
-            try
+            ph.LogIn(new ProfileModel
             {
-                ph.LogIn(new ProfileModel
-                {
-                    ProfileName = Username,
-                    ProfilePassword = Password,
-                });
-            }
-            catch (Exception)
-            {
-                var dialog = new MessageDialog("Failed to log in");
-                dialog.ShowAsync();
-            }
+                ProfileName = Username,
+                ProfilePassword = Password,
+            });
+            
         }
+
     }
 }

@@ -21,6 +21,7 @@ using Windows.UI.Xaml.Navigation;
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 using FetchItUniversalAndApi.Handlers;
 using FetchItUniversalAndApi.Models;
+using FetchItUniversalAndApi.View;
 
 namespace FetchItUniversalAndApi
 {
@@ -32,7 +33,13 @@ namespace FetchItUniversalAndApi
         public MainPage()
         {
             this.InitializeComponent();
+            var ph = ProfileHandler.GetInstance();
         }
 
+        private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(1500);
+            this.Frame.Navigate(typeof (LandingPage));
+        }
     }
 }

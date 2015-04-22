@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
+using FetchItUniversalAndApi.Handlers;
 
 namespace FetchItUniversalAndApi.View
 {
@@ -26,6 +27,8 @@ namespace FetchItUniversalAndApi.View
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private ProfileHandler ph = ProfileHandler.GetInstance();
+
 
         /// <summary>
         /// This can be changed to a strongly typed view model.
@@ -51,6 +54,7 @@ namespace FetchItUniversalAndApi.View
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             this.navigationHelper.SaveState += navigationHelper_SaveState;
+
         }
 
         /// <summary>
@@ -93,7 +97,15 @@ namespace FetchItUniversalAndApi.View
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            navigationHelper.OnNavigatedTo(e);
+            if (ph.CurrentLoggedInProfile == null)
+            {
+                this.Frame.Navigate(typeof(MainPage));
+                navigationHelper.OnNavigatedTo(e);
+            }
+            else
+            {
+                pageTitle.Text = "Welcome " + ph.CurrentLoggedInProfile.ProfileName;
+            }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
