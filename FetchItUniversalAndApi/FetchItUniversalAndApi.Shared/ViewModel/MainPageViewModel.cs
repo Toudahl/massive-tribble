@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using Windows.UI.Popups;
 using FetchItUniversalAndApi.Common;
 using FetchItUniversalAndApi.Handlers;
 using FetchItUniversalAndApi.Models;
@@ -47,12 +48,11 @@ namespace FetchItUniversalAndApi.ViewModel
                     ProfileName = Username,
                     ProfilePassword = Password,
                 });
-
             }
             catch (Exception)
             {
-                
-                throw;
+                var dialog = new MessageDialog("Failed to log in");
+                dialog.ShowAsync();
             }
         }
     }

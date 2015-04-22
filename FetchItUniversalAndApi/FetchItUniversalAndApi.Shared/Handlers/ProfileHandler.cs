@@ -346,6 +346,7 @@ namespace FetchItUniversalAndApi.Handlers
                     }
                 }
             }
+            throw new ArgumentNullException();
         }
         #endregion
 
