@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -28,19 +29,20 @@ namespace FetchItUniversalAndApi
         public MainPage()
         {
             this.InitializeComponent();
-            TaskModel testTask = new TaskModel();
-
-            testTask.FK_TaskStatus = (int) TaskHandler.TaskStatus.Active;
-            testTask.FK_TaskMaster = 11;
-            testTask.TaskDeadline = DateTime.UtcNow;
-            testTask.TaskDescription = "asdasdasd";
-            testTask.TaskEndPointAddress = "Roskidle";
-            testTask.TaskFee = 123;
-            testTask.TaskItemPrice = 100;
-            testTask.TaskTimeCreated = DateTime.UtcNow;
-
+            
             th = TaskHandler.GetInstance();
-            th.Create(testTask);
+            var marketplace = th.GetTasks(TaskHandler.TaskStatus.Active);
+
+            //testTask.FK_TaskStatus = (int) TaskHandler.TaskStatus.Active;
+            //testTask.FK_TaskMaster = 11;
+            //testTask.TaskDeadline = DateTime.UtcNow;
+            //testTask.TaskDescription = "asdasdasd";
+            //testTask.TaskEndPointAddress = "Roskidle";
+            //testTask.TaskFee = 123;
+            //testTask.TaskItemPrice = 100;
+            //testTask.TaskTimeCreated = DateTime.UtcNow;
+            //th = TaskHandler.GetInstance();
+            //th.Create(testTask);
         }
     }
 }

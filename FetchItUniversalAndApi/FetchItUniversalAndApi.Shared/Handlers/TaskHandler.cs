@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FetchItUniversalAndApi.Handlers.Interfaces;
 using FetchItUniversalAndApi.Models;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 namespace FetchItUniversalAndApi.Handlers
@@ -68,16 +70,16 @@ namespace FetchItUniversalAndApi.Handlers
                 using (var Client = new HttpClient())
                 {
                     await Client.PostAsJsonAsync(taskAPI, taskObject);
-
                 }
             }
 
             //throw new NotImplementedException();
         }
 
+
         public async void Delete(object taskObject)
         {
-            if (taskObject is TaskModel)
+            if (taskObject is TaskModel) // ADD THE IF PROFILE LEVEL DELETEING IS ADMINISTRATOR
             {
                 var taskToDelete = taskObject as TaskModel;
                 using (var Client = new HttpClient())
@@ -94,11 +96,75 @@ namespace FetchItUniversalAndApi.Handlers
                         throw;
                     }
                 }
-                
-                
             }
             
             //throw new NotImplementedException();
+        }
+
+        public async void Remove(object taskObject)
+        {
+            if (taskObject is TaskModel) // ADD THE IF PROFILE IS CURRENT LOGGED IN PROFILE
+            {
+                var taskToRemove = taskObject as TaskModel;
+                using (var Client = new HttpClient())
+                {
+                    var url = taskAPI + "/" + taskToRemove.TaskId;
+                    taskToRemove.FK_TaskStatus = (int) TaskStatus.Removed;
+                    try
+                    {
+                        await Client.PutAsJsonAsync(url, taskToRemove);
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+                }
+            }
+        }
+
+        public async void Report (object taskObject)
+        {
+            if (taskObject is TaskModel)
+            {
+                var taskToReport = taskObject as TaskModel;
+                using (var Client = new HttpClient())
+                {
+                    var url = taskAPI + "/" + taskToReport.TaskId;
+                    taskToReport.FK_TaskStatus = (int)TaskStatus.Reported;
+                    try
+                    {
+                        await Client.PutAsJsonAsync(url, taskToReport);
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+                }
+            }
+        }
+
+        public async void Complete(object taskObject)
+        {
+            if (taskObject is TaskModel)
+            {
+                var taskToComplete = taskObject as TaskModel;
+                using (var Client = new HttpClient())
+                {
+                    var url = taskAPI + "/" + taskToComplete.TaskId;
+                    taskToComplete.FK_TaskStatus = (int)TaskStatus.Completed;
+                    try
+                    {
+                        await Client.PutAsJsonAsync(url, taskToComplete);
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+                }
+            }
         }
 
         public void Disable(object obj)
@@ -116,9 +182,16 @@ namespace FetchItUniversalAndApi.Handlers
             throw new NotImplementedException();
         }
 
-        public void Update(object obj)
+        public void Update(object taskObject)
         {
-            throw new NotImplementedException();
+            //var taskToUpdate = taskObject as TaskModel;
+            //if (taskToUpdate != null)
+            //{
+            //    using (var client = new HttpClient())
+            //    {
+            //        client.BaseAddress
+            //    }
+            //}
         }
 
         public TaskModel SelectedTask
@@ -129,6 +202,17 @@ namespace FetchItUniversalAndApi.Handlers
 
         public IEnumerable<TaskModel> GetTasks(TaskStatus value)
         {
+            if (value == TaskStatus.Active)
+            {
+                IEnumerable<TaskModel> getAll;
+                using (var client = new HttpClient())
+                {
+                    getAll = Task.Run(async () => JsonConvert.DeserializeObject<IEnumerable<TaskModel>>(
+                                    await client.GetStringAsync(taskAPI))).Result;
+                }
+                return getAll;
+            }
+            
             throw new NotImplementedException();
         }
     }
