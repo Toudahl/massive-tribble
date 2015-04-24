@@ -102,5 +102,20 @@ namespace FetchItUniversalAndApi.View
         }
 
         #endregion
+
+        private void backButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof (MainPage));
+        }
+            
+        private void createUserButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof (MainPage));
+        }
+
+        private void cancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof (MainPage));
+        }
     }
 }

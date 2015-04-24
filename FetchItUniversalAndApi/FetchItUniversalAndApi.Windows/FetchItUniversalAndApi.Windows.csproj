@@ -111,8 +111,20 @@
     <Compile Include="View\LandingPage.xaml.cs">
       <DependentUpon>LandingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ProfileDetailPage.xaml.cs">
+      <DependentUpon>ProfileDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProfileEditPage.xaml.cs">
+      <DependentUpon>ProfileEditPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\RegisterUser.xaml.cs">
       <DependentUpon>RegisterUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TaskDetailPage.xaml.cs">
+      <DependentUpon>TaskDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TaskEditPage.xaml.cs">
+      <DependentUpon>TaskEditPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -137,9 +149,25 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ProfileDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ProfileEditPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\RegisterUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TaskDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\TaskEditPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

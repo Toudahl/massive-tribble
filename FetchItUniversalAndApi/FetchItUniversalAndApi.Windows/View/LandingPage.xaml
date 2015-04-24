@@ -42,14 +42,13 @@
                         VerticalAlignment="Top"
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
-                        AutomationProperties.ItemType="Navigation Button"/>
+                        AutomationProperties.ItemType="Navigation Button" Click="backButton_Click"/>
             <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
-        <ScrollViewer x:Name="scrollviewer_main" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-            <Grid>
-                
-            </Grid>
-        </ScrollViewer>
+        <Button x:Name="profileDetailsButton" Content="Profil" Margin="117,545,0,45" Grid.Row="1" Click="profileDetailsButton_Click"/>
+        <Button x:Name="taskDetailButton" Content="TASK" HorizontalAlignment="Left" Margin="969,171,0,0" Grid.Row="1" VerticalAlignment="Top" Click="taskDetailButton_Click"/>
+        <TextBox HorizontalAlignment="Left" Margin="880,80,0,0" Grid.Row="1" TextWrapping="Wrap" Text="There's going to be a List of Tasks here, or the Marketplace. Button is just fo rnavigaton." VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,521,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Profile details button is gonna be in a sidebar, for now it's here just for navigation purpose" VerticalAlignment="Top"/>
     </Grid>
 </Page>

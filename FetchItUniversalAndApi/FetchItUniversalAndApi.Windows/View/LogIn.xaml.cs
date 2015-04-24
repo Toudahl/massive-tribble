@@ -36,9 +36,14 @@ namespace FetchItUniversalAndApi
             var ph = ProfileHandler.GetInstance();
         }
 
-        private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private void RegisterButton_OnClick(object sender, RoutedEventArgs e)
         {
-            await Task.Delay(1500);
+            this.Frame.Navigate(typeof(RegisterUser));
+        }
+
+        private void LoginButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Task.Delay(1500);
             this.Frame.Navigate(typeof (LandingPage));
         }
     }

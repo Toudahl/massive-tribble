@@ -14,7 +14,8 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
             <TextBox Text="{Binding Username, Mode=TwoWay}" PlaceholderText="Input username"/>
             <PasswordBox Password="{Binding Password, Mode=TwoWay}" PlaceholderText="Input password" />
-            <Button Content="Log in" Command="{Binding LogInCommand}" Click="ButtonBase_OnClick" HorizontalAlignment="Center"/>
+            <Button x:Name="loginButton" Content="Log in" Command="{Binding LogInCommand}" Click="LoginButton_OnClick" HorizontalAlignment="Center" Margin="112,0"/>
+            <Button x:Name="registerButton" Content="Register" Command="{Binding LogInCommand}" Click="RegisterButton_OnClick" HorizontalAlignment="Center" Margin="112,0,88,0" Width="100"/>
         </StackPanel>
     </Grid>
 </Page>

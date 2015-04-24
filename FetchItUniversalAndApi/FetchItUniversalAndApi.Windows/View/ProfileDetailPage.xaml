@@ -46,5 +46,6 @@
             <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
+        <TextBox HorizontalAlignment="Left" Margin="348,150,0,0" Grid.Row="1" TextWrapping="Wrap" Text="This is where you can see the details of your profile" VerticalAlignment="Top"/>
     </Grid>
 </Page>

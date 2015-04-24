@@ -114,5 +114,20 @@ namespace FetchItUniversalAndApi.View
         }
 
         #endregion
+
+        private void taskDetailButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof (TaskDetailPage));
+        }
+
+        private void profileDetailsButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof (ProfileDetailPage));    
+        }
+
+        private void backButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof (MainPage));
+        }
     }
 }
