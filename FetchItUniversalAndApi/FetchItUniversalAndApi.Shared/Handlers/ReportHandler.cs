@@ -14,8 +14,10 @@ namespace FetchItUniversalAndApi.Handlers
     /// <summary>
     /// Handles getting, deleting, creating and updating Reports.
     /// </summary>
-    class ReportHandler: ICreate, IDelete, IDisable, ISuspend, IUpdate
+    class ReportHandler : ICreate, IDelete, IDisable, ISuspend, IUpdate
     {
+        #region Fields, enums and Properties
+
         private static readonly string _serverUrl = "http://fetchit.mortentoudahl.dk/api/";
         private static Object _lockObject = new object();
         private static ReportHandler _handler;
@@ -29,6 +31,9 @@ namespace FetchItUniversalAndApi.Handlers
             Disabled,
             Deleted,
         }
+        #endregion
+
+        #region Singleton and Constructor
 
         private ReportHandler()
         {
@@ -46,6 +51,9 @@ namespace FetchItUniversalAndApi.Handlers
                 return _handler;
             }
         }
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// Gets all the report objects from the database that have the specified report status.
@@ -62,16 +70,16 @@ namespace FetchItUniversalAndApi.Handlers
                 {
                     //Does not use the ReportStatusId at this point, now it just returns all the reports from the database.
                     //TODO: Find a way to use the Report Status to get the specified reports.
-                    var reports = Task.Run(async () => await Client.GetAsync("reportmodels"));
+                    var reports = Task.Run(async () => await Client.GetAsync("reportmodel"));
                     return reports.Result.Content.ReadAsAsync<IEnumerable<ReportModel>>().Result;
-                    
+
                     //TODO: Possibly find another way to use the Report Status to get the specified reports.
                     //Through something called Attribute routing, it is easily possible to make the 
                     //url "reportmodels/status/1" return all statuses numbered 1, etc.
                 }
                 catch (Exception exception)
                 {
-                    throw exception;
+                    ErrorHandler.GetInstance().GettingError(new ReportModel());
                 }
             }
             return new List<ReportModel>();
@@ -97,13 +105,13 @@ namespace FetchItUniversalAndApi.Handlers
 
                     catch (Exception exception)
                     {
-                        throw exception;
+                        ErrorHandler.GetInstance().CreatingError(new ReportModel());
                     }
                 }
             }
             else
             {
-                throw new WrongModel("The supplied model was not of the expected type");
+                ErrorHandler.GetInstance().WrongModelError(obj, new ReportModel());
             }
         }
 
@@ -126,13 +134,14 @@ namespace FetchItUniversalAndApi.Handlers
 
                     catch (Exception exception)
                     {
-                        throw exception;
+                        ErrorHandler.GetInstance().DeletingError(new ReportModel());
                     }
                 }
             }
             else
             {
-                throw new WrongModel("The supplied model was not of the expected type");
+                ErrorHandler.GetInstance().WrongModelError(obj, new ReportModel());
+
             }
         }
 
@@ -157,13 +166,13 @@ namespace FetchItUniversalAndApi.Handlers
                     }
                     catch (Exception exception)
                     {
-                        throw exception;
+                        ErrorHandler.GetInstance().DisablingError(new ReportModel());
                     }
                 }
             }
             else
             {
-                throw new WrongModel("The supplied model was not of the expected type");
+                ErrorHandler.GetInstance().WrongModelError(obj, new ReportModel());
             }
         }
 
@@ -188,13 +197,13 @@ namespace FetchItUniversalAndApi.Handlers
                     }
                     catch (Exception exception)
                     {
-                        throw exception;
+                        ErrorHandler.GetInstance().SuspendingError(obj);
                     }
                 }
             }
             else
             {
-                throw new WrongModel("The supplied model was not of the expected type");
+                ErrorHandler.GetInstance().WrongModelError(obj, new ReportModel());
             }
         }
 
@@ -218,13 +227,13 @@ namespace FetchItUniversalAndApi.Handlers
 
                     catch (Exception exception)
                     {
-                        throw exception;
+                        ErrorHandler.GetInstance().UpdatingError(new ReportModel());
                     }
                 }
             }
             else
             {
-                throw new WrongModel("The supplied model was not of the expected type");
+                ErrorHandler.GetInstance().WrongModelError(obj, new ReportModel());
             }
         }
 
@@ -257,26 +266,7 @@ namespace FetchItUniversalAndApi.Handlers
                 throw exception;
             }
             return newReport;
-         }
-
-        //Template for some future Exception handling
-
-        //public class SomethingWentWrong : Exception
-        //{
-        //    public SomethingWentWrong()
-        //    {
-                
-        //    }
-
-        //    public SomethingWentWrong(string message) : base(message)
-        //    {
-
-        //    }
-
-        //    public SomethingWentWrong(string message, Exception inner) : base(message, inner)
-        //    {
-
-        //    }
-        //}
+        }
+        #endregion
     }
 }
