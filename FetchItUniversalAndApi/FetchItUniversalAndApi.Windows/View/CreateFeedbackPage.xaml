@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModel="using:FetchItUniversalAndApi.ViewModel"
     x:Name="pageRoot"
-    x:Class="FetchItUniversalAndApi.View.ReportProfilePage"
+    x:Class="FetchItUniversalAndApi.View.CreateFeedbackPage"
     DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Mode=Self}}"
     mc:Ignorable="d">
 
@@ -33,7 +33,7 @@
         </Grid.RowDefinitions>
 
         <Grid.DataContext>
-            <ViewModel:ReportProfileViewModel/>
+            <ViewModel:CreateFeedbackViewModel/>
         </Grid.DataContext>
 
         <!-- Back button and page title -->
@@ -51,12 +51,12 @@
             <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
 				IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
-        <TextBox HorizontalAlignment="Left" Margin="97,136,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding ReportMessage, Mode=TwoWay}" VerticalAlignment="Top" Height="191" Width="199"/>
-        <TextBlock HorizontalAlignment="Left" Margin="97,76,0,0" Grid.Row="1" TextWrapping="Wrap" Text="You are reporting: " VerticalAlignment="Top" FontSize="14"/>
-        <TextBlock x:Name="profileToReportTxtBlock" HorizontalAlignment="Left" Margin="215,76,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Text="{Binding ProfileToReport.ProfileName, Mode=TwoWay}"/>
-        <Button Content="Submit report" HorizontalAlignment="Left" Margin="94,372,0,0" Grid.Row="1" VerticalAlignment="Top" Command="{Binding SubmitReportCommand}"/>
-        <Button x:Name="cancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="221,372,0,0" Grid.Row="1" VerticalAlignment="Top" Click="cancelButton_Click"/>
-        <TextBlock HorizontalAlignment="Left" Margin="392,76,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Logged in profile:" VerticalAlignment="Top" FontSize="14"/>
-        <TextBlock x:Name="loggedInProfileTxtBox" HorizontalAlignment="Left" Margin="521,76,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Text="{Binding LoggedInProfile.ProfileName, Mode=TwoWay}"/>
+        <Slider x:Name="ratingSlider" HorizontalAlignment="Left" Margin="435,135,0,0" Grid.Row="1" VerticalAlignment="Top" Width="231" Height="56" Maximum="10" Minimum="1" LargeChange="1" Value="{Binding Rating, Mode=TwoWay}"/>
+        <TextBox x:Name="optionalTextBox" HorizontalAlignment="Left" Margin="199,152,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding OptionalText, Mode=TwoWay}" VerticalAlignment="Top" Height="150" Width="220"/>
+        <TextBlock HorizontalAlignment="Left" Margin="199,52,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Logged In Profile:" VerticalAlignment="Top" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="435,52,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TaskId:" VerticalAlignment="Top" FontSize="14"/>
+        <TextBlock x:Name="loggedInProfileBlock" HorizontalAlignment="Left" Margin="312,52,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding LoggedInProfile.ProfileName, Mode=TwoWay}" VerticalAlignment="Top" FontSize="14"/>
+        <TextBlock x:Name="taskIdBlock" HorizontalAlignment="Left" Margin="481,52,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding SelectedTask.TaskId, Mode=TwoWay}" VerticalAlignment="Top" FontSize="14"/>
+        <Button x:Name="submitFeedbackBtn" Content="Submit feedback" HorizontalAlignment="Left" Margin="196,334,0,0" Grid.Row="1" VerticalAlignment="Top" Command="{Binding SubmitFeedbackCommand}"/>
     </Grid>
 </Page>

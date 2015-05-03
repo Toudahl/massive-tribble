@@ -1,5 +1,4 @@
-﻿using Windows.UI.Popups;
-using FetchItUniversalAndApi.Common;
+﻿using FetchItUniversalAndApi.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,7 +21,7 @@ namespace FetchItUniversalAndApi.View
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class ReportProfilePage : Page
+    public sealed partial class CreateFeedbackPage : Page
     {
 
         private NavigationHelper navigationHelper;
@@ -46,7 +45,7 @@ namespace FetchItUniversalAndApi.View
         }
 
 
-        public ReportProfilePage()
+        public CreateFeedbackPage()
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
@@ -103,17 +102,5 @@ namespace FetchItUniversalAndApi.View
         }
 
         #endregion
-
-        private void cancelButton_Click(object sender, RoutedEventArgs e)
-        {
-            MessageDialog message = new MessageDialog("Are you sure you want to cancel this report and go back?", "Cancel Report");
-            message.Commands.Add(new UICommand(
-                "Yes",
-                command => navigationHelper.GoBack()));
-            message.Commands.Add(new UICommand(
-                "No"));
-
-            message.ShowAsync();
-        }
     }
 }

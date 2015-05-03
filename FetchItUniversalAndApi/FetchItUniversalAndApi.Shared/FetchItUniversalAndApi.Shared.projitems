@@ -57,6 +57,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\TaskLocationInfoModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\TaskModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\TaskStatusModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CreateFeedbackViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ReportProfileViewModel.cs" />
   </ItemGroup>

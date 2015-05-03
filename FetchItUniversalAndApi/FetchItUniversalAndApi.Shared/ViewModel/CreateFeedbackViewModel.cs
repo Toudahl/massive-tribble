@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Input;
 using Windows.UI.Popups;
-using Windows.UI.Xaml.Controls;
 using FetchItUniversalAndApi.Annotations;
 using FetchItUniversalAndApi.Common;
 using FetchItUniversalAndApi.Handlers;
@@ -14,90 +12,80 @@ using FetchItUniversalAndApi.Models;
 
 namespace FetchItUniversalAndApi.ViewModel
 {
-    class ReportProfileViewModel:INotifyPropertyChanged
+    class CreateFeedbackViewModel:INotifyPropertyChanged
     {
         #region Fields
-        private string _reportMessage;
-        private ProfileModel _profileToReport;
-        private ProfileModel _loggedInProfile;
-        
+        private string _optionalText;
+        private int _rating;
+
+        public TaskHandler TaskHandler { get; set; }
+        public TaskModel SelectedTask { get; set; }
         public ProfileHandler ProfileHandler { get; set; }
-        public ReportHandler ReportHandler { get; set; }
-        public ICommand SubmitReportCommand { get; set; }
-               
+        public ProfileModel LoggedInProfile { get; set; }
+        public ICommand SubmitFeedbackCommand { get; set; }
         #endregion
 
         #region Constructor
-        public ReportProfileViewModel()
+        public CreateFeedbackViewModel()
         {
+            TaskHandler = TaskHandler.GetInstance();
             ProfileHandler = ProfileHandler.GetInstance();
-            ReportHandler = ReportHandler.GetInstance();
-            ProfileToReport = ProfileHandler.SelectedProfile;
             LoggedInProfile = ProfileHandler.CurrentLoggedInProfile;
-            SubmitReportCommand = new RelayCommand(SubmitReport);
+            SelectedTask = TaskHandler.SelectedTask;
+
+            SubmitFeedbackCommand = new RelayCommand(SubmitFeedback);
+            
         }
         #endregion
 
         #region Methods
-        private void SubmitReport()
+        private void SubmitFeedback()
         {
-            var reportToSubmit = ReportHandler.CreateNewReport(ProfileToReport, ReportMessage);
-            MessageDialog message = new MessageDialog("Are you sure you want to submit this report?", "Submit Report");
+            MessageDialog message = new MessageDialog("Are you sure you want to submit this feedback?", "Submit Feedback");
             message.Commands.Add(new UICommand(
                 "Yes",
-                command => CreateTheReport(reportToSubmit)));
+                command => CreateTheFeedback()));
             
             message.Commands.Add(new UICommand(
                 "No"));
-            
+
             message.DefaultCommandIndex = 0;
             message.CancelCommandIndex = 1;
-            
+
             message.ShowAsync();
         }
-
-        public void CreateTheReport(ReportModel reportToSubmit)
+        
+        public void CreateTheFeedback()
         {
             try
             {
-                ReportHandler.Create(reportToSubmit);
-                ReportMessage = "";
+                MessageHandler.CreateFeedback(Rating, OptionalText, SelectedTask);
+                OptionalText = "";
+                Rating = 0;
             }
             catch (Exception)
             {
                 throw;
             }
-            
         }
         #endregion
 
         #region Properties
-        public ProfileModel ProfileToReport
+        public string OptionalText
         {
-            get { return _profileToReport; }
+            get { return _optionalText; }
             set
             {
-                _profileToReport = value;
+                _optionalText = value; 
                 OnPropertyChanged();
             }
         }
-
-        public ProfileModel LoggedInProfile
+        public int Rating
         {
-            get { return _loggedInProfile; }
+            get { return _rating; }
             set
             {
-                _loggedInProfile = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string ReportMessage
-        {
-            get { return _reportMessage; }
-            set
-            {
-                _reportMessage = value;
+                _rating = value; 
                 OnPropertyChanged();
             }
         }
