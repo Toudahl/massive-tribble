@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using FetchItUniversalAndApi.Handlers;
 
 namespace FetchItUniversalAndApi.Models
 {
     public partial class IssueStatusModel
-    {
+    {                
+
         public IssueStatusModel()
         {
             this.Issues = new HashSet<IssueModel>();

@@ -9,6 +9,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using FetchItUniversalAndApi.Handlers;
+using FetchItUniversalAndApi.Models;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -20,10 +22,12 @@ namespace FetchItUniversalAndApi
     public sealed partial class MainPage : Page
     {
         public MainPage()
-        {
-            this.InitializeComponent();
+        {            
 
+            this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
+
+
         }
 
         /// <summary>
