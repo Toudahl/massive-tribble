@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
+using FetchItUniversalAndApi.Handlers;
+using FetchItUniversalAndApi.Models;
 
 namespace FetchItUniversalAndApi.View
 {
@@ -102,5 +104,10 @@ namespace FetchItUniversalAndApi.View
         }
 
         #endregion
+
+        private void goBackButton_Click(object sender, RoutedEventArgs e)
+        {
+            navigationHelper.GoBack();
+        }
     }
 }

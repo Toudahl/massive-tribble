@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -70,8 +71,15 @@ namespace FetchItUniversalAndApi.Handlers
                 {
                     //Does not use the ReportStatusId at this point, now it just returns all the reports from the database.
                     //TODO: Find a way to use the Report Status to get the specified reports.
-                    var reports = Task.Run(async () => await Client.GetAsync("reportmodel"));
-                    return reports.Result.Content.ReadAsAsync<IEnumerable<ReportModel>>().Result;
+                    var reports = Task.Run(async () => await Client.GetAsync("reportmodels"));
+                    var reportsToReturn = reports.Result.Content.ReadAsAsync<IEnumerable<ReportModel>>().Result;
+                    
+                    //Attaches the Reporting and Reported Profile models (Navigational properties)
+                    foreach (var reportModel in reportsToReturn)
+                    {
+                        FindProfiles(reportModel);
+                    }
+                    return reportsToReturn;
 
                     //TODO: Possibly find another way to use the Report Status to get the specified reports.
                     //Through something called Attribute routing, it is easily possible to make the 
@@ -86,6 +94,17 @@ namespace FetchItUniversalAndApi.Handlers
         }
 
         /// <summary>
+        /// Attaches the ProfileModels corresponding to the FK_ReportedId and FK_ReportingId
+        /// </summary>
+        /// <param name="report">The report to find profiles for.</param>
+        public void FindProfiles(ReportModel report)
+        {
+            var ph = ProfileHandler.GetInstance();
+            report.ReportedProfile = ph.Search(new ProfileModel() {ProfileId = report.FK_ReportedProfile}).ToList().First() as ProfileModel;
+            report.ReportingProfile = ph.Search(new ProfileModel() { ProfileId = report.FK_ReportingProfile}).ToList().First() as ProfileModel;
+        }
+
+        /// <summary>
         /// Creates a Report from the object passed to it and POSTs it to the database.
         /// </summary>
         /// <param name="obj">The report object to POST</param>
@@ -94,6 +113,9 @@ namespace FetchItUniversalAndApi.Handlers
             var reportToCreate = obj as ReportModel;
             if (reportToCreate != null)
             {
+                //Sets the navigational properties to null, to make sure that the report can POSTed
+                reportToCreate.ReportedProfile = null;
+                reportToCreate.ReportingProfile = null;
                 using (Client = new HttpClient())
                 {
                     Client.BaseAddress = new Uri(_serverUrl);
@@ -101,11 +123,16 @@ namespace FetchItUniversalAndApi.Handlers
                     try
                     {
                         await Client.PostAsJsonAsync("reportmodels", reportToCreate);
+                        
+                        //Attaches the navigational properties again to the reportmodel.
+                        FindProfiles(reportToCreate);
                     }
 
                     catch (Exception exception)
                     {
                         ErrorHandler.GetInstance().CreatingError(new ReportModel());
+                        //Attaches the navigational properties again to the reportmodel.
+                        FindProfiles(reportToCreate);
                     }
                 }
             }
@@ -156,18 +183,13 @@ namespace FetchItUniversalAndApi.Handlers
             {
                 //Todo: Both ReportModel in solution and in Database need a ReportStatusId.
                 //reportToDisable.ReportStatusId = (int)ReportStatus.Disabled;
-                using (Client = new HttpClient())
+                try
                 {
-                    Client.BaseAddress = new Uri(_serverUrl);
-                    Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    try
-                    {
-                        await Client.PutAsJsonAsync("reportmodels/" + reportToDisable.ReportId, reportToDisable);
-                    }
-                    catch (Exception exception)
-                    {
-                        ErrorHandler.GetInstance().DisablingError(new ReportModel());
-                    }
+                    Update(reportToDisable);
+                }
+                catch (Exception)
+                {
+                    ErrorHandler.GetInstance().DisablingError(new ReportModel());
                 }
             }
             else
@@ -187,18 +209,13 @@ namespace FetchItUniversalAndApi.Handlers
             {
                 //Todo: Both ReportModel in solution and in Database need a ReportStatusId.
                 //reportToSuspend.ReportStatusId = (int)ReportStatus.Suspended;
-                using (Client = new HttpClient())
+                try
                 {
-                    Client.BaseAddress = new Uri(_serverUrl);
-                    Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    try
-                    {
-                        await Client.PutAsJsonAsync("reportmodels/" + reportToSuspend.ReportId, reportToSuspend);
-                    }
-                    catch (Exception exception)
-                    {
-                        ErrorHandler.GetInstance().SuspendingError(obj);
-                    }
+                    Update(reportToSuspend);
+                }
+                catch (Exception)
+                {
+                    ErrorHandler.GetInstance().SuspendingError(new ReportModel());
                 }
             }
             else
@@ -216,6 +233,8 @@ namespace FetchItUniversalAndApi.Handlers
             var reportToUpdate = obj as ReportModel;
             if (reportToUpdate != null)
             {
+                reportToUpdate.ReportedProfile = null;
+                reportToUpdate.ReportingProfile = null;
                 using (Client = new HttpClient())
                 {
                     Client.BaseAddress = new Uri(_serverUrl);
@@ -223,11 +242,13 @@ namespace FetchItUniversalAndApi.Handlers
                     try
                     {
                         await Client.PutAsJsonAsync("reportmodels/" + reportToUpdate.ReportId, reportToUpdate);
+                        FindProfiles(reportToUpdate);
                     }
 
                     catch (Exception exception)
                     {
                         ErrorHandler.GetInstance().UpdatingError(new ReportModel());
+                        FindProfiles(reportToUpdate);
                     }
                 }
             }
@@ -256,8 +277,11 @@ namespace FetchItUniversalAndApi.Handlers
                     FK_ReportingProfile = ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileId,
                     ReportMessage = reportsContent,
                     ReportTime = DateTime.UtcNow,
-                    //ReportedProfile = target,
-                    //ReportingProfile = ProfileHandler.GetInstance().CurrentLoggedInProfile,
+                    
+                    //Fills in the navigational properties, it is working because all the methods
+                    //in ReportHandler involving POST and PUT have working checks.
+                    ReportedProfile = target,
+                    ReportingProfile = ProfileHandler.GetInstance().CurrentLoggedInProfile,
                     //ReportStatusId = (int)ReportStatus.Active,
                 };
             }

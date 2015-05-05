@@ -60,5 +60,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CreateFeedbackViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ReportProfileViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\TaskDetailViewModel.cs" />
   </ItemGroup>
 </Project>
