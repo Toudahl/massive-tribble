@@ -21,7 +21,7 @@ namespace FetchItUniversalAndApi.Models
 
         public override string ToString()
         {
-            return FromProfile.ProfileName + ": " + NotificationContent;
+            return "TODO Missing FromProfile string: " + NotificationContent;
         }
     }
 }

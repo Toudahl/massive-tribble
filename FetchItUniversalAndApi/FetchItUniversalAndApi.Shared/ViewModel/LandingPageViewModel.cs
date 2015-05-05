@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -97,11 +98,19 @@ namespace FetchItUniversalAndApi.ViewModel
             RefreshNotifications = new RelayCommand(refreshNotifications);
             //TODO: Cannot do this now since TaskHandler hasn't been merged yet. The code is supposedly working according to Bruno but can't touch it atm.
             #region TESTING AREA! DELETE THIS SHIT!
-            NotificationModel testNotification = new NotificationModel();
-            testNotification.NotificationContent = "this is a Test";
-            testNotification.ToProfile = ph.CurrentLoggedInProfile;
-            MessageHandler.SendNotification(testNotification);
+            #region postNotification
+            //NotificationModel testNotification = new NotificationModel();
+            //testNotification.NotificationContent = "this is a Test";
+            //testNotification.ToProfile = ph.CurrentLoggedInProfile;
+            //MessageHandler.SendNotification(testNotification);
             #endregion
+            #region populateListview
+            //Notifications.Add(testNotification);
+            //Notifications.Add(testNotification);
+            //Notifications.Add(testNotification);
+            #endregion
+            #endregion
+
             //refreshMarketplace();
         }
 
@@ -133,8 +142,7 @@ namespace FetchItUniversalAndApi.ViewModel
 
         private async void refreshNotifications()
         {
-            Notifications = MessageHandler.GetNotifications().ToObservableCollection();
-            //Task.WaitAll(Task.Run(() => { Notifications = MessageHandler.GetNotifications().ToObservableCollection(); }));
+            Notifications = MessageHandler.GetNotifications().Result.ToObservableCollection();
         }
         #endregion
 

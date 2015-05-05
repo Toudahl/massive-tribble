@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Data.Json;
@@ -19,7 +20,7 @@ namespace FetchItUniversalAndApi.Handlers
     /// </summary>
     static class MessageHandler
     {
-    #region Enums
+        #region Enums
         public enum FeedbackStatus
         {
             Deleted = 2,
@@ -48,8 +49,7 @@ namespace FetchItUniversalAndApi.Handlers
             AdministratorMessage,
         }
     #endregion
-
-    #region Fields and Properties
+        #region Fields and Properties
         //The httpclient should probably be one object that all handlers call upon. There "shouldn't" be any reason to dispose of it or flush it.
         //But we should keep an eye out for if it's not closing the connections or not dumping the resources.
         private static HttpClient msgWebClient = new HttpClient();
@@ -260,27 +260,22 @@ namespace FetchItUniversalAndApi.Handlers
         /// A method that returns a collection of all Notification objects assigned to the CurrentLoggedInProfile
         /// </summary>
         /// <returns>IENumerable of NotificationModels</returns>
-        public static IEnumerable<NotificationModel> GetNotifications()
+        public static async Task<IEnumerable<NotificationModel>> GetNotifications()
         {
             try
             {
                 var notificationsStream = Task.Run(async () => await msgWebClient.GetAsync("NotificationModels"));
-                var notifications = notificationsStream.Result.Content.ReadAsAsync<IEnumerable<NotificationModel>>().Result;
-                if (notificationsStream.Status == TaskStatus.RanToCompletion)
-                {
-                    return notifications.Select(n => n).Where(n => n.ToProfile == ProfileHandler.GetInstance().CurrentLoggedInProfile);
-                }
-                else
-                {
-                    MessageDialog taskDidntComplete = new MessageDialog("Task didn't run to completion before attempting to return collection");
-                    taskDidntComplete.ShowAsync();
-                    return null;
-                }
+                var notificationStreamContent = notificationsStream.Result.Content;
+                return
+                    notificationStreamContent.ReadAsAsync<IEnumerable<NotificationModel>>()
+                        .Result.Select(n => n)
+                        .Where(n => n.ToProfile == ProfileHandler.GetInstance().CurrentLoggedInProfile);
             }
-            catch (Exception)
+            catch
             {
-                //Add standardized error handling (fx. LogHandler.GetInstance().LogEvent(exception.message) and MessageBox.Show("Yo user, something went wrong!"));
-                throw;
+                MessageDialog gettingNotificationsError = new MessageDialog("Couldn't get Notifications");
+                gettingNotificationsError.ShowAsync();
+                return null;
             }
         }
     #endregion
