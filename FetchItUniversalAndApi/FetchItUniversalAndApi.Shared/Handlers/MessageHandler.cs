@@ -257,17 +257,25 @@ namespace FetchItUniversalAndApi.Handlers
         }
 
         /// <summary>
-        /// A method that returns a collection of all Notification objects
+        /// A method that returns a collection of all Notification objects assigned to the CurrentLoggedInProfile
         /// </summary>
         /// <returns>IENumerable of NotificationModels</returns>
         public static IEnumerable<NotificationModel> GetNotifications()
         {
-
             try
             {
                 var notificationsStream = Task.Run(async () => await msgWebClient.GetAsync("NotificationModels"));
                 var notifications = notificationsStream.Result.Content.ReadAsAsync<IEnumerable<NotificationModel>>().Result;
-                return notifications.Where(n => n.ToProfile == ProfileHandler.GetInstance().CurrentLoggedInProfile);
+                if (notificationsStream.Status == TaskStatus.RanToCompletion)
+                {
+                    return notifications.Select(n => n).Where(n => n.ToProfile == ProfileHandler.GetInstance().CurrentLoggedInProfile);
+                }
+                else
+                {
+                    MessageDialog taskDidntComplete = new MessageDialog("Task didn't run to completion before attempting to return collection");
+                    taskDidntComplete.ShowAsync();
+                    return null;
+                }
             }
             catch (Exception)
             {

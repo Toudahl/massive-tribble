@@ -62,8 +62,6 @@ namespace FetchItUniversalAndApi.ViewModel
                 ProfileName = Username,
                 ProfilePassword = Password,
             });
-            
         }
-
     }
 }

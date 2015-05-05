@@ -2,10 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.Foundation.Collections;
+using FetchItUniversalAndApi.Annotations;
 using FetchItUniversalAndApi.Common;
 using FetchItUniversalAndApi.Handlers;
 using FetchItUniversalAndApi.Models;
@@ -13,7 +17,7 @@ using FetchItUniversalAndApi.Models;
 namespace FetchItUniversalAndApi.ViewModel
 {
     //Author: Lárus Þór Awesomeson
-    class LandingPageViewModel
+    class LandingPageViewModel : INotifyPropertyChanged
     {
         #region Fields and Properties
         private ProfileHandler _ph;
@@ -22,23 +26,36 @@ namespace FetchItUniversalAndApi.ViewModel
         private ICommand _refreshMarketplace;
         private ObservableCollection<NotificationModel> _notifications;
         private ObservableCollection<TaskModel> _activeTasks;
+        private ICommand _refreshNotifications;
 
         public ObservableCollection<TaskModel> Marketplace
         {
             get { return _marketplace; }
-            set { _marketplace = value; }
+            set
+            {
+                _marketplace = value;
+                OnPropertyChanged("Marketplace");
+            }
         }
 
         public ObservableCollection<NotificationModel> Notifications
         {
             get { return _notifications; }
-            set { _notifications = value; }
+            set
+            {
+                _notifications = value;
+                OnPropertyChanged("Notifications");
+            }
         }
 
         public ObservableCollection<TaskModel> ActiveTasks
         {
             get { return _activeTasks; }
-            set { _activeTasks = value; }
+            set
+            {
+                _activeTasks = value;
+                OnPropertyChanged("ActiveTasks");
+            }
         }
 
         public ProfileHandler ph
@@ -59,6 +76,12 @@ namespace FetchItUniversalAndApi.ViewModel
             set { _refreshMarketplace = value; }
         }
 
+        public ICommand RefreshNotifications
+        {
+            get { return _refreshNotifications; }
+            set { _refreshNotifications = value; }
+        }
+
         #endregion
 
         #region Methods
@@ -71,15 +94,15 @@ namespace FetchItUniversalAndApi.ViewModel
             ph = ProfileHandler.GetInstance();
             th = TaskHandler.GetInstance();
             RefreshMarketplace = new RelayCommand(refreshMarketplace);
+            RefreshNotifications = new RelayCommand(refreshNotifications);
             //TODO: Cannot do this now since TaskHandler hasn't been merged yet. The code is supposedly working according to Bruno but can't touch it atm.
             #region TESTING AREA! DELETE THIS SHIT!
             NotificationModel testNotification = new NotificationModel();
             testNotification.NotificationContent = "this is a Test";
             testNotification.ToProfile = ph.CurrentLoggedInProfile;
             MessageHandler.SendNotification(testNotification);
-            #endregion   
+            #endregion
             //refreshMarketplace();
-            refreshNotifications();
         }
 
         #endregion
@@ -110,16 +133,18 @@ namespace FetchItUniversalAndApi.ViewModel
 
         private async void refreshNotifications()
         {
-            IEnumerable<NotificationModel> testNotificationCollecton = MessageHandler.GetNotifications();
-            foreach (NotificationModel notification in testNotificationCollecton)
-            {
-                if (notification == null)
-                {
-                    break;
-                }
-                notification.ToProfile = ph.CurrentLoggedInProfile;
-                Notifications.Add(notification);
-            }
+            Notifications = MessageHandler.GetNotifications().ToObservableCollection();
+            //Task.WaitAll(Task.Run(() => { Notifications = MessageHandler.GetNotifications().ToObservableCollection(); }));
+        }
+        #endregion
+
+        #region INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
     }

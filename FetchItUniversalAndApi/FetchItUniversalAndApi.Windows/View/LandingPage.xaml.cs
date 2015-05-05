@@ -95,11 +95,6 @@ namespace FetchItUniversalAndApi.View
         /// The navigation parameter is available in the LoadState method 
         /// in addition to page state preserved during an earlier session.
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            navigationHelper.OnNavigatedFrom(e);
-        }
-
         #endregion
 
         private void taskDetailButton_Click(object sender, RoutedEventArgs e)
