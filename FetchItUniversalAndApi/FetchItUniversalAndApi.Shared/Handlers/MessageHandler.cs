@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -176,13 +177,12 @@ namespace FetchItUniversalAndApi.Handlers
         /// <param name="fromTask"></param>
         /// The Task that you want the comments from
         /// <returns>IENumerable of CommentModel</returns>
-        public static IEnumerable<CommentModel> GetTaskComments(TaskModel fromTask)
+        public static async Task<IEnumerable<CommentModel>> GetTaskComments(TaskModel fromTask)
         {
             try
             {
-                var updatedTaskStream = Task.Run(async () => await msgWebClient.GetAsync("TaskModels/" + fromTask.TaskId));
-                var updatedTask = updatedTaskStream.Result.Content.ReadAsAsync<TaskModel>().Result;
-                return updatedTask.Comments;
+                var updatedTaskStream = Task.Run(async () => await msgWebClient.GetAsync("NotificationModels"));
+                return updatedTaskStream.Result.Content.ReadAsAsync<TaskModel>().Result.Comments.Where(t => t.FK_CommentTask == fromTask.TaskId).ToObservableCollection();
             }
             catch (Exception)
             {
