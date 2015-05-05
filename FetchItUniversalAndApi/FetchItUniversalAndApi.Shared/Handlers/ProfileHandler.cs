@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Windows.Security.Cryptography.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Media;
+using FetchItUniversalAndApi.Exceptions;
 using FetchItUniversalAndApi.Handlers.Interfaces;
 using FetchItUniversalAndApi.Models;
 using Newtonsoft.Json;
@@ -555,24 +556,9 @@ namespace FetchItUniversalAndApi.Handlers
         {
             
         }
+        
     }
-
-    public class WrongModel : Exception
-    {
-        public WrongModel()
-        {
-            
-        }
-
-        public WrongModel(string message) : base(message)
-        {
-            
-        }
-
-        public WrongModel(string message, Exception inner): base(message,inner)
-        {
-            
-        }
-    }
+    
+     
     #endregion
 }

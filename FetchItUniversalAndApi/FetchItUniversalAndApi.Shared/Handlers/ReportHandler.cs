@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
+using FetchItUniversalAndApi.Exceptions;
 using FetchItUniversalAndApi.Handlers.Interfaces;
 using FetchItUniversalAndApi.Models;
 
