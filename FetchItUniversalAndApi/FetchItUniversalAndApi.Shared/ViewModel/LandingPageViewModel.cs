@@ -119,8 +119,7 @@ namespace FetchItUniversalAndApi.ViewModel
         {
             //TODO: Cannot do this now since TaskHandler hasn't been merged yet. The code is supposedly working according to Bruno but can't touch it atm.
             //TODO: This shouldn't do anything if it's being clicked too often. But probably also good to have a cooldown on the TaskHandler method as well
-            //Marketplace = th.GetTasks();
-            throw new NotImplementedException("Need to merge Taskhandler to gain access to Taskhandler.GetTasks()");
+            Marketplace = th.GetTasks(TaskHandler.TaskStatus.Active).ToObservableCollection();
         }
 
         /// <summary>

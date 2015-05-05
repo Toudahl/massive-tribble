@@ -38,8 +38,8 @@
                 <Button x:Name="notificationsRefreshButton" Content="Refresh Notifications" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding RefreshNotifications}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
-                <ListView x:Name="notificationsListView" ItemsSource="{Binding Notifications, Mode=TwoWay}" Background="Red" Height="400" Width="300"/>
-                <ListView x:Name="userActiveTasksListView" ItemsSource="{Binding ActiveTasks, Mode=TwoWay}" Background="Aqua" Height="400" Width="300"/>
+                <ListView x:Name="notificationsListView" ItemsSource="{Binding Notifications, Mode=TwoWay}" Height="400" Width="300"/>
+                <ListView x:Name="userActiveTasksListView" ItemsSource="{Binding ActiveTasks, Mode=TwoWay}" Height="400" Width="300"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">
@@ -47,7 +47,7 @@
                 <TextBlock x:Name="marketplaceTitleTextBlock" Text="Marketplace" HorizontalAlignment="Center" FontSize="40" />
                 <Button x:Name="refreshMarketplaceButton" Content="*Refresh*" Command="{Binding RefreshMarketplace}"/>
             </StackPanel>
-            <ListView x:Name="marketplaceListView" DataContext="{Binding Marketplace}"/>
+            <ListView x:Name="marketplaceListView" ItemsSource="{Binding Marketplace}" Height="600" Width="600" FontSize="8"/>
         </StackPanel>
     </Grid>
 </Page>
