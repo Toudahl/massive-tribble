@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -58,7 +58,6 @@ namespace FetchItUniversalAndApi.Handlers
             get { return _newTask; }
             set { _newTask = value; }
         }
-
 
         public async void Create(object taskObject)
         {
@@ -284,11 +283,15 @@ namespace FetchItUniversalAndApi.Handlers
                 IEnumerable<TaskModel> getAll;
                 using (var client = new HttpClient())
                 {
+                IEnumerable<TaskModel> getAll;
+                using (var client = new HttpClient())
+                {
                     getAll = Task.Run(async () => JsonConvert.DeserializeObject<IEnumerable<TaskModel>>(
                                     await client.GetStringAsync(taskAPI))).Result;
                 }
                 return getAll;
             }
+
             throw new NotImplementedException();
         }
     }

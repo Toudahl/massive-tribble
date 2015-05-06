@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using FetchItUniversalAndApi.Handlers;
 
 namespace FetchItUniversalAndApi.Models
 {
@@ -35,5 +37,13 @@ namespace FetchItUniversalAndApi.Models
         public virtual ProfileModel MasterProfile { get; set; }
         public virtual ICollection<TaskLocationInfoModel> TaskLocationInfos { get; set; }
         public virtual TaskStatusModel TaskStatus { get; set; }
+
+        //Author: Lárus Þór Kick-Assness
+        public override string ToString()
+        {
+            //Using the ProfileHandler.GetInstance() without initializing it as a property inside here doesn't work.
+            //string testreturnString = ProfileHandler.GetInstance().AllProfiles.Where(c => c.ProfileId == FK_TaskMaster).Select(p => p.ProfileName).ToString();
+            return TaskDescription;
+        }
     }
 }

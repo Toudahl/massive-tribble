@@ -95,24 +95,6 @@ namespace FetchItUniversalAndApi.View
         /// The navigation parameter is available in the LoadState method 
         /// in addition to page state preserved during an earlier session.
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            if (ph.CurrentLoggedInProfile == null)
-            {
-                this.Frame.Navigate(typeof(MainPage));
-                navigationHelper.OnNavigatedTo(e);
-            }
-            else
-            {
-                pageTitle.Text = "Welcome " + ph.CurrentLoggedInProfile.ProfileName;
-            }
-        }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            navigationHelper.OnNavigatedFrom(e);
-        }
-
         #endregion
 
         private void taskDetailButton_Click(object sender, RoutedEventArgs e)

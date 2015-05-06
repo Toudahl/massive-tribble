@@ -18,5 +18,10 @@ namespace FetchItUniversalAndApi.Models
         public virtual NotificationStatusModel NotificationStatus { get; set; }
         public virtual ProfileModel FromProfile { get; set; }
         public virtual ProfileModel ToProfile { get; set; }
+
+        public override string ToString()
+        {
+            return "TODO Missing FromProfile string: " + NotificationContent;
+        }
     }
 }
