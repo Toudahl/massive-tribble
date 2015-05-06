@@ -1,4 +1,5 @@
-﻿using FetchItUniversalAndApi.Common;
+﻿using Windows.UI.Popups;
+using FetchItUniversalAndApi.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,15 +16,13 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
-using FetchItUniversalAndApi.Handlers;
-using FetchItUniversalAndApi.Models;
 
 namespace FetchItUniversalAndApi.View
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class TaskDetailPage : Page
+    public sealed partial class ReportProfilePage : Page
     {
 
         private NavigationHelper navigationHelper;
@@ -47,7 +46,7 @@ namespace FetchItUniversalAndApi.View
         }
 
 
-        public TaskDetailPage()
+        public ReportProfilePage()
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
@@ -105,9 +104,16 @@ namespace FetchItUniversalAndApi.View
 
         #endregion
 
-        private void goBackButton_Click(object sender, RoutedEventArgs e)
+        private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
-            navigationHelper.GoBack();
+            MessageDialog message = new MessageDialog("Are you sure you want to cancel this report and go back?", "Cancel Report");
+            message.Commands.Add(new UICommand(
+                "Yes",
+                command => navigationHelper.GoBack()));
+            message.Commands.Add(new UICommand(
+                "No"));
+
+            message.ShowAsync();
         }
     }
 }

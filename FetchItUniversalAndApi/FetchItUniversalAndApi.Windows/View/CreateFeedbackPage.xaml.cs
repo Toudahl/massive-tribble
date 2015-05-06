@@ -15,15 +15,13 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
-using FetchItUniversalAndApi.Handlers;
-using FetchItUniversalAndApi.Models;
 
 namespace FetchItUniversalAndApi.View
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class TaskDetailPage : Page
+    public sealed partial class CreateFeedbackPage : Page
     {
 
         private NavigationHelper navigationHelper;
@@ -47,7 +45,7 @@ namespace FetchItUniversalAndApi.View
         }
 
 
-        public TaskDetailPage()
+        public CreateFeedbackPage()
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
@@ -104,10 +102,5 @@ namespace FetchItUniversalAndApi.View
         }
 
         #endregion
-
-        private void goBackButton_Click(object sender, RoutedEventArgs e)
-        {
-            navigationHelper.GoBack();
-        }
     }
 }

@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\ObservableDictionary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\RelayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Handlers\ErrorHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Handlers\ExamplePaymentProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Handlers\Interfaces\ICreate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Handlers\Interfaces\IDelete.cs" />
@@ -56,6 +57,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\TaskLocationInfoModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\TaskModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\TaskStatusModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CreateFeedbackViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ReportProfileViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\TaskDetailViewModel.cs" />
   </ItemGroup>
 </Project>
