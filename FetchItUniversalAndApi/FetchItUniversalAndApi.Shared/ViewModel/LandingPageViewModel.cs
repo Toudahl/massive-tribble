@@ -96,7 +96,6 @@ namespace FetchItUniversalAndApi.ViewModel
             th = TaskHandler.GetInstance();
             RefreshMarketplace = new RelayCommand(refreshMarketplace);
             RefreshNotifications = new RelayCommand(refreshNotifications);
-            //TODO: Cannot do this now since TaskHandler hasn't been merged yet. The code is supposedly working according to Bruno but can't touch it atm.
             #region TESTING AREA! DELETE THIS SHIT!
             #region postNotification
             //NotificationModel testNotification = new NotificationModel();
@@ -110,11 +109,10 @@ namespace FetchItUniversalAndApi.ViewModel
             //Notifications.Add(testNotification);
             #endregion
             #endregion
-
-            //refreshMarketplace();
         }
 
         #endregion
+        #region ICommand methods
         public async void refreshMarketplace()
         {
             //TODO: Cannot do this now since TaskHandler hasn't been merged yet. The code is supposedly working according to Bruno but can't touch it atm.
@@ -143,6 +141,7 @@ namespace FetchItUniversalAndApi.ViewModel
         {
             Notifications = MessageHandler.GetNotifications().Result.ToObservableCollection();
         }
+        #endregion
         #endregion
 
         #region INotifyPropertyChanged
