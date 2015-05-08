@@ -47,7 +47,8 @@
                 <TextBlock x:Name="marketplaceTitleTextBlock" Text="Marketplace" HorizontalAlignment="Center" FontSize="40" />
                 <Button x:Name="refreshMarketplaceButton" Content="*Refresh*" Command="{Binding RefreshMarketplace}"/>
             </StackPanel>
-            <ListView x:Name="marketplaceListView" ItemsSource="{Binding Marketplace}" Height="600" Width="600" FontSize="8"/>
+            <ListView x:Name="marketplaceListView" ItemsSource="{Binding Marketplace}" Height="600" Width="600" FontSize="8" SelectedItem="{Binding th.SelectedTask, Mode=TwoWay}"
+								SelectionChanged="marketplaceListView_SelectionChanged" />
         </StackPanel>
     </Grid>
 </Page>

@@ -111,5 +111,10 @@ namespace FetchItUniversalAndApi.View
         {
             this.Frame.Navigate(typeof (MainPage));
         }
+
+		private void marketplaceListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			this.Frame.Navigate(typeof(TaskDetailPage));
+		}
     }
 }
