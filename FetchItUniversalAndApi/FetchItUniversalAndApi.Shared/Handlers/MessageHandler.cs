@@ -50,6 +50,7 @@ namespace FetchItUniversalAndApi.Handlers
             AdministratorMessage,
         }
     #endregion
+
         #region Fields and Properties
         //The httpclient should probably be one object that all handlers call upon. There "shouldn't" be any reason to dispose of it or flush it.
         //But we should keep an eye out for if it's not closing the connections or not dumping the resources.
