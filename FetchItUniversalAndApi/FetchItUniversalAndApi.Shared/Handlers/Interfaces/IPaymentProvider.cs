@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using FetchItUniversalAndApi.Models;
 
 namespace FetchItUniversalAndApi.Handlers.Interfaces
 {
+    // Author : Morten Toudahl
     interface IPaymentProvider
     {
-        void CancelReservation(TaskModel obj);
-        void Deposit(TaskModel obj);
-        void Reserve(TaskModel obj);
-        void Withdraw(TaskModel obj);
+        Task<bool> CancelReservation(TaskModel obj);
+        Task<bool> Deposit(TaskModel obj);
+        Task<bool> Reserve(TaskModel obj);
+        Task<bool> Withdraw(TaskModel obj);
     }
 }

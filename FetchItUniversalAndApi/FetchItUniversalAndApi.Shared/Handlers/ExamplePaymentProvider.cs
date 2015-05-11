@@ -1,31 +1,90 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+using Windows.UI.Popups;
 using FetchItUniversalAndApi.Handlers.Interfaces;
 using FetchItUniversalAndApi.Models;
 
 namespace FetchItUniversalAndApi.Handlers
 {
+    // Author : Morten Toudahl
     class ExamplePaymentProvider: IPaymentProvider
     {
-        public void CancelReservation(TaskModel obj)
+        public Task<bool> CancelReservation(TaskModel obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                /*
+                 * Get payment details from obj.
+                 * Contacting remote payment provider
+                 * 
+                 * if success display message to user
+                 */
+                return Task.Run(() => 1==1);
+
+            }
+            catch (Exception)
+            {
+                return Task.Run(() => 1 == 2);
+            }
         }
 
-        public void Deposit(TaskModel obj)
+        public Task<bool> Deposit(TaskModel obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                /*
+                 * Get payment details from obj.
+                 * Contacting remote payment provider
+                 * 
+                 * if success display message to user
+                 */
+                return Task.Run(() => 1 == 1);
+
+            }
+            catch (Exception)
+            {
+                return Task.Run(() => 1 == 2);
+            }
         }
 
-        public void Reserve(TaskModel obj)
+        public Task<bool> Reserve(TaskModel obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                /*
+                 * Get payment details from obj.
+                 * Contacting remote payment provider
+                 * 
+                 * if success display message to user
+                 */
+                return Task.Run(() => 1 == 1);
+
+            }
+            catch (Exception)
+            {
+                return Task.Run(() => 1 == 2);
+            }
         }
 
-        public void Withdraw(TaskModel obj)
+        public Task<bool> Withdraw(TaskModel obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                /*
+                 * Get payment details from obj.
+                 * Contacting remote payment provider
+                 * 
+                 * if success display message to user
+                 */
+                return Task.Run(() => 1 == 1);
+
+            }
+            catch (Exception)
+            {
+                return Task.Run(() => 1 == 2);
+            }
         }
     }
 }
