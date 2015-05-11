@@ -22,12 +22,12 @@ namespace FetchItUniversalAndApi.ViewModel
         #region Fields and Properties
         private ProfileHandler _ph;
         private TaskHandler _th;
+        private string _currentProfileName;
         private ObservableCollection<TaskModel> _marketplace;
-        private ICommand _refreshMarketplace;
         private ObservableCollection<NotificationModel> _notifications;
         private ObservableCollection<TaskModel> _activeTasks;
         private ICommand _refreshNotifications;
-        private string _currentProfileName;
+        private ICommand _refreshMarketplace;
 
         public ObservableCollection<TaskModel> Marketplace
         {
@@ -40,6 +40,18 @@ namespace FetchItUniversalAndApi.ViewModel
                 Task updateActiveTasksTask = new Task(refreshActiveTasks);
                 updateActiveTasksTask.RunSynchronously();
             }
+        }
+
+        public ProfileHandler ph
+        {
+            get { return _ph; }
+            set { _ph = value; }
+        }
+
+        public TaskHandler th
+        {
+            get { return _th; }
+            set { _th = value; }
         }
 
         public string CurrentProfileName
@@ -66,18 +78,6 @@ namespace FetchItUniversalAndApi.ViewModel
                 _activeTasks = value;
                 OnPropertyChanged("ActiveTasks");
             }
-        }
-
-        public ProfileHandler ph
-        {
-            get { return _ph; }
-            set { _ph = value; }
-        }
-
-        public TaskHandler th
-        {
-            get { return _th; }
-            set { _th = value; }
         }
 
         public ICommand RefreshMarketplace
@@ -122,7 +122,6 @@ namespace FetchItUniversalAndApi.ViewModel
             #endregion
         }
         #endregion
-        #region ICommand methods
         /// <summary>
         /// Async, looks for any Tasks currently in the local Marketplace and checks if it has the current logged in profile as TaskMaster or Fetcher
         /// </summary>
@@ -145,7 +144,6 @@ namespace FetchItUniversalAndApi.ViewModel
         {
             Notifications = MessageHandler.GetNotifications().Result.ToObservableCollection();
         }
-        #endregion
         #endregion
         #endregion
 

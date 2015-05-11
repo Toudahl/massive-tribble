@@ -1,11 +1,15 @@
 ﻿// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
+using System;
+using System.Diagnostics;
 using System.ServiceModel.Channels;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using FetchItUniversalAndApi.Common;
 using FetchItUniversalAndApi.Handlers;
+using FetchItUniversalAndApi.ViewModel;
 
 namespace FetchItUniversalAndApi.View
 {
@@ -33,16 +37,15 @@ namespace FetchItUniversalAndApi.View
 
         private async void DoLogIn()
         {
-
             for (int i = 0; i < 10; i++)
             {
                 await Task.Delay(500);
                 if (ph.CurrentLoggedInProfile != null)
                 {
                     Frame.Navigate(typeof(LandingPage));
+                    return;
                 }
             }
-
             var msg = new MessageDialog("Failed to log in within the allowed time.\nCheck your internet connectivity, and try again").ShowAsync();
         }
     }

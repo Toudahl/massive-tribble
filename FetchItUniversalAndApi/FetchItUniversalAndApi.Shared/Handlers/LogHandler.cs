@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 
 namespace FetchItUniversalAndApi.Handlers
 {
+    //Author: Lárus Þór Óðinsson
     class LogHandler: ICreate
     {
         #region Fields and Properties

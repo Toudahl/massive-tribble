@@ -8,11 +8,13 @@ using Windows.UI.Popups;
 using FetchItUniversalAndApi.Common;
 using FetchItUniversalAndApi.Handlers;
 using FetchItUniversalAndApi.Models;
+using FetchItUniversalAndApi.View;
 
 namespace FetchItUniversalAndApi.ViewModel
 {
     class LogInViewModel
     {
+        #region Propertied and Fields
         private ProfileHandler ph;
         private ICommand _logInCommand;
         private string _username;
@@ -24,11 +26,6 @@ namespace FetchItUniversalAndApi.ViewModel
             {
                 return ph.CurrentLoggedInProfile;
             }
-        }
-
-        public LogInViewModel()
-        {
-            ph = ProfileHandler.GetInstance();
         }
 
         public string Username
@@ -54,6 +51,15 @@ namespace FetchItUniversalAndApi.ViewModel
                 return _logInCommand;
             }
         }
+        #endregion
+
+        #region Methods
+        public LogInViewModel()
+        {
+            ph = ProfileHandler.GetInstance();
+        }
+
+        
 
         private void LogIn()
         {
@@ -62,8 +68,7 @@ namespace FetchItUniversalAndApi.ViewModel
                 ProfileName = Username,
                 ProfilePassword = Password,
             });
-            
         }
-
+        #endregion
     }
 }
