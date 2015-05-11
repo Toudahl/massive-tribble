@@ -11,8 +11,7 @@ using FetchItUniversalAndApi.Models;
 
 namespace FetchItUniversalAndApi.ViewModel
 {
-    // Author: Morten Toudahl
-    class MainPageViewModel
+    class LogInViewModel
     {
         private ProfileHandler ph;
         private ICommand _logInCommand;
@@ -27,7 +26,7 @@ namespace FetchItUniversalAndApi.ViewModel
             }
         }
 
-        public MainPageViewModel()
+        public LogInViewModel()
         {
             ph = ProfileHandler.GetInstance();
         }
@@ -63,6 +62,8 @@ namespace FetchItUniversalAndApi.ViewModel
                 ProfileName = Username,
                 ProfilePassword = Password,
             });
+            
         }
+
     }
 }

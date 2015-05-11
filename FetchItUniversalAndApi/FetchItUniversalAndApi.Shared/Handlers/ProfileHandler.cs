@@ -162,7 +162,7 @@ namespace FetchItUniversalAndApi.Handlers
             {
                 var newProfile = obj as ProfileModel;
                 newProfile.FK_ProfileLevel = (int)ProfileLevel.User;
-                newProfile.FK_ProfileStatus = (int) ProfileStatus.Unactivated;
+                newProfile.FK_ProfileStatus = (int) ProfileStatus.Active;
                 newProfile.ProfileIsVerified = false;
                 newProfile.FK_ProfileVerificationType = (int) ProfileVerificationType.NotVerified;
                 newProfile.ProfileCanReport = 1;
