@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
+using FetchItUniversalAndApi.ViewModel;
 
 namespace FetchItUniversalAndApi.View
 {
@@ -103,14 +104,13 @@ namespace FetchItUniversalAndApi.View
 
         #endregion
 
-        private void backButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof (MainPage));
-        }
             
         private void createUserButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof (MainPage));
+            if (RegisterViewModel.CreationSuccess)
+            {
+                this.Frame.Navigate(typeof(MainPage));
+            }
         }
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
