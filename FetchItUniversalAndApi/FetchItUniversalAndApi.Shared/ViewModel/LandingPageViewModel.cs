@@ -48,6 +48,12 @@ namespace FetchItUniversalAndApi.ViewModel
             set { _currentProfileName = value; }
         }
 
+        public string CurrentProfileName
+        {
+            get { return _currentProfileName; }
+            set { _currentProfileName = value; }
+        }
+
         public ObservableCollection<NotificationModel> Notifications
         {
             get { return _notifications; }
@@ -123,6 +129,13 @@ namespace FetchItUniversalAndApi.ViewModel
         }
 
         #endregion
+        #region ICommand methods
+        public async void refreshMarketplace()
+        {
+            //TODO: This shouldn't do anything if it's being clicked too often. But probably also good to have a cooldown on the TaskHandler method as well
+            Marketplace = th.GetTasks(TaskHandler.TaskStatus.Active).ToObservableCollection();
+        }
+
         /// <summary>
         /// Async, looks for any Tasks currently in the local Marketplace and checks if it has the current logged in profile as TaskMaster or Fetcher
         /// </summary>
