@@ -5,7 +5,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -28,6 +27,7 @@ namespace FetchItUniversalAndApi.ViewModel
         private ObservableCollection<NotificationModel> _notifications;
         private ObservableCollection<TaskModel> _activeTasks;
         private ICommand _refreshNotifications;
+        private string _currentProfileName;
 
         public ObservableCollection<TaskModel> Marketplace
         {
@@ -36,7 +36,16 @@ namespace FetchItUniversalAndApi.ViewModel
             {
                 _marketplace = value;
                 OnPropertyChanged("Marketplace");
+                //When the Marketplace is updated, it will run refreshActiveTasks() in the background
+                Task updateActiveTasksTask = new Task(refreshActiveTasks);
+                updateActiveTasksTask.RunSynchronously();
             }
+        }
+
+        public string CurrentProfileName
+        {
+            get { return _currentProfileName; }
+            set { _currentProfileName = value; }
         }
 
         public ObservableCollection<NotificationModel> Notifications
@@ -89,13 +98,16 @@ namespace FetchItUniversalAndApi.ViewModel
         #region Constructor
         public LandingPageViewModel()
         {
+            ph = ProfileHandler.GetInstance();
+            th = TaskHandler.GetInstance();
+            CurrentProfileName = ph.CurrentLoggedInProfile.ProfileName;
             Marketplace = new ObservableCollection<TaskModel>();
             ActiveTasks = new ObservableCollection<TaskModel>();
             Notifications = new ObservableCollection<NotificationModel>();
-            ph = ProfileHandler.GetInstance();
-            th = TaskHandler.GetInstance();
             RefreshMarketplace = new RelayCommand(refreshMarketplace);
             RefreshNotifications = new RelayCommand(refreshNotifications);
+            refreshMarketplace();
+            refreshNotifications();
             #region TESTING AREA! DELETE THIS SHIT!
             #region postNotification
             //NotificationModel testNotification = new NotificationModel();
@@ -115,28 +127,22 @@ namespace FetchItUniversalAndApi.ViewModel
         #region ICommand methods
         public async void refreshMarketplace()
         {
-            //TODO: Cannot do this now since TaskHandler hasn't been merged yet. The code is supposedly working according to Bruno but can't touch it atm.
             //TODO: This shouldn't do anything if it's being clicked too often. But probably also good to have a cooldown on the TaskHandler method as well
             Marketplace = th.GetTasks(TaskHandler.TaskStatus.Active).ToObservableCollection();
         }
 
         /// <summary>
-        /// Asynchroneously looks for any Tasks currently in the local Marketplace and checks if it has the current logged in profile as TaskMaster or Fetcher
+        /// Async, looks for any Tasks currently in the local Marketplace and checks if it has the current logged in profile as TaskMaster or Fetcher
         /// </summary>
         private async void refreshActiveTasks()
         {
             //TODO: This is utter shit, make the collection proper to begin with and stop shitty casting
-            IEnumerable<TaskModel> testTaskCollecton = Marketplace.Where(t => t.MasterProfile == ph.CurrentLoggedInProfile || t.FetcherProfile == ph.CurrentLoggedInProfile);
-            foreach (TaskModel taskModel in testTaskCollecton)
-            {
-                if (taskModel == null)
-                {
-                    break;
-                }
-                ActiveTasks.Add(taskModel);
-            }
+            ActiveTasks = Marketplace.Where(t => t.MasterProfile == ph.CurrentLoggedInProfile || t.FetcherProfile == ph.CurrentLoggedInProfile).ToObservableCollection();
         }
 
+        /// <summary>
+        /// Async, gets the notifications associated with the currently logged in profile
+        /// </summary>
         private async void refreshNotifications()
         {
             Notifications = MessageHandler.GetNotifications().Result.ToObservableCollection();
