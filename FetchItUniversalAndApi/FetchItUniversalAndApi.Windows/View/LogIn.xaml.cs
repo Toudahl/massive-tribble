@@ -1,5 +1,8 @@
 ﻿// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
+
+using System.ServiceModel.Channels;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using FetchItUniversalAndApi.Handlers;
@@ -11,10 +14,11 @@ namespace FetchItUniversalAndApi.View
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private ProfileHandler ph;
         public MainPage()
         {
             this.InitializeComponent();
-            var ph = ProfileHandler.GetInstance();
+            ph = ProfileHandler.GetInstance();
         }
 
         private void RegisterButton_OnClick(object sender, RoutedEventArgs e)
@@ -22,10 +26,13 @@ namespace FetchItUniversalAndApi.View
             this.Frame.Navigate(typeof(RegisterUser));
         }
 
-        private void LoginButton_OnClick(object sender, RoutedEventArgs e)
+        private async void LoginButton_OnClick(object sender, RoutedEventArgs e)
         {
-	        Task.Delay(1500);
-            this.Frame.Navigate(typeof (LandingPage));
+            await Task.Delay(1500);
+            if (ph.CurrentLoggedInProfile != null)
+            {
+                Frame.Navigate(typeof(LandingPage));
+            }
         }
     }
 }
