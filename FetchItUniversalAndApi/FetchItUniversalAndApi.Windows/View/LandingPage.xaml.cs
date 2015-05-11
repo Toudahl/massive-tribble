@@ -27,7 +27,6 @@ namespace FetchItUniversalAndApi.View
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
-        private ProfileHandler ph = ProfileHandler.GetInstance();
 
 
         /// <summary>
@@ -96,11 +95,6 @@ namespace FetchItUniversalAndApi.View
         /// in addition to page state preserved during an earlier session.
 
         #endregion
-
-        private void taskDetailButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof (TaskDetailPage));
-        }
 
         private void profileDetailsButton_Click(object sender, RoutedEventArgs e)
         {
