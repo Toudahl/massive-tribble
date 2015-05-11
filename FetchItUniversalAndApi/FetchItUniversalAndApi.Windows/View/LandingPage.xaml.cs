@@ -27,7 +27,6 @@ namespace FetchItUniversalAndApi.View
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
-        private ProfileHandler ph = ProfileHandler.GetInstance();
 
 
         /// <summary>
@@ -97,11 +96,6 @@ namespace FetchItUniversalAndApi.View
 
         #endregion
 
-        private void taskDetailButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof (TaskDetailPage));
-        }
-
         private void profileDetailsButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof (ProfileDetailPage));    
@@ -116,5 +110,10 @@ namespace FetchItUniversalAndApi.View
 		{
 			this.Frame.Navigate(typeof(TaskDetailPage));
 		}
+
+        private void CreateTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof (TaskDetailPage));
+        }
     }
 }

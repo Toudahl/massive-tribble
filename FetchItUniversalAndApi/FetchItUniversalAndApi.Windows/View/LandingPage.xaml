@@ -27,15 +27,9 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="backButton" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
-                        Style="{StaticResource NavigationBackButtonNormalStyle}"
-                        VerticalAlignment="Top"
-                        AutomationProperties.Name="Back"
-                        AutomationProperties.AutomationId="BackButton"
-                        AutomationProperties.ItemType="Navigation Button" Click="backButton_Click"/>
                 <Button x:Name="profileDetailsButton" Content="Profil" Click="profileDetailsButton_Click"/>
-                <Button x:Name="taskDetailButton" Content="TASK" HorizontalAlignment="Left" VerticalAlignment="Top" Click="taskDetailButton_Click"/>
                 <Button x:Name="notificationsRefreshButton" Content="Refresh Notifications" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding RefreshNotifications}"/>
+                <TextBlock x:Name="CurrentProfileNameTextBlock" Text="{Binding CurrentProfileName}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
                 <ListView x:Name="notificationsListView" ItemsSource="{Binding Notifications, Mode=TwoWay}" Height="400" Width="300"/>
@@ -46,6 +40,7 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock x:Name="marketplaceTitleTextBlock" Text="Marketplace" HorizontalAlignment="Center" FontSize="40" />
                 <Button x:Name="refreshMarketplaceButton" Content="*Refresh*" Command="{Binding RefreshMarketplace}"/>
+                <Button x:Name="CreateTaskButton" Content="Add New Task" Click="CreateTaskButton_Click"/>
             </StackPanel>
             <ListView x:Name="marketplaceListView" ItemsSource="{Binding Marketplace}" Height="600" Width="600" FontSize="8" SelectedItem="{Binding th.SelectedTask, Mode=TwoWay}"
 								SelectionChanged="marketplaceListView_SelectionChanged" />
