@@ -91,7 +91,6 @@ namespace FetchItUniversalAndApi.ViewModel
             get { return _refreshNotifications; }
             set { _refreshNotifications = value; }
         }
-
         #endregion
 
         #region Methods
@@ -124,13 +123,6 @@ namespace FetchItUniversalAndApi.ViewModel
         }
 
         #endregion
-        #region ICommand methods
-        public async void refreshMarketplace()
-        {
-            //TODO: This shouldn't do anything if it's being clicked too often. But probably also good to have a cooldown on the TaskHandler method as well
-            Marketplace = th.GetTasks(TaskHandler.TaskStatus.Active).ToObservableCollection();
-        }
-
         /// <summary>
         /// Async, looks for any Tasks currently in the local Marketplace and checks if it has the current logged in profile as TaskMaster or Fetcher
         /// </summary>
@@ -138,6 +130,12 @@ namespace FetchItUniversalAndApi.ViewModel
         {
             //TODO: This is utter shit, make the collection proper to begin with and stop shitty casting
             ActiveTasks = Marketplace.Where(t => t.MasterProfile == ph.CurrentLoggedInProfile || t.FetcherProfile == ph.CurrentLoggedInProfile).ToObservableCollection();
+        }
+        #region ICommand methods
+        private async void refreshMarketplace()
+        {
+            //TODO: This shouldn't do anything if it's being clicked too often. But probably also good to have a cooldown on the TaskHandler method as well
+            Marketplace = th.GetTasks(TaskHandler.TaskStatus.Active).ToObservableCollection();
         }
 
         /// <summary>
