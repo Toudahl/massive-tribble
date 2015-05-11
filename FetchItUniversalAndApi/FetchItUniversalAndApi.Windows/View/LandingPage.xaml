@@ -34,7 +34,6 @@
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button" Click="backButton_Click"/>
                 <Button x:Name="profileDetailsButton" Content="Profil" Click="profileDetailsButton_Click"/>
-                <Button x:Name="taskDetailButton" Content="TASK" HorizontalAlignment="Left" VerticalAlignment="Top" Click="taskDetailButton_Click"/>
                 <Button x:Name="notificationsRefreshButton" Content="Refresh Notifications" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding RefreshNotifications}"/>
                 <TextBlock x:Name="CurrentProfileNameTextBlock" Text="{Binding CurrentProfileName}"/>
             </StackPanel>
