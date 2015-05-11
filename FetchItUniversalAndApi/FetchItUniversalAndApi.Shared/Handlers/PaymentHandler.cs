@@ -1,23 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using FetchItUniversalAndApi.Handlers.Interfaces;
 using FetchItUniversalAndApi.Models;
 
 namespace FetchItUniversalAndApi.Handlers
 {
+    // Author: Morten Toudahl
     class PaymentHandler: IPaymentProvider
     {
         private IPaymentProvider _provider;
         private static PaymentHandler _handler;
-        private static Object _lockObject = new object();
+        private static readonly Object _lockObject = new object();
 
         private PaymentHandler()
         {
-            
+            _provider = new ExamplePaymentProvider();
         }
 
-        // Write in the comment for this method, that people must remember to set the provider too.
+        /// <summary>
+        /// Thread safe singleton instantiation. Default paymentprovider: ExamplePaymentProvider
+        /// </summary>
+        /// <returns><see cref="PaymentHandler"/></returns>
         public static PaymentHandler GetInstance()
         {
             lock (_lockObject)
@@ -30,29 +35,53 @@ namespace FetchItUniversalAndApi.Handlers
             }
         }
 
+        /// <summary>
+        /// Use this to change the payment provider.
+        /// </summary>
+        /// <param name="provider">new instance of a IPaymentProvider type</param>
         public void SetPaymentProvider(IPaymentProvider provider)
         {
             _provider = provider;
         }
 
-        public void CancelReservation(TaskModel obj)
+        /// <summary>
+        /// Cancel the payment reservation associated with a task
+        /// </summary>
+        /// <param name="obj">The task whose payment reservation should be cancelled.</param>
+        /// <returns>Bool, based on the success of the request.</returns>
+        public Task<bool> CancelReservation(TaskModel obj)
         {
-            _provider.CancelReservation(obj);
+            return _provider.CancelReservation(obj);
         }
 
-        public void Deposit(TaskModel obj)
+        /// <summary>
+        /// Deposit money into the bank account of the TaskMaster
+        /// </summary>
+        /// <param name="obj">The task that contains the nessesary information</param>
+        /// <returns>Bool, based on the success of the request.</returns>
+        public Task<bool> Deposit(TaskModel obj)
         {
-            _provider.Deposit(obj);
+            return _provider.Deposit(obj);
         }
 
-        public void Reserve(TaskModel obj)
+        /// <summary>
+        /// Reserve money on from the TaskMaster
+        /// </summary>
+        /// <param name="obj">The task that contains the nessesary information</param>
+        /// <returns>Bool, based on the success of the request.</returns>
+        public Task<bool> Reserve(TaskModel obj)
         {
-            _provider.Reserve(obj);
+            return _provider.Reserve(obj);
         }
 
-        public void Withdraw(TaskModel obj)
+        /// <summary>
+        /// Withdraw money money from TaskMaster, take our cut and send the rest to the TaskFetcher
+        /// </summary>
+        /// <param name="obj">The task that contains the nessesary information</param>
+        /// <returns>Bool, based on the success of the request.</returns>
+        public Task<bool> Withdraw(TaskModel obj)
         {
-            _provider.Withdraw(obj);
+            return _provider.Withdraw(obj);
         }
     }
 }
