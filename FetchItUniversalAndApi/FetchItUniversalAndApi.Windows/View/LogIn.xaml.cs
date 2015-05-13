@@ -1,11 +1,15 @@
 ﻿// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
+using System;
+using System.Diagnostics;
 using System.ServiceModel.Channels;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using FetchItUniversalAndApi.Common;
 using FetchItUniversalAndApi.Handlers;
+using FetchItUniversalAndApi.ViewModel;
 
 namespace FetchItUniversalAndApi.View
 {
@@ -39,6 +43,7 @@ namespace FetchItUniversalAndApi.View
                 if (ph.CurrentLoggedInProfile != null)
                 {
                     Frame.Navigate(typeof(LandingPage));
+                    return;
                 }
             }
             if (ph.CurrentLoggedInProfile == null)

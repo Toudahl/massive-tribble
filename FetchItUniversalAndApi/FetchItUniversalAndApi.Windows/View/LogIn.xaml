@@ -8,14 +8,14 @@
     xmlns:viewModel="using:FetchItUniversalAndApi.ViewModel"
     mc:Ignorable="d">
 <Page.DataContext>
-        <viewModel:MainPageViewModel/>
+        <viewModel:LogInViewModel/>
 </Page.DataContext>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
             <TextBox Text="{Binding Username, Mode=TwoWay}" PlaceholderText="Input username"/>
             <PasswordBox Password="{Binding Password, Mode=TwoWay}" PlaceholderText="Input password" />
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="loginButton" Content="Log in" Command="{Binding LogInCommand}" Click="LoginButton_OnClick" HorizontalAlignment="Center"/>
+                <Button x:Name="loginButton" Content="Log in" Command="{Binding LogInCommand}"  Click="LoginButton_OnClick" HorizontalAlignment="Center"/>
                 <Button x:Name="registerButton" Content="Register" Click="RegisterButton_OnClick" HorizontalAlignment="Center" Width="100"/>
             </StackPanel>
         </StackPanel>
