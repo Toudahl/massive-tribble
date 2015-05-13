@@ -126,6 +126,9 @@
     <Compile Include="View\ReportProfilePage.xaml.cs">
       <DependentUpon>ReportProfilePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\TaskCreation.xaml.cs">
+      <DependentUpon>TaskCreation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\TaskDetailPage.xaml.cs">
       <DependentUpon>TaskDetailPage.xaml</DependentUpon>
     </Compile>
@@ -174,6 +177,10 @@
     <Page Include="View\ReportProfilePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\TaskCreation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\TaskDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>

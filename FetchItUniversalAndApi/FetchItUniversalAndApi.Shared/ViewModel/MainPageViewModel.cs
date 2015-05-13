@@ -19,14 +19,6 @@ namespace FetchItUniversalAndApi.ViewModel
         private string _username;
         private string _password;
 
-        public ProfileModel LoggedInUser
-        {
-            get
-            {
-                return ph.CurrentLoggedInProfile;
-            }
-        }
-
         public MainPageViewModel()
         {
             ph = ProfileHandler.GetInstance();

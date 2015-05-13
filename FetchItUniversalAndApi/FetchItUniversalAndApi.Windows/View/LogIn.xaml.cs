@@ -33,7 +33,6 @@ namespace FetchItUniversalAndApi.View
 
         private async void DoLogIn()
         {
-
             for (int i = 0; i < 10; i++)
             {
                 await Task.Delay(500);
@@ -42,8 +41,10 @@ namespace FetchItUniversalAndApi.View
                     Frame.Navigate(typeof(LandingPage));
                 }
             }
-
-            var msg = new MessageDialog("Failed to log in within the allowed time.\nCheck your internet connectivity, and try again").ShowAsync();
+            if (ph.CurrentLoggedInProfile == null)
+            {
+                var msg = new MessageDialog("Failed to log in within the allowed time.\nCheck your internet connectivity, and try again").ShowAsync();
+            }
         }
     }
 }
