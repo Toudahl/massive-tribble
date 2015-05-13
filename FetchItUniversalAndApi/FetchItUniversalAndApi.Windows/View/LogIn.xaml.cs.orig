@@ -43,12 +43,17 @@ namespace FetchItUniversalAndApi.View
                 if (ph.CurrentLoggedInProfile != null)
                 {
                     Frame.Navigate(typeof(LandingPage));
+                    return;
                 }
             }
+<<<<<<< HEAD
             if (ph.CurrentLoggedInProfile == null)
             {
                 var msg = new MessageDialog("Failed to log in within the allowed time.\nCheck your internet connectivity, and try again").ShowAsync();
             }
+=======
+            var msg = new MessageDialog("Failed to log in within the allowed time.\nCheck your internet connectivity, and try again").ShowAsync();
+>>>>>>> 5e4d2acbb9cff2b748ccd94e61e119979cc80a4d
         }
     }
 }
