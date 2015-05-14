@@ -27,7 +27,7 @@ namespace FetchItUniversalAndApi.View
 	{
 		private NavigationHelper navigationHelper;
 		private ObservableDictionary defaultViewModel = new ObservableDictionary();
-		
+
 		/// <summary>
 		/// This can be changed to a strongly typed view model.
 		/// </summary>
@@ -95,32 +95,37 @@ namespace FetchItUniversalAndApi.View
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			navigationHelper.OnNavigatedTo(e);
+
+			//This code makes the Create Feedback button visible on three conditions:
+			//1. If the current logged in profile is the taskmaster of the task.
+			//2. If the task does not have any feedbacks.
+			//3. If the task status is set to 5 (or TaskStatus.Completed)
+
 			var th = TaskHandler.GetInstance();
-			//This code makes the Create Feedback button visible if the 
-			//task is completed and does not have any feedback.
+			var ph = ProfileHandler.GetInstance();
 			if (th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.Completed)
 			{
-				FeedbackModel feedbackForThisTask = new	FeedbackModel();
-				var feedbacks = MessageHandler.GetFeedback(MessageHandler.FeedbackStatus.Active).ToList();
-
-				try
-				{
-					feedbackForThisTask =
-					feedbacks.Where(feedback => feedback.FK_FeedbackForTask == th.SelectedTask.TaskId)
-						.Select(feedback => feedback).ToList().First();
-				}
-				catch (Exception)
-				{
-				
-				}
-				
-				if (th.SelectedTask.TaskId != feedbackForThisTask.FK_FeedbackForTask)
+				if (th.SelectedTask.Feedbacks.Count < 1 && ph.CurrentLoggedInProfile.ProfileId == th.SelectedTask.FK_TaskMaster)
 				{
 					CreateFeedbackButton.Visibility = Visibility.Visible;
 				}
 			}
+			else
+			{
+				//This code makes the EditTask button visible if:
+				//1. Loggedin profile is the Taskmaster
+				//2. TaskStatus is active or reported
+
+				if (th.SelectedTask.FK_TaskMaster == ph.CurrentLoggedInProfile.ProfileId)
+				{
+					if (th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.Active || th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.Reported)
+					{
+						EditTaskButton.Visibility = Visibility.Visible;
+					}
+				}
+			}
 		}
-		
+
 		protected override void OnNavigatedFrom(NavigationEventArgs e)
 		{
 			navigationHelper.OnNavigatedFrom(e);
@@ -136,6 +141,11 @@ namespace FetchItUniversalAndApi.View
 		private void CreateFeedbackButton_Click(object sender, RoutedEventArgs e)
 		{
 			this.Frame.Navigate(typeof(CreateFeedbackPage));
+		}
+
+		private void EditTaskButton_Click(object sender, RoutedEventArgs e)
+		{
+			this.Frame.Navigate(typeof(TaskEditPage));
 		}
 	}
 
