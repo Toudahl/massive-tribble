@@ -1,4 +1,7 @@
-﻿using FetchItUniversalAndApi.Common;
+﻿using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
+using FetchItUniversalAndApi.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -53,7 +56,6 @@ namespace FetchItUniversalAndApi.View
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             this.navigationHelper.SaveState += navigationHelper_SaveState;
-
         }
 
         /// <summary>
@@ -114,6 +116,18 @@ namespace FetchItUniversalAndApi.View
         private void CreateTaskButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof (TaskDetailPage));
+        }
+
+        private void refreshMarketplaceButton_Click(object sender, RoutedEventArgs e)
+        {
+            coolDown();
+        }
+
+        private async void coolDown()
+        {
+            refreshMarketplaceButton.IsEnabled = false;
+            await Task.Delay(5000);
+            refreshMarketplaceButton.IsEnabled = true;
         }
     }
 }

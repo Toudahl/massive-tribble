@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.Foundation.Collections;
@@ -34,11 +36,14 @@ namespace FetchItUniversalAndApi.ViewModel
             get { return _marketplace; }
             set
             {
-                _marketplace = value;
-                OnPropertyChanged("Marketplace");
-                //When the Marketplace is updated, it will run refreshActiveTasks() in the background
-                Task updateActiveTasksTask = new Task(refreshActiveTasks);
-                updateActiveTasksTask.RunSynchronously();
+                if (value != null)
+                {
+                    _marketplace = value;
+                    OnPropertyChanged("Marketplace");
+                    //When the Marketplace is updated, it will run refreshActiveTasks() in the background
+                    Task updateActiveTasksTask = new Task(refreshActiveTasks);
+                    updateActiveTasksTask.RunSynchronously();
+                }
             }
         }
 
@@ -132,13 +137,11 @@ namespace FetchItUniversalAndApi.ViewModel
         /// </summary>
         private async void refreshActiveTasks()
         {
-            //TODO: This is utter shit, make the collection proper to begin with and stop shitty casting
             ActiveTasks = Marketplace.Where(t => t.MasterProfile == ph.CurrentLoggedInProfile || t.FetcherProfile == ph.CurrentLoggedInProfile).ToObservableCollection();
         }
         #region ICommand methods
         private async void refreshMarketplace()
         {
-            //TODO: This shouldn't do anything if it's being clicked too often. But probably also good to have a cooldown on the TaskHandler method as well
             Marketplace = th.GetTasks(TaskHandler.TaskStatus.Active).ToObservableCollection();
         }
 
