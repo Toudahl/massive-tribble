@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.Foundation.Collections;
@@ -22,23 +24,26 @@ namespace FetchItUniversalAndApi.ViewModel
         #region Fields and Properties
         private ProfileHandler _ph;
         private TaskHandler _th;
-        private string _currentProfileName;
         private ObservableCollection<TaskModel> _marketplace;
         private ObservableCollection<NotificationModel> _notifications;
         private ObservableCollection<TaskModel> _activeTasks;
         private ICommand _refreshNotifications;
         private ICommand _refreshMarketplace;
+        private string _welcomeText;
 
         public ObservableCollection<TaskModel> Marketplace
         {
             get { return _marketplace; }
             set
             {
-                _marketplace = value;
-                OnPropertyChanged("Marketplace");
-                //When the Marketplace is updated, it will run refreshActiveTasks() in the background
-                Task updateActiveTasksTask = new Task(refreshActiveTasks);
-                updateActiveTasksTask.RunSynchronously();
+                if (value != null)
+                {
+                    _marketplace = value;
+                    OnPropertyChanged("Marketplace");
+                    //When the Marketplace is updated, it will run refreshActiveTasks() in the background
+                    Task updateActiveTasksTask = new Task(refreshActiveTasks);
+                    updateActiveTasksTask.RunSynchronously();
+                }
             }
         }
 
@@ -54,10 +59,14 @@ namespace FetchItUniversalAndApi.ViewModel
             set { _th = value; }
         }
 
-        public string CurrentProfileName
+        public string WelcomeText
         {
-            get { return _currentProfileName; }
-            set { _currentProfileName = value; }
+            get { return _welcomeText; }
+            set
+            {
+                _welcomeText = value;
+                OnPropertyChanged("WelcomeText");
+            }
         }
 
         public ObservableCollection<NotificationModel> Notifications
@@ -99,12 +108,12 @@ namespace FetchItUniversalAndApi.ViewModel
         {
             ph = ProfileHandler.GetInstance();
             th = TaskHandler.GetInstance();
-            CurrentProfileName = ph.CurrentLoggedInProfile.ProfileName;
             Marketplace = new ObservableCollection<TaskModel>();
             ActiveTasks = new ObservableCollection<TaskModel>();
             Notifications = new ObservableCollection<NotificationModel>();
             RefreshMarketplace = new RelayCommand(refreshMarketplace);
             RefreshNotifications = new RelayCommand(refreshNotifications);
+            WelcomeText = "Welcome " + ph.CurrentLoggedInProfile.ProfileName + "!";
             refreshMarketplace();
             refreshNotifications();
             #region TESTING AREA! DELETE THIS SHIT!
@@ -122,18 +131,17 @@ namespace FetchItUniversalAndApi.ViewModel
             #endregion
         }
         #endregion
+
         /// <summary>
         /// Async, looks for any Tasks currently in the local Marketplace and checks if it has the current logged in profile as TaskMaster or Fetcher
         /// </summary>
         private async void refreshActiveTasks()
         {
-            //TODO: This is utter shit, make the collection proper to begin with and stop shitty casting
             ActiveTasks = Marketplace.Where(t => t.MasterProfile == ph.CurrentLoggedInProfile || t.FetcherProfile == ph.CurrentLoggedInProfile).ToObservableCollection();
         }
         #region ICommand methods
         private async void refreshMarketplace()
         {
-            //TODO: This shouldn't do anything if it's being clicked too often. But probably also good to have a cooldown on the TaskHandler method as well
             Marketplace = th.GetTasks(TaskHandler.TaskStatus.Active).ToObservableCollection();
         }
 

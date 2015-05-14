@@ -29,9 +29,11 @@
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="profileDetailsButton" Content="Profil" Click="profileDetailsButton_Click"/>
                 <Button x:Name="notificationsRefreshButton" Content="Refresh Notifications" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding RefreshNotifications}"/>
-                <TextBlock x:Name="CurrentProfileNameTextBlock" Text="{Binding CurrentProfileName}"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+            <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
+                <TextBlock x:Name="welcomeText" Text="{Binding WelcomeText}" FontSize="30"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
                 <ListView x:Name="notificationsListView" ItemsSource="{Binding Notifications, Mode=TwoWay}" Height="400" Width="300"/>
                 <ListView x:Name="userActiveTasksListView" ItemsSource="{Binding ActiveTasks, Mode=TwoWay}" Height="400" Width="300"/>
             </StackPanel>
@@ -39,7 +41,7 @@
         <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock x:Name="marketplaceTitleTextBlock" Text="Marketplace" HorizontalAlignment="Center" FontSize="40" />
-                <Button x:Name="refreshMarketplaceButton" Content="*Refresh*" Command="{Binding RefreshMarketplace}"/>
+                <Button x:Name="refreshMarketplaceButton" Content="*Refresh*" Command="{Binding RefreshMarketplace}" Click="refreshMarketplaceButton_Click"/>
                 <Button x:Name="CreateTaskButton" Content="Add New Task" Click="CreateTaskButton_Click"/>
             </StackPanel>
             <ListView x:Name="marketplaceListView" ItemsSource="{Binding Marketplace}" Height="600" Width="600" FontSize="8" SelectedItem="{Binding th.SelectedTask, Mode=TwoWay}"
