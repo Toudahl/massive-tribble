@@ -29,9 +29,11 @@
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="profileDetailsButton" Content="Profil" Click="profileDetailsButton_Click"/>
                 <Button x:Name="notificationsRefreshButton" Content="Refresh Notifications" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding RefreshNotifications}"/>
-                <TextBlock x:Name="CurrentProfileNameTextBlock" Text="{Binding CurrentProfileName}"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+            <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
+                <TextBlock x:Name="welcomeText" Text="{Binding WelcomeText}" FontSize="30"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
                 <ListView x:Name="notificationsListView" ItemsSource="{Binding Notifications, Mode=TwoWay}" Height="400" Width="300"/>
                 <ListView x:Name="userActiveTasksListView" ItemsSource="{Binding ActiveTasks, Mode=TwoWay}" Height="400" Width="300"/>
             </StackPanel>

@@ -22,12 +22,12 @@ namespace FetchItUniversalAndApi.ViewModel
         #region Fields and Properties
         private ProfileHandler _ph;
         private TaskHandler _th;
-        private string _currentProfileName;
         private ObservableCollection<TaskModel> _marketplace;
         private ObservableCollection<NotificationModel> _notifications;
         private ObservableCollection<TaskModel> _activeTasks;
         private ICommand _refreshNotifications;
         private ICommand _refreshMarketplace;
+        private string _welcomeText;
 
         public ObservableCollection<TaskModel> Marketplace
         {
@@ -54,10 +54,14 @@ namespace FetchItUniversalAndApi.ViewModel
             set { _th = value; }
         }
 
-        public string CurrentProfileName
+        public string WelcomeText
         {
-            get { return _currentProfileName; }
-            set { _currentProfileName = value; }
+            get { return _welcomeText; }
+            set
+            {
+                _welcomeText = value;
+                OnPropertyChanged("WelcomeText");
+            }
         }
 
         public ObservableCollection<NotificationModel> Notifications
@@ -99,12 +103,12 @@ namespace FetchItUniversalAndApi.ViewModel
         {
             ph = ProfileHandler.GetInstance();
             th = TaskHandler.GetInstance();
-            CurrentProfileName = ph.CurrentLoggedInProfile.ProfileName;
             Marketplace = new ObservableCollection<TaskModel>();
             ActiveTasks = new ObservableCollection<TaskModel>();
             Notifications = new ObservableCollection<NotificationModel>();
             RefreshMarketplace = new RelayCommand(refreshMarketplace);
             RefreshNotifications = new RelayCommand(refreshNotifications);
+            WelcomeText = "Welcome " + ph.CurrentLoggedInProfile.ProfileName + "!";
             refreshMarketplace();
             refreshNotifications();
             #region TESTING AREA! DELETE THIS SHIT!
@@ -122,6 +126,7 @@ namespace FetchItUniversalAndApi.ViewModel
             #endregion
         }
         #endregion
+
         /// <summary>
         /// Async, looks for any Tasks currently in the local Marketplace and checks if it has the current logged in profile as TaskMaster or Fetcher
         /// </summary>
