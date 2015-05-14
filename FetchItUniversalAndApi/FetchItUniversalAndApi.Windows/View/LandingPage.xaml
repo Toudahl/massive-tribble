@@ -43,7 +43,7 @@
                 <Button x:Name="CreateTaskButton" Content="Add New Task" Click="CreateTaskButton_Click"/>
             </StackPanel>
             <ListView x:Name="marketplaceListView" ItemsSource="{Binding Marketplace}" Height="600" Width="600" FontSize="8" SelectedItem="{Binding th.SelectedTask, Mode=TwoWay}"
-								SelectionChanged="marketplaceListView_SelectionChanged" />
+						 Tapped="marketplaceListView_Tapped" />
         </StackPanel>
     </Grid>
 </Page>

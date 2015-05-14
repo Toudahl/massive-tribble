@@ -244,24 +244,17 @@ namespace FetchItUniversalAndApi.Handlers
             if (taskObject is TaskModel)
             {
                 var taskToUpdate = taskObject as TaskModel;
-                if (ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileId == taskToUpdate.FK_TaskMaster)
+                using (var Client = new HttpClient())
                 {
-                    using (var Client = new HttpClient())
+                    var url = taskAPI + "/" + taskToUpdate.TaskId;
+                    try
                     {
-                        var url = taskAPI + "/" + taskToUpdate.TaskId;
-                        try
-                        {
-                            await Client.PutAsJsonAsync(url, taskToUpdate);
-                        }
-                        catch (Exception)
-                        {
-                            throw;
-                        }
+                        await Client.PutAsJsonAsync(url, taskToUpdate);
                     }
-                }
-                else
-                {
-
+                    catch (Exception)
+                    {
+                        throw;
+                    }
                 }
             }
             else

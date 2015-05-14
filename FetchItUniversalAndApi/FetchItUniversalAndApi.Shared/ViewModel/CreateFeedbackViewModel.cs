@@ -12,6 +12,7 @@ using FetchItUniversalAndApi.Models;
 
 namespace FetchItUniversalAndApi.ViewModel
 {
+	// Author: Kristinn Þór Jónsson
     class CreateFeedbackViewModel:INotifyPropertyChanged
     {
         #region Fields

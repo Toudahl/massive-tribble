@@ -124,6 +124,26 @@ namespace FetchItUniversalAndApi.View
 					}
 				}
 			}
+
+			//This code makes the AssignToTask button visible if:
+			//1. The task has no fetcher
+			//2. The current logged in profile is not the taskmaster
+
+			if (th.SelectedTask.FK_TaskFetcher == null && th.SelectedTask.FK_TaskMaster != ph.CurrentLoggedInProfile.ProfileId)
+			{
+				AssignToTaskButton.Visibility = Visibility.Visible;
+			}
+
+
+			//This codes makes the Resign button visible if:
+			//1. The current logged in profile is a fetcher for the task.
+			//2. The task status is active
+			if (th.SelectedTask.FK_TaskFetcher == ph.CurrentLoggedInProfile.ProfileId && th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.Active)
+			{
+				ResignFromTaskButton.Visibility = Visibility.Visible;
+			}
+
+
 		}
 
 		protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -148,5 +168,4 @@ namespace FetchItUniversalAndApi.View
 			this.Frame.Navigate(typeof(TaskEditPage));
 		}
 	}
-
 }
