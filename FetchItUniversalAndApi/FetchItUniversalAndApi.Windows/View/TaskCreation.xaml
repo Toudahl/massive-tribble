@@ -8,6 +8,7 @@
     xmlns:common="using:FetchItUniversalAndApi.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:FetchItUniversalAndApi.ViewModel"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -21,6 +22,14 @@
         * Row 1 contains the rest of the page layout
     -->
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.DataContext>
+            <viewModel:TaskCreationViewModel/>
+        </Grid.DataContext>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition/>
@@ -32,7 +41,7 @@
         </Grid.RowDefinitions>
 
         <!-- Back button and page title -->
-        <Grid>
+        <Grid Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
@@ -43,8 +52,16 @@
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"/>
-            <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
-                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
+        <StackPanel Grid.Column="1" 
+                    Grid.Row="1">
+            <TextBox x:Name="textbox_Description" Text="{Binding Description,Mode=TwoWay}"/>
+            <TextBox x:Name="textbox_EndPointAddress" Text="{Binding EndPointAddress, Mode=TwoWay}"/>
+            <TextBox x:Name="textbox_ItemPrice" Text="{Binding ItemPrice, Mode=TwoWay}" InputScope="Number"/>
+            <TextBox x:Name="textbox_Fee" Text="{Binding Fee, Mode=TwoWay}" InputScope="Number"/>
+            <TimePicker Time="{Binding Time,Mode=OneWay}" x:Name="timepicker_time" />
+            <DatePicker Date="{Binding Date,Mode=OneWay}" x:Name="datepicker_date" />
+            <Button Content="Create" Command="{Binding CreateTaskCommand}"/>
+        </StackPanel>
     </Grid>
 </Page>

@@ -113,7 +113,7 @@ namespace FetchItUniversalAndApi.View
 
         private void CreateTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof (TaskDetailPage));
+            this.Frame.Navigate(typeof (TaskCreation));
         }
     }
 }
