@@ -14,6 +14,7 @@ using FetchItUniversalAndApi.Models;
 
 namespace FetchItUniversalAndApi.ViewModel
 {
+	// Author: Kristinn Þór Jónsson
     class ReportProfileViewModel:INotifyPropertyChanged
     {
         #region Fields
