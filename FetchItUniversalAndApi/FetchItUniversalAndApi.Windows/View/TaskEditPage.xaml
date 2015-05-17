@@ -137,6 +137,14 @@
 						Grid.Row="2"
 						VerticalAlignment="Top"
 						Command="{Binding SaveChangesCommand}" />
+		<Button Content="Suspend Task"
+						Grid.Column="1"
+						HorizontalAlignment="Left"
+						Margin="378,267,0,0"
+						Grid.Row="2"
+						VerticalAlignment="Top"
+						Width="127"
+						Command="{Binding SuspendTaskCommand}" />
 
 	</Grid>
 </Page>
