@@ -61,6 +61,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CreateFeedbackViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\LandingPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\LogInViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\NotificationHubViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\RegisterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ReportProfileViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\TaskDetailViewModel.cs" />

@@ -114,6 +114,9 @@
     <Compile Include="View\LandingPage.xaml.cs">
       <DependentUpon>LandingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\NotificationHub.xaml.cs">
+      <DependentUpon>NotificationHub.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ProfileDetailPage.xaml.cs">
       <DependentUpon>ProfileDetailPage.xaml</DependentUpon>
     </Compile>
@@ -159,6 +162,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\LandingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NotificationHub.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -208,7 +208,8 @@ namespace FetchItUniversalAndApi.ViewModel
 
 		public void ResignProfileFromTask()
 		{
-			SelectedTask.FK_TaskFetcher = null;
+
+            //SelectedTask.FK_TaskFetcher = null;
 			UpdateTask();
 		}
 

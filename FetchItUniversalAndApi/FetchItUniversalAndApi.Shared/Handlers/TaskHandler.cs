@@ -35,12 +35,21 @@ namespace FetchItUniversalAndApi.Handlers
             Deleted = 4,
             Completed = 5,
 			TaskMasterCompleted = 6,
-			FetcherCompleted = 7,
+			FetcherCompleted = 7
         }
+
+        ///<summary>
+        /// We have forgotten to create a Title property for the task. 
+        /// In order to do it now, we would have to update the database and the API and all of the diffrent branches 
+        /// We have agreed that it would be best to leave it to be done after the merging.
+        /// 
+        /// //TODO Add TaskTitle
+        /// //TODO Task Location
+        /// </summary>
 
         private TaskHandler()
         {
-            //TODO Add TaskTitle
+            
         }
 
         public static TaskHandler GetInstance()
@@ -60,6 +69,12 @@ namespace FetchItUniversalAndApi.Handlers
             get { return _newTask; }
             set { _newTask = value; }
         }
+
+
+        /// <summary>
+        /// Creates a new TaskModel object.
+        /// </summary>
+        /// <param name="taskObject"></param>
 
         public async void Create(object taskObject)
         {
@@ -87,13 +102,18 @@ namespace FetchItUniversalAndApi.Handlers
             }
         }
 
+        /// <summary>
+        /// Delete method changes the TaskStatus to deleted.
+        /// It can only be done by the Administrator level profile, so it also makes the check, and if it is not 
+        /// </summary>
+        /// <param name="taskObject"></param>
 
         public async void Delete(object taskObject)
         {
             if (taskObject is TaskModel)
             {
                 var taskToDelete = taskObject as TaskModel;
-                if (ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileId == taskToDelete.FK_TaskMaster)
+                if (ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileLevel.ProfileLevelId > 9000)
                 {
                     using (var Client = new HttpClient())
                     {
@@ -109,16 +129,20 @@ namespace FetchItUniversalAndApi.Handlers
                         }
                     }
                 }
-                else
-                {
-                    
-                }
             }
             else
             {
-                
+
             }
         }
+
+
+        /// <summary>
+        /// This method changes the status of the task to Removed. It can only be performed by the TaskMaster profile
+        /// It checks if the CurrentLoggedInProfile is the sam profile that has posted the task. if that is true, the status can be changed to removed.
+        /// </summary>
+        /// <param name="taskObject"></param>
+
 
         public async void Remove(object taskObject)
         {
@@ -152,14 +176,19 @@ namespace FetchItUniversalAndApi.Handlers
             }
         }
 
+
+        /// <summary>
+        /// A method that changes the TaskStatus to Reported
+        /// Makes sure that the current logged in profile is NOT the profile to report so a profile does not report his own Task
+        /// </summary>
+        /// <param name="taskObject"></param>
+
         public async void Report(object taskObject)
         {
             if (taskObject is TaskModel)
             {
                 var taskToReport = taskObject as TaskModel;
-                //Makes sure that the current logged in profile is NOT the profile to report 
-                //(So a profile does not report his own profile)
-                if (taskToReport.FK_TaskMaster == ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileId)
+                if (taskToReport.FK_TaskMaster != ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileId)
                 {
                     using (var Client = new HttpClient())
                     {
@@ -186,6 +215,16 @@ namespace FetchItUniversalAndApi.Handlers
             }
         }
 
+
+
+        /// <summary>
+        /// Complete method allows for a task to be completed.
+        /// In order to do that, both Taskmaster and Fetcher have to complete the task.
+        /// We make the method go through a series checks in order t+o find out if a fetcher or a taskamster has already clicked "Finish"
+        /// If not, then it changes to a "half-finished" state, if it has, then the status changes to Completed
+        /// </summary>
+        /// <param name="taskObject"></param>
+
         public async void Complete(object taskObject)
         {
             if (taskObject is TaskModel)
@@ -193,24 +232,50 @@ namespace FetchItUniversalAndApi.Handlers
                 var taskToComplete = taskObject as TaskModel;
                 using (var Client = new HttpClient())
                 {
+                    if (taskToComplete.FK_TaskStatus == (int)TaskStatus.FetcherCompleted)
+                    {
+                        setStatus(taskToComplete.FK_TaskMaster, TaskStatus.Completed, taskToComplete);
+                    }
+                    else if (taskToComplete.FK_TaskStatus == (int)TaskStatus.TaskMasterCompleted)
+                    {
+                        setStatus(taskToComplete.FK_TaskFetcher, TaskStatus.Completed, taskToComplete);
+                    }
+                    else if (taskToComplete.FK_TaskStatus == (int)TaskStatus.Active)
+                    {
+                        setStatus(taskToComplete.FK_TaskFetcher, TaskStatus.FetcherCompleted, taskToComplete);
+                        setStatus(taskToComplete.FK_TaskMaster, TaskStatus.TaskMasterCompleted, taskToComplete);
+                    }
                     var url = taskAPI + "/" + taskToComplete.TaskId;
-                    taskToComplete.FK_TaskStatus = (int)TaskStatus.Completed;
                     try
                     {
                         await Client.PutAsJsonAsync(url, taskToComplete);
                     }
                     catch (Exception)
                     {
-
                         throw;
                     }
                 }
             }
-            else
+        }
+
+
+
+        /// <summary>
+        /// setStatus method allows us to minimize redundant rode repetition inside of the Complete method.
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <param name="status"></param>
+        /// <param name="taskToComplete"></param>
+
+        private void setStatus(int ID, TaskStatus status, TaskModel taskToComplete)
+        {
+            if (ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileId == ID)
             {
-                
+                taskToComplete.FK_TaskStatus = (int)status;
             }
         }
+
+
 
         public void Disable(object obj)
         {

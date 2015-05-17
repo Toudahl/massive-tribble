@@ -128,5 +128,10 @@ namespace FetchItUniversalAndApi.View
             await Task.Delay(5000);
             refreshMarketplaceButton.IsEnabled = true;
         }
+
+        private void MessageHubButton_OnClickButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof (NotificationHub));
+        }
     }
 }
