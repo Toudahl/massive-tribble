@@ -270,7 +270,8 @@ namespace FetchItUniversalAndApi.Handlers
                 return
                     notificationStreamContent.ReadAsAsync<IEnumerable<NotificationModel>>()
                         .Result.Select(n => n)
-                        .Where(n => n.ToProfile == ProfileHandler.GetInstance().CurrentLoggedInProfile);
+                        .Where(n => n.FK_NotificationFrom == ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileId
+                        || n.FK_NotificationTo == ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileId);
             }
             catch
             {

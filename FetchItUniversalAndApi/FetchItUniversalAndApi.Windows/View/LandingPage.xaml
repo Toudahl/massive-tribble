@@ -44,8 +44,7 @@
                 <Button x:Name="refreshMarketplaceButton" Content="*Refresh*" Command="{Binding RefreshMarketplace}" Click="refreshMarketplaceButton_Click"/>
                 <Button x:Name="CreateTaskButton" Content="Add New Task" Click="CreateTaskButton_Click"/>
             </StackPanel>
-            <ListView x:Name="marketplaceListView" ItemsSource="{Binding Marketplace}" Height="600" Width="600" FontSize="8" SelectedItem="{Binding th.SelectedTask, Mode=TwoWay}"
-						 Tapped="marketplaceListView_Tapped" />
+            <ListView x:Name="marketplaceListView" ItemsSource="{Binding Marketplace}" Height="600" Width="600" FontSize="8" SelectedItem="{Binding th.SelectedTask, Mode=TwoWay}"/>
         </StackPanel>
     </Grid>
 </Page>
