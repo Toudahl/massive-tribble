@@ -15,6 +15,7 @@ namespace FetchItUniversalAndApi.ViewModel
 	//Author: Kristinn Þór Jónsson
 	internal class TaskDetailViewModel
 	{
+		#region Fields
 		public TaskHandler TaskHandler { get; set; }
 		public ProfileHandler ProfileHandler { get; set; }
 
@@ -22,10 +23,15 @@ namespace FetchItUniversalAndApi.ViewModel
 		public ProfileModel Fetcher { get; set; }
 		public TaskModel SelectedTask { get; set; }
 		public TaskHandler.TaskStatus TaskStatus { get; set; }
+
 		public ICommand SaveChangesCommand { get; set; }
 		public ICommand AssignToTaskCommand { get; set; }
 		public ICommand ResignFromTaskCommand { get; set; }
+		public ICommand MarkAsCompletedCommand { get; set; }
+		public ICommand SuspendTaskCommand { get; set; }
+		#endregion
 
+		#region Constructor
 		public TaskDetailViewModel()
 		{
 			TaskHandler = TaskHandler.GetInstance();
@@ -34,6 +40,8 @@ namespace FetchItUniversalAndApi.ViewModel
 			SaveChangesCommand = new RelayCommand(SaveChanges);
 			AssignToTaskCommand = new RelayCommand(AssignToTask);
 			ResignFromTaskCommand = new RelayCommand(ResignFromTask);
+			MarkAsCompletedCommand = new RelayCommand(MarkAsCompleted);
+			SuspendTaskCommand = new RelayCommand(SuspendTask);
 
 			//Needs to check if selected task is null or not, or there is a "Reference not set to an Object"
 			//error on the TaskDetailPage
@@ -82,12 +90,16 @@ namespace FetchItUniversalAndApi.ViewModel
 			}
 		}
 
+		#endregion
+
+		#region Methods
+		#region MessageMethods
 		public void SaveChanges()
 		{
 			MessageDialog message = new MessageDialog("Are you sure you want to save the changes?", "Update task");
 			message.Commands.Add(new UICommand(
 				"Yes",
-				command => UpdateTask(SelectedTask)));
+				command => UpdateTask()));
 
 			message.Commands.Add(new UICommand(
 				"No"));
@@ -96,18 +108,6 @@ namespace FetchItUniversalAndApi.ViewModel
 			message.CancelCommandIndex = 1;
 
 			message.ShowAsync();
-		}
-
-		public void UpdateTask(TaskModel modelToUpdate)
-		{
-			try
-			{
-				TaskHandler.Update(modelToUpdate);
-			}
-			catch (Exception e)
-			{
-				ErrorHandler.GetInstance().UpdatingError(new TaskModel());
-			}
 		}
 
 		public void AssignToTask()
@@ -142,16 +142,116 @@ namespace FetchItUniversalAndApi.ViewModel
 			message.ShowAsync();
 		}
 
+		private void MarkAsCompleted()
+		{
+			if (ProfileHandler.CurrentLoggedInProfile.ProfileId == SelectedTask.FK_TaskMaster)
+			{
+				MessageDialog messageToMaster = new MessageDialog("Are you sure the task has been completed to your satisfaction?", "Mark task as Completed");
+				messageToMaster.Commands.Add(new UICommand(
+					"Yes",
+					command => MarkAsCompletedTaskMaster()));
+
+				messageToMaster.Commands.Add(new UICommand(
+					"No"));
+
+				messageToMaster.DefaultCommandIndex = 0;
+				messageToMaster.CancelCommandIndex = 1;
+
+				messageToMaster.ShowAsync();
+			}
+			else if (ProfileHandler.CurrentLoggedInProfile.ProfileId == SelectedTask.FK_TaskFetcher)
+			{
+				MessageDialog message = new MessageDialog("Are you sure you have completed the task?", "Mark task as Completed");
+				message.Commands.Add(new UICommand(
+					"Yes",
+					command => MarkAsCompletedFetcher()));
+
+				message.Commands.Add(new UICommand(
+					"No"));
+
+				message.DefaultCommandIndex = 0;
+				message.CancelCommandIndex = 1;
+
+				message.ShowAsync();
+			}
+		}
+
+		private void SuspendTask()
+		{
+			MessageDialog message = new MessageDialog("Are you sure you want to suspend the task? This action will remove the Task from the marketplace.", "Suspend Task");
+			message.Commands.Add(new UICommand(
+				"Yes",
+				command => SuspendThisTask()));
+
+			message.Commands.Add(new UICommand(
+				"No"));
+
+			message.DefaultCommandIndex = 0;
+			message.CancelCommandIndex = 1;
+
+			message.ShowAsync();
+		}
+		#endregion
+
+		#region SupportingMethods
+		private void SuspendThisTask()
+		{
+			SelectedTask.FK_TaskStatus = (int)TaskHandler.TaskStatus.Removed;
+			UpdateTask();
+		}
+
 		public void AssignProfileToTask()
 		{
 			SelectedTask.FK_TaskFetcher = ProfileHandler.CurrentLoggedInProfile.ProfileId;
-			TaskHandler.Update(SelectedTask);
+			UpdateTask();
 		}
 
 		public void ResignProfileFromTask()
 		{
 			SelectedTask.FK_TaskFetcher = null;
-			TaskHandler.Update(SelectedTask);
+			UpdateTask();
 		}
+
+		public void UpdateTask()
+		{
+			try
+			{
+				TaskHandler.Update(SelectedTask);
+			}
+			catch (Exception e)
+			{
+				ErrorHandler.GetInstance().UpdatingError(new TaskModel());
+			}
+		}
+
+		public void MarkAsCompletedFetcher()
+		{
+			if (SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.TaskMasterCompleted)
+			{
+				SelectedTask.FK_TaskStatus = (int)TaskHandler.TaskStatus.Completed;
+				UpdateTask();
+			}
+			else
+			{
+				SelectedTask.FK_TaskStatus = (int)TaskHandler.TaskStatus.FetcherCompleted;
+				UpdateTask();
+			}
+		}
+
+		public void MarkAsCompletedTaskMaster()
+		{
+			if (SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.FetcherCompleted)
+			{
+				SelectedTask.FK_TaskStatus = (int)TaskHandler.TaskStatus.Completed;
+				UpdateTask();
+			}
+			else
+			{
+				SelectedTask.FK_TaskStatus = (int)TaskHandler.TaskStatus.TaskMasterCompleted;
+				UpdateTask();
+			}
+		}
+		#endregion
+		#endregion
 	}
 }

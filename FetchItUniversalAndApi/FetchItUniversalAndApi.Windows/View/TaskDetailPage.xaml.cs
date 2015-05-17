@@ -1,4 +1,5 @@
-﻿using FetchItUniversalAndApi.Common;
+﻿using System.ServiceModel.Channels;
+using FetchItUniversalAndApi.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -96,13 +97,13 @@ namespace FetchItUniversalAndApi.View
 		{
 			navigationHelper.OnNavigatedTo(e);
 
+			var th = TaskHandler.GetInstance();
+			var ph = ProfileHandler.GetInstance();
+
 			//This code makes the Create Feedback button visible on three conditions:
 			//1. If the current logged in profile is the taskmaster of the task.
 			//2. If the task does not have any feedbacks.
 			//3. If the task status is set to 5 (or TaskStatus.Completed)
-
-			var th = TaskHandler.GetInstance();
-			var ph = ProfileHandler.GetInstance();
 			if (th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.Completed)
 			{
 				if (th.SelectedTask.Feedbacks.Count < 1 && ph.CurrentLoggedInProfile.ProfileId == th.SelectedTask.FK_TaskMaster)
@@ -112,10 +113,10 @@ namespace FetchItUniversalAndApi.View
 			}
 			else
 			{
+
 				//This code makes the EditTask button visible if:
 				//1. Loggedin profile is the Taskmaster
 				//2. TaskStatus is active or reported
-
 				if (th.SelectedTask.FK_TaskMaster == ph.CurrentLoggedInProfile.ProfileId)
 				{
 					if (th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.Active || th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.Reported)
@@ -128,22 +129,55 @@ namespace FetchItUniversalAndApi.View
 			//This code makes the AssignToTask button visible if:
 			//1. The task has no fetcher
 			//2. The current logged in profile is not the taskmaster
-
+			//3. The status of the task is active
 			if (th.SelectedTask.FK_TaskFetcher == null && th.SelectedTask.FK_TaskMaster != ph.CurrentLoggedInProfile.ProfileId)
 			{
-				AssignToTaskButton.Visibility = Visibility.Visible;
+				if (th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.Active)
+				{
+					AssignToTaskButton.Visibility = Visibility.Visible;
+				}
 			}
-
 
 			//This codes makes the Resign button visible if:
 			//1. The current logged in profile is a fetcher for the task.
 			//2. The task status is active
-			if (th.SelectedTask.FK_TaskFetcher == ph.CurrentLoggedInProfile.ProfileId && th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.Active)
+			if (th.SelectedTask.FK_TaskFetcher == ph.CurrentLoggedInProfile.ProfileId)
 			{
-				ResignFromTaskButton.Visibility = Visibility.Visible;
+				if (th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.Active)
+				{
+					ResignFromTaskButton.Visibility = Visibility.Visible;
+				}
 			}
 
 
+			//This code makes the MarkAsCompleted button visible if:
+			//1. The current logged in profile is either a fethcer or a taskmaster
+			//2. The task status is either: Active, FetcherCompleted or TaskMasterCompleted
+			if (th.SelectedTask.FK_TaskFetcher == ph.CurrentLoggedInProfile.ProfileId ||
+				th.SelectedTask.FK_TaskMaster == ph.CurrentLoggedInProfile.ProfileId)
+			{
+				if (th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.Active ||
+					th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.FetcherCompleted ||
+					th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.TaskMasterCompleted)
+				{
+					MarkAsCompletedButton.Visibility = Visibility.Visible;
+
+
+					//This just makes sure that if a Master or Fethcer has marked it as completed, that
+					//he does not see the button again
+					if (th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.FetcherCompleted &&
+						th.SelectedTask.FK_TaskFetcher == ph.CurrentLoggedInProfile.ProfileId)
+					{
+						MarkAsCompletedButton.Visibility = Visibility.Collapsed;
+					}
+
+					else if (th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.TaskMasterCompleted &&
+						th.SelectedTask.FK_TaskMaster == ph.CurrentLoggedInProfile.ProfileId)
+					{
+						MarkAsCompletedButton.Visibility = Visibility.Collapsed;
+					}
+				}
+			}
 		}
 
 		protected override void OnNavigatedFrom(NavigationEventArgs e)

@@ -33,7 +33,9 @@ namespace FetchItUniversalAndApi.Handlers
             Reported = 2,
             Removed = 3,
             Deleted = 4,
-            Completed = 5
+            Completed = 5,
+			TaskMasterCompleted = 6,
+			FetcherCompleted = 7,
         }
 
         private TaskHandler()

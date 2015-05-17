@@ -107,12 +107,11 @@ namespace FetchItUniversalAndApi.View
         {
             this.Frame.Navigate(typeof (MainPage));
         }
-
-		private void marketplaceListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		private void MarketplaceListView_OnTapped(object sender, TappedRoutedEventArgs e)
 		{
 			this.Frame.Navigate(typeof(TaskDetailPage));
 		}
-
+		
         private void CreateTaskButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof (TaskDetailPage));
