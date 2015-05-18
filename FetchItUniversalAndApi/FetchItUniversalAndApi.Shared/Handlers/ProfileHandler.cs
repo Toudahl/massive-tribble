@@ -135,19 +135,21 @@ namespace FetchItUniversalAndApi.Handlers
                     var profileToDelete = obj as ProfileModel;
                     if (profileToDelete == CurrentLoggedInProfile)
                     {
-                        throw new WrongTargetProfile("You are not allowed to delete your own profile");
+                        ErrorHandler.WrongTargetProfile("delete");
                     }
-
-                    ChangeStatus(profileToDelete, ProfileStatus.Deleted);
+                    else
+                    {
+                        ChangeStatus(profileToDelete, ProfileStatus.Deleted);
+                    }
                 }
                 else
                 {
-                    throw new WrongModel("The supplied model was not of the expected type");
+                    ErrorHandler.WrongModelError(obj, new ProfileModel());
                 }
             }
             else
             {
-                throw new WrongProfileLevel("Your profile level: " + (ProfileLevel)CurrentLoggedInProfile.FK_ProfileLevel + " is not high enough to delete a profile.");
+                ErrorHandler.WrongProfileLevel((ProfileLevel)CurrentLoggedInProfile.FK_ProfileLevel, "delete");
             }
         }
         #endregion
@@ -180,7 +182,7 @@ namespace FetchItUniversalAndApi.Handlers
             }
             else
             {
-                throw new WrongModel("The supplied model was not of the expected type");
+                ErrorHandler.WrongModelError(obj, new ProfileModel());
             }
         }
         #endregion
@@ -201,19 +203,21 @@ namespace FetchItUniversalAndApi.Handlers
                     var profileToSuspend = obj as ProfileModel;
                     if (profileToSuspend == CurrentLoggedInProfile)
                     {
-                        throw new WrongTargetProfile("You are not allowed to suspend your own profile");
+                        ErrorHandler.WrongTargetProfile("suspend");
                     }
-
-                    ChangeStatus(profileToSuspend, ProfileStatus.Suspended);
+                    else
+                    {
+                        ChangeStatus(profileToSuspend, ProfileStatus.Suspended);
+                    }
                 }
                 else
                 {
-                    throw new WrongModel("The supplied model was not of the expected type");
+                    ErrorHandler.WrongModelError(obj, new ProfileModel());
                 }
             }
             else
             {
-                throw new WrongProfileLevel("Your profile level: " + (ProfileLevel)CurrentLoggedInProfile.FK_ProfileLevel + " is not high enough to suspend a profile.");
+                ErrorHandler.WrongProfileLevel((ProfileLevel)CurrentLoggedInProfile.FK_ProfileLevel,"suspend");
             }
         }
         #endregion
@@ -234,19 +238,22 @@ namespace FetchItUniversalAndApi.Handlers
                     var profileToDisable = obj as ProfileModel;
                     if (profileToDisable != CurrentLoggedInProfile)
                     {
-                        throw new WrongTargetProfile("You are only allowed to disable your own profile");
+                        ErrorHandler.WrongTargetProfile("suspend");
+                    }
+                    else
+                    {
+                        ChangeStatus(CurrentLoggedInProfile, ProfileStatus.Disabled);
                     }
 
-                    ChangeStatus(CurrentLoggedInProfile, ProfileStatus.Disabled);
                 }
                 else
                 {
-                    throw new WrongModel("The supplied model was not of the expected type");
+                    ErrorHandler.WrongModelError(obj, new ProfileModel());
                 }
             }
             else
             {
-                throw new WrongProfileLevel("Your profile level: " + (ProfileLevel)CurrentLoggedInProfile.FK_ProfileLevel + " is not high enough to disable a profile.");
+                ErrorHandler.WrongProfileLevel((ProfileLevel)CurrentLoggedInProfile.FK_ProfileLevel, "disable");
             }
         }
         #endregion
@@ -265,10 +272,21 @@ namespace FetchItUniversalAndApi.Handlers
                 var url = Apiurl + "/" + profil.ProfileId;
                 using (var client = new HttpClient())
                 {
-                    await client.PutAsJsonAsync(url, profil);
+                    try
+                    {
+                        await client.PutAsJsonAsync(url, profil);
+                    }
+                    catch (Exception)
+                    {
+                        ErrorHandler.NoResponseFromAPI();
+                    }
                 }
             }
-            throw new WrongModel("The supplied model was not of the expected type");
+            else
+            {
+                ErrorHandler.WrongModelError(obj, new ProfileModel());
+            }
+            
         }
         #endregion
 
@@ -306,7 +324,11 @@ namespace FetchItUniversalAndApi.Handlers
                 }
                 return null;
             }
-            throw new WrongModel("The supplied model was not of the expected type");
+            else
+            {
+                ErrorHandler.WrongModelError(obj, new ProfileModel());
+            }
+            return null;
         }
         #endregion
 
@@ -386,7 +408,7 @@ namespace FetchItUniversalAndApi.Handlers
                 }
                 catch (Exception)
                 {
-                    throw;
+                    ErrorHandler.NoResponseFromAPI();
                 }
             }
         }
@@ -447,44 +469,4 @@ namespace FetchItUniversalAndApi.Handlers
 
         #endregion
     }
-
-    #region exceptions
-
-
-    public class WrongTargetProfile : Exception
-    {
-        public WrongTargetProfile()
-        {
-            
-        }
-
-        public WrongTargetProfile(string message):base(message)
-        {
-
-        }
-
-        public WrongTargetProfile(string message, Exception inner):base(message,inner)
-        {
-
-        }
-    }
-
-    public class WrongProfileLevel : Exception
-    {
-        public WrongProfileLevel()
-        {
-            
-        }
-
-        public WrongProfileLevel(string message) : base(message)
-        {
-
-        }
-
-        public WrongProfileLevel(string message, Exception inner) : base(message,inner)
-        {
-            
-        }
-    }
-    #endregion
 }

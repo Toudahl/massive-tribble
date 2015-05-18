@@ -13,9 +13,10 @@ namespace FetchItUniversalAndApi.Handlers
     static class ErrorHandler
     {
         private static string _messageToUser;
-        private const string FailedToContactAPI = "Failed to contact the web server";
+        private const string FailedToContactApi = "Failed to contact the web server";
         private const string FailedToLogIn = "Failed to log in";
         private const string RequiredInput = "More input required";
+        private const string NotAllowed = "Not allowed";
         private static LogHandler lh;
 
         /// <summary>
@@ -80,8 +81,6 @@ namespace FetchItUniversalAndApi.Handlers
             await new MessageDialog(message, title).ShowAsync();
         }
 
-
-        #region ErrorMessageMethods
         /// <summary>
         /// FOR DEVELOPER: Sends an async message to the user, telling him that a wrong model was passed to a method.
         /// </summary>
@@ -100,7 +99,7 @@ namespace FetchItUniversalAndApi.Handlers
         public static void GettingError(object obj)
         {
             _messageToUser = "MESSAE TO DEVELOPER: Something went wrong with getting the " + obj.GetType().Name + "s from the database, please try again.";
-            DisplayErrorMessage(_messageToUser, FailedToContactAPI);
+            DisplayErrorMessage(_messageToUser, FailedToContactApi);
         }
 
         /// <summary>
@@ -110,7 +109,7 @@ namespace FetchItUniversalAndApi.Handlers
         public static void CreatingError(object obj)
         {
             _messageToUser = "MESSAE TO DEVELOPER: Something went wrong with posting the " + obj.GetType().Name + " to the database, please try again.";
-            DisplayErrorMessage(_messageToUser, FailedToContactAPI);
+            DisplayErrorMessage(_messageToUser, FailedToContactApi);
         }
 
         /// <summary>
@@ -120,7 +119,7 @@ namespace FetchItUniversalAndApi.Handlers
         public static void UpdatingError(object obj)
         {
             _messageToUser = "MESSAE TO DEVELOPER: Something went wrong with updating the " + obj.GetType().Name + ", please try again.";
-            DisplayErrorMessage(_messageToUser, FailedToContactAPI);
+            DisplayErrorMessage(_messageToUser, FailedToContactApi);
         }
 
         /// <summary>
@@ -130,7 +129,7 @@ namespace FetchItUniversalAndApi.Handlers
         public static void DeletingError(object obj)
         {
             _messageToUser = "MESSAE TO DEVELOPER: Something went wrong with deleting the " + obj.GetType().Name + " from the database, please try again.";
-            DisplayErrorMessage(_messageToUser, FailedToContactAPI);
+            DisplayErrorMessage(_messageToUser, FailedToContactApi);
         }
 
         /// <summary>
@@ -140,7 +139,7 @@ namespace FetchItUniversalAndApi.Handlers
         public static void SuspendingError(object obj)
         {
             _messageToUser = "MESSAE TO DEVELOPER: Something went wrong with deleting the " + obj.GetType().Name + " from the database, please try again.";
-            DisplayErrorMessage(_messageToUser, FailedToContactAPI);
+            DisplayErrorMessage(_messageToUser, FailedToContactApi);
         }
 
 
@@ -151,7 +150,7 @@ namespace FetchItUniversalAndApi.Handlers
         public static void DisablingError(object obj)
         {
             _messageToUser = "MESSAE TO DEVELOPER: Something went wrong with deleting the " + obj.GetType().Name + " from the database, please try again.";
-            DisplayErrorMessage(_messageToUser, FailedToContactAPI);
+            DisplayErrorMessage(_messageToUser, FailedToContactApi);
         }
 
         /// <summary>
@@ -161,7 +160,7 @@ namespace FetchItUniversalAndApi.Handlers
         public static void ActivatingError(object obj)
         {
             _messageToUser = "MESSAE TO DEVELOPER: Something went wrong with deleting the " + obj.GetType().Name + " from the database, please try again.";
-            DisplayErrorMessage(_messageToUser, FailedToContactAPI);
+            DisplayErrorMessage(_messageToUser, FailedToContactApi);
         }
 
         /// <summary>
@@ -190,7 +189,7 @@ namespace FetchItUniversalAndApi.Handlers
         public static void NoResponseFromAPI()
         {
             _messageToUser = "Failed to contact the web api";
-            DisplayErrorMessage(_messageToUser, FailedToContactAPI);
+            DisplayErrorMessage(_messageToUser, FailedToContactApi);
         }
 
         /// <summary>
@@ -209,6 +208,15 @@ namespace FetchItUniversalAndApi.Handlers
                 DisplayErrorMessage(_messageToUser, RequiredInput);
             }
         }
-        #endregion
+
+        public static void WrongTargetProfile(string action)
+        {
+            DisplayErrorMessage("You are not allowed to " + action + " this profile", NotAllowed);
+        }
+
+        public static void WrongProfileLevel(ProfileHandler.ProfileLevel profileLevel, string action)
+        {
+            DisplayErrorMessage("Your profile level: " + profileLevel + " is not high enough to delete a "+action+".", NotAllowed);
+        }
     }
 }
