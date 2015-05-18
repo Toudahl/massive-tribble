@@ -57,6 +57,8 @@ namespace FetchItUniversalAndApi.Handlers
         private static HttpClient msgWebClient = new HttpClient();
         //TODO: This could probably be somewhere better and globally available. Also needs to be changed to refer to the intended server.
         private static readonly string serverLocation = "http://fetchit.mortentoudahl.dk/api/";
+        private static TaskHandler _th = TaskHandler.GetInstance();
+        private static ProfileHandler _ph = ProfileHandler.GetInstance();
     #endregion
 
         #region Methods
@@ -101,7 +103,7 @@ namespace FetchItUniversalAndApi.Handlers
             }
             try
             {
-                msgWebClient.PostAsJsonAsync("FeedbackModels", createdFeedback);
+               await msgWebClient.PostAsJsonAsync("FeedbackModels", createdFeedback);
             }
             catch (Exception)
             {
@@ -156,7 +158,7 @@ namespace FetchItUniversalAndApi.Handlers
                 updatedTask.Comments.Add(newComment);
                 try
                 {
-                    //TaskHandler.UpdateTask(updatedTask);
+                    _th.Update(updatedTask);
                 }
                 catch (Exception)
                 {
@@ -182,8 +184,10 @@ namespace FetchItUniversalAndApi.Handlers
         {
             try
             {
-                var updatedTaskStream = Task.Run(async () => await msgWebClient.GetAsync("NotificationModels"));
-                return updatedTaskStream.Result.Content.ReadAsAsync<TaskModel>().Result.Comments.Where(t => t.FK_CommentTask == fromTask.TaskId).ToObservableCollection();
+                var updatedTaskStream = Task.Run(async () => await msgWebClient.GetAsync("CommentModels"));
+                return
+                    updatedTaskStream.Result.Content.ReadAsAsync<IEnumerable<CommentModel>>()
+                        .Result.Where(c => c.FK_CommentTask == fromTask.TaskId);
             }
             catch (Exception)
             {
@@ -199,7 +203,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="email"></param>
         /// The EmailModel with receiving e-mail toAddress, subject and message
-        public static void SendEmail(EmailModel email, EmailType emailType, ProfileModel receivingProfile)
+        public static async void SendEmail(EmailModel email, EmailType emailType, ProfileModel receivingProfile)
         {
             #region Not working code, just for reference
             //string url = "http://fetchit.mortentoudahl.dk";
@@ -240,7 +244,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="notification"></param>
         /// NotificationModel with everything inputted except NotificationId (should be null!) FK_NotificationStatus and NotificationSent.
-        public static void SendNotification(NotificationModel notification)
+        public static async void SendNotification(NotificationModel notification)
         {
             #region Build Notification
             notification.FK_NotificationStatus = 1;
@@ -248,7 +252,7 @@ namespace FetchItUniversalAndApi.Handlers
             #endregion
             try
             {
-                msgWebClient.PostAsJsonAsync("NotificationModels", notification);
+                await msgWebClient.PostAsJsonAsync("NotificationModels", notification);
             }
             catch (Exception)
             {
@@ -267,11 +271,11 @@ namespace FetchItUniversalAndApi.Handlers
             {
                 var notificationsStream = Task.Run(async () => await msgWebClient.GetAsync("NotificationModels"));
                 var notificationStreamContent = notificationsStream.Result.Content;
-                return
+                return 
                     notificationStreamContent.ReadAsAsync<IEnumerable<NotificationModel>>()
                         .Result.Select(n => n)
-                        .Where(n => n.FK_NotificationFrom == ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileId
-                        || n.FK_NotificationTo == ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileId);
+                        .Where(n => n.FK_NotificationFrom == _ph.CurrentLoggedInProfile.ProfileId
+                        || n.FK_NotificationTo == _ph.CurrentLoggedInProfile.ProfileId);
             }
             catch
             {
