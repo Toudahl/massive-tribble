@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -134,19 +135,21 @@ namespace FetchItUniversalAndApi.Handlers
                     var profileToDelete = obj as ProfileModel;
                     if (profileToDelete == CurrentLoggedInProfile)
                     {
-                        throw new WrongTargetProfile("You are not allowed to delete your own profile");
+                        ErrorHandler.WrongTargetProfile("delete");
                     }
-
-                    ChangeStatus(profileToDelete, ProfileStatus.Deleted);
+                    else
+                    {
+                        ChangeStatus(profileToDelete, ProfileStatus.Deleted);
+                    }
                 }
                 else
                 {
-                    throw new WrongModel("The supplied model was not of the expected type");
+                    ErrorHandler.WrongModelError(obj, new ProfileModel());
                 }
             }
             else
             {
-                throw new WrongProfileLevel("Your profile level: " + (ProfileLevel)CurrentLoggedInProfile.FK_ProfileLevel + " is not high enough to delete a profile.");
+                ErrorHandler.WrongProfileLevel((ProfileLevel)CurrentLoggedInProfile.FK_ProfileLevel, "delete");
             }
         }
         #endregion
@@ -179,7 +182,7 @@ namespace FetchItUniversalAndApi.Handlers
             }
             else
             {
-                throw new WrongModel("The supplied model was not of the expected type");
+                ErrorHandler.WrongModelError(obj, new ProfileModel());
             }
         }
         #endregion
@@ -200,19 +203,21 @@ namespace FetchItUniversalAndApi.Handlers
                     var profileToSuspend = obj as ProfileModel;
                     if (profileToSuspend == CurrentLoggedInProfile)
                     {
-                        throw new WrongTargetProfile("You are not allowed to suspend your own profile");
+                        ErrorHandler.WrongTargetProfile("suspend");
                     }
-
-                    ChangeStatus(profileToSuspend, ProfileStatus.Suspended);
+                    else
+                    {
+                        ChangeStatus(profileToSuspend, ProfileStatus.Suspended);
+                    }
                 }
                 else
                 {
-                    throw new WrongModel("The supplied model was not of the expected type");
+                    ErrorHandler.WrongModelError(obj, new ProfileModel());
                 }
             }
             else
             {
-                throw new WrongProfileLevel("Your profile level: " + (ProfileLevel)CurrentLoggedInProfile.FK_ProfileLevel + " is not high enough to suspend a profile.");
+                ErrorHandler.WrongProfileLevel((ProfileLevel)CurrentLoggedInProfile.FK_ProfileLevel,"suspend");
             }
         }
         #endregion
@@ -233,19 +238,22 @@ namespace FetchItUniversalAndApi.Handlers
                     var profileToDisable = obj as ProfileModel;
                     if (profileToDisable != CurrentLoggedInProfile)
                     {
-                        throw new WrongTargetProfile("You are only allowed to disable your own profile");
+                        ErrorHandler.WrongTargetProfile("suspend");
+                    }
+                    else
+                    {
+                        ChangeStatus(CurrentLoggedInProfile, ProfileStatus.Disabled);
                     }
 
-                    ChangeStatus(CurrentLoggedInProfile, ProfileStatus.Disabled);
                 }
                 else
                 {
-                    throw new WrongModel("The supplied model was not of the expected type");
+                    ErrorHandler.WrongModelError(obj, new ProfileModel());
                 }
             }
             else
             {
-                throw new WrongProfileLevel("Your profile level: " + (ProfileLevel)CurrentLoggedInProfile.FK_ProfileLevel + " is not high enough to disable a profile.");
+                ErrorHandler.WrongProfileLevel((ProfileLevel)CurrentLoggedInProfile.FK_ProfileLevel, "disable");
             }
         }
         #endregion
@@ -264,10 +272,21 @@ namespace FetchItUniversalAndApi.Handlers
                 var url = Apiurl + "/" + profil.ProfileId;
                 using (var client = new HttpClient())
                 {
-                    await client.PutAsJsonAsync(url, profil);
+                    try
+                    {
+                        await client.PutAsJsonAsync(url, profil);
+                    }
+                    catch (Exception)
+                    {
+                        ErrorHandler.NoResponseFromAPI();
+                    }
                 }
             }
-            throw new WrongModel("The supplied model was not of the expected type");
+            else
+            {
+                ErrorHandler.WrongModelError(obj, new ProfileModel());
+            }
+            
         }
         #endregion
 
@@ -305,7 +324,11 @@ namespace FetchItUniversalAndApi.Handlers
                 }
                 return null;
             }
-            throw new WrongModel("The supplied model was not of the expected type");
+            else
+            {
+                ErrorHandler.WrongModelError(obj, new ProfileModel());
+            }
+            return null;
         }
         #endregion
 
@@ -322,36 +345,40 @@ namespace FetchItUniversalAndApi.Handlers
                 {
                     // TODO update the webapi, so i dont have to request all the information like this.
                     // All the user information is up for graps each time someone logs in.
-                    var result = await client.GetStringAsync(Apiurl);
-                    var listOfProfiles = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<ProfileModel>>(result));
-
                     try
                     {
-                        //TODO after making the hasing and salting work. Change this, so it uses the hashed password for the check
-                        var selectedProfile =
-                            listOfProfiles.FirstOrDefault(p => p.ProfileName == profile.ProfileName && p.ProfilePassword == profile.ProfilePassword);
+                        var result = await client.GetStringAsync(Apiurl);
+                        var listOfProfiles = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<ProfileModel>>(result));
+                        try
+                        {
+                            //TODO after making the hasing and salting work. Change this, so it uses the hashed password for the check
+                            var selectedProfile =
+                                listOfProfiles.FirstOrDefault(p => p.ProfileName == profile.ProfileName && p.ProfilePassword == profile.ProfilePassword);
 
-                        if (selectedProfile.FK_ProfileStatus == (int)ProfileStatus.Active)
-                        {
-                            CurrentLoggedInProfile = selectedProfile;
+                            if (selectedProfile.FK_ProfileStatus == (int)ProfileStatus.Active)
+                            {
+                                CurrentLoggedInProfile = selectedProfile;
+                            }
+                            else
+                            {
+                                ErrorHandler.WrongProfileStatus();
+                            }
                         }
-                        else
+                        catch (Exception)
                         {
-                            throw new WrongProfileStatus("Your profile is not active, so you cannot log in");
+                            ErrorHandler.FailedLogIn(profile.ProfileName);
                         }
 
                     }
                     catch (Exception)
                     {
-                        throw new FailedLogIn("Profile ("+profile.ProfileName+") and password combination not found.\nLogin attempt has been logged.");
+                        ErrorHandler.NoResponseFromAPI();
                     }
                 }
             }
             else
             {
-                //throw new ArgumentNullException();
-                var dialog = new MessageDialog("You must input both username and password", "Failed to log in");
-                await dialog.ShowAsync();
+                ErrorHandler.RequiredFields(new List<string>{"Username","Password"});
             }
         }
         #endregion
@@ -381,7 +408,7 @@ namespace FetchItUniversalAndApi.Handlers
                 }
                 catch (Exception)
                 {
-                    throw;
+                    ErrorHandler.NoResponseFromAPI();
                 }
             }
         }
@@ -442,119 +469,4 @@ namespace FetchItUniversalAndApi.Handlers
 
         #endregion
     }
-
-    #region exceptions
-    internal class FailedLogIn : Exception
-    {
-        private LogHandler lh;
-
-        public FailedLogIn(string message) : base(message)
-        {
-            LogEvent(message);
-        }
-
-        public FailedLogIn(string message, Exception inner) : base(message, inner)
-        {
-            LogEvent(message);
-        }
-
-        private void LogEvent(string message)
-        {
-            lh = LogHandler.GetInstance();
-            var logMessage = message + "\nIP associated with the attempt: " + getExternalIP().Result;
-            lh.Create(new LogModel {LogMessage = logMessage, LogTime = DateTime.UtcNow});
-        }
-
-        private static async Task<string> getExternalIP()
-        {
-            using (var client = new HttpClient())
-            {
-                try
-                {
-                    return await client.GetStringAsync("http://canihazip.com/s");
-                }
-                catch (WebException)
-                {
-                    // this one is offline
-                }
-
-                try
-                {
-                    return await client.GetStringAsync("http://wtfismyip.com/text");
-                }
-                catch (WebException)
-                {
-                    // offline...
-                }
-
-                try
-                {
-                    return await client.GetStringAsync("http://ip.telize.com/");
-                }
-                catch (WebException)
-                {
-                    // offline too...
-                }
-
-                // if we got here, all the websites are down, which is unlikely
-                return "No ip found";
-            }
-        }
-
-    }
-
-    public class WrongProfileStatus : Exception
-    {
-        public WrongProfileStatus()
-        {
-            
-        }
-
-        public WrongProfileStatus(string message) : base(message)
-        {
-            
-        }
-
-        public WrongProfileStatus(string message, Exception inner) : base (message, inner)
-        {
-            
-        }
-    }
-
-    public class WrongTargetProfile : Exception
-    {
-        public WrongTargetProfile()
-        {
-            
-        }
-
-        public WrongTargetProfile(string message):base(message)
-        {
-
-        }
-
-        public WrongTargetProfile(string message, Exception inner):base(message,inner)
-        {
-
-        }
-    }
-
-    public class WrongProfileLevel : Exception
-    {
-        public WrongProfileLevel()
-        {
-            
-        }
-
-        public WrongProfileLevel(string message) : base(message)
-        {
-
-        }
-
-        public WrongProfileLevel(string message, Exception inner) : base(message,inner)
-        {
-            
-        }
-    }
-    #endregion
 }

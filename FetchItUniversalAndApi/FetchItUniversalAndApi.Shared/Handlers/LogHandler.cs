@@ -48,24 +48,31 @@ namespace FetchItUniversalAndApi.Handlers
         }
         #endregion
 
+        // Bugfix by : Morten Toudahl
         /// <summary>
-        /// Creates a Log object in the database adding the time created and objectBeingLogged.ToString() for LogMessage
+        /// Creates a Log object in the database adding the time created and posting the <see cref="LogModel"/>
         /// </summary>
         /// <param name="obj"></param>
         public void Create(object objectBeingLogged)
         {
-            LogModel sendingLog = new LogModel();
-            sendingLog.LogTime = DateTime.UtcNow;
-            sendingLog.LogMessage = objectBeingLogged.ToString();
-            try
+            if (objectBeingLogged != null)
             {
-                logWebClient.PostAsJsonAsync("LogModels", sendingLog);
-            }
-            catch (Exception)
-            {
-                //TODO: This text should be presented to users.
-                MessageDialog errorDialogLoggingFailed = new MessageDialog("Making a log for the error failed. [THIS SHOULD NOT BE IN DEPLOYED CODE]");
-                errorDialogLoggingFailed.ShowAsync();
+                if (objectBeingLogged is LogModel)
+                {
+                    var sendingLog = objectBeingLogged as LogModel;
+                    sendingLog.LogTime = DateTime.UtcNow;
+                    //sendingLog.LogMessage = objectBeingLogged.ToString();
+                    try
+                    {
+                        logWebClient.PostAsJsonAsync("LogModels", sendingLog);
+                    }
+                    catch (Exception)
+                    {
+                        //TODO: This text should be presented to users.
+                        //MessageDialog errorDialogLoggingFailed = new MessageDialog("Making a log for the error failed. [THIS SHOULD NOT BE IN DEPLOYED CODE]");
+                        //errorDialogLoggingFailed.ShowAsync();
+                    }
+                }
             }
         }
 

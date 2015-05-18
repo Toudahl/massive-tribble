@@ -220,7 +220,7 @@ namespace FetchItUniversalAndApi.ViewModel
 			}
 			catch (Exception e)
 			{
-				ErrorHandler.GetInstance().UpdatingError(new TaskModel());
+				ErrorHandler.UpdatingError(new TaskModel());
 			}
 		}
 
