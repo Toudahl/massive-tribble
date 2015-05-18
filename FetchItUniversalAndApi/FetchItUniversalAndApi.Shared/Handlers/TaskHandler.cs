@@ -16,6 +16,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace FetchItUniversalAndApi.Handlers
 {
+    // Author : Bruno Damjanovic
     public class TaskHandler : ICreate, IDelete, IDisable, ISuspend, ISearch, IUpdate
     {
         private const string taskAPI = "http://fetchit.mortentoudahl.dk/api/TaskModels";
@@ -68,6 +69,9 @@ namespace FetchItUniversalAndApi.Handlers
                 var addNewTask = taskObject as TaskModel;
                 addNewTask.FK_TaskMaster = ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileId;
                 addNewTask.FK_TaskStatus = (int)TaskStatus.Active;
+                addNewTask.TaskTimeCreated = DateTime.UtcNow;
+
+                // TODO: Update method to handle TaskLocations
 
                 using (var Client = new HttpClient())
                 {

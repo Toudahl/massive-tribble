@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 using FetchItUniversalAndApi.Handlers;
+using FetchItUniversalAndApi.Models;
 
 namespace FetchItUniversalAndApi.View
 {
@@ -30,6 +31,7 @@ namespace FetchItUniversalAndApi.View
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private TaskHandler _th;
 
 
         /// <summary>
@@ -129,5 +131,6 @@ namespace FetchItUniversalAndApi.View
         {
             this.Frame.Navigate(typeof(TaskDetailPage));
         }
+
     }
 }

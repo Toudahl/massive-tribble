@@ -43,7 +43,7 @@ namespace FetchItUniversalAndApi.View
                 if (ph.CurrentLoggedInProfile != null)
                 {
                     Frame.Navigate(typeof(LandingPage));
-	                break;
+                    break;
                 }
             }
             if (ph.CurrentLoggedInProfile == null)

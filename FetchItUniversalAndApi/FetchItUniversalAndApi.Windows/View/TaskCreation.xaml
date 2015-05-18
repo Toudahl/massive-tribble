@@ -8,6 +8,7 @@
     xmlns:common="using:FetchItUniversalAndApi.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:FetchItUniversalAndApi.ViewModel"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -21,6 +22,14 @@
         * Row 1 contains the rest of the page layout
     -->
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.DataContext>
+            <viewModel:TaskCreationViewModel/>
+        </Grid.DataContext>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="25*"/>
+        </Grid.ColumnDefinitions>
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition/>
@@ -32,7 +41,7 @@
         </Grid.RowDefinitions>
 
         <!-- Back button and page title -->
-        <Grid>
+        <Grid Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
@@ -43,8 +52,23 @@
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"/>
-            <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
-                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
+        <StackPanel Grid.Column="1" 
+                    Grid.Row="1">
+            <TextBox x:Name="textbox_Description" Text="{Binding Description,Mode=TwoWay}" PlaceholderText="Describe your task here" Height="150" AcceptsReturn="True" IsSpellCheckEnabled="True"/>
+            <TextBox x:Name="textbox_EndPointAddress" Text="{Binding EndPointAddress, Mode=TwoWay}" PlaceholderText="Your address"/>
+            <TextBox x:Name="textbox_ItemPrice" Text="{Binding ItemPrice, Mode=TwoWay}" InputScope="Number" PlaceholderText="Price of item(s), if any"/>
+            <TextBox x:Name="textbox_Fee" Text="{Binding Fee, Mode=TwoWay}" InputScope="Number" PlaceholderText="How much will you pay for this service"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Time:"/>
+                <TimePicker Time="{Binding Time,Mode=OneWay}" x:Name="timepicker_time" />
+                <TextBlock Text="Date: " Margin="10,0,0,0"/>
+                <DatePicker Date="{Binding Date,Mode=OneWay}" x:Name="datepicker_date" Margin="0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Create" Command="{Binding CreateTaskCommand}" Click="buttonCreate_OnClick"/>
+                <Button Content="Cancel" Click="buttonCancel_OnClick"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>
