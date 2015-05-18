@@ -19,7 +19,6 @@ namespace FetchItUniversalAndApi.View
         {
             this.InitializeComponent();
             ph = ProfileHandler.GetInstance();
-            this.DataContext = new MainPageViewModel();
         }
 
         private void RegisterButton_OnClick(object sender, RoutedEventArgs e)

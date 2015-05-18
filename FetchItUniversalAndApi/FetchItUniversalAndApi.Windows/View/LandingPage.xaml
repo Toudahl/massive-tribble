@@ -29,6 +29,7 @@
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="profileDetailsButton" Content="Profil" Click="profileDetailsButton_Click"/>
                 <Button x:Name="notificationsRefreshButton" Content="Refresh Notifications" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding RefreshNotifications}"/>
+                <Button x:Name="messageHubButton" Content="Message Hub" Click="MessageHubButton_OnClickButton_Click"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
                 <TextBlock x:Name="welcomeText" Text="{Binding WelcomeText}" FontSize="30"/>
