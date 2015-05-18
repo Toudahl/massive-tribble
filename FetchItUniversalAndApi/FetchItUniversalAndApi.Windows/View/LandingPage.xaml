@@ -29,8 +29,8 @@
         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
             <StackPanel Orientation="Horizontal">
                 <TextBlock x:Name="welcomeText" Text="{Binding WelcomeText}" FontSize="45"/>
-                <Button x:Name="profileDetailsButton" Click="profileDetailsButton_Click" BorderBrush="{x:Null}">
                 <Button x:Name="messageHubButton" Content="Message Hub" Click="MessageHubButton_OnClickButton_Click"/>
+                <Button x:Name="profileDetailsButton" Click="profileDetailsButton_Click" BorderBrush="{x:Null}">
                     <StackPanel>
                         <Image Source="../Assets/Button Icons/User.png" MaxWidth="30" MaxHeight="30"/>
                     </StackPanel>
