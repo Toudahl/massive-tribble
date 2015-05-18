@@ -20,7 +20,7 @@ namespace FetchItUniversalAndApi.Models
         public int TaskId { get; set; }
         public string FK_TaskNotificationReferenceId { get; set; }
         public int FK_TaskMaster { get; set; }
-        public int FK_TaskFetcher { get; set; }
+        public int? FK_TaskFetcher { get; set; }
         public string TaskDescription { get; set; }
         public System.DateTime TaskTimeCreated { get; set; }
         public System.DateTime TaskDeadline { get; set; }

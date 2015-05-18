@@ -267,7 +267,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// <param name="status"></param>
         /// <param name="taskToComplete"></param>
 
-        private void setStatus(int ID, TaskStatus status, TaskModel taskToComplete)
+        private void setStatus(int? ID, TaskStatus status, TaskModel taskToComplete)
         {
             if (ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileId == ID)
             {
@@ -343,9 +343,10 @@ namespace FetchItUniversalAndApi.Handlers
                 IEnumerable<TaskModel> getAll;
                 using (var client = new HttpClient())
                 {
+
                     getAll = Task.Run(async () => JsonConvert.DeserializeObject<IEnumerable<TaskModel>>(
                     await client.GetStringAsync(taskAPI))).Result;
-                    return getAll;
+                    return getAll.Where(n =>  n.FK_TaskStatus == 1);
                 }
             }
             throw new NotImplementedException();
