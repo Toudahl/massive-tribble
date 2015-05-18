@@ -340,20 +340,23 @@ namespace FetchItUniversalAndApi.Handlers
             set { _selectedTask = value; }
         }
 
+
+        /// <summary>
+        /// GetTasks returuns all active tasks
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+
         public IEnumerable<TaskModel> GetTasks(TaskStatus value)
         {
-            if (value == TaskStatus.Active)
+            IEnumerable<TaskModel> getAll;
+            using (var client = new HttpClient())
             {
-                IEnumerable<TaskModel> getAll;
-                using (var client = new HttpClient())
-                {
-
-                    getAll = Task.Run(async () => JsonConvert.DeserializeObject<IEnumerable<TaskModel>>(
-                    await client.GetStringAsync(taskAPI))).Result;
-                    return getAll.Where(n =>  n.FK_TaskStatus == 1);
-                }
+                getAll = Task.Run(async () => JsonConvert.DeserializeObject<IEnumerable<TaskModel>>(
+                await client.GetStringAsync(taskAPI))).Result;
+                return getAll.Where(n =>  n.FK_TaskStatus == 1);
             }
-            throw new NotImplementedException();
+            return null;
         }
     }
 }
