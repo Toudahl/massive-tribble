@@ -320,7 +320,7 @@ namespace FetchItUniversalAndApi.Handlers
                 }
                 if (needle.ProfileEmail != null)
                 {
-                    return haystack.Where(p => p.ProfileEmail == needle.ProfileName);
+                    return haystack.Where(p => p.ProfileEmail == needle.ProfileEmail);
                 }
                 return null;
             }
@@ -417,8 +417,15 @@ namespace FetchItUniversalAndApi.Handlers
         {
             using (var client = new HttpClient())
             {
-                var result = await client.GetStringAsync(Apiurl);
-                AllProfiles = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<ProfileModel>>(result));
+                try
+                {
+                    var result = await client.GetStringAsync(Apiurl);
+                    AllProfiles = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<ProfileModel>>(result));
+                }
+                catch (Exception)
+                {
+                    ErrorHandler.NoResponseFromApi();
+                }
             }
         }
 
