@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -316,41 +317,57 @@ namespace FetchItUniversalAndApi.Handlers
         /// <param name="profile">Must contain password and username</param>
         public async void LogIn(ProfileModel profile)
         {
+            MessageDialog dialog;
+            var dialogTitle = "Failed to log in";
             if (profile.ProfilePassword != null && profile.ProfileName != null)
             {
                 using (var client = new HttpClient())
                 {
                     // TODO update the webapi, so i dont have to request all the information like this.
                     // All the user information is up for graps each time someone logs in.
-                    var result = await client.GetStringAsync(Apiurl);
-                    var listOfProfiles = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<ProfileModel>>(result));
-
                     try
                     {
-                        //TODO after making the hasing and salting work. Change this, so it uses the hashed password for the check
-                        var selectedProfile =
-                            listOfProfiles.FirstOrDefault(p => p.ProfileName == profile.ProfileName && p.ProfilePassword == profile.ProfilePassword);
+                        var result = await client.GetStringAsync(Apiurl);
+                        var listOfProfiles = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<ProfileModel>>(result));
+                        try
+                        {
+                            //TODO after making the hasing and salting work. Change this, so it uses the hashed password for the check
+                            var selectedProfile =
+                                listOfProfiles.FirstOrDefault(p => p.ProfileName == profile.ProfileName && p.ProfilePassword == profile.ProfilePassword);
 
-                        if (selectedProfile.FK_ProfileStatus == (int)ProfileStatus.Active)
-                        {
-                            CurrentLoggedInProfile = selectedProfile;
+                            if (selectedProfile.FK_ProfileStatus == (int)ProfileStatus.Active)
+                            {
+                                CurrentLoggedInProfile = selectedProfile;
+                            }
+                            else
+                            {
+                                //throw new WrongProfileStatus("Your profile is not active, so you cannot log in");
+                                dialog = new MessageDialog("Your profile is not active, so you cannot log in", dialogTitle);
+                                await dialog.ShowAsync();
+                            }
+
                         }
-                        else
+                        catch (Exception)
                         {
-                            throw new WrongProfileStatus("Your profile is not active, so you cannot log in");
+                            //throw new FailedLogIn("Profile ("+profile.ProfileName+") and password combination not found.\nLogin attempt has been logged.");
+                            dialog = new MessageDialog("Profile (" + profile.ProfileName + ") and password combination not found.\nLogin attempt has been logged.", dialogTitle);
+                            dialog.ShowAsync();
                         }
 
                     }
                     catch (Exception)
                     {
-                        throw new FailedLogIn("Profile ("+profile.ProfileName+") and password combination not found.\nLogin attempt has been logged.");
+
+                        dialog = new MessageDialog("Failed to contact the web api", dialogTitle);
+                        dialog.ShowAsync();
                     }
+
                 }
             }
             else
             {
                 //throw new ArgumentNullException();
-                var dialog = new MessageDialog("You must input both username and password", "Failed to log in");
+                dialog = new MessageDialog("You must input both username and password", "Failed to log in");
                 await dialog.ShowAsync();
             }
         }
