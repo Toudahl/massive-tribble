@@ -87,7 +87,7 @@ namespace FetchItUniversalAndApi.Handlers
                 }
                 catch (Exception exception)
                 {
-                    ErrorHandler.GetInstance().GettingError(new ReportModel());
+                    ErrorHandler.GettingError(new ReportModel());
                 }
             }
             return new List<ReportModel>();
@@ -130,7 +130,7 @@ namespace FetchItUniversalAndApi.Handlers
 
                     catch (Exception exception)
                     {
-                        ErrorHandler.GetInstance().CreatingError(new ReportModel());
+                        ErrorHandler.CreatingError(new ReportModel());
                         //Attaches the navigational properties again to the reportmodel.
                         FindProfiles(reportToCreate);
                     }
@@ -138,7 +138,7 @@ namespace FetchItUniversalAndApi.Handlers
             }
             else
             {
-                ErrorHandler.GetInstance().WrongModelError(obj, new ReportModel());
+                ErrorHandler.WrongModelError(obj, new ReportModel());
             }
         }
 
@@ -161,13 +161,13 @@ namespace FetchItUniversalAndApi.Handlers
 
                     catch (Exception exception)
                     {
-                        ErrorHandler.GetInstance().DeletingError(new ReportModel());
+                        ErrorHandler.DeletingError(new ReportModel());
                     }
                 }
             }
             else
             {
-                ErrorHandler.GetInstance().WrongModelError(obj, new ReportModel());
+                ErrorHandler.WrongModelError(obj, new ReportModel());
 
             }
         }
@@ -189,12 +189,12 @@ namespace FetchItUniversalAndApi.Handlers
                 }
                 catch (Exception)
                 {
-                    ErrorHandler.GetInstance().DisablingError(new ReportModel());
+                    ErrorHandler.DisablingError(new ReportModel());
                 }
             }
             else
             {
-                ErrorHandler.GetInstance().WrongModelError(obj, new ReportModel());
+                ErrorHandler.WrongModelError(obj, new ReportModel());
             }
         }
 
@@ -215,12 +215,12 @@ namespace FetchItUniversalAndApi.Handlers
                 }
                 catch (Exception)
                 {
-                    ErrorHandler.GetInstance().SuspendingError(new ReportModel());
+                    ErrorHandler.SuspendingError(new ReportModel());
                 }
             }
             else
             {
-                ErrorHandler.GetInstance().WrongModelError(obj, new ReportModel());
+                ErrorHandler.WrongModelError(obj, new ReportModel());
             }
         }
 
@@ -247,14 +247,14 @@ namespace FetchItUniversalAndApi.Handlers
 
                     catch (Exception exception)
                     {
-                        ErrorHandler.GetInstance().UpdatingError(new ReportModel());
+                        ErrorHandler.UpdatingError(new ReportModel());
                         FindProfiles(reportToUpdate);
                     }
                 }
             }
             else
             {
-                ErrorHandler.GetInstance().WrongModelError(obj, new ReportModel());
+                ErrorHandler.WrongModelError(obj, new ReportModel());
             }
         }
 

@@ -78,7 +78,7 @@ namespace FetchItUniversalAndApi.ViewModel
             }
             else
             {
-                var msg = new MessageDialog(_validationErrors).ShowAsync();
+                ErrorHandler.DisplayErrorMessage(_validationErrors, "Validation of required input failed.");
             }
         }
 
