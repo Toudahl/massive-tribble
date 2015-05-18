@@ -278,7 +278,7 @@ namespace FetchItUniversalAndApi.Handlers
                     }
                     catch (Exception)
                     {
-                        ErrorHandler.NoResponseFromAPI();
+                        ErrorHandler.NoResponseFromApi();
                     }
                 }
             }
@@ -372,7 +372,7 @@ namespace FetchItUniversalAndApi.Handlers
                     }
                     catch (Exception)
                     {
-                        ErrorHandler.NoResponseFromAPI();
+                        ErrorHandler.NoResponseFromApi();
                     }
                 }
             }
@@ -408,7 +408,7 @@ namespace FetchItUniversalAndApi.Handlers
                 }
                 catch (Exception)
                 {
-                    ErrorHandler.NoResponseFromAPI();
+                    ErrorHandler.NoResponseFromApi();
                 }
             }
         }
