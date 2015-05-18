@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 using FetchItUniversalAndApi.Handlers;
+using FetchItUniversalAndApi.Models;
 
 namespace FetchItUniversalAndApi.View
 {
@@ -27,6 +28,7 @@ namespace FetchItUniversalAndApi.View
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private TaskHandler _th;
 
 
         /// <summary>
@@ -53,7 +55,7 @@ namespace FetchItUniversalAndApi.View
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             this.navigationHelper.SaveState += navigationHelper_SaveState;
-
+            _th = TaskHandler.GetInstance();
         }
 
         /// <summary>
@@ -106,14 +108,15 @@ namespace FetchItUniversalAndApi.View
             this.Frame.Navigate(typeof (MainPage));
         }
 
-		private void marketplaceListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			this.Frame.Navigate(typeof(TaskDetailPage));
-		}
+        private void marketplaceListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(TaskDetailPage));
+        }
 
         private void CreateTaskButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof (TaskCreation));
         }
+
     }
 }

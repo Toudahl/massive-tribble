@@ -38,6 +38,7 @@ namespace FetchItUniversalAndApi.ViewModel
 
         public string Fee { get; set; }
         public string EndPointAddress { get; set; }
+        public static bool CreationSuccess { get; set; }
 
         // TODO: properly implement task locations - also update the TaskHandler.Create() method
         //public ObservableCollection<TaskLocationInfoModel> TaskLocations
@@ -45,7 +46,6 @@ namespace FetchItUniversalAndApi.ViewModel
         //    get { return _taskLocations; }
         //    set { _taskLocations = value; }
         //}
-
 
         public ICommand CreateTaskCommand
         {
@@ -61,9 +61,10 @@ namespace FetchItUniversalAndApi.ViewModel
 
         private void CreateTask()
         {
+            CreationSuccess = false;
             if (Validation())
             {
-                _th.Create(new TaskModel
+                var newTask = new TaskModel
                 {
                     TaskDeadline = DateTimeCustom.TimeSpanAndDateOffsetToDateTime(Date, Time),
                     TaskDescription = Description,
@@ -71,8 +72,9 @@ namespace FetchItUniversalAndApi.ViewModel
                     TaskFee = Convert.ToDecimal(Fee),
                     TaskEndPointAddress = EndPointAddress,
                     //TaskLocationInfos = new ObservableCollection<TaskLocationInfoModel>(TaskLocations)
-
-                });
+                };
+                _th.Create(newTask);
+                CreationSuccess = true;
             }
             else
             {
@@ -89,20 +91,50 @@ namespace FetchItUniversalAndApi.ViewModel
                 _validationErrors += "\nYou must write a description for the task.";
             }
 
-            if (Convert.ToDecimal(ItemPrice) < 0)
+            if (ItemPrice == null)
             {
-                _validationErrors += "\nThe item price cannot be negative.";
+                _validationErrors += "\nYou must input the price of the good(s) you wish";
+            }
+            else
+            {
+                try
+                {
+                    var itemValue = Convert.ToDecimal(ItemPrice);
+                    if (itemValue < 0)
+                    {
+                        _validationErrors += "\nThe item price cannot be negative.";
+                    }
+                }
+                catch (Exception)
+                {
+                    _validationErrors += "\nThe item price can only be a numeric value";
+                }
             }
 
-            if (Convert.ToDecimal(Fee) <= 0)
+            if (Fee == null)
             {
-                if (Convert.ToDecimal(Fee) < 0)
+                _validationErrors += "\nYou must pay the fetcher a fee.";
+            }
+            else
+            {
+                try
                 {
-                    _validationErrors += "\nThe fee cannot be negative.";
+                    var feeAmount = Convert.ToDecimal(Fee);
+                    if (feeAmount <= 0)
+                    {
+                        if (feeAmount < 0)
+                        {
+                            _validationErrors += "\nThe fee cannot be negative.";
+                        }
+                        else if (feeAmount == 0)
+                        {
+                            _validationErrors += "\nThe fee cannot be zero";
+                        }
+                    }
                 }
-                else if (Convert.ToDecimal(Fee) == 0)
+                catch (Exception)
                 {
-                    _validationErrors += "\nThe fee cannot be zero";
+                    _validationErrors += "\nThe fee can only be a numeric value";
                 }
             }
 
@@ -112,11 +144,7 @@ namespace FetchItUniversalAndApi.ViewModel
                     "\nIf you do not enter an end point for the task, the fetcher will not be able to complete the task";
             }
 
-            if (_validationErrors == "")
-            {
-                return true;
-            }
-            return false;
+            return _validationErrors == "";
         }
     }
 }

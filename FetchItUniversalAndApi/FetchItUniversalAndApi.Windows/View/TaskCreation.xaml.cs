@@ -1,4 +1,5 @@
-﻿using FetchItUniversalAndApi.Common;
+﻿using System.Threading.Tasks;
+using FetchItUniversalAndApi.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,6 +17,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 using FetchItUniversalAndApi.Handlers;
+using FetchItUniversalAndApi.ViewModel;
 
 namespace FetchItUniversalAndApi.View
 {
@@ -106,5 +108,27 @@ namespace FetchItUniversalAndApi.View
 
         #endregion
 
+        private void buttonCancel_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof (LandingPage));
+        }
+
+        private void buttonCreate_OnClick(object sender, RoutedEventArgs e)
+        {
+            GoToLandingPageAfterCreation();
+        }
+
+        private async void GoToLandingPageAfterCreation()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                if (TaskCreationViewModel.CreationSuccess)
+                {
+                    Frame.Navigate(typeof(LandingPage));
+                    break;
+                }
+                await Task.Delay(500);
+            }
+        }
     }
 }
