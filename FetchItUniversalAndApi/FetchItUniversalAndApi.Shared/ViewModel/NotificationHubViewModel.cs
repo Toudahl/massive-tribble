@@ -38,10 +38,8 @@ namespace FetchItUniversalAndApi.ViewModel
             set
             {
                 _selectedNotification = value;
-                var pmodel = new ProfileModel();
-                pmodel.ProfileId = SelectedNotification.FK_NotificationFrom;
-                IEnumerable<object> pCollection = ph.Search(pmodel);
-                FromProfile = (ProfileModel)pCollection.First();
+                
+                FromProfile = ph.AllProfiles.First(n => n.ProfileId == SelectedNotification.FK_NotificationFrom);
                 OnPropertyChanged("SelectedNotification");
             }
         }
@@ -50,7 +48,7 @@ namespace FetchItUniversalAndApi.ViewModel
         {
             ph = ProfileHandler.GetInstance();
             th = TaskHandler.GetInstance();
-            
+            ph.GetAllProfiles();
             GetNotifications();
         }
 

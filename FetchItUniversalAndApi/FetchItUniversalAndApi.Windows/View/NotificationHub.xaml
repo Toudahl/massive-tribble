@@ -59,8 +59,14 @@
                        ItemsSource="{Binding Notifications, Mode=TwoWay}" SelectedItem="{Binding SelectedNotification, Mode=TwoWay}"/>
         </StackPanel>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="25,44,0,0" Grid.Row="1" TextWrapping="Wrap" Text="From:" VerticalAlignment="Top" Style="{StaticResource HeaderTextBlockStyle}"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="226,44,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource HeaderTextBlockStyle}" 
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="250,44,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource HeaderTextBlockStyle}" 
                    Text= "{Binding FromProfile.ProfileName, Mode=TwoWay}"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="25,122,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Time:" VerticalAlignment="Top" Style="{StaticResource HeaderTextBlockStyle}"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="250,122,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource HeaderTextBlockStyle}" 
+                   Text= "{Binding SelectedNotification.NotificationSent, Mode=TwoWay}"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="25,200,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Content:" VerticalAlignment="Top" Style="{StaticResource HeaderTextBlockStyle}"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="250,200,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource HeaderTextBlockStyle}" 
+                   Text= "{Binding SelectedNotification.NotificationContent, Mode=TwoWay}"/>
 
 
     </Grid>
