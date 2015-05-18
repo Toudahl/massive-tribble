@@ -107,10 +107,6 @@ namespace FetchItUniversalAndApi.View
         {
             this.Frame.Navigate(typeof (MainPage));
         }
-		private void MarketplaceListView_OnTapped(object sender, TappedRoutedEventArgs e)
-		{
-			this.Frame.Navigate(typeof(TaskDetailPage));
-		}
 		
         private void CreateTaskButton_Click(object sender, RoutedEventArgs e)
         {
@@ -127,6 +123,11 @@ namespace FetchItUniversalAndApi.View
             refreshMarketplaceButton.IsEnabled = false;
             await Task.Delay(5000);
             refreshMarketplaceButton.IsEnabled = true;
+        }
+
+        private void marketplaceListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(TaskDetailPage));
         }
     }
 }
