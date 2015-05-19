@@ -38,7 +38,7 @@ namespace FetchItUniversalAndApi.Models
         public virtual ICollection<TaskLocationInfoModel> TaskLocationInfos { get; set; }
         public virtual TaskStatusModel TaskStatus { get; set; }
 
-        //Author: Lárus Þór Kick-Assness
+        //Author: Lárus Þór Hakarl
         public override string ToString()
         {
             //Using the ProfileHandler.GetInstance() without initializing it as a property inside here doesn't work.
