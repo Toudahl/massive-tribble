@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading.Tasks;
 using FetchItUniversalAndApi.Handlers.Interfaces;
 using FetchItUniversalAndApi.Models;
 
@@ -17,14 +19,15 @@ namespace FetchItUniversalAndApi.Handlers
         private IEnumerable<IssueModel> _currentIssues;
         private string _userInput;
         private const string issuemodelurl = "http://fetchit.mortentoudahl.dk/api/IssueModels";
+      public HttpClient issuesclient { get; set; }  
 
         public enum IssueStatus
         {
-            Deleted = 3,
-            Suspended = 4,
-            Disabled = 5,
-            Active = 6,
-            Unactivated = 7
+            Deleted = 6,
+            Suspended = 7,
+            Disabled = 8,
+            Active = 9,
+            Unactivated = 10
         }
       public string UserInput
       {
@@ -76,7 +79,14 @@ namespace FetchItUniversalAndApi.Handlers
 
            
         }
+      public async Task<IEnumerable<IssueModel>> GetAllIssues()
+      {
+          var allIssues = Task.Run(async () => await issuesclient.GetAsync("IssueModels"));
+          var allIsuesContent = allIssues.Result.Content;
+           return allIsuesContent.ReadAsAsync<IEnumerable<IssueModel>>().Result;
 
+
+      } 
         public void Delete(object obj)
         {
             
@@ -106,13 +116,13 @@ namespace FetchItUniversalAndApi.Handlers
 
         public IEnumerable<object> Search(object obj)
         {
-            string userinput = _userInput;
+            string userinput = _userInput;            
 
             foreach (IssueModel issueModel in _currentIssues.Where(issue => issue.IssueTitle.Contains(userinput)))
             {
                 return issueModel.IssueDetails;
             }
-            return _currentIssues;
+            return  _currentIssues;
         }
 
         public  void Suspend(object obj)
@@ -127,6 +137,8 @@ namespace FetchItUniversalAndApi.Handlers
            CreateLog(); 
             }
         }
+
+      
 
         public async void Update(object obj)
         {

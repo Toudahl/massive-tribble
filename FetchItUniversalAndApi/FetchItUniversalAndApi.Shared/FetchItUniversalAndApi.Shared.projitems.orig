@@ -61,11 +61,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\TaskModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\TaskStatusModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CreateFeedbackViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\IssuesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\LandingPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\LogInViewModel.cs" />
+<<<<<<< HEAD
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\NotificationHubViewModel.cs" />
+=======
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ProfileDetailViewModel.cs" />
+>>>>>>> ProfileDetailView
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\RegisterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ReportProfileViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\TaskCreationViewModel.cs" />

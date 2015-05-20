@@ -28,7 +28,7 @@ namespace FetchItUniversalAndApi.View
 	{
 		private NavigationHelper navigationHelper;
 		private ObservableDictionary defaultViewModel = new ObservableDictionary();
-
+	    private ProfileHandler ph;
 		/// <summary>
 		/// This can be changed to a strongly typed view model.
 		/// </summary>
@@ -53,6 +53,12 @@ namespace FetchItUniversalAndApi.View
 			this.navigationHelper = new NavigationHelper(this);
 			this.navigationHelper.LoadState += navigationHelper_LoadState;
 			this.navigationHelper.SaveState += navigationHelper_SaveState;
+		    ph = ProfileHandler.GetInstance();
+		    IssuesButton.Visibility = Visibility.Collapsed;
+            if (ph.CurrentLoggedInProfile.FK_ProfileLevel >= (int)ProfileHandler.ProfileLevel.Administrator)
+            {
+                IssuesButton.Visibility = Visibility.Visible;
+            }
 		}
 
 		/// <summary>
@@ -201,5 +207,12 @@ namespace FetchItUniversalAndApi.View
 		{
 			this.Frame.Navigate(typeof(TaskEditPage));
 		}
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+                this.Frame.Navigate(typeof (IssuesView));
+            
+        }
 	}
 }
