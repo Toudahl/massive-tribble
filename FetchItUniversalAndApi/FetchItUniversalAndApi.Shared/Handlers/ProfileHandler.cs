@@ -133,7 +133,7 @@ namespace FetchItUniversalAndApi.Handlers
                 if (obj is ProfileModel)
                 {
                     var profileToDelete = obj as ProfileModel;
-                    if (profileToDelete == CurrentLoggedInProfile)
+                    if (profileToDelete.ProfileId == CurrentLoggedInProfile.ProfileId)
                     {
                         ErrorHandler.WrongTargetProfile("delete");
                     }
@@ -201,7 +201,7 @@ namespace FetchItUniversalAndApi.Handlers
                 if (obj is ProfileModel)
                 {
                     var profileToSuspend = obj as ProfileModel;
-                    if (profileToSuspend == CurrentLoggedInProfile)
+                    if (profileToSuspend.ProfileId == CurrentLoggedInProfile.ProfileId)
                     {
                         ErrorHandler.WrongTargetProfile("suspend");
                     }
@@ -236,7 +236,7 @@ namespace FetchItUniversalAndApi.Handlers
                 if (obj is ProfileModel)
                 {
                     var profileToDisable = obj as ProfileModel;
-                    if (profileToDisable != CurrentLoggedInProfile)
+                    if (profileToDisable.ProfileId != CurrentLoggedInProfile.ProfileId)
                     {
                         ErrorHandler.WrongTargetProfile("suspend");
                     }
@@ -266,27 +266,33 @@ namespace FetchItUniversalAndApi.Handlers
         /// <param name="obj">A ProfileModel</param>
         public async void Update(object obj)
         {
-            if (obj is ProfileModel)
+            if (CurrentLoggedInProfile != null)
             {
-                var profil = obj as ProfileModel;
-                var url = Apiurl + "/" + profil.ProfileId;
-                using (var client = new HttpClient())
+                if (obj is ProfileModel)
                 {
-                    try
+                    var profil = obj as ProfileModel;
+                    var url = Apiurl + "/" + profil.ProfileId;
+                    using (var client = new HttpClient())
                     {
-                        await client.PutAsJsonAsync(url, profil);
+                        try
+                        {
+                            await client.PutAsJsonAsync(url, profil);
+                        }
+                        catch (Exception)
+                        {
+                            ErrorHandler.NoResponseFromApi();
+                        }
                     }
-                    catch (Exception)
-                    {
-                        ErrorHandler.NoResponseFromApi();
-                    }
+                }
+                else
+                {
+                    ErrorHandler.WrongModelError(obj, new ProfileModel());
                 }
             }
             else
             {
-                ErrorHandler.WrongModelError(obj, new ProfileModel());
+                ErrorHandler.WrongTargetProfile("update");
             }
-            
         }
         #endregion
 
@@ -324,10 +330,7 @@ namespace FetchItUniversalAndApi.Handlers
                 }
                 return null;
             }
-            else
-            {
-                ErrorHandler.WrongModelError(obj, new ProfileModel());
-            }
+            ErrorHandler.WrongModelError(obj, new ProfileModel());
             return null;
         }
         #endregion
