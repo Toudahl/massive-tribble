@@ -1,11 +1,23 @@
-﻿using FetchItUniversalAndApi.Common;
+﻿using System.ServiceModel.Channels;
+using FetchItUniversalAndApi.Common;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 using FetchItUniversalAndApi.Handlers;
+using FetchItUniversalAndApi.Models;
 
 namespace FetchItUniversalAndApi.View
 {
@@ -144,6 +156,11 @@ namespace FetchItUniversalAndApi.View
 			if (th.SelectedTask.FK_TaskFetcher == ph.CurrentLoggedInProfile.ProfileId ||
 				th.SelectedTask.FK_TaskMaster == ph.CurrentLoggedInProfile.ProfileId)
 			{
+
+				//This LeaveCommentButton is only available ATM to fetchers or taskmasters of
+				//the selected task
+				LeaveCommentButton.Visibility = Visibility.Visible;
+
 				if (th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.Active ||
 					th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.FetcherCompleted ||
 					th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.TaskMasterCompleted)
@@ -188,6 +205,20 @@ namespace FetchItUniversalAndApi.View
 		private void EditTaskButton_Click(object sender, RoutedEventArgs e)
 		{
 			this.Frame.Navigate(typeof(TaskEditPage));
+		}
+
+		private void CancelCommentButton_Click(object sender, RoutedEventArgs e)
+		{
+			AddCommentButton.Visibility = Visibility.Collapsed;
+			CancelCommentButton.Visibility = Visibility.Collapsed;
+			CommentTextBox.Visibility = Visibility.Collapsed;
+		}
+
+		private void LeaveCommentButton_Click(object sender, RoutedEventArgs e)
+		{
+			AddCommentButton.Visibility = Visibility.Visible;
+			CancelCommentButton.Visibility = Visibility.Visible;
+			CommentTextBox.Visibility = Visibility.Visible;
 		}
 	}
 }

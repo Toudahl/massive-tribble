@@ -134,7 +134,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// <param name="toTask"></param>
         /// <param name="comment"></param>
         /// <param name="authorProfile"></param>
-        public static void CreateTaskComment(TaskModel toTask, string comment, ProfileModel authorProfile)
+        async public static void CreateTaskComment(TaskModel toTask, string comment, ProfileModel authorProfile)
         {
             try
             {
@@ -146,13 +146,13 @@ namespace FetchItUniversalAndApi.Handlers
                 newComment.CommentTimeCreated = DateTime.UtcNow;
                 newComment.FK_CommentTask = toTask.TaskId;
                 newComment.FK_CommentCreator = authorProfile.ProfileId;
-                newComment.Task = toTask;
-                newComment.Profile = authorProfile;
+				//newComment.Task = toTask;
+				//newComment.Profile = authorProfile;
                 #endregion
                 updatedTask.Comments.Add(newComment);
                 try
                 {
-                    _th.Update(updatedTask);
+					await msgWebClient.PostAsJsonAsync("commentmodels", newComment);
                 }
                 catch (Exception)
                 {

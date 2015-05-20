@@ -145,6 +145,14 @@
 						VerticalAlignment="Top"
 						Width="127"
 						Command="{Binding SuspendTaskCommand}" />
+		<TextBlock Grid.Column="1"
+							 HorizontalAlignment="Left"
+							 Margin="100,311,0,0"
+							 Grid.Row="2"
+							 TextWrapping="Wrap"
+							 Text="Your task was updated successfully"
+							 VerticalAlignment="Top"
+							 Visibility="{Binding UpdateSuccessMessage, Mode=TwoWay}" />
 
 	</Grid>
 </Page>

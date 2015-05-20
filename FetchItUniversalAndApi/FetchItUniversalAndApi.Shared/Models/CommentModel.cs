@@ -1,4 +1,5 @@
-﻿namespace FetchItUniversalAndApi.Models
+﻿
+namespace FetchItUniversalAndApi.Models
 {
     public partial class CommentModel
     {
@@ -11,5 +12,10 @@
 
         public virtual ProfileModel Profile { get; set; }
         public virtual TaskModel Task { get; set; }
+
+	    public override string ToString()
+	    {
+		    return CommentText;
+	    }
     }
 }
