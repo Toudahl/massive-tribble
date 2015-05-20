@@ -13,7 +13,7 @@
         <viewModel:LandingPageViewModel/>
     </Page.DataContext>
 
-    <Grid Background="MidnightBlue">
+    <Grid Background="{StaticResource FetchitBackgroundColour}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="100*"/>
