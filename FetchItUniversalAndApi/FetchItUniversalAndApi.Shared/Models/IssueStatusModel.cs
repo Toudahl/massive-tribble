@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using FetchItUniversalAndApi.Handlers;
+﻿using System.Collections.Generic;
 
 namespace FetchItUniversalAndApi.Models
 {

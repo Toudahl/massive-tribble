@@ -9,9 +9,6 @@
 
 namespace Api.EntityFramework
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class IssueDetailModel
     {
         public int IssueDetailId { get; set; }

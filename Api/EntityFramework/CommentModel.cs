@@ -9,9 +9,6 @@
 
 namespace Api.EntityFramework
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class CommentModel
     {
         public int CommentId { get; set; }

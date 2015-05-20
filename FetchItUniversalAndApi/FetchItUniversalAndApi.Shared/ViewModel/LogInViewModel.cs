@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Windows.Input;
-using Windows.UI.Popups;
+﻿using System.Windows.Input;
 using FetchItUniversalAndApi.Common;
 using FetchItUniversalAndApi.Handlers;
 using FetchItUniversalAndApi.Models;
-using FetchItUniversalAndApi.View;
 
 namespace FetchItUniversalAndApi.ViewModel
 {

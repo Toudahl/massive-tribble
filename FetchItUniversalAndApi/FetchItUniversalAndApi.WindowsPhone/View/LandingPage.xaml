@@ -6,13 +6,14 @@
     xmlns:common="using:FetchItUniversalAndApi.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:c="using:FetchItUniversalAndApi.Common"
     xmlns:viewModel="using:FetchItUniversalAndApi.ViewModel"
     mc:Ignorable="d">
     <Page.DataContext>
         <viewModel:LandingPageViewModel/>
     </Page.DataContext>
 
-    <Grid>
+    <Grid Background="MidnightBlue">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="100*"/>
@@ -27,28 +28,69 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="backButton" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
-                        Style="{StaticResource NavigationBackButtonNormalStyle}"
-                        VerticalAlignment="Top"
-                        AutomationProperties.Name="Back"
-                        AutomationProperties.AutomationId="BackButton"
-                        AutomationProperties.ItemType="Navigation Button" Click="backButton_Click"/>
-                <Button x:Name="profileDetailsButton" Content="Profil" Click="profileDetailsButton_Click"/>
-                <Button x:Name="taskDetailButton" Content="TASK" HorizontalAlignment="Left" VerticalAlignment="Top" Click="taskDetailButton_Click"/>
-                <Button x:Name="notificationsRefreshButton" Content="Refresh Notifications" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding RefreshNotifications}"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
-                <ListView x:Name="notificationsListView" ItemsSource="{Binding Notifications, Mode=TwoWay}" Height="400" Width="300"/>
-                <ListView x:Name="userActiveTasksListView" ItemsSource="{Binding ActiveTasks, Mode=TwoWay}" Height="400" Width="300"/>
+                <TextBlock x:Name="welcomeText" Text="{Binding WelcomeText}" FontSize="45"/>
+                <Button x:Name="messageHubButton" Content="Message Hub" Click="MessageHubButton_OnClickButton_Click"/>
+                <Button x:Name="profileDetailsButton" Click="profileDetailsButton_Click" BorderBrush="{x:Null}">
+                    <StackPanel>
+                        <Image Source="../Assets/Button Icons/User.png" MaxWidth="30" MaxHeight="30"/>
+                    </StackPanel>
+                </Button>
+                </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="Notifications" FontSize="25"/>
+                        <Button x:Name="notificationsRefreshButton" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding RefreshNotifications}" BorderBrush="{x:Null}">
+                            <StackPanel>
+                                <Image Source="../Assets/Button Icons/Refresh.png" MaxWidth="18" MaxHeight="18"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                    <ListView x:Name="notificationsListView" ItemsSource="{Binding Notifications, Mode=TwoWay}" Height="500" Width="300" BorderThickness="1" BorderBrush="MistyRose">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                                    <StackPanel.Resources>
+                                        <c:NullToPictureConverter x:Key="NullToPictureConverter"/>
+                                    </StackPanel.Resources>
+                                    <Image Source="{Binding NotificationRead, Converter={StaticResource NullToPictureConverter}}" Stretch="UniformToFill" Height="20" Width="20"/>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding NotificationSent}"  FontSize="12" TextWrapping="NoWrap" Margin="10,0,0,0"/>
+                                        <TextBlock Text="{Binding NotificationContent}" FontSize="12" TextWrapping="NoWrap" Margin="10,0,0,0"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+                <StackPanel Margin="10,0,0,0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="Active Tasks" HorizontalAlignment="Center" FontSize="25"/>
+                        <Button x:Name="activeTasksRefreshButton" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding RefreshMarketplace}" BorderBrush="{x:Null}">
+                            <StackPanel>
+                                <Image Source="../Assets/Button Icons/Refresh.png" MaxWidth="18" MaxHeight="18"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                    <ListView x:Name="userActiveTasksListView" ItemsSource="{Binding ActiveTasks, Mode=TwoWay}" Height="500" Width="300" BorderThickness="1" BorderBrush="MistyRose"/>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock x:Name="marketplaceTitleTextBlock" Text="Marketplace" HorizontalAlignment="Center" FontSize="40" />
-                <Button x:Name="refreshMarketplaceButton" Content="*Refresh*" Command="{Binding RefreshMarketplace}"/>
+                <TextBlock x:Name="marketplaceTitleTextBlock" Text="Marketplace" FontSize="40" Margin="30,0,0,0"/>
+                <Button x:Name="refreshMarketplaceButton" Command="{Binding RefreshMarketplace}" Click="refreshMarketplaceButton_Click" BorderBrush="{x:Null}">
+                    <StackPanel>
+                        <Image Source="../Assets/Button Icons/Refresh.png" MaxWidth="18" MaxHeight="18"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="CreateTaskButton" Click="CreateTaskButton_Click" BorderBrush="{x:Null}">
+                    <StackPanel>
+                        <Image Source="../Assets/Button Icons/Add.png" MaxWidth="18" MaxHeight="18"/>
+                    </StackPanel>
+                </Button>
             </StackPanel>
-            <ListView x:Name="marketplaceListView" ItemsSource="{Binding Marketplace}" Height="600" Width="600" FontSize="8" SelectedItem="{Binding th.SelectedTask, Mode=TwoWay}"
-								SelectionChanged="marketplaceListView_SelectionChanged" />
+            <ListView x:Name="marketplaceListView" ItemsSource="{Binding Marketplace}" Height="600" Width="600" FontSize="4" SelectedItem="{Binding th.SelectedTask, Mode=TwoWay}" SelectionChanged="marketplaceListView_SelectionChanged" BorderThickness="1" BorderBrush="MistyRose"/>
         </StackPanel>
     </Grid>
 </Page>

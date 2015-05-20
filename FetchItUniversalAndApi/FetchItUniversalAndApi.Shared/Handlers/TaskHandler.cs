@@ -1,18 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Runtime.Serialization.Json;
-using System.ServiceModel;
-using System.Text;
 using System.Threading.Tasks;
 using FetchItUniversalAndApi.Handlers.Interfaces;
 using FetchItUniversalAndApi.Models;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace FetchItUniversalAndApi.Handlers
 {

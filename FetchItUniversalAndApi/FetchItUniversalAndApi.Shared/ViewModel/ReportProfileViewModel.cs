@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Windows.Input;
 using Windows.UI.Popups;
-using Windows.UI.Xaml.Controls;
 using FetchItUniversalAndApi.Annotations;
 using FetchItUniversalAndApi.Common;
 using FetchItUniversalAndApi.Handlers;

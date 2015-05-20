@@ -9,7 +9,6 @@
 
 namespace Api.EntityFramework
 {
-    using System;
     using System.Collections.Generic;
     
     public partial class IssueStatusModel

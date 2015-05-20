@@ -9,9 +9,6 @@
 
 namespace Api.EntityFramework
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class LogModel
     {
         public int LogId { get; set; }

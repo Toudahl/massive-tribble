@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FetchItUniversalAndApi.Models
+﻿namespace FetchItUniversalAndApi.Models
 {
     public partial class TaskLocationInfoModel
     {

@@ -1,18 +1,8 @@
-﻿using FetchItUniversalAndApi.Common;
+﻿using System.Threading.Tasks;
+using FetchItUniversalAndApi.Common;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 using FetchItUniversalAndApi.Handlers;
@@ -27,7 +17,7 @@ namespace FetchItUniversalAndApi.View
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
-        private ProfileHandler ph = ProfileHandler.GetInstance();
+        private TaskHandler _th;
 
 
         /// <summary>
@@ -54,7 +44,6 @@ namespace FetchItUniversalAndApi.View
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             this.navigationHelper.SaveState += navigationHelper_SaveState;
-
         }
 
         /// <summary>
@@ -97,11 +86,6 @@ namespace FetchItUniversalAndApi.View
 
         #endregion
 
-        private void taskDetailButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof (TaskDetailPage));
-        }
-
         private void profileDetailsButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof (ProfileDetailPage));    
@@ -111,10 +95,35 @@ namespace FetchItUniversalAndApi.View
         {
             this.Frame.Navigate(typeof (MainPage));
         }
+		
+        private void CreateTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof (TaskDetailPage));
+        }
 
-		private void marketplaceListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			this.Frame.Navigate(typeof(TaskDetailPage));
-		}
+        private void refreshMarketplaceButton_Click(object sender, RoutedEventArgs e)
+        {
+            coolDown();
+        }
+
+        private async void coolDown()
+        {
+            refreshMarketplaceButton.IsEnabled = false;
+            await Task.Delay(5000);
+            refreshMarketplaceButton.IsEnabled = true;
+        }
+
+        private void marketplaceListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(TaskDetailPage));
+        }
+
+        private void MessageHubButton_OnClickButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof (NotificationHub));
+        }
+
+        
+
     }
 }
