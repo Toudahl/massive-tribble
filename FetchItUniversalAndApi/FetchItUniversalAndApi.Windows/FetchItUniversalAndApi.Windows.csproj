@@ -114,6 +114,9 @@
     <Compile Include="View\LandingPage.xaml.cs">
       <DependentUpon>LandingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\NotificationHub.xaml.cs">
+      <DependentUpon>NotificationHub.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ProfileDetailPage.xaml.cs">
       <DependentUpon>ProfileDetailPage.xaml</DependentUpon>
     </Compile>
@@ -144,6 +147,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Button Icons\ExclamationMark.png" />
+    <Content Include="Assets\Button Icons\Done.png" />
+    <Content Include="Assets\Button Icons\Refresh.png" />
+    <Content Include="Assets\Button Icons\Add.png" />
+    <Content Include="Assets\Button Icons\User.png" />
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
@@ -159,6 +167,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\LandingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NotificationHub.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -206,6 +218,7 @@
       <HintPath>..\..\packages\Microsoft.Net.Http.2.2.22\lib\win8\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
