@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using FetchItUniversalAndApi.Handlers;
 using FetchItUniversalAndApi.Models;
+using FetchItUniversalAndApi.View;
 
 namespace FetchItUniversalAndApi.ViewModel
 {
@@ -24,6 +25,10 @@ namespace FetchItUniversalAndApi.ViewModel
             IssueHandler = new IssueHandler();
           AllIssues=IssueHandler.GetAllIssues();
             
+            
+            
+            
+
         }
 
     }
