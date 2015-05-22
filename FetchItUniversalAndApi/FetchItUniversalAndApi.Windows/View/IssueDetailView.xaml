@@ -7,12 +7,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModel="using:FetchItUniversalAndApi.ViewModel"
     x:Name="pageRoot"
-    x:Class="FetchItUniversalAndApi.View.IssuesView"
+    x:Class="FetchItUniversalAndApi.View.IssueDetailView"
     DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Mode=Self}}"
     mc:Ignorable="d">
 
     <Page.Resources>
-        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
+        <ViewModel:IssuesViewModel x:Name="IssuesViewModel"></ViewModel:IssuesViewModel>
         <x:String x:Key="AppName">My Application</x:String>
     </Page.Resources>
 
@@ -22,9 +22,6 @@
         * Row 1 contains the rest of the page layout
     -->
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition/>
@@ -32,8 +29,7 @@
         </Grid.ChildrenTransitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
-            <RowDefinition Height="61*"/>
-            <RowDefinition Height="567*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid.DataContext>
@@ -55,7 +51,6 @@
             <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
 				IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
-        <ListView HorizontalAlignment="Left" Margin="0,37,0,0" Grid.Row="2" VerticalAlignment="Top" ItemsSource="{Binding AllIssues,Mode=TwoWay}" IsItemClickEnabled="True" ItemClick="ListViewBase_OnItemClick" />
-        <TextBlock HorizontalAlignment="Center" Margin="377,7,366,563" Grid.Row="1" TextWrapping="Wrap" Text="All issues my lovely admin-senpai" VerticalAlignment="Center" Height="58" Width="623" FontSize="36" Grid.RowSpan="2"/>
+        <TextBlock HorizontalAlignment="Left" Margin="476,182,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding SelectedIssue.IssueDescription}" VerticalAlignment="Top" FontSize="72"/>
     </Grid>
 </Page>

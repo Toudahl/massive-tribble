@@ -23,7 +23,7 @@ namespace FetchItUniversalAndApi.View
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class IssuesView : Page
+    public sealed partial class IssueDetailView : Page
     {
 
         private NavigationHelper navigationHelper;
@@ -47,7 +47,7 @@ namespace FetchItUniversalAndApi.View
         }
 
 
-        public IssuesView()
+        public IssueDetailView()
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
@@ -88,13 +88,18 @@ namespace FetchItUniversalAndApi.View
         /// NavigationHelper to respond to the page's navigation methods.
         /// 
         /// Page specific logic should be placed in event handlers for the  
-        /// <see cref="Common.NavigationHelper.LoadState"/>
-        /// and <see cref="Common.NavigationHelper.SaveState"/>.
+        /// <see cref="GridCS.Common.NavigationHelper.LoadState"/>
+        /// and <see cref="GridCS.Common.NavigationHelper.SaveState"/>.
         /// The navigation parameter is available in the LoadState method 
         /// in addition to page state preserved during an earlier session.
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            IssueModel issue = e.Parameter as IssueModel;
+            if (issue != null)
+            {
+                IssuesViewModel.SelectedIssue = issue;
+            }
             navigationHelper.OnNavigatedTo(e);
         }
 
@@ -104,16 +109,5 @@ namespace FetchItUniversalAndApi.View
         }
 
         #endregion
-
-        
-
-        private void ListViewBase_OnItemClick(object sender, ItemClickEventArgs e)
-        {
-            IssueModel issue = e.ClickedItem as IssueModel;
-            if (issue != null)
-            {
-                Frame.Navigate(typeof (IssueDetailView), issue);
-            }
-        }
     }
 }

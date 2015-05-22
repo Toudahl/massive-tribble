@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using FetchItUniversalAndApi.Handlers.Interfaces;
@@ -19,7 +20,6 @@ namespace FetchItUniversalAndApi.Handlers
         private IEnumerable<IssueModel> _currentIssues;
         private string _userInput;
         private const string issuemodelurl = "http://fetchit.mortentoudahl.dk/api/IssueModels";
-      public HttpClient issuesclient { get; set; }  
 
         public enum IssueStatus
         {
@@ -79,13 +79,27 @@ namespace FetchItUniversalAndApi.Handlers
 
            
         }
-      public async Task<IEnumerable<IssueModel>> GetAllIssues()
+      public  ObservableCollection<IssueModel> GetAllIssues()
       {
-          var allIssues = Task.Run(async () => await issuesclient.GetAsync("IssueModels"));
-          var allIsuesContent = allIssues.Result.Content;
-           return allIsuesContent.ReadAsAsync<IEnumerable<IssueModel>>().Result;
+          using (HttpClient Client=new HttpClient())
+          {
+              Client.BaseAddress = new Uri(issuemodelurl);
+              Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+              try
+              {
+            var allIssues = Task.Run(async () => await Client.GetAsync("IssueModels"));
+            var allIsuesContent = allIssues.Result.Content;
+             return   allIsuesContent.ReadAsAsync<ObservableCollection<IssueModel>>().Result;
+              }
+              catch (Exception)
+              {
 
-
+                  throw;
+              }
+           
+   
+          }
+          
       } 
         public void Delete(object obj)
         {
