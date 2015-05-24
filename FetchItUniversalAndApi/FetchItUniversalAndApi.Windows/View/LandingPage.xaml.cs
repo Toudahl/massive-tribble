@@ -132,5 +132,10 @@ namespace FetchItUniversalAndApi.View
             this.Frame.Navigate(typeof(TaskDetailPage));
         }
 
+        private async void MessageHubButton_OnClickButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(50);
+            this.Frame.Navigate(typeof (NotificationHub));
+        }
     }
 }

@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Runtime.Serialization.Json;
-using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using FetchItUniversalAndApi.Handlers.Interfaces;
