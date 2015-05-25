@@ -219,14 +219,11 @@ namespace FetchItUniversalAndApi.Handlers
                 newComment.CommentTimeCreated = DateTime.UtcNow;
                 newComment.FK_CommentTask = toTask.TaskId;
                 newComment.FK_CommentCreator = authorProfile.ProfileId;
-                newComment.Task = toTask;
-                newComment.Profile = authorProfile;
                 #endregion
                 updatedTask.Comments.Add(newComment);
                 try
                 {
 					await msgWebClient.PostAsJsonAsync("commentmodels", newComment);
-                    _th.Update(updatedTask);
                 }
                 catch (Exception)
                 {
