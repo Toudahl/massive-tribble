@@ -18,6 +18,8 @@ namespace FetchItUniversalAndApi.Handlers
     //Author: Lárus Þór Jóhannsson
     /// <summary>
     /// Handles getting and creating messages sent to users.
+    /// Messages includes Feedbacks, Comments (to Tasks) and Notifications
+    /// E-mail handling IS NOT IMPLEMENTED and not currently planned.
     /// </summary>
     static class MessageHandler
     {
@@ -70,84 +72,155 @@ namespace FetchItUniversalAndApi.Handlers
         }
         #endregion
 
+        #region Pertaining to Feedbacks
         /// <summary>
-        /// Creates a FeedbackModel object and sends it to the database server using POST by parsing it to json.
+        /// Creates a FeedbackModel object WITHOUT a comment and POSTs it to the database server by parsing it to json.
         /// </summary>
-        /// <param name="rating"></param>
-        /// The rating is not optional and must be a number between 1 and 10. It represents how the Taskmaster values the service that the Fetcher provided. 
-        /// <param name="optionalText"></param>
-        /// OptionalText is optional. Describes in more detail the service the Taskmaster provided.
-        /// <param name="fromTask"></param>
-        /// The Task that the Feedback is assigned to. Get Profile info through here.
-        public static async void CreateFeedback(int rating, string optionalText, TaskModel fromTask)
+        /// <param name="rating">A number between 1 and 10.</param>
+        /// <param name="fromTask">The Task that the Feedback is assigned to.</param>
+        //TODO: Make return type Task
+        public static async void CreateFeedback(int rating, TaskModel fromTask)
         {
             if (rating < 1 || rating > 10)
             {
-                MessageDialog errorDialogWrongInpt = new MessageDialog("Rating is out of bounds. Must be between 1 and 10.", "Rating out of bounds.");
+                MessageDialog errorDialogWrongInpt = new MessageDialog("Rating is out of bounds. Please enter a number from 1 to 10.", "Rating out of bounds.");
                 errorDialogWrongInpt.ShowAsync();
             }
-            FeedbackModel createdFeedback = new FeedbackModel();
             #region Build Feedback
-            createdFeedback.FeedbackComment = optionalText;
+            FeedbackModel createdFeedback = new FeedbackModel();
             createdFeedback.FK_FeedbackForTask = fromTask.TaskId;
-            createdFeedback.FK_FeedbackStatus = (int) FeedbackStatus.Active;
+            createdFeedback.FK_FeedbackStatus = (int)FeedbackStatus.Active;
             #endregion
+            createdFeedback.FeedbackRating = (byte)rating;
             try
             {
-                createdFeedback.FeedbackRating = (byte)rating;
+                await msgWebClient.PostAsJsonAsync("FeedbackModels", createdFeedback);
             }
             catch (Exception)
             {
-                //Add standardized error handling (fx. LogHandler.GetInstance().LogEvent(exception.message) and MessageBox.Show("Yo user, something went wrong!"));
-                throw new InvalidCastException("The rating parameter provided is not castable to byte.");
+                ErrorHandler.CreatingError(createdFeedback);
             }
+        }
+
+        /// <summary>
+        /// Creates a FeedbackModel object WITH a comment and POSTs it to the database server by parsing it to json.
+        /// </summary>
+        /// <param name="rating">A number between 1 and 10.</param>
+        /// <param name="feedbackComment">The comment assigned to the rating (if null, use the other overload)</param>
+        /// <param name="fromTask">The Task that the Feedback is assigned to.</param>
+        //TODO: Make return type Task
+        public static async void CreateFeedback(int rating, string feedbackComment, TaskModel fromTask)
+        {
+            if (rating < 1 || rating > 10)
+            {
+                MessageDialog errorDialogWrongInpt = new MessageDialog("Rating is out of bounds. Please enter a number from 1 to 10.", "Rating out of bounds.");
+                errorDialogWrongInpt.ShowAsync();
+            }
+            #region Build Feedback
+            FeedbackModel createdFeedback = new FeedbackModel();
+            createdFeedback.FeedbackComment = feedbackComment;
+            createdFeedback.FK_FeedbackForTask = fromTask.TaskId;
+            createdFeedback.FK_FeedbackStatus = (int) FeedbackStatus.Active;
+            #endregion
+            createdFeedback.FeedbackRating = (byte)rating;
             try
             {
                await msgWebClient.PostAsJsonAsync("FeedbackModels", createdFeedback);
             }
             catch (Exception)
             {
-                //Add standardized error handling (fx. LogHandler.GetInstance().LogEvent(exception.message) and MessageBox.Show("Yo user, something went wrong!"));
-                throw;
+                ErrorHandler.CreatingError(createdFeedback);
             }
         }
 
         /// <summary>
-        /// A method that returns a collection of all Feedback objects
+        /// A method that returns a collection of all Feedback objects with a certain status
         /// </summary>
         /// <returns> A IENumerable collection of Feedback objects</returns>
-        /// <param name="status"></param>
-        /// Tells the API which Feedbacks you want to get (Active/Disabled...)
+        /// <param name="status">Tells the API which Feedbacks you want to get (Active/Disabled...)</param>
+        //TODO: Make async and return type Task
         public static IEnumerable<FeedbackModel> GetFeedback(FeedbackStatus status)
         {
                 try
                 {
                     var reports = Task.Run(async () => await msgWebClient.GetAsync("FeedbackModels"));
-                    return reports.Result.Content.ReadAsAsync<IEnumerable<FeedbackModel>>().Result;
+                    return reports.Result.Content.ReadAsAsync<IEnumerable<FeedbackModel>>().Result.Where(r => r.FK_FeedbackStatus == (int)status);
                 }
                 catch (Exception exception)
                 {
-                    //Add standardized error handling (fx. LogHandler.GetInstance().LogEvent(exception.message) and MessageBox.Show("Yo user, something went wrong!"));
-                    throw exception;
+                    ErrorHandler.GettingError(new FeedbackModel());
+                    return null;
                 }
-            
         }
 
+        /// <summary>
+        /// A method that returns a collection of all Feedback objects with a certain status and to a certain task
+        /// </summary>
+        /// <returns> A IENumerable collection of Feedback objects</returns>
+        /// <param name="status">Tells the API which Feedbacks you want to get (Active/Disabled...)</param>
+        /// <param name="forTask">The task which you want to get Feedbacks from</param>
+        //TODO: Make async and return type Task
+        public static IEnumerable<FeedbackModel> GetFeedback(FeedbackStatus status, TaskModel forTask)
+        {
+            try
+            {
+                var reports = Task.Run(async () => await msgWebClient.GetAsync("FeedbackModels"));
+                return reports.Result.Content.ReadAsAsync<IEnumerable<FeedbackModel>>().Result.Where(r => (r.FK_FeedbackStatus == (int)status || r.FK_FeedbackForTask == forTask.TaskId));
+            }
+            catch (Exception)
+            {
+                ErrorHandler.GettingError(new FeedbackModel());
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// A method that returns a collection of all Feedback objects with a certain status and from a certain profile
+        /// </summary>
+        /// <returns> A IENumerable collection of Feedback objects</returns>
+        /// <param name="status">A filter for what feedback status you want returned</param>
+        /// <param name="feedbackProfile">Tells the API which Feedbacks you want to get (Active/Disabled...)</param>
+        //TODO: Make async and return type Task
+        public static IEnumerable<FeedbackModel> GetFeedback(FeedbackStatus status, ProfileModel feedbackProfile)
+        {
+            try
+            {
+                var tasks = _th.GetTasks(TaskHandler.TaskStatus.Completed);
+                var reportsStream = Task.Run(async () => await msgWebClient.GetAsync("FeedbackModels"));
+                IEnumerable<FeedbackModel> feedbacks = reportsStream.Result.Content.ReadAsAsync<IEnumerable<FeedbackModel>>().Result;
+                //Takes tasks and feedback collections, joins them and returns feedbacks from tasks where the profile provided is a fetcher
+                var returnedFeedbacks = from task in tasks
+                    join feedback in feedbacks
+                        on task.TaskId equals feedback.FK_FeedbackForTask
+                        where task.FK_TaskFetcher == feedbackProfile.ProfileId
+                    select feedback;
+                return returnedFeedbacks;
+            }
+            catch (Exception)
+            {
+                ErrorHandler.GettingError(new FeedbackModel());
+                return null;
+            }
+        }
+        #endregion
+
+        #region Pertaining to TaskComments
         /// <summary>
         /// Creates a CommentModel item in the corresponding Task.
         /// Sets the time created and the author of it.
         /// </summary>
-        /// <param name="toTask"></param>
-        /// <param name="comment"></param>
-        /// <param name="authorProfile"></param>
-        public static void CreateTaskComment(TaskModel toTask, string comment, ProfileModel authorProfile)
+        /// <param name="toTask">The task to comment on</param>
+        /// <param name="comment">The comment</param>
+        /// <param name="authorProfile">The profile posting the comment</param>
+        //TODO: Make return type Task
+        public static async void CreateTaskComment(TaskModel toTask, string comment, ProfileModel authorProfile)
         {
             try
             {
-                CommentModel newComment = new CommentModel();
                 var updatedTaskStream = Task.Run(async () => await msgWebClient.GetAsync("TaskModels/" + toTask.TaskId));
                 var updatedTask = updatedTaskStream.Result.Content.ReadAsAsync<TaskModel>().Result;
                 #region Build Comment
+                CommentModel newComment = new CommentModel();
                 newComment.CommentText = comment;
                 newComment.CommentTimeCreated = DateTime.UtcNow;
                 newComment.FK_CommentTask = toTask.TaskId;
@@ -162,14 +235,12 @@ namespace FetchItUniversalAndApi.Handlers
                 }
                 catch (Exception)
                 {
-                    //Add standardized error handling (fx. LogHandler.GetInstance().LogEvent(exception.message) and MessageBox.Show("Yo user, something went wrong!"));
-                    throw;
+                    ErrorHandler.UpdatingError(updatedTask);
                 }
             }
             catch (Exception)
             {
-                //Add standardized error handling (fx. LogHandler.GetInstance().LogEvent(exception.message) and MessageBox.Show("Yo user, something went wrong!"));
-                throw;
+                ErrorHandler.CreatingError(new CommentModel());
             }
         }
 
@@ -177,9 +248,8 @@ namespace FetchItUniversalAndApi.Handlers
         /// Returns IENumerable of Task Comments from the Task provided.
         /// If there are no Comments then it returns an empty IENumerable.
         /// </summary>
-        /// <param name="fromTask"></param>
-        /// The Task that you want the comments from
-        /// <returns>IENumerable of CommentModel</returns>
+        /// <param name="fromTask">The Task that you want the comments from</param>
+        /// <returns>IENumerable of CommentModels</returns>
         public static async Task<IEnumerable<CommentModel>> GetTaskComments(TaskModel fromTask)
         {
             try
@@ -191,18 +261,67 @@ namespace FetchItUniversalAndApi.Handlers
             }
             catch (Exception)
             {
-                //Add standardized error handling (fx. LogHandler.GetInstance().LogEvent(exception.message) and MessageBox.Show("Yo user, something went wrong!"));
-                throw;
+                ErrorHandler.GettingError(new CommentModel());
+                return null;
+            }
+        }
+        #endregion
+
+        #region Pertaining to Notifications
+        /// <summary>
+        /// Creates a Notification object and POSTs it to the database server by parsing it to json.
+        /// </summary>
+        /// <param name="notification">The Notification to Send</param>
+        /// NotificationModel with everything inputted except NotificationId (should be null!) FK_NotificationStatus and NotificationSent.
+        //TODO: Make return type Task
+        public static async void SendNotification(NotificationModel notification)
+        {
+            #region Build Notification
+            notification.FK_NotificationStatus = 1;
+            notification.NotificationSent = DateTime.UtcNow;
+            #endregion
+            try
+            {
+                await msgWebClient.PostAsJsonAsync("NotificationModels", notification);
+            }
+            catch (Exception)
+            {
+                ErrorHandler.CreatingError(notification);
             }
         }
 
         /// <summary>
+        /// A method that returns a collection of all Notification objects sent to or from the CurrentLoggedInProfile
+        /// </summary>
+        /// <returns>IENumerable of NotificationModels</returns>
+        public static async Task<IEnumerable<NotificationModel>> GetNotifications()
+        {
+            try
+            {
+                var notificationsStream = Task.Run(async () => await msgWebClient.GetAsync("NotificationModels"));
+                var notificationStreamContent = notificationsStream.Result.Content;
+                return 
+                    notificationStreamContent.ReadAsAsync<IEnumerable<NotificationModel>>()
+                        .Result.Select(n => n)
+                        .Where(n => n.FK_NotificationFrom == _ph.CurrentLoggedInProfile.ProfileId
+                        || n.FK_NotificationTo == _ph.CurrentLoggedInProfile.ProfileId);
+            }
+            catch
+            {
+                ErrorHandler.GettingError(new NotificationModel());
+                return null;
+            }
+        }
+        #endregion
+
+        #region Pertaining to E-mails (NOT IMPLEMENTED)
+        /// <summary>
         /// NOT WORKING. Decided it's not high priority and complicated to implement.
-        /// It should also be on the server anywyas.
+        /// It should also be server-side anyways.
         /// Sends an E-mail from the system. Doesn't add any text to the message body.
         /// </summary>
-        /// <param name="email"></param>
-        /// The EmailModel with receiving e-mail toAddress, subject and message
+        /// <param name="email">The e-mail to send</param>
+        //TODO: Make return type Task
         public static async void SendEmail(EmailModel email, EmailType emailType, ProfileModel receivingProfile)
         {
             #region Not working code, just for reference
@@ -236,54 +355,9 @@ namespace FetchItUniversalAndApi.Handlers
 
             //#endregion
             #endregion
-            throw new NotImplementedException("Talk to Lárus Þór if you need this implemented. If you don't NEED this, think of this is low priority.");
+            throw new NotImplementedException("This has been scrapped. Deemed as low priority. Contact Lárus Þór if you encounter this.");
         }
-
-        /// <summary>
-        /// Creates a Notification object and sends it to the database server using POST by parsing it to json.
-        /// </summary>
-        /// <param name="notification"></param>
-        /// NotificationModel with everything inputted except NotificationId (should be null!) FK_NotificationStatus and NotificationSent.
-        public static async void SendNotification(NotificationModel notification)
-        {
-            #region Build Notification
-            notification.FK_NotificationStatus = 1;
-            notification.NotificationSent = DateTime.UtcNow;
-            #endregion
-            try
-            {
-                await msgWebClient.PostAsJsonAsync("NotificationModels", notification);
-            }
-            catch (Exception)
-            {
-                //Add standardized error handling (fx. LogHandler.GetInstance().LogEvent(exception.message) and MessageBox.Show("Yo user, something went wrong!"));
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// A method that returns a collection of all Notification objects assigned to the CurrentLoggedInProfile
-        /// </summary>
-        /// <returns>IENumerable of NotificationModels</returns>
-        public static async Task<IEnumerable<NotificationModel>> GetNotifications()
-        {
-            try
-            {
-                var notificationsStream = Task.Run(async () => await msgWebClient.GetAsync("NotificationModels"));
-                var notificationStreamContent = notificationsStream.Result.Content;
-                return 
-                    notificationStreamContent.ReadAsAsync<IEnumerable<NotificationModel>>()
-                        .Result.Select(n => n)
-                        .Where(n => n.FK_NotificationFrom == _ph.CurrentLoggedInProfile.ProfileId
-                        || n.FK_NotificationTo == _ph.CurrentLoggedInProfile.ProfileId);
-            }
-            catch
-            {
-                MessageDialog gettingNotificationsError = new MessageDialog("Couldn't get Notifications");
-                gettingNotificationsError.ShowAsync();
-                return null;
-            }
-        }
-    #endregion
+        #endregion
+        #endregion
     }
 }
