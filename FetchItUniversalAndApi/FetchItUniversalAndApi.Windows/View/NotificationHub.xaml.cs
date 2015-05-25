@@ -89,12 +89,7 @@ namespace FetchItUniversalAndApi.View
         {
             feedbackListView.Visibility = Visibility.Collapsed;
             notificationsListView.Visibility = Visibility.Visible;
+            NotificationStackPanel.Visibility = Visibility.Visible;
         }
-
-        
-
-        
-
-       
     }
 }
