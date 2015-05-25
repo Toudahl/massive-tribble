@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.ServiceModel.Channels;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using FetchItUniversalAndApi.Annotations;
@@ -109,19 +110,6 @@ namespace FetchItUniversalAndApi.ViewModel
             WelcomeText = "Welcome " + ph.CurrentLoggedInProfile.ProfileName + "!";
             refreshMarketplace();
             refreshNotifications();
-            #region TESTING AREA! DELETE THIS SHIT!
-            #region postNotification
-            //NotificationModel testNotification = new NotificationModel();
-            //testNotification.NotificationContent = "this is a Test";
-            //testNotification.ToProfile = ph.CurrentLoggedInProfile;
-            //MessageHandler.SendNotification(testNotification);
-            #endregion
-            #region populateListview
-            //Notifications.Add(testNotification);
-            //Notifications.Add(testNotification);
-            //Notifications.Add(testNotification);
-            #endregion
-            #endregion
         }
         #endregion
 
@@ -132,6 +120,7 @@ namespace FetchItUniversalAndApi.ViewModel
         {
             ActiveTasks = Marketplace.Where(t => t.MasterProfile == ph.CurrentLoggedInProfile || t.FetcherProfile == ph.CurrentLoggedInProfile).ToObservableCollection();
         }
+
         #region ICommand methods
         private async void refreshMarketplace()
         {
