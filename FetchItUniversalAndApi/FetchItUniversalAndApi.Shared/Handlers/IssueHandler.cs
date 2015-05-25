@@ -14,6 +14,7 @@ namespace FetchItUniversalAndApi.Handlers
 {
   public  class IssueHandler: ICreate, IDelete, IDisable, ISearch, ISuspend, IUpdate
     {
+      //Author: Jakub Czapski
         private IssueModel _newIssue;
         private IssueModel _selectedIssue;
         private IssueHandler _handler;

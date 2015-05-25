@@ -32,7 +32,7 @@ namespace FetchItUniversalAndApi.Models
         public virtual ProfileModel IssueTarget { get; set; }
         public override string ToString()
         {
-            return String.Join(" ","ID: "+IssueId+" Status: "+IssueStatus+" Description: "+IssueDescription+" Creator: "+IssueCreator );
+            return String.Join("   "," ID: "+IssueId+" Status: "+IssueStatus+" Creator: "+IssueCreator +" Target:"+ IssueTarget);
         }
     }
 }

@@ -326,6 +326,6 @@
 							Grid.Row="2"
 							VerticalAlignment="Top"
 							Width="239" />
-        <Button x:Name="IssuesButton" Content="Issues" Grid.Column="2" HorizontalAlignment="Left" Margin="96,277,0,0" Grid.Row="2" VerticalAlignment="Top" Height="46" Width="131" Click="Button_Click"/>
+        <Button x:Name="IssuesButton" Content="Issues" Grid.Column="2" HorizontalAlignment="Left" Margin="97,257,0,0" Grid.Row="2" VerticalAlignment="Top" Height="54" Width="154" Click="Button_Click"/>
     </Grid>
 </Page>

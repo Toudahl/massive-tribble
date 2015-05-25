@@ -98,7 +98,7 @@ namespace FetchItUniversalAndApi.View
             IssueModel issue = e.Parameter as IssueModel;
             if (issue != null)
             {
-                var datacontext= grid1.DataContext as IssuesViewModel;
+                var datacontext= grid2.DataContext as IssuesViewModel;
 
                 if (datacontext != null) datacontext.SelectedIssue = issue;
             }

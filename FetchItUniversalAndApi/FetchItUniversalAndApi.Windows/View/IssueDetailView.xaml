@@ -13,7 +13,7 @@
 
     <Page.Resources>
         <ViewModel:IssuesViewModel x:Name="IssuesViewModel"></ViewModel:IssuesViewModel>
-        <x:String x:Key="AppName">My Application</x:String>
+        <x:String x:Key="AppName">Issue details</x:String>
     </Page.Resources>
 
     <!--
@@ -29,7 +29,15 @@
         </Grid.ChildrenTransitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="33*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="44*"/>
+            <RowDefinition Height="54*"/>
+            <RowDefinition Height="46*"/>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="52*"/>
+            <RowDefinition Height="56*"/>
+            <RowDefinition Height="254*"/>
         </Grid.RowDefinitions>
 
         <Grid.DataContext>
@@ -37,7 +45,7 @@
         </Grid.DataContext>
 
         <!-- Back button and page title -->
-        <Grid>
+        <Grid x:Name="grid2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
@@ -51,6 +59,47 @@
             <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
 				IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
-        <TextBlock x:Name="grid1" HorizontalAlignment="Left" Margin="476,182,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding SelectedIssue.IssueDescription}" VerticalAlignment="Top" FontSize="72"/>
+        <TextBlock HorizontalAlignment="Left" Margin="179,10,0,0" Grid.Row="4" TextWrapping="Wrap" Text="{Binding SelectedIssue.IssueDescription}" VerticalAlignment="Top" FontSize="20"/>
+        <TextBlock HorizontalAlignment="Left" Margin="8,0,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Title:" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <TextBlock.RenderTransform>
+                <CompositeTransform Rotation="0.764"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="8,12,0,0" Grid.Row="4" TextWrapping="Wrap" Text="Description:" FontSize="24" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" VerticalAlignment="Top">
+            <TextBlock.RenderTransform>
+                <CompositeTransform Rotation="0.764"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="8,11,0,0" Grid.Row="2" TextWrapping="Wrap" Text="ID:" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" RenderTransformOrigin="0.895,0.458" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <TextBlock.RenderTransform>
+                <CompositeTransform Rotation="0.764" TranslateX="0.012" TranslateY="0.101"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="8,11.7,0,12.7" Grid.Row="5" TextWrapping="Wrap" Text="Time created:" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <TextBlock.RenderTransform>
+                <CompositeTransform Rotation="0.764"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="8,0,0,0" Grid.Row="6" TextWrapping="Wrap" Text="Time resolved:" VerticalAlignment="Bottom" FontSize="24" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <TextBlock.RenderTransform>
+                <CompositeTransform Rotation="0.764"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="101,10,0,-1" Grid.Row="2" TextWrapping="Wrap" Text="{Binding SelectedIssue.IssueId}" VerticalAlignment="Top" FontSize="20"/>
+        <TextBlock HorizontalAlignment="Left" Margin="101,10,0,0" Grid.Row="3" TextWrapping="Wrap" Text="{Binding SelectedIssue.IssueTitle}" VerticalAlignment="Top" RenderTransformOrigin="0.333,2.154" FontSize="20"/>
+        <TextBlock HorizontalAlignment="Left" Margin="180,10,0,0" Grid.Row="5" TextWrapping="Wrap" Text="{Binding SelectedIssue.IssueTimeCreated}" VerticalAlignment="Center" RenderTransformOrigin="0.333,2.154" FontSize="20"/>
+        <TextBlock HorizontalAlignment="Left" Margin="180,10,0,0" Grid.Row="6" TextWrapping="Wrap" Text="{Binding SelectedIssue.IssueTimeResolved}" VerticalAlignment="Bottom" RenderTransformOrigin="0.333,2.154" FontSize="20"/>
+        <TextBlock HorizontalAlignment="Left" Margin="8,0,0,54" Grid.Row="7" TextWrapping="Wrap" Text="Creator:" VerticalAlignment="Bottom" FontSize="24" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Grid.RowSpan="2">
+            <TextBlock.RenderTransform>
+                <CompositeTransform Rotation="0.764"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="8,0,0,10" Grid.Row="8" TextWrapping="Wrap" Text="Target:" VerticalAlignment="Bottom" FontSize="24" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <TextBlock.RenderTransform>
+                <CompositeTransform Rotation="0.764"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="144,0,0,10" Grid.Row="7" TextWrapping="Wrap" Text="{Binding SelectedIssue.IssueCreator.IssueCreator[0].IssueCreator.ProfileName}" VerticalAlignment="Bottom" RenderTransformOrigin="0.333,2.154" FontSize="20"/>
+        <TextBlock HorizontalAlignment="Left" Margin="144,0,0,10" Grid.Row="8" TextWrapping="Wrap" Text="{Binding SelectedIssue.IssueTarget.IssueTarget[0].IssueTarget.ProfileName}" VerticalAlignment="Bottom" RenderTransformOrigin="0.333,2.154" FontSize="20"/>
     </Grid>
 </Page>

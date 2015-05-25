@@ -13,7 +13,7 @@
 
     <Page.Resources>
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
-        <x:String x:Key="AppName">My Application</x:String>
+        <x:String x:Key="AppName">Issues</x:String>
     </Page.Resources>
 
     <!--
@@ -23,7 +23,9 @@
     -->
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="370*"/>
+            <ColumnDefinition Width="709*"/>
+            <ColumnDefinition Width="287*"/>
         </Grid.ColumnDefinitions>
         <Grid.ChildrenTransitions>
             <TransitionCollection>
@@ -31,9 +33,9 @@
             </TransitionCollection>
         </Grid.ChildrenTransitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="140"/>
-            <RowDefinition Height="61*"/>
-            <RowDefinition Height="567*"/>
+            <RowDefinition Height="134"/>
+            <RowDefinition Height="59*"/>
+            <RowDefinition Height="258*"/>
         </Grid.RowDefinitions>
 
         <Grid.DataContext>
@@ -41,7 +43,7 @@
         </Grid.DataContext>
 
         <!-- Back button and page title -->
-        <Grid>
+        <Grid Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
@@ -55,7 +57,8 @@
             <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
 				IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
-        <ListView HorizontalAlignment="Left" Margin="0,37,0,0" Grid.Row="2" VerticalAlignment="Top" ItemsSource="{Binding AllIssues,Mode=TwoWay}" IsItemClickEnabled="True" ItemClick="ListViewBase_OnItemClick" />
-        <TextBlock HorizontalAlignment="Center" Margin="377,7,366,563" Grid.Row="1" TextWrapping="Wrap" Text="All issues my lovely admin-senpai" VerticalAlignment="Center" Height="58" Width="623" FontSize="36" Grid.RowSpan="2"/>
+        <ListView x:Name="IssuesListView" HorizontalAlignment="Left" Margin="0,37,0,0" Grid.Row="2" VerticalAlignment="Top" ItemsSource="{Binding IssuesToDisplay}" IsItemClickEnabled="True" ItemClick="ListViewBase_OnItemClick" Height="50" Width="366"
+                  x:FieldModifier="public" Grid.ColumnSpan="2" />
+        <TextBlock Margin="10,19,0,13" TextWrapping="Wrap" Text="{Binding WelcomeText}" FontSize="36" RenderTransformOrigin="0.779,0.517" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="699"/>
     </Grid>
 </Page>

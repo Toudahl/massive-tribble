@@ -16,6 +16,7 @@ namespace FetchItUniversalAndApi.ViewModel
 {
     class ProfileDetailViewModel:INotifyPropertyChanged
     {
+        //Author: Jakub Czapski
         #region properties
         public ProfileHandler ProfileHandler { get; set; }
         public string selectedprofileName { get; set; }
