@@ -1,4 +1,5 @@
-﻿using FetchItUniversalAndApi.Common;
+﻿using Windows.UI.Xaml;
+using FetchItUniversalAndApi.Common;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using FetchItUniversalAndApi.ViewModel;

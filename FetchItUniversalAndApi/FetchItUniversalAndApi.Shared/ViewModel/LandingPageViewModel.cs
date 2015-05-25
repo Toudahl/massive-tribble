@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.ServiceModel.Channels;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using FetchItUniversalAndApi.Annotations;
