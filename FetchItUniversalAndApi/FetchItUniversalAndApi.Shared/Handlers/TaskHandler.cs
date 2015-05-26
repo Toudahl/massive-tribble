@@ -78,9 +78,7 @@ namespace FetchItUniversalAndApi.Handlers
                 addNewTask.FK_TaskMaster = ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileId;
                 addNewTask.FK_TaskStatus = (int)TaskStatus.Active;
                 addNewTask.TaskTimeCreated = DateTime.UtcNow;
-
-                // TODO: Update method to handle TaskLocations
-
+                
                 using (var Client = new HttpClient())
                 {
                     try

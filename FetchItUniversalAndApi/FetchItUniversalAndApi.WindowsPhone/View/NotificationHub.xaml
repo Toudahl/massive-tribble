@@ -12,7 +12,7 @@
 
 
     <Page.DataContext>
-        <viewModel:NotificationHubViewModel/>
+        <viewModel:MessageHubViewModel/>
     </Page.DataContext>
     <Page.Resources>
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->

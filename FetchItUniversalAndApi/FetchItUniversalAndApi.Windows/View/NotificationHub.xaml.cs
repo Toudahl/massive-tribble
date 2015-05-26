@@ -1,6 +1,8 @@
-﻿using FetchItUniversalAndApi.Common;
+﻿using Windows.UI.Xaml;
+using FetchItUniversalAndApi.Common;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using FetchItUniversalAndApi.ViewModel;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -65,5 +67,18 @@ namespace FetchItUniversalAndApi.View
         }
 
         #endregion
+
+        private void feedbackButton_Click(object sender, RoutedEventArgs e)
+        {
+            feedbackListView.Visibility =  Visibility.Visible;
+            notificationsListView.Visibility = Visibility.Collapsed;
+        }
+
+        private void notificationsButton_Click(object sender, RoutedEventArgs e)
+        {
+            feedbackListView.Visibility = Visibility.Collapsed;
+            notificationsListView.Visibility = Visibility.Visible;
+            NotificationStackPanel.Visibility = Visibility.Visible;
+        }
     }
 }
