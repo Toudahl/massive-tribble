@@ -48,6 +48,7 @@ namespace FetchItUniversalAndApi.Handlers
 
         // Bugfix by : Morten Toudahl
         /// <summary>
+        /// Only used by ErrorHandler.
         /// Creates a Log object in the database adding the time created and posting the <see cref="LogModel"/>
         /// </summary>
         /// <param name="obj"></param>

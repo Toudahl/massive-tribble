@@ -23,6 +23,7 @@ namespace FetchItUniversalAndApi.Handlers
         // ie: Active = 1, Suspended = 2; etc
         public enum TaskStatus
         {
+            All = 0,
             Active = 1,
             Reported = 2,
             Removed = 3,
@@ -353,7 +354,7 @@ namespace FetchItUniversalAndApi.Handlers
 
 
         /// <summary>
-        /// GetTasks returuns all active tasks
+        /// GetTasks returns tasks of the supplied Status (All, Active, Reported...)
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -365,8 +366,40 @@ namespace FetchItUniversalAndApi.Handlers
             {
                 getAll = Task.Run(async () => JsonConvert.DeserializeObject<IEnumerable<TaskModel>>(
                 await client.GetStringAsync(taskAPI))).Result;
-                return getAll.Where(n =>  n.FK_TaskStatus == 1);
             }
+            if (value == TaskStatus.All)
+            {
+                return getAll;
+            }
+            if (value == TaskStatus.Active)
+            {
+                return getAll.Where(s => s.FK_TaskStatus == 1);
+            }
+            if (value == TaskStatus.Reported)
+            {
+                return getAll.Where(s => s.FK_TaskStatus == 2);
+            }
+            if (value == TaskStatus.Removed)
+            {
+                return getAll.Where(s => s.FK_TaskStatus == 3);
+            }
+            if (value == TaskStatus.Deleted)
+            {
+                return getAll.Where(s => s.FK_TaskStatus == 4);
+            }
+            if (value == TaskStatus.Completed)
+            {
+                return getAll.Where(s => s.FK_TaskStatus == 5);
+            }
+            if (value == TaskStatus.TaskMasterCompleted)
+            {
+                return getAll.Where(s => s.FK_TaskStatus == 6);
+            }
+            if (value == TaskStatus.FetcherCompleted)
+            {
+                return getAll.Where(s => s.FK_TaskStatus == 7);
+            }
+            return null;
         }
     }
 }
