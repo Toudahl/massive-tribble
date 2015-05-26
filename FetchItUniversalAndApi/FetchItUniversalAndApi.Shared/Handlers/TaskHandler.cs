@@ -301,12 +301,12 @@ namespace FetchItUniversalAndApi.Handlers
                             JsonConvert.DeserializeObject<IEnumerable<TaskModel>>(await client.GetStringAsync(taskAPI)))
                         .Result;
                 }
-                if (taskToSearchFor.TaskId != null)
+                if (taskToSearchFor.TaskId != 0)
                 {
                     return marketplace.Where(task => task.TaskId == taskToSearchFor.TaskId);  
                 }
 
-                if (taskToSearchFor.FK_TaskMaster != null)
+                if (taskToSearchFor.FK_TaskMaster != 0)
                 {
                     return marketplace.Where(task => task.FK_TaskMaster == taskToSearchFor.FK_TaskMaster);                    
                 }
@@ -367,7 +367,6 @@ namespace FetchItUniversalAndApi.Handlers
                 await client.GetStringAsync(taskAPI))).Result;
                 return getAll.Where(n =>  n.FK_TaskStatus == 1);
             }
-            return null;
         }
     }
 }

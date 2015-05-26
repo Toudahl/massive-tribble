@@ -78,7 +78,7 @@ namespace FetchItUniversalAndApi.Handlers
             if (rating < 1 || rating > 10)
             {
                 MessageDialog errorDialogWrongInpt = new MessageDialog("Rating is out of bounds. Please enter a number from 1 to 10.", "Rating out of bounds.");
-                errorDialogWrongInpt.ShowAsync();
+                await errorDialogWrongInpt.ShowAsync();
             }
             #region Build Feedback
             FeedbackModel createdFeedback = new FeedbackModel();
@@ -108,7 +108,7 @@ namespace FetchItUniversalAndApi.Handlers
             if (rating < 1 || rating > 10)
             {
                 MessageDialog errorDialogWrongInpt = new MessageDialog("Rating is out of bounds. Please enter a number from 1 to 10.", "Rating out of bounds.");
-                errorDialogWrongInpt.ShowAsync();
+                await errorDialogWrongInpt.ShowAsync();
             }
             #region Build Feedback
             FeedbackModel createdFeedback = new FeedbackModel();
@@ -140,7 +140,7 @@ namespace FetchItUniversalAndApi.Handlers
                     var reports = Task.Run(async () => await msgWebClient.GetAsync("FeedbackModels"));
                     return reports.Result.Content.ReadAsAsync<IEnumerable<FeedbackModel>>().Result.Where(r => r.FK_FeedbackStatus == (int)status);
                 }
-                catch (Exception exception)
+                catch (Exception)
                 {
                     ErrorHandler.GettingError(new FeedbackModel());
                     return null;
@@ -246,9 +246,9 @@ namespace FetchItUniversalAndApi.Handlers
         {
             try
             {
-                var updatedTaskStream = Task.Run(async () => await msgWebClient.GetAsync("CommentModels"));
+                var updatedTaskStream = await Task.Run(() => msgWebClient.GetAsync("CommentModels"));
                 return
-                    updatedTaskStream.Result.Content.ReadAsAsync<IEnumerable<CommentModel>>()
+                    updatedTaskStream.Content.ReadAsAsync<IEnumerable<CommentModel>>()
                         .Result.Where(c => c.FK_CommentTask == fromTask.TaskId);
             }
             catch (Exception)
@@ -290,8 +290,8 @@ namespace FetchItUniversalAndApi.Handlers
         {
             try
             {
-                var notificationsStream = Task.Run(async () => await msgWebClient.GetAsync("NotificationModels"));
-                var notificationStreamContent = notificationsStream.Result.Content;
+                var notificationsStream = await Task.Run(() => msgWebClient.GetAsync("NotificationModels"));
+                var notificationStreamContent = notificationsStream.Content;
                 return 
                     notificationStreamContent.ReadAsAsync<IEnumerable<NotificationModel>>()
                         .Result.Select(n => n)
@@ -314,7 +314,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="email">The e-mail to send</param>
         //TODO: Make return type Task
-        public static async void SendEmail(EmailModel email, EmailType emailType, ProfileModel receivingProfile)
+        public static void SendEmail(EmailModel email, EmailType emailType, ProfileModel receivingProfile)
         {
             #region Not working code, just for reference
             //string url = "http://fetchit.mortentoudahl.dk";

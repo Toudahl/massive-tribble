@@ -94,7 +94,7 @@ namespace FetchItUniversalAndApi.View
 
         #endregion
 
-        private void cancelButton_Click(object sender, RoutedEventArgs e)
+        private async void cancelButton_Click(object sender, RoutedEventArgs e)
         {
             MessageDialog message = new MessageDialog("Are you sure you want to cancel this report and go back?", "Cancel Report");
             message.Commands.Add(new UICommand(
@@ -103,7 +103,7 @@ namespace FetchItUniversalAndApi.View
             message.Commands.Add(new UICommand(
                 "No"));
 
-            message.ShowAsync();
+            await message.ShowAsync();
         }
     }
 }
