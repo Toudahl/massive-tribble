@@ -20,7 +20,7 @@
         * Row 0 contains the back button and page title
         * Row 1 contains the rest of the page layout
     -->
-	<Grid x:Name="MainGrid"
+    <Grid x:Name="MainGrid"
 				Background="{StaticResource FetchitBackgroundColour}">
         <Grid.DataContext>
             <ViewModel:TaskDetailViewModel />
@@ -44,7 +44,7 @@
         </Grid.RowDefinitions>
 
         <!-- Back button and page title -->
-		<Border x:Name="CommentBorder"
+        <Border x:Name="CommentBorder"
 						Background="{StaticResource FetchitBackgroundColour}"
 						Grid.Row="1"
 						Grid.Column="1"
@@ -55,25 +55,25 @@
 						BorderThickness="1"
 						Canvas.ZIndex="1"
 						Visibility="Collapsed">
-			<Grid x:Name="CommentGrid"
+            <Grid x:Name="CommentGrid"
 						Grid.ColumnSpan="2"
 						Grid.Row="1"
 						Grid.RowSpan="2"
 						Grid.Column="1"
 						Canvas.ZIndex="1">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="21*" />
-					<RowDefinition Height="74*" />
-					<RowDefinition Height="80" />
-				</Grid.RowDefinitions>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="80" />
-					<ColumnDefinition />
-					<ColumnDefinition />
-					<ColumnDefinition Width="80" />
-				</Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="21*" />
+                    <RowDefinition Height="74*" />
+                    <RowDefinition Height="80" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="80" />
+                </Grid.ColumnDefinitions>
 
-				<Button x:Name="CancelCommentButton"
+                <Button x:Name="CancelCommentButton"
 								Content="Cancel"
 								Click="CancelCommentButton_Click"
 								FontSize="25"
@@ -82,7 +82,7 @@
 								Grid.Row="2"
 								Height="60"
 								FontFamily="Global User Interface" />
-				<Button x:Name="AddCommentButton"
+                <Button x:Name="AddCommentButton"
 								Content=""
 								Command="{Binding AddCommentCommand}"
 								FontSize="25"
@@ -92,7 +92,7 @@
 								Margin="322,14,0,13"
 								Height="60"
 								Width="60" />
-				<TextBox x:Name="CommentTextBox"
+                <TextBox x:Name="CommentTextBox"
 								 TextWrapping="Wrap"
 								 FontSize="25"
 								 Text="{Binding CommentToLeave, Mode=TwoWay}"
@@ -100,7 +100,7 @@
 								 Grid.Column="1"
 								 Grid.ColumnSpan="2"
 								 FontFamily="Global User Interface" />
-				<TextBlock x:Name="CommentsGridBlock"
+                <TextBlock x:Name="CommentsGridBlock"
 									 HorizontalAlignment="Center"
 									 TextWrapping="Wrap"
 									 Text="Add your Comment"
@@ -108,8 +108,8 @@
 									 FontSize="40"
 									 Grid.Column="1"
 									 Grid.ColumnSpan="2" />
-			</Grid>
-		</Border>
+            </Grid>
+        </Border>
         <TextBlock x:Name="taskTitleBlock"
 							 Grid.Column="1"
 							 HorizontalAlignment="Left"
@@ -119,7 +119,7 @@
 							 Text="Task Title:"
 							 VerticalAlignment="Top"
 							 FontSize="25" />
-		<TextBlock x:Name="taskTitleBind"
+        <TextBlock x:Name="taskTitleBind"
 							 Grid.Column="1"
 							 HorizontalAlignment="Left"
 							 Margin="155,30,0,0"
@@ -128,7 +128,7 @@
 							 Text="title"
 							 VerticalAlignment="Top"
 							 FontSize="25" />
-		<TextBlock x:Name="taskMasterBlock"
+        <TextBlock x:Name="taskMasterBlock"
 							 Grid.Column="1"
 							 HorizontalAlignment="Left"
 							 Margin="40,80,0,0"
@@ -137,7 +137,7 @@
 							 Text="Taskmaster:"
 							 VerticalAlignment="Top"
 							 FontSize="25" />
-		<TextBlock x:Name="taskmasterBind"
+        <TextBlock x:Name="taskmasterBind"
 							 Grid.Column="1"
 							 HorizontalAlignment="Left"
 							 Margin="177,80,0,0"
@@ -146,7 +146,7 @@
 							 Text="{Binding Taskmaster.ProfileName}"
 							 VerticalAlignment="Top"
 							 FontSize="25" />
-		<TextBlock x:Name="fetcherBlock"
+        <TextBlock x:Name="fetcherBlock"
 							 Grid.Column="1"
 							 HorizontalAlignment="Left"
 							 Margin="40,130,0,0"
@@ -155,7 +155,7 @@
 							 Text="Fetcher:"
 							 VerticalAlignment="Top"
 							 FontSize="25" />
-		<TextBlock x:Name="taskFetcherBind"
+        <TextBlock x:Name="taskFetcherBind"
 							 Grid.Column="1"
 							 HorizontalAlignment="Left"
 							 Margin="137,130,0,0"
@@ -164,7 +164,7 @@
 							 Text="{Binding FetcherName, Mode=TwoWay}"
 							 VerticalAlignment="Top"
 							 FontSize="25" />
-		<TextBlock x:Name="taskDescriptionBlock"
+        <TextBlock x:Name="taskDescriptionBlock"
 							 Grid.Column="2"
 							 HorizontalAlignment="Left"
 							 Margin="40,30,0,0"
@@ -173,19 +173,19 @@
 							 Text="Task Description:"
 							 VerticalAlignment="Top"
 							 FontSize="25" />
-		<Border x:Name="descriptionBoarder"
+        <Border x:Name="descriptionBoarder"
 						Grid.Column="2"
 						Grid.Row="1"
 						Margin="260,30,21,114"
 						BorderBrush="Wheat"
 						BorderThickness="1"
 						Padding="5,5,5,5">
-			<TextBlock x:Name="taskDescriptionBind"
+            <TextBlock x:Name="taskDescriptionBind"
 								 TextWrapping="Wrap"
 								 Text="{Binding SelectedTask.TaskDescription}"
 								 FontSize="25" />
-		</Border>
-		<TextBlock x:Name="taskStatusBlock"
+        </Border>
+        <TextBlock x:Name="taskStatusBlock"
 							 Grid.Column="1"
 							 HorizontalAlignment="Left"
 							 Margin="40,42,0,0"
@@ -194,7 +194,7 @@
 							 Text="Task Status:"
 							 VerticalAlignment="Top"
 							 FontSize="25" />
-		<TextBlock x:Name="taskStatusBind"
+        <TextBlock x:Name="taskStatusBind"
 							 Grid.Column="1"
 							 HorizontalAlignment="Left"
 							 Margin="175,42,0,0"
@@ -212,7 +212,7 @@
 							 Text="Deadline:"
 							 VerticalAlignment="Top"
 							 FontSize="25" />
-		<TextBlock x:Name="deadlineBind"
+        <TextBlock x:Name="deadlineBind"
 							 Grid.Column="1"
 							 HorizontalAlignment="Left"
 							 Margin="153,134,0,0"
@@ -221,7 +221,7 @@
 							 Text="{Binding SelectedTask.TaskDeadline}"
 							 VerticalAlignment="Top"
 							 FontSize="25" />
-		<TextBlock x:Name="postedDateBlock"
+        <TextBlock x:Name="postedDateBlock"
 							 Grid.Column="1"
 							 HorizontalAlignment="Left"
 							 Margin="40,90,0,0"
@@ -230,7 +230,7 @@
 							 Text="Posted Date:"
 							 VerticalAlignment="Top"
 							 FontSize="25" />
-		<TextBlock x:Name="postedDateBind"
+        <TextBlock x:Name="postedDateBind"
 							 Grid.Column="1"
 							 HorizontalAlignment="Left"
 							 Margin="188,90,0,0"
@@ -368,7 +368,7 @@
 						Command="{Binding MarkAsCompletedCommand}"
 						FontSize="25"
 						Visibility="Collapsed" />
-		<Button x:Name="LeaveCommentButton"
+        <Button x:Name="LeaveCommentButton"
 						Content="Leave a Comment"
 						Grid.Column="2"
 						HorizontalAlignment="Left"
@@ -399,8 +399,8 @@
 							ItemsSource="{Binding CommentsForTask, Mode=TwoWay}"
 							BorderThickness="1"
 							BorderBrush="MistyRose">
-		</ListView>
-		<TextBlock x:Name="SuccessMessage"
+        </ListView>
+        <TextBlock x:Name="SuccessMessage"
 							 Grid.Column="2"
 							 HorizontalAlignment="Left"
 							 Grid.Row="2"
@@ -411,5 +411,6 @@
 							 Margin="152,320,0,0"
 							 Grid.RowSpan="2"
 							 Visibility="{Binding SuccessMessage, Mode=TwoWay}" />
+        <Button Content="Issues" Grid.Column="1" HorizontalAlignment="Left" Margin="423,258,0,0" Grid.Row="2" VerticalAlignment="Top" Height="60" Width="145" Click="Button_Click_1"/>
     </Grid>
 </Page>
