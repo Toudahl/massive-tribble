@@ -16,13 +16,13 @@ namespace FetchItUniversalAndApi.ViewModel
 	//Author: Kristinn Þór Jónsson
 	internal class TaskDetailViewModel : INotifyPropertyChanged
 	{
+		#region Fields
 		private ObservableCollection<CommentModel> _commentsForTask;
+		private TaskHandler.TaskStatus _taskStatus;
+
 		private string _commentToLeave;
 		private string _successMessage;
-		private TaskHandler.TaskStatus _taskStatus;
-		private string _updateSuccessMessage;
 
-		#region Fields
 		public TaskHandler TaskHandler { get; set; }
 		public ProfileHandler ProfileHandler { get; set; }
 
@@ -30,41 +30,21 @@ namespace FetchItUniversalAndApi.ViewModel
 		public ProfileModel Fetcher { get; set; }
 		public TaskModel SelectedTask { get; set; }
 
+		public string ItemPrice { get; set; }
+		public string TaskFee { get; set; }
+
 		public ICommand SaveChangesCommand { get; set; }
 		public ICommand AssignToTaskCommand { get; set; }
 		public ICommand ResignFromTaskCommand { get; set; }
 		public ICommand MarkAsCompletedCommand { get; set; }
-		public ICommand SuspendTaskCommand { get; set; }
 		public ICommand AddCommentCommand { get; set; }
 		public bool Suspended { get; set; }
-
-		public string UpdateSuccessMessage
-		{
-			get { return _updateSuccessMessage; }
-			set
-			{
-				_updateSuccessMessage = value;
-				OnPropertyChanged();
-			}
-		}
-
-		public string SuccessMessage
-		{
-			get { return _successMessage; }
-			set
-			{
-				_successMessage = value;
-				OnPropertyChanged();
-			}
-		}
-
 		#endregion
 
 		#region Constructor
 		public TaskDetailViewModel()
 		{
 			SuccessMessage = "Collapsed";
-			UpdateSuccessMessage = "Collapsed";
 
 			TaskHandler = TaskHandler.GetInstance();
 			ProfileHandler = ProfileHandler.GetInstance();
@@ -73,7 +53,6 @@ namespace FetchItUniversalAndApi.ViewModel
 			AssignToTaskCommand = new RelayCommand(AssignToTask);
 			ResignFromTaskCommand = new RelayCommand(ResignFromTask);
 			MarkAsCompletedCommand = new RelayCommand(MarkAsCompleted);
-			SuspendTaskCommand = new RelayCommand(SuspendTask);
 			AddCommentCommand = new RelayCommand(AddComment);
 
 			//Needs to check if selected task is null or not, or there is a "Reference not set to an Object"
@@ -115,38 +94,22 @@ namespace FetchItUniversalAndApi.ViewModel
 					;
 				}
 
+				//TODO: Is it needed? It is used in TaskDetailPage OnNavigatedTo
 				if (feedbackForThisTask != null)
 				{
-					SelectedTask.Feedbacks.Add(feedbackForThisTask);
+					if (SelectedTask.Feedbacks.Count == 0)
+					{
+						SelectedTask.Feedbacks.Add(feedbackForThisTask);
+					}
 				}
 
 				TaskStatus = (TaskHandler.TaskStatus)SelectedTask.FK_TaskStatus;
 
+				//Adds all the comments through the MessageHandler
 				CommentsForTask = MessageHandler.GetTaskComments(SelectedTask).Result.ToObservableCollection();
-			}
-		}
 
-		private void AddComment()
-		{
-			if (ProfileHandler.CurrentLoggedInProfile.ProfileId == SelectedTask.FK_TaskMaster || ProfileHandler.CurrentLoggedInProfile.ProfileId == SelectedTask.FK_TaskFetcher)
-			{
-				MessageDialog message = new MessageDialog("Are you sure you want to leave this comment?", "Leava a Comment");
-				message.Commands.Add(new UICommand(
-					"Yes",
-					command => AddCommentToTask()));
-
-				message.Commands.Add(new UICommand(
-					"No"));
-
-				message.DefaultCommandIndex = 0;
-				message.CancelCommandIndex = 1;
-
-				message.ShowAsync();
-			}
-			else
-			{
-				MessageDialog message = new MessageDialog("You can only leave a comment if you are assigned to the task or the taskmaster of the task.", "Leava a Comment");
-				message.ShowAsync();
+				ItemPrice = SelectedTask.TaskItemPrice.ToString();
+				TaskFee = SelectedTask.TaskFee.ToString();
 			}
 		}
 
@@ -154,12 +117,12 @@ namespace FetchItUniversalAndApi.ViewModel
 
 		#region Methods
 		#region MessageMethods
-		public void SaveChanges()
+		async public void SaveChanges()
 		{
 			MessageDialog message = new MessageDialog("Are you sure you want to save the changes?", "Update task");
 			message.Commands.Add(new UICommand(
 				"Yes",
-				command => UpdateTask()));
+				command => SaveChangesForTask()));
 
 			message.Commands.Add(new UICommand(
 				"No"));
@@ -167,15 +130,15 @@ namespace FetchItUniversalAndApi.ViewModel
 			message.DefaultCommandIndex = 0;
 			message.CancelCommandIndex = 1;
 
-			message.ShowAsync();
+			await message.ShowAsync();
 		}
 
-		public void AssignToTask()
+		async public void AssignToTask()
 		{
 			if (SelectedTask.FK_TaskFetcher == ProfileHandler.CurrentLoggedInProfile.ProfileId)
 			{
 				MessageDialog alreadyResignedMessage = new MessageDialog("You have already assigned yourself to this task.", "Assign to task");
-				alreadyResignedMessage.ShowAsync();
+				await alreadyResignedMessage.ShowAsync();
 			}
 			else
 			{
@@ -190,16 +153,21 @@ namespace FetchItUniversalAndApi.ViewModel
 				message.DefaultCommandIndex = 0;
 				message.CancelCommandIndex = 1;
 
-				message.ShowAsync();
+				await message.ShowAsync();
 			}
 		}
 
-		public void ResignFromTask()
+		async public void ResignFromTask()
 		{
 			if (SelectedTask.FK_TaskFetcher != ProfileHandler.CurrentLoggedInProfile.ProfileId)
 			{
 				MessageDialog alreadyResignedMessage = new MessageDialog("You have already resigned from this task.", "Resign from task");
-				alreadyResignedMessage.ShowAsync();
+				await alreadyResignedMessage.ShowAsync();
+			}
+			else if (SelectedTask.FK_TaskStatus != (int)TaskHandler.TaskStatus.Active)
+			{
+				MessageDialog alreadyResignedMessage = new MessageDialog("You can only resign yourself from a task if it is Active.", "Resign from task");
+				await alreadyResignedMessage.ShowAsync();
 			}
 			else
 			{
@@ -214,18 +182,18 @@ namespace FetchItUniversalAndApi.ViewModel
 				message.DefaultCommandIndex = 0;
 				message.CancelCommandIndex = 1;
 
-				message.ShowAsync();
+				await message.ShowAsync();
 			}
 		}
 
-		private void MarkAsCompleted()
+		async private void MarkAsCompleted()
 		{
 			if (ProfileHandler.CurrentLoggedInProfile.ProfileId == SelectedTask.FK_TaskMaster)
 			{
-				if (SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.TaskMasterCompleted)
+				if (SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.TaskMasterCompleted || SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.Completed)
 				{
-					MessageDialog messageToUser = new MessageDialog("You have already marked the task as compledet.", "Mark task as Completed");
-					messageToUser.ShowAsync();
+					MessageDialog messageToUser = new MessageDialog("You have already marked the task as completed	.", "Mark task as Completed");
+					await messageToUser.ShowAsync();
 				}
 				else
 				{
@@ -240,16 +208,16 @@ namespace FetchItUniversalAndApi.ViewModel
 					messageToMaster.DefaultCommandIndex = 0;
 					messageToMaster.CancelCommandIndex = 1;
 
-					messageToMaster.ShowAsync();
+					await messageToMaster.ShowAsync();
 				}
 			}
 			else if (ProfileHandler.CurrentLoggedInProfile.ProfileId == SelectedTask.FK_TaskFetcher)
 			{
-				if (SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.FetcherCompleted)
+				if (SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.FetcherCompleted || SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.Completed)
 				{
-					MessageDialog messageToUser = new MessageDialog("You have already marked the task as compledet.",
+					MessageDialog messageToUser = new MessageDialog("You have already marked the task as completed.",
 						"Mark task as Completed");
-					messageToUser.ShowAsync();
+					await messageToUser.ShowAsync();
 				}
 				else
 				{
@@ -264,30 +232,25 @@ namespace FetchItUniversalAndApi.ViewModel
 					message.DefaultCommandIndex = 0;
 					message.CancelCommandIndex = 1;
 
-					message.ShowAsync();
+					await message.ShowAsync();
 				}
 
 			}
 			else
 			{
 				MessageDialog message = new MessageDialog("What are you doing? You are not assigned to the task, you are not the taskmaster, stop trying to fool the system!", "Mark task as Completed");
-				message.ShowAsync();
+				await message.ShowAsync();
 			}
 		}
 
-		private void SuspendTask()
+		async private void AddComment()
 		{
-			if (Suspended)
+			if (ProfileHandler.CurrentLoggedInProfile.ProfileId == SelectedTask.FK_TaskMaster || ProfileHandler.CurrentLoggedInProfile.ProfileId == SelectedTask.FK_TaskFetcher)
 			{
-				MessageDialog message = new MessageDialog("You have already suspended the task.", "Suspend Task");
-				message.ShowAsync();
-			}
-			else
-			{
-				MessageDialog message = new MessageDialog("Are you sure you want to suspend the task? This action will remove the Task from the marketplace.", "Suspend Task");
+				MessageDialog message = new MessageDialog("Are you sure you want to leave this comment?", "Leava a Comment");
 				message.Commands.Add(new UICommand(
 					"Yes",
-					command => SuspendThisTask()));
+					command => AddCommentToTask()));
 
 				message.Commands.Add(new UICommand(
 					"No"));
@@ -295,46 +258,56 @@ namespace FetchItUniversalAndApi.ViewModel
 				message.DefaultCommandIndex = 0;
 				message.CancelCommandIndex = 1;
 
-				message.ShowAsync();
+				await message.ShowAsync();
+			}
+			else
+			{
+				MessageDialog message = new MessageDialog("You can only leave a comment if you are assigned to the task or the taskmaster of the task.", "Leava a Comment");
+				await message.ShowAsync();
 			}
 		}
 		#endregion
 
 		#region SupportingMethods
-		async private void SuspendThisTask()
+		async private void SaveChangesForTask()
 		{
-			SelectedTask.FK_TaskStatus = (int)TaskHandler.TaskStatus.Removed;
-			UpdateTask();
-			Suspended = true;
-			await Task.Delay(1000);
+			try
+			{
+				SelectedTask.TaskFee = Convert.ToDecimal(TaskFee);
+				SelectedTask.TaskItemPrice = Convert.ToDecimal(ItemPrice);
+
+				UpdateTask();
+
+				await Task.Delay(1000);
+				SuccessMessage = "Visible";
+				await Task.Delay(5000);
+				SuccessMessage = "Collapsed";
+			}
+			catch (Exception)
+			{
+				ErrorHandler.UpdatingError(new TaskModel());
+			}
 		}
 
 		public void AssignProfileToTask()
 		{
 			SelectedTask.FK_TaskFetcher = ProfileHandler.CurrentLoggedInProfile.ProfileId;
 			UpdateTask();
+			Fetcher = ProfileHandler.CurrentLoggedInProfile;
+			OnPropertyChanged("FetcherName");
 		}
 
 		public void ResignProfileFromTask()
 		{
 			SelectedTask.FK_TaskFetcher = null;
 			UpdateTask();
+			Fetcher = null;
+			OnPropertyChanged("FetcherName");
 		}
 
-		async public void UpdateTask()
+		public void UpdateTask()
 		{
-			try
-			{
-				TaskHandler.Update(SelectedTask);
-				await Task.Delay(1000);
-				UpdateSuccessMessage = "Visible";
-				await Task.Delay(5000);
-				UpdateSuccessMessage = "Collapsed";
-			}
-			catch (Exception e)
-			{
-				ErrorHandler.UpdatingError(new TaskModel());
-			}
+			TaskHandler.Update(SelectedTask);
 		}
 
 		public void MarkAsCompletedFetcher()
@@ -371,13 +344,20 @@ namespace FetchItUniversalAndApi.ViewModel
 
 		async private void AddCommentToTask()
 		{
-			MessageHandler.CreateTaskComment(SelectedTask, CommentToLeave, ProfileHandler.CurrentLoggedInProfile);
-			await Task.Delay(1000);
-			CommentsForTask = MessageHandler.GetTaskComments(SelectedTask).Result.ToObservableCollection();
-			CommentToLeave = "";
-			SuccessMessage = "Visible";
-			await Task.Delay(5000);
-			SuccessMessage = "Collapsed";
+			try
+			{
+				MessageHandler.CreateTaskComment(SelectedTask, CommentToLeave, ProfileHandler.CurrentLoggedInProfile);
+				await Task.Delay(1000);
+				CommentsForTask = MessageHandler.GetTaskComments(SelectedTask).Result.ToObservableCollection();
+				CommentToLeave = "";
+				SuccessMessage = "Visible";
+				await Task.Delay(5000);
+				SuccessMessage = "Collapsed";
+			}
+			catch (Exception)
+			{
+				ErrorHandler.CreatingError(new CommentModel());
+			}
 		}
 		#endregion
 		#endregion
@@ -410,9 +390,35 @@ namespace FetchItUniversalAndApi.ViewModel
 				OnPropertyChanged();
 			}
 		}
+
+		public string FetcherName
+		{
+			get
+			{
+				if (Fetcher != null)
+				{
+					return Fetcher.ProfileName;
+				}
+				else
+				{
+					return "There is no fetcher assigned";
+				}
+
+			}
+		}
+
+		public string SuccessMessage
+		{
+			get { return _successMessage; }
+			set
+			{
+				_successMessage = value;
+				OnPropertyChanged();
+			}
+		}
 		#endregion
 
-		#region Notify Property Changed
+		#region PropertyChanged
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		[NotifyPropertyChangedInvocator]
