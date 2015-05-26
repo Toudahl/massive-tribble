@@ -20,6 +20,7 @@ using Windows.UI.Xaml.Navigation;
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 using FetchItUniversalAndApi.Handlers;
 using FetchItUniversalAndApi.Models;
+using FetchItUniversalAndApi.ViewModel;
 
 namespace FetchItUniversalAndApi.View
 {
@@ -30,7 +31,8 @@ namespace FetchItUniversalAndApi.View
 	{
 		private NavigationHelper navigationHelper;
 		private ObservableDictionary defaultViewModel = new ObservableDictionary();
-
+	    private ProfileHandler ph;
+        
 		/// <summary>
 		/// This can be changed to a strongly typed view model.
 		/// </summary>
@@ -55,6 +57,12 @@ namespace FetchItUniversalAndApi.View
 			this.navigationHelper = new NavigationHelper(this);
 			this.navigationHelper.LoadState += navigationHelper_LoadState;
 			this.navigationHelper.SaveState += navigationHelper_SaveState;
+		    ph = ProfileHandler.GetInstance();
+            //IssuesButton.Visibility = Visibility.Collapsed;
+            //if (ph.CurrentLoggedInProfile.FK_ProfileLevel >= (int)ProfileHandler.ProfileLevel.Administrator)
+            //{
+            //    IssuesButton.Visibility = Visibility.Visible;
+            //}
 		}
 
 		/// <summary>
@@ -90,8 +98,8 @@ namespace FetchItUniversalAndApi.View
 		/// NavigationHelper to respond to the page's navigation methods.
 		/// 
 		/// Page specific logic should be placed in event handlers for the  
-		/// <see cref="GridCS.Common.NavigationHelper.LoadState"/>
-		/// and <see cref="GridCS.Common.NavigationHelper.SaveState"/>.
+		/// <see cref="Common.NavigationHelper.LoadState"/>
+		/// and <see cref="Common.NavigationHelper.SaveState"/>.
 		/// The navigation parameter is available in the LoadState method 
 		/// in addition to page state preserved during an earlier session.
 
@@ -241,5 +249,12 @@ namespace FetchItUniversalAndApi.View
 			}
 			CommentBorder.Visibility = Visibility.Collapsed;
 		}
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+                this.Frame.Navigate(typeof (IssuesView));
+            
+        }
 	}
 }

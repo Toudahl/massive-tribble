@@ -10,40 +10,40 @@
 			DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Mode=Self}}"
 			mc:Ignorable="d">
 
-	<Page.Resources>
-		<!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
-		<x:String x:Key="AppName">My Application</x:String>
-	</Page.Resources>
+    <Page.Resources>
+        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
+        <x:String x:Key="AppName">My Application</x:String>
+    </Page.Resources>
 
-	<!--
+    <!--
         This grid acts as a root panel for the page that defines two rows:
         * Row 0 contains the back button and page title
         * Row 1 contains the rest of the page layout
     -->
 	<Grid x:Name="MainGrid"
 				Background="{StaticResource FetchitBackgroundColour}">
-		<Grid.DataContext>
-			<ViewModel:TaskDetailViewModel />
-		</Grid.DataContext>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="50" />
-			<ColumnDefinition Width="100*" />
-			<ColumnDefinition Width="100*" />
-			<ColumnDefinition Width="50" />
-		</Grid.ColumnDefinitions>
-		<Grid.ChildrenTransitions>
-			<TransitionCollection>
-				<EntranceThemeTransition />
-			</TransitionCollection>
-		</Grid.ChildrenTransitions>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="50" />
-			<RowDefinition Height="100*" />
-			<RowDefinition Height="100*" />
-			<RowDefinition Height="50" />
-		</Grid.RowDefinitions>
+        <Grid.DataContext>
+            <ViewModel:TaskDetailViewModel />
+        </Grid.DataContext>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="100*" />
+            <ColumnDefinition Width="100*" />
+            <ColumnDefinition Width="50" />
+        </Grid.ColumnDefinitions>
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition />
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="100*" />
+            <RowDefinition Height="100*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
 
-		<!-- Back button and page title -->
+        <!-- Back button and page title -->
 		<Border x:Name="CommentBorder"
 						Background="{StaticResource FetchitBackgroundColour}"
 						Grid.Row="1"
@@ -110,7 +110,7 @@
 									 Grid.ColumnSpan="2" />
 			</Grid>
 		</Border>
-		<TextBlock x:Name="taskTitleBlock"
+        <TextBlock x:Name="taskTitleBlock"
 							 Grid.Column="1"
 							 HorizontalAlignment="Left"
 							 Margin="40,30,0,0"
@@ -203,7 +203,7 @@
 							 Text="{Binding TaskStatus}"
 							 VerticalAlignment="Top"
 							 FontSize="25" />
-		<TextBlock x:Name="deadlineBlock"
+        <TextBlock x:Name="deadlineBlock"
 							 Grid.Column="1"
 							 HorizontalAlignment="Left"
 							 Margin="40,134,0,0"
@@ -239,7 +239,7 @@
 							 Text="{Binding SelectedTask.TaskTimeCreated}"
 							 VerticalAlignment="Top"
 							 FontSize="25" />
-		<TextBlock x:Name="taskFeeBlock"
+        <TextBlock x:Name="taskFeeBlock"
 							 Grid.Column="2"
 							 HorizontalAlignment="Left"
 							 Margin="40,70,0,0"
@@ -248,7 +248,7 @@
 							 Text="Task Fee:"
 							 VerticalAlignment="Top"
 							 FontSize="25" />
-		<TextBlock x:Name="taskFeeBind"
+        <TextBlock x:Name="taskFeeBind"
 							 Grid.Column="2"
 							 HorizontalAlignment="Left"
 							 Margin="40,105,0,0"
@@ -257,7 +257,7 @@
 							 Text="{Binding SelectedTask.TaskFee}"
 							 VerticalAlignment="Top"
 							 FontSize="25" />
-		<TextBlock x:Name="endAddressBlock"
+        <TextBlock x:Name="endAddressBlock"
 							 Grid.Column="1"
 							 HorizontalAlignment="Left"
 							 Margin="40,180,0,0"
@@ -266,7 +266,7 @@
 							 Text="End Address:"
 							 VerticalAlignment="Top"
 							 FontSize="25" />
-		<TextBlock x:Name="endAddressBind"
+        <TextBlock x:Name="endAddressBind"
 							 Grid.Column="1"
 							 HorizontalAlignment="Left"
 							 Margin="193,180,0,0"
@@ -275,7 +275,7 @@
 							 Text="{Binding SelectedTask.TaskEndPointAddress}"
 							 VerticalAlignment="Top"
 							 FontSize="25" />
-		<TextBlock x:Name="itemPriceBlock"
+        <TextBlock x:Name="itemPriceBlock"
 							 Grid.Column="2"
 							 HorizontalAlignment="Left"
 							 Margin="40,155,0,0"
@@ -284,7 +284,7 @@
 							 Text="Task Item Price:"
 							 VerticalAlignment="Top"
 							 FontSize="25" />
-		<TextBlock x:Name="itemPriceBind"
+        <TextBlock x:Name="itemPriceBind"
 							 Grid.Column="2"
 							 HorizontalAlignment="Left"
 							 Margin="40,190,0,0"
@@ -293,7 +293,7 @@
 							 Text="{Binding SelectedTask.TaskItemPrice}"
 							 VerticalAlignment="Top"
 							 FontSize="25" />
-		<Button x:Name="goBackButton"
+        <Button x:Name="goBackButton"
 						Content="Go back"
 						Grid.Column="1"
 						HorizontalAlignment="Left"
@@ -305,7 +305,7 @@
 						Click="goBackButton_Click"
 						FontSize="25"
 						Style="{StaticResource NavigationBackButtonNormalStyle}" />
-		<Button x:Name="CreateFeedbackButton"
+        <Button x:Name="CreateFeedbackButton"
 						Content="Create Feedback"
 						Grid.Column="1"
 						HorizontalAlignment="Left"
@@ -318,7 +318,7 @@
 						Click="CreateFeedbackButton_Click"
 						FontSize="25"
 						Visibility="Collapsed" />
-		<Button x:Name="EditTaskButton"
+        <Button x:Name="EditTaskButton"
 						Content="Edit Task"
 						Grid.Column="1"
 						HorizontalAlignment="Left"
@@ -332,7 +332,7 @@
 						FontSize="25"
 						Visibility="Collapsed"
 						FontFamily="Global User Interface" />
-		<Button x:Name="AssignToTaskButton"
+        <Button x:Name="AssignToTaskButton"
 						Content="Assign To Task"
 						Grid.Column="2"
 						HorizontalAlignment="Left"
@@ -344,7 +344,7 @@
 						FontSize="25"
 						Command="{Binding AssignToTaskCommand}"
 						Visibility="Collapsed" />
-		<Button x:Name="ResignFromTaskButton"
+        <Button x:Name="ResignFromTaskButton"
 						Content="Resign From Task"
 						Grid.Column="2"
 						HorizontalAlignment="Left"
@@ -356,7 +356,7 @@
 						FontSize="25"
 						Command="{Binding ResignFromTaskCommand}"
 						Visibility="Collapsed" />
-		<Button x:Name="MarkAsCompletedButton"
+        <Button x:Name="MarkAsCompletedButton"
 						Content="Mark As Completed"
 						Grid.Column="2"
 						HorizontalAlignment="Left"
@@ -379,7 +379,7 @@
 						Width="256"
 						Click="LeaveCommentButton_Click"
 						FontSize="25" />
-		<TextBlock x:Name="commentsBlock"
+        <TextBlock x:Name="commentsBlock"
 							 Grid.Column="2"
 							 HorizontalAlignment="Left"
 							 Margin="239,5,0,0"
@@ -388,7 +388,7 @@
 							 Text="Comments"
 							 VerticalAlignment="Top"
 							 FontSize="35" />
-		<ListView x:Name="CommentsListView"
+        <ListView x:Name="CommentsListView"
 							Grid.Column="2"
 							HorizontalAlignment="Left"
 							Height="198"
@@ -411,5 +411,5 @@
 							 Margin="152,320,0,0"
 							 Grid.RowSpan="2"
 							 Visibility="{Binding SuccessMessage, Mode=TwoWay}" />
-	</Grid>
+    </Grid>
 </Page>

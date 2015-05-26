@@ -29,5 +29,9 @@ namespace FetchItUniversalAndApi.Models
         public virtual TaskModel Task { get; set; }
         public virtual ProfileModel IssueCreator { get; set; }
         public virtual ProfileModel IssueTarget { get; set; }
+        public override string ToString()
+        {
+            return String.Join("   "," ID: "+IssueId+" Status: "+IssueStatus+" Creator: "+IssueCreator +" Target:"+ IssueTarget);
+        }
     }
 }
