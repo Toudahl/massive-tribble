@@ -90,11 +90,6 @@ namespace FetchItUniversalAndApi.View
         {
             this.Frame.Navigate(typeof (ProfileDetailPage));    
         }
-
-        private void backButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof (MainPage));
-        }
 		
         private void CreateTaskButton_Click(object sender, RoutedEventArgs e)
         {
@@ -123,7 +118,19 @@ namespace FetchItUniversalAndApi.View
             this.Frame.Navigate(typeof (NotificationHub));
         }
 
-        
+        private void issuePageButton_Click(object sender, RoutedEventArgs e)
+        {
+            //this.Frame.Navigate(typeof(IssuesView));
+        }
 
+        private void notificationsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(NotificationHub));
+        }
+
+        private void userActiveTasksListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(TaskDetailPage));
+        }
     }
 }

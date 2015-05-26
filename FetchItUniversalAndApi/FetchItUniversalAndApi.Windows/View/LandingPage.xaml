@@ -35,6 +35,11 @@
                         <Image Source="../Assets/Button Icons/User.png" MaxWidth="30" MaxHeight="30"/>
                     </StackPanel>
                 </Button>
+                <Button x:Name="issuePageButton" BorderBrush="{x:Null}" Click="issuePageButton_Click">
+                    <StackPanel>
+                        <Image Source="../Assets/Button Icons/ExclamationMark.png" MaxWidth="30" MaxHeight="30"/>
+                    </StackPanel>
+                </Button>
                 </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <StackPanel Orientation="Vertical">
@@ -46,7 +51,7 @@
                             </StackPanel>
                         </Button>
                     </StackPanel>
-                    <ListView x:Name="notificationsListView" ItemsSource="{Binding Notifications, Mode=TwoWay}" Height="500" Width="300" BorderThickness="1" BorderBrush="MistyRose">
+                    <ListView x:Name="notificationsListView" ItemsSource="{Binding Notifications, Mode=TwoWay}" Height="500" Width="300" BorderThickness="1" BorderBrush="MistyRose" SelectionChanged="notificationsListView_SelectionChanged">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
@@ -65,14 +70,14 @@
                 </StackPanel>
                 <StackPanel Margin="10,0,0,0">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <TextBlock Text="Active Tasks" HorizontalAlignment="Center" FontSize="25"/>
+                        <TextBlock Text="My Tasks" HorizontalAlignment="Center" FontSize="25"/>
                         <Button x:Name="activeTasksRefreshButton" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding RefreshMarketplace}" BorderBrush="{x:Null}">
                             <StackPanel>
                                 <Image Source="../Assets/Button Icons/Refresh.png" MaxWidth="18" MaxHeight="18"/>
                             </StackPanel>
                         </Button>
                     </StackPanel>
-                    <ListView x:Name="userActiveTasksListView" ItemsSource="{Binding ActiveTasks, Mode=TwoWay}" Height="500" Width="300" BorderThickness="1" BorderBrush="MistyRose"/>
+                    <ListView x:Name="userActiveTasksListView" ItemsSource="{Binding ActiveTasks, Mode=TwoWay}" Height="500" Width="300" BorderThickness="1" BorderBrush="MistyRose" SelectionChanged="userActiveTasksListView_SelectionChanged"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

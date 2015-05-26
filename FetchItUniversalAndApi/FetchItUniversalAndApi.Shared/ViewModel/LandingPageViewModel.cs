@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -117,7 +119,7 @@ namespace FetchItUniversalAndApi.ViewModel
         /// </summary>
         private async void refreshActiveTasks()
         {
-            ActiveTasks = Marketplace.Where(t => t.MasterProfile == ph.CurrentLoggedInProfile || t.FetcherProfile == ph.CurrentLoggedInProfile).ToObservableCollection();
+            ActiveTasks = th.GetTasks(TaskHandler.TaskStatus.All).Where(p => p.FK_TaskFetcher == ph.CurrentLoggedInProfile.ProfileId || p.FK_TaskMaster == ph.CurrentLoggedInProfile.ProfileId).ToObservableCollection();
         }
 
         #region ICommand methods
