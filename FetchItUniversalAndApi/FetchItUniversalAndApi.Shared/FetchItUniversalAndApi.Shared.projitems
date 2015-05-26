@@ -70,4 +70,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\TaskCreationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\TaskDetailViewModel.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Button Icons\Add.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Button Icons\Done.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Button Icons\ExclamationMark.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Button Icons\Refresh.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Button Icons\User.png" />
+  </ItemGroup>
 </Project>
