@@ -399,6 +399,7 @@ namespace FetchItUniversalAndApi.Handlers
             {
                 return getAll.Where(s => s.FK_TaskStatus == 7);
             }
+            return null;
         }
     }
 }

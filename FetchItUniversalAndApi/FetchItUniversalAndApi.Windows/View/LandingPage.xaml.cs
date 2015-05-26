@@ -119,12 +119,12 @@ namespace FetchItUniversalAndApi.View
 
         private void issuePageButton_Click(object sender, RoutedEventArgs e)
         {
-            //this.Frame.Navigate(typeof(IssuesView));
+            this.Frame.Navigate(typeof(IssuesView));
         }
 
         private void notificationsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            this.Frame.Navigate(typeof(NotificationHub));
+            this.Frame.Navigate(typeof(MessageHub));
         }
 
         private void userActiveTasksListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
