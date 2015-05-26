@@ -17,7 +17,10 @@ namespace FetchItUniversalAndApi.Handlers
         private const string FailedToLogIn = "Failed to log in";
         private const string RequiredInput = "More input required";
         private const string NotAllowed = "Not allowed";
-        private static LogHandler lh;
+        private const string OutOfBounds = "Out of bounds";
+
+        private static LogHandler _lh;
+
         #endregion
 
         #region LogEvent(message)
@@ -27,9 +30,9 @@ namespace FetchItUniversalAndApi.Handlers
         /// <param name="message">The message that the user also sees.</param>
         private static async void LogEvent(string message)
         {
-            lh = LogHandler.GetInstance();
+            _lh = LogHandler.GetInstance();
             var logMessage = message + "\nIP associated with the attempt: " + await GetExternalIp();
-            lh.Create(new LogModel { LogMessage = logMessage });
+            _lh.Create(new LogModel { LogMessage = logMessage });
         }
         #endregion
 
@@ -259,6 +262,23 @@ namespace FetchItUniversalAndApi.Handlers
         public static void WrongProfileLevel(ProfileHandler.ProfileLevel profileLevel, string action)
         {
             DisplayErrorMessage("Your profile level: " + profileLevel + " is not high enough to delete a "+action+".", NotAllowed);
+        }
+        #endregion
+
+        #region RatingOutOfBounds()
+        /// <summary>
+        /// If the rating was out of bounds, calling this method will notify the user.
+        /// </summary>
+        public static void RatingOutOfBounds()
+        {
+            DisplayErrorMessage("Rating is out of bounds. Please enter a number from 1 to 10.", OutOfBounds);
+        }
+        #endregion
+
+        #region CannotEditTask()
+        public static void CannotEditTask()
+        {
+            DisplayErrorMessage("You cannot edit the task in its current condition.", "Edit Task");
         }
         #endregion
     }

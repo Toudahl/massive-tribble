@@ -40,10 +40,10 @@ namespace FetchItUniversalAndApi.View
                     break;
                 }
             }
-            //if (ph.CurrentLoggedInProfile == null)
-            //{
-            //    var msg = new MessageDialog("Failed to log in within the allowed time.\nCheck your internet connectivity, and try again").ShowAsync();
-            //}
+            if (ph.CurrentLoggedInProfile == null)
+            {
+                ErrorHandler.NoResponseFromApi();
+            }
         }
     }
 }

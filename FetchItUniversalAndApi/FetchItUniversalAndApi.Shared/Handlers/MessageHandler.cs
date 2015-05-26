@@ -77,8 +77,7 @@ namespace FetchItUniversalAndApi.Handlers
         {
             if (rating < 1 || rating > 10)
             {
-                MessageDialog errorDialogWrongInpt = new MessageDialog("Rating is out of bounds. Please enter a number from 1 to 10.", "Rating out of bounds.");
-                await errorDialogWrongInpt.ShowAsync();
+                ErrorHandler.RatingOutOfBounds();
             }
             #region Build Feedback
             FeedbackModel createdFeedback = new FeedbackModel();
@@ -107,8 +106,7 @@ namespace FetchItUniversalAndApi.Handlers
         {
             if (rating < 1 || rating > 10)
             {
-                MessageDialog errorDialogWrongInpt = new MessageDialog("Rating is out of bounds. Please enter a number from 1 to 10.", "Rating out of bounds.");
-                await errorDialogWrongInpt.ShowAsync();
+                ErrorHandler.RatingOutOfBounds();
             }
             #region Build Feedback
             FeedbackModel createdFeedback = new FeedbackModel();

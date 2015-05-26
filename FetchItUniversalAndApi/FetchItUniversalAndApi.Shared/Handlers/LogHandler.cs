@@ -66,9 +66,7 @@ namespace FetchItUniversalAndApi.Handlers
                     }
                     catch (Exception)
                     {
-                        //TODO: This text should be presented to users.
-                        //MessageDialog errorDialogLoggingFailed = new MessageDialog("Making a log for the error failed. [THIS SHOULD NOT BE IN DEPLOYED CODE]");
-                        //errorDialogLoggingFailed.ShowAsync();
+                        //For now we suppress the errors
                     }
                 }
             }

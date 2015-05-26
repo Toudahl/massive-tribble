@@ -40,7 +40,7 @@ namespace FetchItUniversalAndApi.ViewModel
         }
 
 
-        private async void Register()
+        private void Register()
         {
             CreationSuccess = false;
             var errorMessage = "";
@@ -63,8 +63,7 @@ namespace FetchItUniversalAndApi.ViewModel
 
             if (errorMessage != "")
             {
-                var dialog = new MessageDialog(errorMessage);
-                await dialog.ShowAsync();
+                ErrorHandler.DisplayErrorMessage(errorMessage,"Validation failed");
             }
             else
             {

@@ -216,17 +216,16 @@ namespace FetchItUniversalAndApi.View
 			this.Frame.Navigate(typeof(CreateFeedbackPage));
 		}
 
-		async private void EditTaskButton_Click(object sender, RoutedEventArgs e)
+		private void EditTaskButton_Click(object sender, RoutedEventArgs e)
 		{
 			var th = TaskHandler.GetInstance();
-			if (th.SelectedTask.FK_TaskStatus == 1 || th.SelectedTask.FK_TaskStatus == 2)
+			if (th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.Active || th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.Reported)
 			{
 				this.Frame.Navigate(typeof(TaskEditPage));
 			}
 			else
 			{
-				MessageDialog message = new MessageDialog("You cannot edit the task in its current condition.", "Edit Task");
-				await message.ShowAsync();
+			    ErrorHandler.CannotEditTask();
 			}
 		}
 
