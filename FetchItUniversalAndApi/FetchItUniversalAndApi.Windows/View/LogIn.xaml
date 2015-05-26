@@ -10,13 +10,14 @@
 <Page.DataContext>
         <viewModel:LogInViewModel/>
 </Page.DataContext>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{StaticResource FetchitBackgroundColour}">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
-            <TextBox Text="{Binding Username, Mode=TwoWay}" PlaceholderText="Input username"/>
-            <PasswordBox Password="{Binding Password, Mode=TwoWay}" PlaceholderText="Input password" />
-            <StackPanel Orientation="Horizontal">
-                <Button x:Name="loginButton" Content="Log in" Command="{Binding LogInCommand}"  Click="LoginButton_OnClick" HorizontalAlignment="Center"/>
-                <Button x:Name="registerButton" Content="Register" Click="RegisterButton_OnClick" HorizontalAlignment="Center" Width="100"/>
+            <TextBlock Text="Enter information:" FontSize="25"/>
+            <TextBox Text="{Binding Username, Mode=TwoWay}" PlaceholderText="Username"/>
+            <PasswordBox Password="{Binding Password, Mode=TwoWay}" PlaceholderText="Password" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="button_login" Content="Log in" Command="{Binding LogInCommand}"  Click="LoginButton_OnClick"/>
+                <Button x:Name="button_register" Content="Register" Click="RegisterButton_OnClick" Width="100"/>
             </StackPanel>
         </StackPanel>
     </Grid>

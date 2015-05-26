@@ -61,6 +61,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\TaskModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\TaskStatusModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CreateFeedbackViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\IssuesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\LandingPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\LogInViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MessageHubViewModel.cs" />
@@ -69,5 +70,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ReportProfileViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\TaskCreationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\TaskDetailViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Button Icons\Add.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Button Icons\Done.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Button Icons\ExclamationMark.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Button Icons\Refresh.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Button Icons\User.png" />
   </ItemGroup>
 </Project>

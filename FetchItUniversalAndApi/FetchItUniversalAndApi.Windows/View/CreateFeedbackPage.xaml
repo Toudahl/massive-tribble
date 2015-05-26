@@ -20,15 +20,23 @@
         * Row 0 contains the back button and page title
         * Row 1 contains the rest of the page layout
     -->
-	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	<Grid Background="{StaticResource FetchitBackgroundColour}">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="50" />
+			<ColumnDefinition />
+			<ColumnDefinition />
+			<ColumnDefinition Width="50" />
+		</Grid.ColumnDefinitions>
 		<Grid.ChildrenTransitions>
 			<TransitionCollection>
 				<EntranceThemeTransition />
 			</TransitionCollection>
 		</Grid.ChildrenTransitions>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="140" />
-			<RowDefinition Height="*" />
+			<RowDefinition Height="50" />
+			<RowDefinition Height="479*" />
+			<RowDefinition Height="189*" />
+			<RowDefinition Height="50" />
 		</Grid.RowDefinitions>
 
 		<Grid.DataContext>
@@ -36,93 +44,112 @@
 		</Grid.DataContext>
 
 		<!-- Back button and page title -->
-		<Grid>
+		<Grid Grid.ColumnSpan="4">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="120" />
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
-			<Button x:Name="backButton"
-							Margin="39,59,39,0"
-							Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
-							Style="{StaticResource NavigationBackButtonNormalStyle}"
-							VerticalAlignment="Top"
-							AutomationProperties.Name="Back"
-							AutomationProperties.AutomationId="BackButton"
-							AutomationProperties.ItemType="Navigation Button" />
-			<TextBlock x:Name="pageTitle"
-								 Text="{StaticResource AppName}"
-								 Style="{StaticResource HeaderTextBlockStyle}"
-								 Grid.Column="1"
-								 IsHitTestVisible="false"
-								 TextWrapping="NoWrap"
-								 VerticalAlignment="Bottom"
-								 Margin="0,0,30,40" />
 		</Grid>
 		<Slider x:Name="ratingSlider"
 						HorizontalAlignment="Left"
-						Margin="435,135,0,0"
-						Grid.Row="1"
+						Margin="180,86,0,0"
+						Grid.Row="2"
 						VerticalAlignment="Top"
-						Width="231"
-						Height="56"
+						Width="280"
+						Height="55"
 						Maximum="10"
 						Minimum="1"
 						LargeChange="1"
-						Value="{Binding Rating, Mode=TwoWay}" />
+						Value="{Binding Rating, Mode=TwoWay}"
+						Grid.Column="2"
+						FontSize="35" />
 		<TextBox x:Name="optionalTextBox"
 						 HorizontalAlignment="Left"
-						 Margin="199,152,0,0"
+						 Margin="85,114,0,0"
 						 Grid.Row="1"
 						 TextWrapping="Wrap"
 						 Text="{Binding OptionalText, Mode=TwoWay}"
 						 VerticalAlignment="Top"
-						 Height="150"
-						 Width="220" />
-		<TextBlock HorizontalAlignment="Left"
-							 Margin="199,52,0,0"
-							 Grid.Row="1"
-							 TextWrapping="Wrap"
-							 Text="Logged In Profile:"
-							 VerticalAlignment="Top"
-							 FontSize="14" />
-		<TextBlock HorizontalAlignment="Left"
-							 Margin="435,52,0,0"
-							 Grid.Row="1"
-							 TextWrapping="Wrap"
-							 Text="TaskId:"
-							 VerticalAlignment="Top"
-							 FontSize="14" />
-		<TextBlock x:Name="loggedInProfileBlock"
+						 Height="275"
+						 Width="449"
+						 Grid.Column="1"
+						 FontSize="25" />
+		<TextBlock x:Name="loggedInBlock"
 							 HorizontalAlignment="Left"
-							 Margin="312,52,0,0"
+							 Margin="180,85,0,0"
 							 Grid.Row="1"
 							 TextWrapping="Wrap"
-							 Text="{Binding LoggedInProfile.ProfileName, Mode=TwoWay}"
+							 Text="Logged In Profile"
 							 VerticalAlignment="Top"
-							 FontSize="14" />
-		<TextBlock x:Name="taskIdBlock"
+							 FontSize="35"
+							 Height="58"
+							 Width="280"
+							 Grid.Column="2" />
+		<TextBlock x:Name="loggedInBind"
 							 HorizontalAlignment="Left"
-							 Margin="481,52,0,0"
+							 Margin="180,160,0,0"
 							 Grid.Row="1"
 							 TextWrapping="Wrap"
-							 Text="{Binding SelectedTask.TaskId, Mode=TwoWay}"
+							 Text="{Binding LoggedInProfile.ProfileName}"
 							 VerticalAlignment="Top"
-							 FontSize="14" />
+							 FontSize="35"
+							 Grid.Column="2" />
+		<TextBlock x:Name="feedbackCommentBlock"
+							 HorizontalAlignment="Left"
+							 Margin="204,46,0,0"
+							 Grid.Row="1"
+							 TextWrapping="Wrap"
+							 Text="Comment"
+							 VerticalAlignment="Top"
+							 FontSize="40"
+							 Height="63"
+							 Width="208"
+							 Grid.Column="1" />
 		<Button x:Name="submitFeedbackBtn"
 						Content="Submit feedback"
 						HorizontalAlignment="Left"
-						Margin="196,321,0,0"
-						Grid.Row="1"
+						Margin="251,65,0,0"
+						Grid.Row="2"
 						VerticalAlignment="Top"
 						Command="{Binding SubmitFeedbackCommand}"
-						Width="226" />
+						Width="226"
+						Height="60"
+						Grid.Column="1"
+						FontSize="25"
+						FontFamily="Global User Interface"
+						Click="submitFeedbackBtn_Click" />
 		<TextBlock x:Name="FeedbackSuccessMessage"
 							 HorizontalAlignment="Left"
-							 Margin="216,361,0,0"
-							 Grid.Row="1"
+							 Margin="113,136,0,0"
+							 Grid.Row="2"
 							 TextWrapping="Wrap"
 							 Text="Feedback was successfully submitted"
 							 VerticalAlignment="Top"
-							 Visibility="{Binding SuccessMessage, Mode=TwoWay}" />
+							 Visibility="{Binding SuccessMessage, Mode=TwoWay}"
+							 Grid.Column="1"
+							 FontSize="25" />
+		<TextBlock x:Name="feedbackRatingBlock"
+							 HorizontalAlignment="Left"
+							 Margin="180,30,0,0"
+							 Grid.Row="2"
+							 TextWrapping="Wrap"
+							 Text="Rate the Fetcher"
+							 VerticalAlignment="Top"
+							 FontSize="40"
+							 Height="63"
+							 Width="364"
+							 Grid.Column="2" />
+		<Button x:Name="goBackBtn"
+						Content="Go back"
+						HorizontalAlignment="Left"
+						Margin="144,65,0,0"
+						Grid.Row="2"
+						VerticalAlignment="Top"
+						Width="60"
+						Height="60"
+						Grid.Column="1"
+						FontSize="25"
+						Click="goBackBtn_Click"
+						Style="{StaticResource NavigationBackButtonNormalStyle}" />
 	</Grid>
 </Page>

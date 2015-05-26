@@ -1,10 +1,14 @@
-﻿using FetchItUniversalAndApi.Common;
+﻿using System.Threading.Tasks;
+using Windows.UI.Popups;
+using FetchItUniversalAndApi.Common;
 using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
+using FetchItUniversalAndApi.Handlers;
+using FetchItUniversalAndApi.Models;
 
 namespace FetchItUniversalAndApi.View
 {
@@ -99,5 +103,40 @@ namespace FetchItUniversalAndApi.View
 		{
 			navigationHelper.GoBack();
 		}
+
+		async private void RemoveTaskButton_Click(object sender, RoutedEventArgs e)
+		{
+
+			MessageDialog message = new MessageDialog("Are you sure you want to remove the task? This action will remove the Task from the marketplace, and take you back to the MainPage.", "Remove Task");
+			message.Commands.Add(new UICommand(
+				"Yes",
+				command => RemoveTask()));
+
+			message.Commands.Add(new UICommand(
+				"No"));
+
+			message.DefaultCommandIndex = 0;
+			message.CancelCommandIndex = 1;
+
+			await message.ShowAsync();
+		}
+
+		async private void RemoveTask()
+		{
+			var th = TaskHandler.GetInstance();
+			var taskToRemove = th.SelectedTask;
+			taskToRemove.FK_TaskStatus = (int)TaskHandler.TaskStatus.Removed;
+			try
+			{
+				th.Update(taskToRemove);
+				await Task.Delay(500);
+				this.Frame.Navigate(typeof(LandingPage));
+			}
+			catch (Exception)
+			{
+				ErrorHandler.SuspendingError(new TaskModel());
+			}
+		}
 	}
 }
+

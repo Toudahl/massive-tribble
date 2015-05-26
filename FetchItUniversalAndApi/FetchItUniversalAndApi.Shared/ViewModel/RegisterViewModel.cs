@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using Windows.UI.Popups;
 using FetchItUniversalAndApi.Common;
 using FetchItUniversalAndApi.Handlers;
@@ -39,7 +40,7 @@ namespace FetchItUniversalAndApi.ViewModel
         }
 
 
-        private void Register()
+        private async void Register()
         {
             CreationSuccess = false;
             var errorMessage = "";
@@ -63,7 +64,7 @@ namespace FetchItUniversalAndApi.ViewModel
             if (errorMessage != "")
             {
                 var dialog = new MessageDialog(errorMessage);
-                dialog.ShowAsync();
+                await dialog.ShowAsync();
             }
             else
             {

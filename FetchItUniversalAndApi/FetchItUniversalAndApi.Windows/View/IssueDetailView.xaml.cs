@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
-using FetchItUniversalAndApi.Common;
+﻿using FetchItUniversalAndApi.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,23 +13,21 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using FetchItUniversalAndApi.Models;
+using FetchItUniversalAndApi.ViewModel;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
-using FetchItUniversalAndApi.Handlers;
-using FetchItUniversalAndApi.Models;
 
 namespace FetchItUniversalAndApi.View
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class LandingPage : Page
+    public sealed partial class IssueDetailView : Page
     {
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
-        private TaskHandler _th;
-
 
         /// <summary>
         /// This can be changed to a strongly typed view model.
@@ -52,7 +47,7 @@ namespace FetchItUniversalAndApi.View
         }
 
 
-        public LandingPage()
+        public IssueDetailView()
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
@@ -98,46 +93,23 @@ namespace FetchItUniversalAndApi.View
         /// The navigation parameter is available in the LoadState method 
         /// in addition to page state preserved during an earlier session.
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            IssueModel issue = e.Parameter as IssueModel;
+            if (issue != null)
+            {
+                var datacontext= grid2.DataContext as IssuesViewModel;
+
+                if (datacontext != null) datacontext.SelectedIssue = issue;
+            }
+            navigationHelper.OnNavigatedTo(e);
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            navigationHelper.OnNavigatedFrom(e);
+        }
+
         #endregion
-
-        private void profileDetailsButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof (ProfileDetailPage));    
-        }
-
-        private void backButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof (MainPage));
-        }
-		
-        private void CreateTaskButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof (TaskDetailPage));
-        }
-
-        private void refreshMarketplaceButton_Click(object sender, RoutedEventArgs e)
-        {
-            coolDown();
-        }
-
-        private async void coolDown()
-        {
-            refreshMarketplaceButton.IsEnabled = false;
-            await Task.Delay(5000);
-            refreshMarketplaceButton.IsEnabled = true;
-        }
-
-<<<<<<< HEAD
-        private void marketplaceListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(TaskDetailPage));
-        }
-
-=======
-        private void MessageHubButton_OnClickButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof (NotificationHub));
-        }
->>>>>>> NotificationHub
     }
 }

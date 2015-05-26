@@ -283,7 +283,12 @@ namespace FetchItUniversalAndApi.Handlers
             throw new NotImplementedException();
         }
 
-        //For now only searches for all tasks that fit the TaskMasterId.
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public IEnumerable<object> Search(object obj)
         {
             if (obj is TaskModel)
@@ -297,10 +302,25 @@ namespace FetchItUniversalAndApi.Handlers
                             JsonConvert.DeserializeObject<IEnumerable<TaskModel>>(await client.GetStringAsync(taskAPI)))
                         .Result;
                 }
-                return marketplace.Where(task => task.FK_TaskMaster == taskToSearchFor.FK_TaskMaster);
+                if (taskToSearchFor.TaskId != 0)
+                {
+                    return marketplace.Where(task => task.TaskId == taskToSearchFor.TaskId);  
+                }
+
+                if (taskToSearchFor.FK_TaskMaster != 0)
+                {
+                    return marketplace.Where(task => task.FK_TaskMaster == taskToSearchFor.FK_TaskMaster);                    
+                }
+                
             }
             return null;
         }
+
+
+        /// <summary>
+        /// This method 
+        /// </summary>
+        /// <param name="taskObject"></param>
 
         async public void Update(object taskObject)
         {
@@ -379,7 +399,6 @@ namespace FetchItUniversalAndApi.Handlers
             {
                 return getAll.Where(s => s.FK_TaskStatus == 7);
             }
-            return null;
         }
     }
 }

@@ -34,7 +34,7 @@ namespace FetchItUniversalAndApi.ViewModel
                 if (value != null)
                 {
                     _marketplace = value;
-                    OnPropertyChanged("Marketplace");
+                    OnPropertyChanged();
                     //When the Marketplace is updated, it will run refreshActiveTasks() in the background
                     Task updateActiveTasksTask = new Task(refreshActiveTasks);
                     updateActiveTasksTask.RunSynchronously();
@@ -117,13 +117,13 @@ namespace FetchItUniversalAndApi.ViewModel
         /// <summary>
         /// Async, looks for any Tasks currently in the local Marketplace and checks if it has the current logged in profile as TaskMaster or Fetcher
         /// </summary>
-        private async void refreshActiveTasks()
+        private void refreshActiveTasks()
         {
             ActiveTasks = th.GetTasks(TaskHandler.TaskStatus.All).Where(p => p.FK_TaskFetcher == ph.CurrentLoggedInProfile.ProfileId || p.FK_TaskMaster == ph.CurrentLoggedInProfile.ProfileId).ToObservableCollection();
         }
 
         #region ICommand methods
-        private async void refreshMarketplace()
+        private void refreshMarketplace()
         {
             Marketplace = th.GetTasks(TaskHandler.TaskStatus.Active).ToObservableCollection();
         }
@@ -131,7 +131,7 @@ namespace FetchItUniversalAndApi.ViewModel
         /// <summary>
         /// Async, gets the notifications associated with the currently logged in profile
         /// </summary>
-        private async void refreshNotifications()
+        private void refreshNotifications()
         {
             Notifications = MessageHandler.GetNotifications().Result.ToObservableCollection();
         }

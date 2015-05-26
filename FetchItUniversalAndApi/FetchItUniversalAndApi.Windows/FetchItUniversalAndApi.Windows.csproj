@@ -107,6 +107,12 @@
     <Compile Include="View\CreateFeedbackPage.xaml.cs">
       <DependentUpon>CreateFeedbackPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\IssueDetailView.xaml.cs">
+      <DependentUpon>IssueDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\IssuesView.xaml.cs">
+      <DependentUpon>IssuesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
@@ -114,8 +120,8 @@
     <Compile Include="View\LandingPage.xaml.cs">
       <DependentUpon>LandingPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\NotificationHub.xaml.cs">
-      <DependentUpon>NotificationHub.xaml</DependentUpon>
+    <Compile Include="View\MessageHub.xaml.cs">
+      <DependentUpon>MessageHub.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ProfileDetailPage.xaml.cs">
       <DependentUpon>ProfileDetailPage.xaml</DependentUpon>
@@ -147,11 +153,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Button Icons\ExclamationMark.png" />
-    <Content Include="Assets\Button Icons\Done.png" />
-    <Content Include="Assets\Button Icons\Refresh.png" />
-    <Content Include="Assets\Button Icons\Add.png" />
-    <Content Include="Assets\Button Icons\User.png" />
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
@@ -159,6 +160,14 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="View\CreateFeedbackPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\IssueDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\IssuesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,7 +179,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\NotificationHub.xaml">
+    <Page Include="View\MessageHub.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

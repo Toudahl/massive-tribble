@@ -24,17 +24,6 @@ namespace FetchItUniversalAndApi.ViewModel
 		public ProfileHandler ProfileHandler { get; set; }
 		public ProfileModel LoggedInProfile { get; set; }
 		public ICommand SubmitFeedbackCommand { get; set; }
-		public bool FeedbackCreated { get; set; }
-
-		public string SuccessMessage
-		{
-			get { return _successMessage; }
-			set
-			{
-				_successMessage = value;
-				OnPropertyChanged();
-			}
-		}
 
 		#endregion
 
@@ -42,7 +31,7 @@ namespace FetchItUniversalAndApi.ViewModel
 		public CreateFeedbackViewModel()
 		{
 			SuccessMessage = "Collapsed";
-			FeedbackCreated = false;
+
 			TaskHandler = TaskHandler.GetInstance();
 			ProfileHandler = ProfileHandler.GetInstance();
 			LoggedInProfile = ProfileHandler.CurrentLoggedInProfile;
@@ -54,46 +43,37 @@ namespace FetchItUniversalAndApi.ViewModel
 		#endregion
 
 		#region Methods
-		private void SubmitFeedback()
+		async private void SubmitFeedback()
 		{
-			if (FeedbackCreated)
-			{
-				MessageDialog message = new MessageDialog("You have already submitted a feedback for this task.", "Submit Feedback");
-				message.ShowAsync();
-			}
-			else
-			{
-				MessageDialog message = new MessageDialog("Are you sure you want to submit this feedback?", "Submit Feedback");
-				message.Commands.Add(new UICommand(
-					"Yes",
-					command => CreateTheFeedback()));
+			MessageDialog message = new MessageDialog("Are you sure you want to submit this feedback?", "Submit Feedback");
+			message.Commands.Add(new UICommand(
+				"Yes",
+				command => CreateTheFeedback()));
 
-				message.Commands.Add(new UICommand(
-					"No"));
+			message.Commands.Add(new UICommand(
+				"No"));
 
-				message.DefaultCommandIndex = 0;
-				message.CancelCommandIndex = 1;
+			message.DefaultCommandIndex = 0;
+			message.CancelCommandIndex = 1;
 
-				message.ShowAsync();
-			}
+			await message.ShowAsync();
 		}
 
 		async public void CreateTheFeedback()
 		{
 			try
 			{
+				await Task.Delay(500);
 				MessageHandler.CreateFeedback(Rating, OptionalText, SelectedTask);
-				await Task.Delay(1000);
+				SuccessMessage = "Visible";
 				OptionalText = "";
 				Rating = 0;
-				SuccessMessage = "Visible";
-				FeedbackCreated = true;
 				await Task.Delay(5000);
 				SuccessMessage = "Collapsed";
 			}
 			catch (Exception)
 			{
-				throw;
+				ErrorHandler.CreatingError(new FeedbackModel());
 			}
 		}
 		#endregion
@@ -114,6 +94,16 @@ namespace FetchItUniversalAndApi.ViewModel
 			set
 			{
 				_rating = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public string SuccessMessage
+		{
+			get { return _successMessage; }
+			set
+			{
+				_successMessage = value;
 				OnPropertyChanged();
 			}
 		}

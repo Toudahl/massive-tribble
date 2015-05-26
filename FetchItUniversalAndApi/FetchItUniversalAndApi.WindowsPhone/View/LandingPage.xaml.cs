@@ -17,7 +17,6 @@ namespace FetchItUniversalAndApi.View
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
-        private TaskHandler _th;
 
 
         /// <summary>

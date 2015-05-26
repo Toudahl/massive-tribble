@@ -1,4 +1,6 @@
 ﻿using System.ServiceModel.Channels;
+using System.Threading.Tasks;
+using Windows.UI.Popups;
 using FetchItUniversalAndApi.Common;
 using System;
 using System.Collections.Generic;
@@ -18,6 +20,7 @@ using Windows.UI.Xaml.Navigation;
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 using FetchItUniversalAndApi.Handlers;
 using FetchItUniversalAndApi.Models;
+using FetchItUniversalAndApi.ViewModel;
 
 namespace FetchItUniversalAndApi.View
 {
@@ -28,7 +31,8 @@ namespace FetchItUniversalAndApi.View
 	{
 		private NavigationHelper navigationHelper;
 		private ObservableDictionary defaultViewModel = new ObservableDictionary();
-
+	    private ProfileHandler ph;
+        
 		/// <summary>
 		/// This can be changed to a strongly typed view model.
 		/// </summary>
@@ -53,6 +57,12 @@ namespace FetchItUniversalAndApi.View
 			this.navigationHelper = new NavigationHelper(this);
 			this.navigationHelper.LoadState += navigationHelper_LoadState;
 			this.navigationHelper.SaveState += navigationHelper_SaveState;
+		    ph = ProfileHandler.GetInstance();
+            //IssuesButton.Visibility = Visibility.Collapsed;
+            //if (ph.CurrentLoggedInProfile.FK_ProfileLevel >= (int)ProfileHandler.ProfileLevel.Administrator)
+            //{
+            //    IssuesButton.Visibility = Visibility.Visible;
+            //}
 		}
 
 		/// <summary>
@@ -88,8 +98,8 @@ namespace FetchItUniversalAndApi.View
 		/// NavigationHelper to respond to the page's navigation methods.
 		/// 
 		/// Page specific logic should be placed in event handlers for the  
-		/// <see cref="GridCS.Common.NavigationHelper.LoadState"/>
-		/// and <see cref="GridCS.Common.NavigationHelper.SaveState"/>.
+		/// <see cref="Common.NavigationHelper.LoadState"/>
+		/// and <see cref="Common.NavigationHelper.SaveState"/>.
 		/// The navigation parameter is available in the LoadState method 
 		/// in addition to page state preserved during an earlier session.
 
@@ -153,6 +163,7 @@ namespace FetchItUniversalAndApi.View
 			//This code makes the MarkAsCompleted button visible if:
 			//1. The current logged in profile is either a fethcer or a taskmaster
 			//2. The task status is either: Active, FetcherCompleted or TaskMasterCompleted
+			//3. The task already has a fethcer assigned to it
 			if (th.SelectedTask.FK_TaskFetcher == ph.CurrentLoggedInProfile.ProfileId ||
 				th.SelectedTask.FK_TaskMaster == ph.CurrentLoggedInProfile.ProfileId)
 			{
@@ -165,11 +176,14 @@ namespace FetchItUniversalAndApi.View
 					th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.FetcherCompleted ||
 					th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.TaskMasterCompleted)
 				{
-					MarkAsCompletedButton.Visibility = Visibility.Visible;
+					if (th.SelectedTask.FK_TaskFetcher != null)
+					{
+						MarkAsCompletedButton.Visibility = Visibility.Visible;
+					}
 
 
 					//This just makes sure that if a Master or Fethcer has marked it as completed, that
-					//he does not see the button again
+					//he does not see the button pop up again
 					if (th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.FetcherCompleted &&
 						th.SelectedTask.FK_TaskFetcher == ph.CurrentLoggedInProfile.ProfileId)
 					{
@@ -194,7 +208,7 @@ namespace FetchItUniversalAndApi.View
 
 		private void goBackButton_Click(object sender, RoutedEventArgs e)
 		{
-			navigationHelper.GoBack();
+			this.Frame.Navigate(typeof(LandingPage));
 		}
 
 		private void CreateFeedbackButton_Click(object sender, RoutedEventArgs e)
@@ -202,23 +216,46 @@ namespace FetchItUniversalAndApi.View
 			this.Frame.Navigate(typeof(CreateFeedbackPage));
 		}
 
-		private void EditTaskButton_Click(object sender, RoutedEventArgs e)
+		async private void EditTaskButton_Click(object sender, RoutedEventArgs e)
 		{
-			this.Frame.Navigate(typeof(TaskEditPage));
+			var th = TaskHandler.GetInstance();
+			if (th.SelectedTask.FK_TaskStatus == 1 || th.SelectedTask.FK_TaskStatus == 2)
+			{
+				this.Frame.Navigate(typeof(TaskEditPage));
+			}
+			else
+			{
+				MessageDialog message = new MessageDialog("You cannot edit the task in its current condition.", "Edit Task");
+				await message.ShowAsync();
+			}
 		}
 
 		private void CancelCommentButton_Click(object sender, RoutedEventArgs e)
 		{
-			AddCommentButton.Visibility = Visibility.Collapsed;
-			CancelCommentButton.Visibility = Visibility.Collapsed;
-			CommentTextBox.Visibility = Visibility.Collapsed;
+			CommentBorder.Visibility = Visibility.Collapsed;
 		}
 
-		private void LeaveCommentButton_Click(object sender, RoutedEventArgs e)
+		async private void LeaveCommentButton_Click(object sender, RoutedEventArgs e)
 		{
-			AddCommentButton.Visibility = Visibility.Visible;
-			CancelCommentButton.Visibility = Visibility.Visible;
-			CommentTextBox.Visibility = Visibility.Visible;
+			CommentBorder.Visibility = Visibility.Visible;
+
+			//Success message is a TextBlock control in the UI, which has a bind to the
+			//TaskDetailViewModel, it gets set in VM when the comment has been successfully 
+			//added to the database. Here it is used to make the CommentGrid dissappear
+			//after a comment is added.
+			while (SuccessMessage.Visibility == Visibility.Collapsed)
+			{
+				await Task.Delay(500);
+			}
+			CommentBorder.Visibility = Visibility.Collapsed;
 		}
+
+     
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(IssuesView));
+
+        }
 	}
 }

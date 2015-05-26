@@ -1,23 +1,33 @@
-﻿using System.Threading.Tasks;
-using FetchItUniversalAndApi.Common;
+﻿using FetchItUniversalAndApi.Common;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
+using FetchItUniversalAndApi.Models;
+using FetchItUniversalAndApi.ViewModel;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
-using FetchItUniversalAndApi.Handlers;
 
 namespace FetchItUniversalAndApi.View
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class LandingPage : Page
+    public sealed partial class IssuesView : Page
     {
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
-
 
         /// <summary>
         /// This can be changed to a strongly typed view model.
@@ -37,7 +47,7 @@ namespace FetchItUniversalAndApi.View
         }
 
 
-        public LandingPage()
+        public IssuesView()
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
@@ -78,58 +88,32 @@ namespace FetchItUniversalAndApi.View
         /// NavigationHelper to respond to the page's navigation methods.
         /// 
         /// Page specific logic should be placed in event handlers for the  
-        /// <see cref="GridCS.Common.NavigationHelper.LoadState"/>
-        /// and <see cref="GridCS.Common.NavigationHelper.SaveState"/>.
+        /// <see cref="Common.NavigationHelper.LoadState"/>
+        /// and <see cref="Common.NavigationHelper.SaveState"/>.
         /// The navigation parameter is available in the LoadState method 
         /// in addition to page state preserved during an earlier session.
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            navigationHelper.OnNavigatedTo(e);
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            navigationHelper.OnNavigatedFrom(e);
+        }
+
         #endregion
 
-        private void profileDetailsButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof (ProfileDetailPage));    
-        }
-		
-        private void CreateTaskButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof (TaskDetailPage));
-        }
+        
 
-        private void refreshMarketplaceButton_Click(object sender, RoutedEventArgs e)
+        private void ListViewBase_OnItemClick(object sender, ItemClickEventArgs e)
         {
-            coolDown();
-        }
-
-        private async void coolDown()
-        {
-            refreshMarketplaceButton.IsEnabled = false;
-            await Task.Delay(5000);
-            refreshMarketplaceButton.IsEnabled = true;
-        }
-
-        private void marketplaceListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(TaskDetailPage));
-        }
-
-        private void MessageHubButton_OnClickButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof (MessageHub));
-        }
-
-        private void issuePageButton_Click(object sender, RoutedEventArgs e)
-        {
-            //this.Frame.Navigate(typeof(IssuesView));
-        }
-
-        private void notificationsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(NotificationHub));
-        }
-
-        private void userActiveTasksListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(TaskDetailPage));
+            IssueModel issue = e.ClickedItem as IssueModel;
+            if (issue != null)
+            {
+                Frame.Navigate(typeof (IssueDetailView), issue);
+            }
         }
     }
 }
