@@ -11,5 +11,11 @@
 
         public virtual FeedbackStatusModel FeedbackStatus { get; set; }
         public virtual TaskModel Task { get; set; }
+
+        public override string ToString()
+        {
+            return "Rating: " + FeedbackRating + "/nComment: " + FeedbackComment;
+            
+        }
     }
 }

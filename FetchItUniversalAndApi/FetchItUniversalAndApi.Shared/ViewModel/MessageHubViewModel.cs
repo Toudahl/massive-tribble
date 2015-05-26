@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using FetchItUniversalAndApi.Annotations;
+using FetchItUniversalAndApi.Common;
 using FetchItUniversalAndApi.Handlers;
 using FetchItUniversalAndApi.Models;
 
@@ -19,7 +20,11 @@ namespace FetchItUniversalAndApi.ViewModel
         private ProfileModel _fromProfile;
         private ProfileHandler _ph;
         private ObservableCollection<FeedbackModel> _feedbacks;
+        private RelayCommand _refreshFeedback;
+        private RelayCommand _refreshNotifications;
+        private FeedbackModel _selectedFeedback;
 
+        #region Properties
         public ObservableCollection<NotificationModel> Notifications
         {
             get { return _notifications; }
@@ -29,7 +34,11 @@ namespace FetchItUniversalAndApi.ViewModel
         public ObservableCollection<FeedbackModel> Feedbacks
         {
             get { return _feedbacks; }
-            set { _feedbacks = value; }
+            set
+            {
+                _feedbacks = value; 
+                OnPropertyChanged("Feedbacks");
+            }
         }
 
         public ProfileHandler ph
@@ -37,6 +46,29 @@ namespace FetchItUniversalAndApi.ViewModel
             get { return _ph; }
             set { _ph = value; }
         }
+
+        public ProfileModel FromProfile
+        {
+            get { return _fromProfile; }
+            set
+            {
+                _fromProfile = value;
+                OnPropertyChanged("FromProfile");
+            }
+        }
+
+        public RelayCommand RefreshNotifications
+        {
+            get { return _refreshNotifications; }
+            set { _refreshNotifications = value; }
+        }
+
+        public RelayCommand RefreshFeedback
+        {
+            get { return _refreshFeedback; }
+            set { _refreshFeedback = value; }
+        }
+
 
         public TaskHandler th { get; set; }
 
@@ -52,65 +84,71 @@ namespace FetchItUniversalAndApi.ViewModel
             }
         }
 
+        public FeedbackModel SelectedFeedback
+        {
+            get { return _selectedFeedback; }
+            set
+            {
+                _selectedFeedback = value;
+                OnPropertyChanged("SelectedFeedback");
+                GetFeedbackTask();
+            }
+        }
+
+        #endregion
+
+
         public MessageHubViewModel()
         {
             ph = ProfileHandler.GetInstance();
             th = TaskHandler.GetInstance();
             ph.GetAllProfiles();
             GetNotifications();
+            GetFeedback();
+            RefreshNotifications = new RelayCommand(GetNotifications);
+            RefreshFeedback = new RelayCommand(GetFeedback);
         }
+
+
+        #region Methods
 
         public void GetNotifications()
         {
             Notifications = MessageHandler.GetNotifications().Result.ToObservableCollection();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public void GetFeedback()
+        {
+            Feedbacks = MessageHandler.GetFeedback(MessageHandler.FeedbackStatus.Active, ph.CurrentLoggedInProfile).ToObservableCollection();
+        }
 
+        public void GetFeedbackTask()
+        {
+            TaskModel tm = new TaskModel();
+            tm.TaskId = SelectedFeedback.FK_FeedbackForTask;
+            IEnumerable<TaskModel> feedbackTask = (IEnumerable<TaskModel>) th.Search(tm);
+
+            ProfileModel pm = new ProfileModel();
+            pm.ProfileId = feedbackTask.First().FK_TaskMaster;
+            IEnumerable<ProfileModel> feedbackProfile = (IEnumerable<ProfileModel>) ph.Search(pm);
+            FromProfile = feedbackProfile.First();
+        }
+
+
+
+        #endregion
+
+        #region INotifyPropertychanged
+
+        public event PropertyChangedEventHandler PropertyChanged;
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
+        #endregion
 
-
-        public ProfileModel FromProfile
-        {
-            get { return _fromProfile; }
-            set
-            {
-                _fromProfile = value;
-                OnPropertyChanged("FromProfile");
-            }
-        }
-
-        public void GetFeedback(MessageHandler.FeedbackStatus status, ProfileModel feedbackProfile)
-        {
-            try
-            {
-                using (HttpClient msgWebClient = new HttpClient())
-                {
-                    var tasks = TaskHandler.GetInstance().GetTasks(TaskHandler.TaskStatus.Completed);
-                    var reportsStream = Task.Run(async () => await msgWebClient.GetAsync("FeedbackModels"));
-                    var feedbacks = reportsStream.Result.Content.ReadAsAsync<IEnumerable<FeedbackModel>>().Result;
-                    var returnedFeedbacks = from task in tasks
-                                            join feedback in feedbacks
-                                                on task.TaskId equals feedback.FK_FeedbackForTask
-                                            where
-                                                task.FK_TaskFetcher == feedbackProfile.ProfileId ||
-                                                task.FK_TaskMaster == feedbackProfile.ProfileId
-                                            select feedback;
-                    ;
-                    Feedbacks = returnedFeedbacks.ToObservableCollection();
-                }
-               
-            }
-            catch (Exception exception)
-            {
-                //Add standardized error handling (fx. LogHandler.GetInstance().LogEvent(exception.message) and MessageBox.Show("Yo user, something went wrong!"));
-                throw exception;
-            }
-        }
+        
     }
 }

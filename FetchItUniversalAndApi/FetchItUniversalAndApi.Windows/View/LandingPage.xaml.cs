@@ -120,7 +120,7 @@ namespace FetchItUniversalAndApi.View
 
         private void MessageHubButton_OnClickButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof (NotificationHub));
+            this.Frame.Navigate(typeof (MessageHub));
         }
 
         

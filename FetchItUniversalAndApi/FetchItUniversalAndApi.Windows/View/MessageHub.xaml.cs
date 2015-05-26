@@ -11,7 +11,7 @@ namespace FetchItUniversalAndApi.View
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class NotificationHub : Page
+    public sealed partial class MessageHub : Page
     {
 
         private NavigationHelper navigationHelper;
@@ -28,12 +28,14 @@ namespace FetchItUniversalAndApi.View
         }
 
 
-        public NotificationHub()
+        public MessageHub()
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             this.navigationHelper.SaveState += navigationHelper_SaveState;
+            feedbackListView.Visibility = Visibility.Collapsed;
+            feedbackStackPanel.Visibility = Visibility.Collapsed;
         }
 
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
@@ -68,15 +70,18 @@ namespace FetchItUniversalAndApi.View
 
         #endregion
 
-        private void feedbackButton_Click(object sender, RoutedEventArgs e)
+        private void feedbackButton_Click(object sender, RoutedEventArgs e) 
         {
             feedbackListView.Visibility =  Visibility.Visible;
+            feedbackStackPanel.Visibility = Visibility.Visible;
             notificationsListView.Visibility = Visibility.Collapsed;
+            NotificationStackPanel.Visibility = Visibility.Collapsed;
         }
 
         private void notificationsButton_Click(object sender, RoutedEventArgs e)
         {
             feedbackListView.Visibility = Visibility.Collapsed;
+            feedbackStackPanel.Visibility = Visibility.Collapsed;
             notificationsListView.Visibility = Visibility.Visible;
             NotificationStackPanel.Visibility = Visibility.Visible;
         }
