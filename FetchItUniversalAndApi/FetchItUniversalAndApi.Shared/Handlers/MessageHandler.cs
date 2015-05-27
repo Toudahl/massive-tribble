@@ -255,11 +255,11 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="fromTask">The Task that you want the comments from</param>
         /// <returns>IENumerable of CommentModels</returns>
-        public static async Task<IEnumerable<CommentModel>> GetTaskComments(TaskModel fromTask)
+        public static IEnumerable<CommentModel> GetTaskComments(TaskModel fromTask)
         {
             try
             {
-                var updatedTaskStream = await Task.Run(() => msgWebClient.GetAsync("CommentModels"));
+                var updatedTaskStream = Task.Run(async () => await msgWebClient.GetAsync("CommentModels")).Result;
                 return
                     updatedTaskStream.Content.ReadAsAsync<IEnumerable<CommentModel>>()
                         .Result.Where(c => c.FK_CommentTask == fromTask.TaskId);
