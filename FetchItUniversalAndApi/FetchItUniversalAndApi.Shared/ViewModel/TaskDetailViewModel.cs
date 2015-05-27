@@ -44,6 +44,9 @@ namespace FetchItUniversalAndApi.ViewModel
 		#region Constructor
 		public TaskDetailViewModel()
 		{
+			//This success message string is binded two-way in the View, it makes a textbox
+			//pop up, telling the user that posting a comment or saving changes was successful,
+			//it also used to navigate back.
 			SuccessMessage = "Collapsed";
 
 			TaskHandler = TaskHandler.GetInstance();
@@ -117,6 +120,10 @@ namespace FetchItUniversalAndApi.ViewModel
 
 		#region Methods
 		#region MessageMethods
+
+		/// <summary>
+		/// A method that shows the user a MessageDialog, giving him the option to save the changes he made to his task.
+		/// </summary>
 		async public void SaveChanges()
 		{
 			MessageDialog message = new MessageDialog("Are you sure you want to save the changes?", "Update task");
@@ -133,6 +140,9 @@ namespace FetchItUniversalAndApi.ViewModel
 			await message.ShowAsync();
 		}
 
+		/// <summary>
+		/// A method that shows the user a MessageDialog, making him confirm that he wants to assign himself to the selected task.
+		/// </summary>
 		async public void AssignToTask()
 		{
 			if (SelectedTask.FK_TaskFetcher == ProfileHandler.CurrentLoggedInProfile.ProfileId)
@@ -157,6 +167,9 @@ namespace FetchItUniversalAndApi.ViewModel
 			}
 		}
 
+		/// <summary>
+		/// A method that shows the user a MessageDialog, making him confirm that he wants to resign himself from the selected task.
+		/// </summary>
 		async public void ResignFromTask()
 		{
 			if (SelectedTask.FK_TaskFetcher != ProfileHandler.CurrentLoggedInProfile.ProfileId)
@@ -186,6 +199,9 @@ namespace FetchItUniversalAndApi.ViewModel
 			}
 		}
 
+		/// <summary>
+		/// A method that shows the user a MessageDialog, making him confirm that he is sure that the selected task has been completed.
+		/// </summary>
 		async private void MarkAsCompleted()
 		{
 			if (ProfileHandler.CurrentLoggedInProfile.ProfileId == SelectedTask.FK_TaskMaster)
@@ -243,6 +259,9 @@ namespace FetchItUniversalAndApi.ViewModel
 			}
 		}
 
+		/// <summary>
+		/// A method that shows the user a MessageDialog, making him confirm that he wants to add the provided comment to the selected task.
+		/// </summary>
 		async private void AddComment()
 		{
 			if (ProfileHandler.CurrentLoggedInProfile.ProfileId == SelectedTask.FK_TaskMaster || ProfileHandler.CurrentLoggedInProfile.ProfileId == SelectedTask.FK_TaskFetcher)
@@ -269,6 +288,9 @@ namespace FetchItUniversalAndApi.ViewModel
 		#endregion
 
 		#region SupportingMethods
+		/// <summary>
+		/// This method saves the changes for the task, and calls the UpdateTask method.
+		/// </summary>
 		async private void SaveChangesForTask()
 		{
 			try
@@ -289,6 +311,9 @@ namespace FetchItUniversalAndApi.ViewModel
 			}
 		}
 
+		/// <summary>
+		/// This method assigns the logged in profile as Fetcher for the selected task, and calls the UpdateTask method.
+		/// </summary>
 		public void AssignProfileToTask()
 		{
 			SelectedTask.FK_TaskFetcher = ProfileHandler.CurrentLoggedInProfile.ProfileId;
@@ -297,6 +322,9 @@ namespace FetchItUniversalAndApi.ViewModel
 			OnPropertyChanged("FetcherName");
 		}
 
+		/// <summary>
+		/// This method resigns the logged in profile from the selected task, and calls the UpdateTask method.
+		/// </summary>
 		public void ResignProfileFromTask()
 		{
 			SelectedTask.FK_TaskFetcher = null;
@@ -305,11 +333,17 @@ namespace FetchItUniversalAndApi.ViewModel
 			OnPropertyChanged("FetcherName");
 		}
 
+		/// <summary>
+		/// A method that calls the Taskhandler to Update the selected task.
+		/// </summary>
 		public void UpdateTask()
 		{
 			TaskHandler.Update(SelectedTask);
 		}
 
+		/// <summary>
+		/// This method changes the status of the selected task to "FetcherCompleted" and calls the updateTask method
+		/// </summary>
 		public void MarkAsCompletedFetcher()
 		{
 			if (SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.TaskMasterCompleted)
@@ -326,6 +360,9 @@ namespace FetchItUniversalAndApi.ViewModel
 			}
 		}
 
+		/// <summary>
+		/// This method changes the status of the selected task to "TaskmasterCompleted" and calls the updateTask method
+		/// </summary>
 		public void MarkAsCompletedTaskMaster()
 		{
 			if (SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.FetcherCompleted)
@@ -342,6 +379,9 @@ namespace FetchItUniversalAndApi.ViewModel
 			}
 		}
 
+		/// <summary>
+		/// This method uses the Messagehandler to POST a new comment to the database, and then refreshes the comments listview.
+		/// </summary>
 		async private void AddCommentToTask()
 		{
 			try

@@ -30,6 +30,9 @@ namespace FetchItUniversalAndApi.ViewModel
 		#region Constructor
 		public ReportProfileViewModel()
 		{
+			//This success message string is binded two-way in the View, it makes a textbox
+			//pop up, telling the user that reporting the profile was successful, also used 
+			//to navigate back.
 			SuccessMessage = "Collapsed";
 			ReportSubmitted = false;
 
@@ -42,6 +45,9 @@ namespace FetchItUniversalAndApi.ViewModel
 		#endregion
 
 		#region Methods
+		/// <summary>
+		/// A method that shows the user a MessageDialog, giving him the option to submit a report he has created.
+		/// </summary>
 		async private void SubmitReport()
 		{
 			if (ReportSubmitted)
@@ -67,6 +73,10 @@ namespace FetchItUniversalAndApi.ViewModel
 			}
 		}
 
+		/// <summary>
+		/// Uses the Report handler to POST a report to the database.
+		/// </summary>
+		/// <param name="reportToSubmit"></param>
 		async public void CreateTheReport(ReportModel reportToSubmit)
 		{
 			try

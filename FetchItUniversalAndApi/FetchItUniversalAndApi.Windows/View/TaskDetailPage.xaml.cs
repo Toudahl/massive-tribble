@@ -237,6 +237,7 @@ namespace FetchItUniversalAndApi.View
 			//TaskDetailViewModel, it gets set in VM when the comment has been successfully 
 			//added to the database. Here it is used to make the CommentGrid dissappear
 			//after a comment is added.
+			//TODO: Make a more clever way to make the comment grid collapse, any good ideas are appreciated 
 			while (SuccessMessage.Visibility == Visibility.Collapsed)
 			{
 				await Task.Delay(500);

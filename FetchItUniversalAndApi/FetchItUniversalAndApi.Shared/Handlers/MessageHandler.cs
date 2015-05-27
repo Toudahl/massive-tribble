@@ -85,7 +85,14 @@ namespace FetchItUniversalAndApi.Handlers
             createdFeedback.FK_FeedbackForTask = fromTask.TaskId;
             createdFeedback.FK_FeedbackStatus = (int)FeedbackStatus.Active;
             #endregion
-            createdFeedback.FeedbackRating = (byte)rating;
+	        try
+			{
+				createdFeedback.FeedbackRating = (byte)rating;
+	        }
+	        catch (Exception)
+			{
+		        throw new InvalidCastException("Rating should be from 1 to 10");
+	        }
             try
             {
                 await msgWebClient.PostAsJsonAsync("FeedbackModels", createdFeedback);

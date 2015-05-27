@@ -30,6 +30,9 @@ namespace FetchItUniversalAndApi.ViewModel
 		#region Constructor
 		public CreateFeedbackViewModel()
 		{
+			//This success message string is binded two-way in the View, it makes a textbox
+			//pop up, telling the user that Creating the feedback was successful, also used 
+			//to navigate back.
 			SuccessMessage = "Collapsed";
 
 			TaskHandler = TaskHandler.GetInstance();
@@ -43,8 +46,18 @@ namespace FetchItUniversalAndApi.ViewModel
 		#endregion
 
 		#region Methods
+		/// <summary>
+		/// A method that shows the user a MessageDialog, giving him the option to submit a feedback he has created.
+		/// </summary>
 		async private void SubmitFeedback()
 		{
+			//A Check for the rating, which should be between 1 and 10, if not, the method does not continue.
+			if (Rating < 1 || Rating > 10)
+			{
+				MessageDialog errorDialogWrongInpt = new MessageDialog("Rating is out of bounds. Please enter a number from 1 to 10.", "Rating out of bounds.");
+				errorDialogWrongInpt.ShowAsync();
+				return;
+			}
 			MessageDialog message = new MessageDialog("Are you sure you want to submit this feedback?", "Submit Feedback");
 			message.Commands.Add(new UICommand(
 				"Yes",
@@ -59,6 +72,9 @@ namespace FetchItUniversalAndApi.ViewModel
 			await message.ShowAsync();
 		}
 
+		/// <summary>
+		/// This method calls the message handler to create and POST a feedback from the user to the database.
+		/// </summary>
 		async public void CreateTheFeedback()
 		{
 			try

@@ -104,6 +104,11 @@ namespace FetchItUniversalAndApi.View
 			navigationHelper.GoBack();
 		}
 
+		/// <summary>
+		/// A method that shows the user a MessageDialog, making him confirm that he wants to remove his own task from the marketplace, then calls the removeTask method.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		async private void RemoveTaskButton_Click(object sender, RoutedEventArgs e)
 		{
 
@@ -121,6 +126,9 @@ namespace FetchItUniversalAndApi.View
 			await message.ShowAsync();
 		}
 
+		/// <summary>
+		/// This method removes the selected task from the marketplace, and 
+		/// </summary>
 		async private void RemoveTask()
 		{
 			var th = TaskHandler.GetInstance();
