@@ -4,6 +4,9 @@ using Windows.UI.Xaml.Data;
 namespace FetchItUniversalAndApi.Common
 {
     //Author: Lárus Þór Lee
+    /// <summary>
+    /// A converter used by LandingPageView to show 2 different images according to wether a value is null or not
+    /// </summary>
     class NullToPictureConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
