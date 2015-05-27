@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="eeb35268-b50f-46ca-8dd9-cc1fffbe2b8b"
+  name="Interfaces"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="16a30372-d977-4d88-a152-eede5ffcfcd1"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DFetchItUniversalAndApi.Handlers.Interfaces"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <Interface
+        Id="673eda96-ae58-4c8b-bd68-ec5a2f365c35"
+        name="IPaymentProvider"
+        visibility="Package"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="f73258c7-ef24-4a7a-a69a-2ec27a51f76e"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJakub%2FDesktop%2Fproject%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi.Windows%2Fbin%2FDebug%2FFetchItUniversalAndApi.Windows.exe Namespace%3DFetchItUniversalAndApi.Handlers.Interfaces Type%3DIPaymentProvider"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="e1102e9c-8061-417d-882a-02efaf18bb03"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f2f0478e-53d5-43de-a2a6-0c8922244078">
+                <propertyInstance
+                  Id="f7acd8ec-e09d-4569-915d-4ee8f7269a36"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3e6c2b31-d78e-40a3-97c3-394e94b02d1a">
+                <propertyInstance
+                  Id="04a5120c-f030-4191-a2b2-c57f08d1c4f6"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f3314ff0-ff28-49d7-b79a-a0cf19b194db">
+                <propertyInstance
+                  Id="f7bb967a-58e8-43bf-9b7b-657f6dabc0b7"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="53f1dcb5-585e-4b33-bc8f-ec4d54dfe68c">
+                <propertyInstance
+                  Id="f46f3e2e-7217-4ebc-a1e6-6ed76a8e2268"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="f02befd7-eb2f-4c00-83ba-60e576e0b782"
+        name="ICreate"
+        visibility="Package"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="1c7c6483-ccba-4b72-98cd-222f6e7d83c7"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJakub%2FDesktop%2Fproject%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi.Windows%2Fbin%2FDebug%2FFetchItUniversalAndApi.Windows.exe Namespace%3DFetchItUniversalAndApi.Handlers.Interfaces Type%3DICreate"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="feb8a6e3-e2d8-4d10-b21b-fb98077539e3"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d3e898ee-fc9e-4da4-8813-e24196358773">
+                <propertyInstance
+                  Id="32cac4c3-fc54-4eb2-89c7-3234ceb48f5d"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="384a1a9a-5b21-49a2-854f-c6ce9fd2d916">
+                <propertyInstance
+                  Id="e37821eb-3580-48cf-906c-54e04a5d22e0"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8f02a923-e49f-46e1-a75e-40c58eaa6a34">
+                <propertyInstance
+                  Id="407f4986-1423-4c21-a513-00d877fa2b0f"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="55c93957-db5f-4b8b-b7b9-f24a4afd9ee3">
+                <propertyInstance
+                  Id="ce12f601-48db-449f-a658-3105a981f7ca"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="877e9277-c06b-43c3-a0b6-112c18a76ace"
+        name="IDelete"
+        visibility="Package"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="2749ef29-ecda-42bc-a98c-4ef43916f0ef"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJakub%2FDesktop%2Fproject%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi.Windows%2Fbin%2FDebug%2FFetchItUniversalAndApi.Windows.exe Namespace%3DFetchItUniversalAndApi.Handlers.Interfaces Type%3DIDelete"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="51e93520-c07f-498b-994b-7246e9ad3970"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8c70acbb-3546-4535-9d07-43fec3b1877a">
+                <propertyInstance
+                  Id="25c43dde-eaf0-4d07-beff-fca79c46be4c"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e401b292-d4aa-461c-825d-7a1ceced95cc">
+                <propertyInstance
+                  Id="f34da49d-76d8-4e6d-b9b9-1ca2db66e14b"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5e118ccd-346d-47c2-8e8a-099f49a9258c">
+                <propertyInstance
+                  Id="c8847f8c-f5c0-4529-bf0d-54b19fed9392"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="463a1562-f780-4c9d-9fbd-3886d986517a">
+                <propertyInstance
+                  Id="e1b6809d-5225-4817-bacb-b60df10fa5ed"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="473ee49e-5b3a-4e53-b465-ae853aaf8012"
+        name="IDisable"
+        visibility="Package"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="c4f4eb50-951f-4652-91bb-b15f3088ae2d"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJakub%2FDesktop%2Fproject%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi.Windows%2Fbin%2FDebug%2FFetchItUniversalAndApi.Windows.exe Namespace%3DFetchItUniversalAndApi.Handlers.Interfaces Type%3DIDisable"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="57fc1dfd-30a6-4ebe-ada3-a1bc4d6f3ee1"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2a771ae3-ad90-4a74-abe6-8f99f9ad09fb">
+                <propertyInstance
+                  Id="c536e402-fe86-45bc-bd7d-8ebc35a0ad00"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7ec8bc37-f7ad-4380-80a5-3b5584250826">
+                <propertyInstance
+                  Id="96766d91-0bc2-4e0c-8ada-7a45a301c81e"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7c0857c0-6ff1-4261-8907-74f0fcb075f1">
+                <propertyInstance
+                  Id="f52af84c-506a-4ac7-b6f9-729e3bf53145"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4b019160-80b0-4834-93c1-0c04c43b65e4">
+                <propertyInstance
+                  Id="52f74bb9-eeef-49b0-a871-e66445b284a7"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="c3ca5914-e366-4b48-9d28-6f858a5e618f"
+        name="ISearch"
+        visibility="Package"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="4529d4bd-0e44-473a-897a-542969c0dddc"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJakub%2FDesktop%2Fproject%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi.Windows%2Fbin%2FDebug%2FFetchItUniversalAndApi.Windows.exe Namespace%3DFetchItUniversalAndApi.Handlers.Interfaces Type%3DISearch"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="3c832feb-c4bd-464c-ad79-d9b528e2c99e"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="50cc3a58-09e1-4cc6-ab9c-185e06368ffc">
+                <propertyInstance
+                  Id="d65a71cc-7ef3-41aa-9965-36231220d3c3"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1fc22d73-e53e-489e-a9a0-7433381ebbf3">
+                <propertyInstance
+                  Id="76e61f55-3cb7-4fd8-810e-aa35c32a9c7a"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c3fd9cc3-449e-4f46-9229-0d3a256d9bea">
+                <propertyInstance
+                  Id="28a33202-9a05-4c6b-9911-25c885b283a7"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ef1f5962-cb59-4955-9a35-d9b57a4c0f24">
+                <propertyInstance
+                  Id="4f5bec88-452f-496b-bf50-678d6b327c0a"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="8e0c02d1-7e0d-4605-a743-8657d52f1f77"
+        name="ISuspend"
+        visibility="Package"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="479d13ad-7691-4887-aac9-8baa40a40755"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJakub%2FDesktop%2Fproject%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi.Windows%2Fbin%2FDebug%2FFetchItUniversalAndApi.Windows.exe Namespace%3DFetchItUniversalAndApi.Handlers.Interfaces Type%3DISuspend"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="c5262791-6571-4325-ad26-7cc7a22cceea"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="554199d0-bf48-4608-bb10-408e0ef03fd7">
+                <propertyInstance
+                  Id="e47bbed3-225d-4d19-b9c3-432310deff53"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="868c6cdb-1f7a-40b2-bc6a-ff7bb0d3a54d">
+                <propertyInstance
+                  Id="cf3f05ea-0b2a-4625-8208-ddbd887930f3"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="61dbc674-bb27-429b-aa2d-c223b5202213">
+                <propertyInstance
+                  Id="49b0c6ac-5174-412c-9d2a-6c25cc542dac"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d3451863-1310-4e19-8126-57eeeed3b03e">
+                <propertyInstance
+                  Id="e0696255-e53c-4d1f-8913-4ed0831de773"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="a344a628-7cc1-41ce-8566-4243275dcee8"
+        name="IUpdate"
+        visibility="Package"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="3df4a761-c60e-43d3-a687-1942e9fdcd53"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJakub%2FDesktop%2Fproject%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi.Windows%2Fbin%2FDebug%2FFetchItUniversalAndApi.Windows.exe Namespace%3DFetchItUniversalAndApi.Handlers.Interfaces Type%3DIUpdate"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="3e48b6fe-3857-4e4f-950e-b81d55922ba5"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="fba505a0-bd8a-4820-8554-86972f3819d5">
+                <propertyInstance
+                  Id="f70b96b6-4bc4-40d1-b7cc-d2a4c4afbb2b"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="12e9ca03-3893-4a88-b785-3bb46e4bef8d">
+                <propertyInstance
+                  Id="53377b7b-b83a-4614-b1b7-ff9e1ee25fa3"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6b226ed8-4886-495f-bfd5-926a360f035c">
+                <propertyInstance
+                  Id="7ae1ec10-ef4a-4302-b82d-a3e38114f64a"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f9e5ecd5-ec9c-49eb-af56-eea00231e6c0">
+                <propertyInstance
+                  Id="bd27c4b8-55b2-4813-b55b-6cbcdac93808"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </Interface>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

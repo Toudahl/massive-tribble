@@ -1,27 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
   dslVersion="1.0.0.0"
-  Id="a4b6dc1f-3f7e-479a-84f7-c2f9fa3db035"
-  name="Collections"
+  Id="d197f2ce-8a22-4ff0-a414-1fca83188312"
+  name="FetchItUniversalAndApi"
   visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
   <referencesInternal>
     <reference
-      Id="14dcb9cc-776f-43c8-a7cc-7b2fe2013dd3"
-      handle="viewcode://./CodeSchema_Namespace?Namespace%3DSystem.Collections"
+      Id="69878398-eb68-4a79-bbd6-a17177669586"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DFetchItUniversalAndApi"
       tag="ViewCode" />
   </referencesInternal>
   <packagedElements>
     <packageHasNamedElement>
       <packageMoniker
-        Id="788437b9-8653-40d8-b1b0-889cafd685f5"
-        LastKnownName="Generic"
-        LastKnownLocation="Package4_1302.uml" />
+        Id="f3bfbde6-acec-4600-8d4d-d1e35614fbb1"
+        LastKnownName="Handlers"
+        LastKnownLocation="Package1_1255.uml" />
     </packageHasNamedElement>
     <packageHasNamedElement>
       <packageMoniker
-        Id="53e7f868-6b21-4911-9128-8765c40af7ca"
-        LastKnownName="ObjectModel"
-        LastKnownLocation="Package2_1255.uml" />
+        Id="9f291313-d773-4bdf-90d3-0a15331d5eca"
+        LastKnownName="Models"
+        LastKnownLocation="Package_1256.uml" />
     </packageHasNamedElement>
   </packagedElements>
 </package>

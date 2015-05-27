@@ -2648,6 +2648,12 @@
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="d197f2ce-8a22-4ff0-a414-1fca83188312"
+        LastKnownName="FetchItUniversalAndApi"
+        LastKnownLocation="Package_1255.uml" />
+    </packageHasNamedElement>
   </packagedElements>
   <primitiveType
     Id="220a3521-e091-4221-bae9-3ef9018e845c"
