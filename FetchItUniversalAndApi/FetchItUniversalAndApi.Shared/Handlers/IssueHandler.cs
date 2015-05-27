@@ -14,6 +14,13 @@ namespace FetchItUniversalAndApi.Handlers
   public  class IssueHandler: ICreate, IDelete, IDisable, ISearch, ISuspend, IUpdate
     {
       //Author: Jakub Czapski
+        /// <summary>
+        /// Handles getting and maintaining issues made by users.
+        /// Currently only getting issues is used in the app.
+        /// 
+        /// 
+        /// 
+        /// </summary>
         private IssueModel _newIssue;
         private IssueModel _selectedIssue;
         private IssueHandler _handler;
@@ -58,7 +65,11 @@ namespace FetchItUniversalAndApi.Handlers
             get { return _selectedIssue; }
             set { _selectedIssue = value; }
         }
-
+        /// <summary>
+        /// Creates a issue and adds it to the database
+        /// </summary>
+        /// <param name="obj">Issue to create.</param>
+        /// <returns></returns>
         public async void Create(object obj)
         {
             if (obj is IssueModel)
@@ -79,6 +90,10 @@ namespace FetchItUniversalAndApi.Handlers
 
            
         }
+        /// <summary>
+        /// Gets all the issue objects from the databae.
+        /// </summary>
+        /// <returns></returns>
       public  ObservableCollection<IssueModel> GetAllIssues()
       {
           using (HttpClient Client=new HttpClient())
@@ -100,7 +115,12 @@ namespace FetchItUniversalAndApi.Handlers
    
           }
           
-      } 
+      }
+      /// <summary>
+      /// Sets the selected issues type to deleted in the database
+      /// </summary>
+      /// <param name="obj">Issue you want to delete.</param>
+      /// <returns></returns>
         public void Delete(object obj)
         {
             
@@ -114,6 +134,11 @@ namespace FetchItUniversalAndApi.Handlers
                 CreateLog();
             }
         }
+        /// <summary>
+        /// Sets the selected issues type to disabled in the database
+        /// </summary>
+        /// <param name="obj">Issue you want to disable.</param>
+        /// <returns></returns>
 
         public void Disable(object obj)
         {
@@ -128,6 +153,11 @@ namespace FetchItUniversalAndApi.Handlers
             }
         }
 
+        /// <summary>
+        /// Searches for issues in the database that contains a letter or a word you entered in search bar
+        /// </summary>
+        /// <param name="obj">Issue that you were looking for or all issues if you dont enter anything.</param>
+        /// <returns></returns>
         public IEnumerable<object> Search(object obj)
         {
             string userinput = _userInput;            
@@ -138,7 +168,11 @@ namespace FetchItUniversalAndApi.Handlers
             }
             return  _currentIssues;
         }
-
+        /// <summary>
+        /// Sets the selected issues type to suspended in the database
+        /// </summary>
+        /// <param name="obj">Issue you want to suspend.</param>
+        /// <returns></returns>
         public  void Suspend(object obj)
         {
             if (obj is IssueModel)
@@ -152,8 +186,12 @@ namespace FetchItUniversalAndApi.Handlers
             }
         }
 
-      
 
+        /// <summary>
+        /// Updates the selected issues info in the database.
+        /// </summary>
+        /// <param name="obj">Issue you want to update.</param>
+        /// <returns></returns>
         public async void Update(object obj)
         {
             if (obj is IssueModel)
@@ -176,7 +214,10 @@ namespace FetchItUniversalAndApi.Handlers
                 }
             }
         }
-
+        /// <summary>
+        /// Creates a log using loghandler.
+        /// </summary>      
+        /// <returns></returns>
       public void CreateLog()
       {
           LogModel logModel = new LogModel
