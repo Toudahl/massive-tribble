@@ -19,13 +19,29 @@ namespace FetchItUniversalAndApi.ViewModel
         #region Fields and Properties
         private ProfileHandler _ph;
         private TaskHandler _th;
+        //The collections being presented by the view
         private ObservableCollection<TaskModel> _marketplace;
         private ObservableCollection<NotificationModel> _notifications;
         private ObservableCollection<TaskModel> _activeTasks;
+        //Commands being bound to buttons in the view
         private ICommand _refreshNotifications;
         private ICommand _refreshMarketplace;
+        //The text that is instanciated in constructor, welcomes the user with his name
         private string _welcomeText;
 
+        public ProfileHandler ph
+        {
+            get { return _ph; }
+            set { _ph = value; }
+        }
+
+        public TaskHandler th
+        {
+            get { return _th; }
+            set { _th = value; }
+        }
+
+        //This is contains all active tasks, where users look for new tasks
         public ObservableCollection<TaskModel> Marketplace
         {
             get { return _marketplace; }
@@ -42,28 +58,6 @@ namespace FetchItUniversalAndApi.ViewModel
             }
         }
 
-        public ProfileHandler ph
-        {
-            get { return _ph; }
-            set { _ph = value; }
-        }
-
-        public TaskHandler th
-        {
-            get { return _th; }
-            set { _th = value; }
-        }
-
-        public string WelcomeText
-        {
-            get { return _welcomeText; }
-            set
-            {
-                _welcomeText = value;
-                OnPropertyChanged("WelcomeText");
-            }
-        }
-
         public ObservableCollection<NotificationModel> Notifications
         {
             get { return _notifications; }
@@ -74,6 +68,7 @@ namespace FetchItUniversalAndApi.ViewModel
             }
         }
 
+        //Where the user is presented with all tasks that he is assigned to
         public ObservableCollection<TaskModel> ActiveTasks
         {
             get { return _activeTasks; }
@@ -95,6 +90,16 @@ namespace FetchItUniversalAndApi.ViewModel
             get { return _refreshNotifications; }
             set { _refreshNotifications = value; }
         }
+
+        public string WelcomeText
+        {
+            get { return _welcomeText; }
+            set
+            {
+                _welcomeText = value;
+                OnPropertyChanged("WelcomeText");
+            }
+        }
         #endregion
 
         #region Methods
@@ -115,7 +120,7 @@ namespace FetchItUniversalAndApi.ViewModel
         #endregion
 
         /// <summary>
-        /// Async, looks for any Tasks currently in the local Marketplace and checks if it has the current logged in profile as TaskMaster or Fetcher
+        /// Looks for any Tasks currently in the local Marketplace and checks if it has the current logged in profile as TaskMaster or Fetcher
         /// </summary>
         private void refreshActiveTasks()
         {
@@ -123,13 +128,18 @@ namespace FetchItUniversalAndApi.ViewModel
         }
 
         #region ICommand methods
+        /// <summary>
+        /// Gets active tasks, called upon in the constructor and used by 2 buttons in view.
+        /// 1 button next to the marketplace and another next to 'Your Tasks'
+        /// That's because 'Your Tasks' list is refreshed when the Marketplace property is set
+        /// </summary>
         private void refreshMarketplace()
         {
             Marketplace = th.GetTasks(TaskHandler.TaskStatus.Active).ToObservableCollection();
         }
 
         /// <summary>
-        /// Async, gets the notifications associated with the currently logged in profile
+        /// Gets the notifications associated with the currently logged in profile
         /// </summary>
         private void refreshNotifications()
         {

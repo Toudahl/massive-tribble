@@ -11,20 +11,32 @@ using Newtonsoft.Json;
 namespace FetchItUniversalAndApi.Handlers
 {
     //Author: Lárus Þór Óðinsson
+    /// <summary>
+    /// Handles creating Logs when a system error has occured
+    /// Should in most situations be only used through the ErrorHandler
+    /// </summary>
     class LogHandler: ICreate
     {
         #region Fields and Properties
+        //A field containing a reference to this class to be returned using GetInstance()
         private static LogHandler _handler;
+        //A object being used to lock the thread while instanciating the class
         private static Object _lockObject = new object();
-        //The httpclient should probably be one object that all handlers call upon. There "shouldn't" be any reason to dispose of it or flush it.
-        //But we should keep an eye out for if it's not closing the connections or not dumping the resources.
+        //The HttpClient used for doing POST, GET and etc. commands to the web api.
+        //Differs from other handlers since it's not garbage collected to close the connection
+        //According to my research it should handle opening/closing connections automatically
+        //This mainly means better performance and shorter code
         private static HttpClient logWebClient = new HttpClient();
-        //TODO: This could probably be somewhere better and globally available. Also needs to be changed to refer to the intended server.
+        //The url for the web Api. Ensured that it does not change.
         private static readonly string serverLocation = "http://fetchit.mortentoudahl.dk/api/";
         #endregion
 
         #region Methods
         #region Constructor
+        /// <summary>
+        /// Constructor. Sets the properties of the HttpClient being used by the loghandler
+        /// Private to ensure proper singleton behavior
+        /// </summary>
         private LogHandler()
         {
             logWebClient.BaseAddress = new Uri(serverLocation);
@@ -33,8 +45,14 @@ namespace FetchItUniversalAndApi.Handlers
         #endregion
 
         #region Singleton Implementation
+        /// <summary>
+        /// Get an instance of the <see cref="LogHandler"/>
+        /// This singleton is Thread safe
+        /// </summary>
+        /// <returns>LogHandler object</returns>
         public static LogHandler GetInstance()
         {
+            //Locks the thread
             lock (_lockObject)
             {
                 if (_handler == null)
@@ -48,10 +66,10 @@ namespace FetchItUniversalAndApi.Handlers
 
         // Bugfix by : Morten Toudahl
         /// <summary>
-        /// Only used by ErrorHandler.
+        /// Should in most cases only be used by <see cref="ErrorHandler"/>.
         /// Creates a Log object in the database adding the time created and posting the <see cref="LogModel"/>
         /// </summary>
-        /// <param name="obj"></param>
+        /// <param name="objectBeingLogged">A LogModel object</param>
         public void Create(object objectBeingLogged)
         {
             if (objectBeingLogged != null)
@@ -60,7 +78,6 @@ namespace FetchItUniversalAndApi.Handlers
                 {
                     var sendingLog = objectBeingLogged as LogModel;
                     sendingLog.LogTime = DateTime.UtcNow;
-                    //sendingLog.LogMessage = objectBeingLogged.ToString();
                     try
                     {
                         logWebClient.PostAsJsonAsync("LogModels", sendingLog);
@@ -68,18 +85,22 @@ namespace FetchItUniversalAndApi.Handlers
                     catch (Exception)
                     {
                         //For now we suppress the errors
+                        //If we'd call the ErrorHandler here we'd have an infinite loop
+                        //We do not want the user experience to be affected when we are unable to log system errors
                     }
                 }
             }
         }
 
+        #region GetLog() Overloads (some are not implemented)
         /// <summary>
         /// NOT IMPLEMENTED Might restructure the GetLog overloads to get logs after/before and for a certain amount of time.
         /// </summary>
-        /// <param name="duration"></param>
-        /// <returns></returns>
+        /// <param name="duration">The timespan you wish to go back in time</param>
+        /// <returns>An IENumerable of LogModels</returns>
         public IEnumerable<LogModel> GetLog(TimeSpan duration)
         {
+            throw new NotImplementedException("Not Implemented: See if you can use GetLog(string) instead. Author: Lárus Þór");
             try
             {
                 IEnumerable<LogModel> haystack = Task.Run(
@@ -95,6 +116,11 @@ namespace FetchItUniversalAndApi.Handlers
             return null;
         }
 
+        /// <summary>
+        /// Get logs where the LogMessage contains the string parameter
+        /// </summary>
+        /// <param name="phraseToSearchFor">The string you want to search for (profile name, log type and etc.)</param>
+        /// <returns>An IENumerable of LogModels</returns>
         public IEnumerable<LogModel> GetLog(string phraseToSearchFor)
         {
             try
@@ -111,10 +137,16 @@ namespace FetchItUniversalAndApi.Handlers
             }
         }
 
+        /// <summary>
+        /// NOT IMPLEMENTED Might restructure the GetLog overloads to get logs after/before and for a certain amount of time.
+        /// </summary>
+        /// <param name="dateTime">The date which you want to get logs from</param>
+        /// <returns>An IENumerable of LogModels</returns>
         public IEnumerable<LogModel> GetLog(DateTime dateTime)
         {
             throw new NotImplementedException();
         }
+        #endregion
         #endregion
     }
 }

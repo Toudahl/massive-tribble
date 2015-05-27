@@ -18,6 +18,9 @@ namespace FetchItUniversalAndApi.Handlers
     static class MessageHandler
     {
         #region Enums
+        /// <summary>
+        /// Enum that ensures conformity between FeedbackStatusModel and FeedbackStatus database table.
+        /// </summary>
         public enum FeedbackStatus
         {
             Deleted = 2,
@@ -27,6 +30,9 @@ namespace FetchItUniversalAndApi.Handlers
             Unactivated = 6
         }
 
+        /// <summary>
+        /// Enum that ensures conformity between NotificationStatusModel and NotificationStatus database table.
+        /// </summary>
         public enum NotificationStatus
         {
             Unread = 1,
@@ -35,6 +41,7 @@ namespace FetchItUniversalAndApi.Handlers
         }
 
         /// <summary>
+        /// LEGACY: E-mails are not being handled by this app
         /// The types of E-mails that the Handler can send.
         /// </summary>
         public enum EmailType
@@ -45,20 +52,26 @@ namespace FetchItUniversalAndApi.Handlers
             NotificationEmail,
             AdministratorMessage,
         }
-        #endregion
+    #endregion
 
         #region Fields and Properties
-        //The httpclient should probably be one object that all handlers call upon. There "shouldn't" be any reason to dispose of it or flush it.
-        //But we should keep an eye out for if it's not closing the connections or not dumping the resources.
+        //The HttpClient used for doing POST, GET and etc. commands to the web api.
+        //Differs from other handlers since it's not garbage collected to close the connection
+        //According to my research it should handle opening/closing connections automatically
+        //This mainly means better performance and shorter code
         private static HttpClient msgWebClient = new HttpClient();
-        //TODO: This could probably be somewhere better and globally available. Also needs to be changed to refer to the intended server.
+        //The url for the web Api. Ensured that it does not change.
         private static readonly string serverLocation = "http://fetchit.mortentoudahl.dk/api/";
+        //Instanciating the singleton handlers
         private static TaskHandler _th = TaskHandler.GetInstance();
         private static ProfileHandler _ph = ProfileHandler.GetInstance();
-        #endregion
+    #endregion
 
         #region Methods
         #region Constructor
+        /// <summary>
+        /// Constructor. Sets the properties of the HttpClient being used by the messagehandler
+        /// </summary>
         static MessageHandler()
         {
             msgWebClient.BaseAddress = new Uri(serverLocation);
@@ -78,21 +91,14 @@ namespace FetchItUniversalAndApi.Handlers
             if (rating < 1 || rating > 10)
             {
                 MessageDialog errorDialogWrongInpt = new MessageDialog("Rating is out of bounds. Please enter a number from 1 to 10.", "Rating out of bounds.");
-                errorDialogWrongInpt.ShowAsync();
+                await errorDialogWrongInpt.ShowAsync();
             }
             #region Build Feedback
             FeedbackModel createdFeedback = new FeedbackModel();
             createdFeedback.FK_FeedbackForTask = fromTask.TaskId;
             createdFeedback.FK_FeedbackStatus = (int)FeedbackStatus.Active;
             #endregion
-	        try
-			{
-				createdFeedback.FeedbackRating = (byte)rating;
-	        }
-	        catch (Exception)
-			{
-		        throw new InvalidCastException("Rating should be from 1 to 10");
-	        }
+            createdFeedback.FeedbackRating = (byte)rating;
             try
             {
                 await msgWebClient.PostAsJsonAsync("FeedbackModels", createdFeedback);
@@ -115,18 +121,18 @@ namespace FetchItUniversalAndApi.Handlers
             if (rating < 1 || rating > 10)
             {
                 MessageDialog errorDialogWrongInpt = new MessageDialog("Rating is out of bounds. Please enter a number from 1 to 10.", "Rating out of bounds.");
-                errorDialogWrongInpt.ShowAsync();
+                await errorDialogWrongInpt.ShowAsync();
             }
             #region Build Feedback
             FeedbackModel createdFeedback = new FeedbackModel();
             createdFeedback.FeedbackComment = feedbackComment;
             createdFeedback.FK_FeedbackForTask = fromTask.TaskId;
-            createdFeedback.FK_FeedbackStatus = (int)FeedbackStatus.Active;
+            createdFeedback.FK_FeedbackStatus = (int) FeedbackStatus.Active;
             #endregion
             createdFeedback.FeedbackRating = (byte)rating;
             try
             {
-                await msgWebClient.PostAsJsonAsync("FeedbackModels", createdFeedback);
+               await msgWebClient.PostAsJsonAsync("FeedbackModels", createdFeedback);
             }
             catch (Exception)
             {
@@ -142,16 +148,16 @@ namespace FetchItUniversalAndApi.Handlers
         //TODO: Make async and return type Task
         public static IEnumerable<FeedbackModel> GetFeedback(FeedbackStatus status)
         {
-            try
-            {
-                var reports = Task.Run(async () => await msgWebClient.GetAsync("FeedbackModels"));
-                return reports.Result.Content.ReadAsAsync<IEnumerable<FeedbackModel>>().Result.Where(r => r.FK_FeedbackStatus == (int)status);
-            }
-            catch (Exception exception)
-            {
-                ErrorHandler.GettingError(new FeedbackModel());
-                return null;
-            }
+                try
+                {
+                    var reports = Task.Run(async () => await msgWebClient.GetAsync("FeedbackModels"));
+                    return reports.Result.Content.ReadAsAsync<IEnumerable<FeedbackModel>>().Result.Where(r => r.FK_FeedbackStatus == (int)status);
+                }
+                catch (Exception)
+                {
+                    ErrorHandler.GettingError(new FeedbackModel());
+                    return null;
+                }
         }
 
         /// <summary>
@@ -191,10 +197,10 @@ namespace FetchItUniversalAndApi.Handlers
                 IEnumerable<FeedbackModel> feedbacks = reportsStream.Result.Content.ReadAsAsync<IEnumerable<FeedbackModel>>().Result;
                 //Takes tasks and feedback collections, joins them and returns feedbacks from tasks where the profile provided is a fetcher
                 var returnedFeedbacks = from task in tasks
-                                        join feedback in feedbacks
-                                            on task.TaskId equals feedback.FK_FeedbackForTask
-                                        where task.FK_TaskFetcher == feedbackProfile.ProfileId
-                                        select feedback;
+                    join feedback in feedbacks
+                        on task.TaskId equals feedback.FK_FeedbackForTask
+                        where task.FK_TaskFetcher == feedbackProfile.ProfileId
+                    select feedback;
                 return returnedFeedbacks;
             }
             catch (Exception)
@@ -230,7 +236,7 @@ namespace FetchItUniversalAndApi.Handlers
                 updatedTask.Comments.Add(newComment);
                 try
                 {
-                    await msgWebClient.PostAsJsonAsync("commentmodels", newComment);
+					await msgWebClient.PostAsJsonAsync("commentmodels", newComment);
                 }
                 catch (Exception)
                 {
@@ -253,9 +259,9 @@ namespace FetchItUniversalAndApi.Handlers
         {
             try
             {
-                var updatedTaskStream = Task.Run(async () => await msgWebClient.GetAsync("CommentModels"));
+                var updatedTaskStream = await Task.Run(() => msgWebClient.GetAsync("CommentModels"));
                 return
-                    updatedTaskStream.Result.Content.ReadAsAsync<IEnumerable<CommentModel>>()
+                    updatedTaskStream.Content.ReadAsAsync<IEnumerable<CommentModel>>()
                         .Result.Where(c => c.FK_CommentTask == fromTask.TaskId);
             }
             catch (Exception)
@@ -271,7 +277,6 @@ namespace FetchItUniversalAndApi.Handlers
         /// Creates a Notification object and POSTs it to the database server by parsing it to json.
         /// </summary>
         /// <param name="notification">The Notification to Send</param>
-        /// NotificationModel with everything inputted except NotificationId (should be null!) FK_NotificationStatus and NotificationSent.
         //TODO: Make return type Task
         public static async void SendNotification(NotificationModel notification)
         {
@@ -297,9 +302,9 @@ namespace FetchItUniversalAndApi.Handlers
         {
             try
             {
-                var notificationsStream = Task.Run(async () => await msgWebClient.GetAsync("NotificationModels"));
-                var notificationStreamContent = notificationsStream.Result.Content;
-                return
+                var notificationsStream = await Task.Run(() => msgWebClient.GetAsync("NotificationModels"));
+                var notificationStreamContent = notificationsStream.Content;
+                return 
                     notificationStreamContent.ReadAsAsync<IEnumerable<NotificationModel>>()
                         .Result.Select(n => n)
                         .Where(n => n.FK_NotificationFrom == _ph.CurrentLoggedInProfile.ProfileId
@@ -321,7 +326,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="email">The e-mail to send</param>
         //TODO: Make return type Task
-        public static async void SendEmail(EmailModel email, EmailType emailType, ProfileModel receivingProfile)
+        public static void SendEmail(EmailModel email, EmailType emailType, ProfileModel receivingProfile)
         {
             #region Not working code, just for reference
             //string url = "http://fetchit.mortentoudahl.dk";
