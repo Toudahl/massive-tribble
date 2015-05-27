@@ -114,7 +114,7 @@ namespace FetchItUniversalAndApi.ViewModel
 
         public void GetNotifications()
         {
-            Notifications = MessageHandler.GetNotifications().Result.ToObservableCollection();
+            Notifications = MessageHandler.GetNotifications().ToObservableCollection();
         }
 
         public void GetFeedback()
