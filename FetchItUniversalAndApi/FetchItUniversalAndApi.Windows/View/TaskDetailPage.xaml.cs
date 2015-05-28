@@ -253,26 +253,27 @@ namespace FetchItUniversalAndApi.View
 
 		}
 
-		async private void taskFetcherBind_Tapped(object sender, TappedRoutedEventArgs e)
+		private void taskFetcherBind_Tapped(object sender, TappedRoutedEventArgs e)
 		{
-			var profileName = taskFetcherBind.Text;
-			if (profileName != "There is no fetcher assigned")
+			var ph = ProfileHandler.GetInstance();
+			var taskViewModel = MainGrid.DataContext as TaskDetailViewModel;
+
+			if (taskViewModel != null)
 			{
-				var newSelectedProfile = ProfileHandler.GetInstance().Search(new ProfileModel() { ProfileName = profileName }).First() as ProfileModel;
-				var ph = ProfileHandler.GetInstance();
-				ph.SelectedProfile = newSelectedProfile;
-				await Task.Delay(500);
-				this.Frame.Navigate(typeof(ProfileDetailPage));
+				ph.SelectedProfile = taskViewModel.Fetcher;
 			}
+			this.Frame.Navigate(typeof(ProfileDetailPage));
 		}
 
-		async private void taskmasterBind_Tapped(object sender, TappedRoutedEventArgs e)
+		private void taskmasterBind_Tapped(object sender, TappedRoutedEventArgs e)
 		{
-			var profileName = taskmasterBind.Text;
-			var newSelectedProfile = ProfileHandler.GetInstance().Search(new ProfileModel() { ProfileName = profileName }).First() as ProfileModel;
 			var ph = ProfileHandler.GetInstance();
-			ph.SelectedProfile = newSelectedProfile;
-			await Task.Delay(500);
+			var taskViewModel = MainGrid.DataContext as TaskDetailViewModel;
+
+			if (taskViewModel != null)
+			{
+				ph.SelectedProfile = taskViewModel.Taskmaster;
+			}
 			this.Frame.Navigate(typeof(ProfileDetailPage));
 		}
 	}
