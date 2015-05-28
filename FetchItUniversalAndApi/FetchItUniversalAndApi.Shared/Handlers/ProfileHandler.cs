@@ -391,6 +391,11 @@ namespace FetchItUniversalAndApi.Handlers
         #endregion
 
         #region 'Supporting methods'
+        /// <summary>
+        /// This method is used internally by the class in all methods that modify the status of the profile.
+        /// </summary>
+        /// <param name="profileToModify">Which profile should be modifiled.</param>
+        /// <param name="newStatus">What should the new status be.</param>
         private async void ChangeStatus(ProfileModel profileToModify, ProfileStatus newStatus)
         {
             using (var client = new HttpClient())
@@ -410,6 +415,9 @@ namespace FetchItUniversalAndApi.Handlers
             }
         }
 
+        /// <summary>
+        /// Using this method will update the content of <see cref="AllProfiles"/>
+        /// </summary>
         public async void GetAllProfiles()
         {
             using (var client = new HttpClient())
