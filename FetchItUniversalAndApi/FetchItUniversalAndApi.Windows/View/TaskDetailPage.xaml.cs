@@ -31,7 +31,7 @@ namespace FetchItUniversalAndApi.View
 	{
 		private NavigationHelper navigationHelper;
 		private ObservableDictionary defaultViewModel = new ObservableDictionary();
-        
+
 		/// <summary>
 		/// This can be changed to a strongly typed view model.
 		/// </summary>
@@ -56,8 +56,8 @@ namespace FetchItUniversalAndApi.View
 			this.navigationHelper = new NavigationHelper(this);
 			this.navigationHelper.LoadState += navigationHelper_LoadState;
 			this.navigationHelper.SaveState += navigationHelper_SaveState;
-		   
-            
+
+
 		}
 
 		/// <summary>
@@ -220,7 +220,7 @@ namespace FetchItUniversalAndApi.View
 			}
 			else
 			{
-			    ErrorHandler.CannotEditTask();
+				ErrorHandler.CannotEditTask();
 			}
 		}
 
@@ -245,12 +245,35 @@ namespace FetchItUniversalAndApi.View
 			CommentBorder.Visibility = Visibility.Collapsed;
 		}
 
-     
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(IssuesView));
 
-        }
+		private void Button_Click_1(object sender, RoutedEventArgs e)
+		{
+			this.Frame.Navigate(typeof(IssuesView));
+
+		}
+
+		async private void taskFetcherBind_Tapped(object sender, TappedRoutedEventArgs e)
+		{
+			var profileName = taskFetcherBind.Text;
+			if (profileName != "There is no fetcher assigned")
+			{
+				var newSelectedProfile = ProfileHandler.GetInstance().Search(new ProfileModel() { ProfileName = profileName }).First() as ProfileModel;
+				var ph = ProfileHandler.GetInstance();
+				ph.SelectedProfile = newSelectedProfile;
+				await Task.Delay(500);
+				this.Frame.Navigate(typeof(ProfileDetailPage));
+			}
+		}
+
+		async private void taskmasterBind_Tapped(object sender, TappedRoutedEventArgs e)
+		{
+			var profileName = taskmasterBind.Text;
+			var newSelectedProfile = ProfileHandler.GetInstance().Search(new ProfileModel() { ProfileName = profileName }).First() as ProfileModel;
+			var ph = ProfileHandler.GetInstance();
+			ph.SelectedProfile = newSelectedProfile;
+			await Task.Delay(500);
+			this.Frame.Navigate(typeof(ProfileDetailPage));
+		}
 	}
 }

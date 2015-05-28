@@ -37,8 +37,6 @@ namespace FetchItUniversalAndApi.Models
         //Author: Lárus Þór Hakarl
         public override string ToString()
         {
-            //Using the ProfileHandler.GetInstance() without initializing it as a property inside here doesn't work.
-            //string testreturnString = ProfileHandler.GetInstance().AllProfiles.Where(c => c.ProfileId == FK_TaskMaster).Select(p => p.ProfileName).ToString();
             return TaskDescription;
         }
     }
