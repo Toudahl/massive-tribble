@@ -11,6 +11,9 @@ using Newtonsoft.Json;
 namespace FetchItUniversalAndApi.Handlers
 {
     // Author: Morten Toudahl
+    /// <summary>
+    /// This handler will take care of anything that has to do with profiles.
+    /// </summary>
     class ProfileHandler: IDelete, ICreate, ISuspend, IDisable, IUpdate, ISearch
     {
         #region Enums
