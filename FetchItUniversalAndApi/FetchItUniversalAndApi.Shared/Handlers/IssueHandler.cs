@@ -26,9 +26,16 @@ namespace FetchItUniversalAndApi.Handlers
         private IssueHandler _handler;
         private IEnumerable<IssueModel> _currentIssues;
         private string _userInput;
-        private const string issuemodelurl = "http://fetchit.mortentoudahl.dk/api/IssueModels";
+      private ProfileModel _selecteProfile;
+      private const string issuemodelurl = "http://fetchit.mortentoudahl.dk/api/IssueModels";
 
-        public enum IssueStatus
+      public ProfileModel SelecteProfile
+      {
+          get { return _selecteProfile; }
+          set { _selecteProfile = value; }
+      }
+
+      public enum IssueStatus
         {
             Deleted = 6,
             Suspended = 7,
@@ -80,6 +87,7 @@ namespace FetchItUniversalAndApi.Handlers
                     {
                         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("appliaction/json"));
                         await client.PostAsJsonAsync(issuemodelurl, obj);
+                        MessageHandler.SendNotification(_userInput,_selecteProfile);
                     }
                 
             }
