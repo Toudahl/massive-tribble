@@ -90,7 +90,7 @@
         <referencesInternal>
           <reference
             Id="8f5bde2a-2dc8-4326-a611-c26f3c4e770d"
-            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DICollection GenericParameterCount%3D1)"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETCore%2Fv4.5.1%2FSystem.Runtime.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DICollection GenericParameterCount%3D1)"
             tag="ViewCode" />
         </referencesInternal>
         <appliedStereotypesInternal>
@@ -141,7 +141,7 @@
                 <referencesInternal>
                   <reference
                     Id="011f10c2-f075-41b3-bd65-8c009dae47df"
-                    handle="viewcode://./CodeSchema_GenericParameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DICollection GenericParameterCount%3D1) ParameterIdentifier%3D0"
+                    handle="viewcode://./CodeSchema_GenericParameter?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETCore%2Fv4.5.1%2FSystem.Runtime.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DICollection GenericParameterCount%3D1) ParameterIdentifier%3D0"
                     tag="ViewCode" />
                 </referencesInternal>
                 <ownedParameterableElement>
@@ -366,6 +366,16 @@
             </relationshipOwnedElementsInternal>
           </templateBinding>
         </signatures>
+        <generalsInternal>
+          <generalization
+            Id="1e236b31-8a58-4adb-b23d-444539833521"
+            isSubstitutable="false">
+            <interfaceMoniker
+              Id="aa2e5f83-4d9d-46da-86a7-83b99dff0b70"
+              LastKnownName="IEnumerable&lt;NotificationModel‎&gt;"
+              LastKnownLocation="Package4_1302.uml" />
+          </generalization>
+        </generalsInternal>
       </Interface>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -576,6 +586,16 @@
             </relationshipOwnedElementsInternal>
           </templateBinding>
         </signatures>
+        <generalsInternal>
+          <generalization
+            Id="1f1dbd4b-a8d6-4c4e-894d-16631c1568d5"
+            isSubstitutable="false">
+            <interfaceMoniker
+              Id="7b9ff902-9927-493d-8b8b-5eba67d7a884"
+              LastKnownName="IEnumerable&lt;CommentModel‎&gt;"
+              LastKnownLocation="Package4_1302.uml" />
+          </generalization>
+        </generalsInternal>
       </Interface>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -646,6 +666,16 @@
             </relationshipOwnedElementsInternal>
           </templateBinding>
         </signatures>
+        <generalsInternal>
+          <generalization
+            Id="0d7b31cf-20aa-41be-a10a-3c4053b71b29"
+            isSubstitutable="false">
+            <interfaceMoniker
+              Id="14156283-c7ea-4668-8708-9584c5aa053d"
+              LastKnownName="IEnumerable&lt;ReportModel‎&gt;"
+              LastKnownLocation="Package4_1302.uml" />
+          </generalization>
+        </generalsInternal>
       </Interface>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -786,6 +816,16 @@
             </relationshipOwnedElementsInternal>
           </templateBinding>
         </signatures>
+        <generalsInternal>
+          <generalization
+            Id="305f8053-4bd8-4dc5-b167-0513cbb4701b"
+            isSubstitutable="false">
+            <interfaceMoniker
+              Id="ca2c741b-5a33-48d3-9a45-7c0fd1980c71"
+              LastKnownName="IEnumerable&lt;TaskModel‎&gt;"
+              LastKnownLocation="Package4_1302.uml" />
+          </generalization>
+        </generalsInternal>
       </Interface>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -926,6 +966,16 @@
             </relationshipOwnedElementsInternal>
           </templateBinding>
         </signatures>
+        <generalsInternal>
+          <generalization
+            Id="7ff8bd96-ee11-4422-8d3f-e2ab9753fe85"
+            isSubstitutable="false">
+            <interfaceMoniker
+              Id="35f400f3-130f-48b2-abae-f0e797cd4b15"
+              LastKnownName="IEnumerable&lt;IssueModel‎&gt;"
+              LastKnownLocation="Package4_1302.uml" />
+          </generalization>
+        </generalsInternal>
       </Interface>
     </packageHasNamedElement>
     <packageHasNamedElement>

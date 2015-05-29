@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="27b4370c-314d-4d62-b597-335f568d252b"
+  name="Common"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="e68b4395-0d6e-4b39-9242-0f4e6cf5d4a6"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DFetchItUniversalAndApi.Common"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="a31972da-441b-4f8e-88dc-f4730a3d2758"
+        name="DateTimeCustom"
+        visibility="Package"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="67e56227-1f98-49e9-aef6-d2ee2304b594"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi.Windows%2Fbin%2FDebug%2FFetchItUniversalAndApi.Windows.exe&quot; Namespace%3DFetchItUniversalAndApi.Common Type%3DDateTimeCustom"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="c3638ee7-172d-4740-849b-9134382eac9d"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ce68bd80-2644-434b-8fc4-101bda818341">
+                <propertyInstance
+                  Id="cda82b2e-fe89-482a-aa07-1c581eef8d08"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4fd99ed6-65dc-4341-ad5c-ad1936d84997">
+                <propertyInstance
+                  Id="c2019488-2574-4c6f-bf04-17d91e9c8d32"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="37551648-0113-46a4-bb95-932838d0e4a0">
+                <propertyInstance
+                  Id="0499eb2e-d2ff-45f3-ba33-05362f70ea1b"
+                  name="IsStatic"
+                  value="True" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e176b4c3-0498-4c49-8dde-75f6b7f82a37">
+                <propertyInstance
+                  Id="35517c4f-b563-4425-af83-ec6fcbcaba97"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="dd7a6ed2-303a-49f5-91d0-f4711f68bbf6">
+                <propertyInstance
+                  Id="b7363ee7-fb51-49af-bd91-95f94d6c2170"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="bf785ec5-efb6-478a-bd16-6df693d23bf3"
+            name="TimeSpanAndDateOffsetToDateTime"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="ead9528b-293d-412e-8a82-9ce13bfa001f"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi.Windows%2Fbin%2FDebug%2FFetchItUniversalAndApi.Windows.exe&quot; Namespace%3DFetchItUniversalAndApi.Common Type%3DDateTimeCustom Member%3D(Name%3DTimeSpanAndDateOffsetToDateTime OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETCore%2Fv4.5.1%2FSystem.Runtime.dll&quot; Namespace%3DSystem Type%3DDateTimeOffset)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETCore%2Fv4.5.1%2FSystem.Runtime.dll&quot; Namespace%3DSystem Type%3DTimeSpan)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="b20da982-56d7-4c4d-ac89-533fb8f89af5"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6ae60a36-c22f-4195-a234-f6f051d4701d">
+                    <propertyInstance
+                      Id="ea991dca-906d-4fd0-8a28-09c7400ea154"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d69b0548-9f40-40ca-bb70-a0149a93a24a">
+                    <propertyInstance
+                      Id="f7837508-cba4-47a1-bfb7-d4304b3925f9"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="34137f64-cc8c-46c2-85da-736e4ae643ed">
+                    <propertyInstance
+                      Id="5fc88328-6350-4219-82ba-45e84de1b043"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c54cc653-56de-4bc1-8262-fad912123b75">
+                    <propertyInstance
+                      Id="49ce9ab3-5d77-448b-ade9-b24a80bf0c7c"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fd32892f-3217-45c7-abfb-23f8a989ff8d">
+                    <propertyInstance
+                      Id="1d800b32-732f-47c0-baca-290353f76ed0"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fe5b0144-5585-48ef-a90f-eff6550dad0f">
+                    <propertyInstance
+                      Id="8a77f159-cbc7-4b6b-8c34-66082f7811c3"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="20afdce4-9f04-4141-8915-09b4d0b11ff4"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="5c545265-57d6-40cb-99cf-07a337d0d288"
+                      LastKnownName="DateTime"
+                      LastKnownLocation="Package2_1302.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="17b9bb83-2061-4711-b2d5-4cda8f7712b5"
+                  name="date"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="847081fb-042e-40f1-86e0-911ab92409fc"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi.Windows%2Fbin%2FDebug%2FFetchItUniversalAndApi.Windows.exe&quot; Namespace%3DFetchItUniversalAndApi.Common Type%3DDateTimeCustom Member%3D(Name%3DTimeSpanAndDateOffsetToDateTime OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETCore%2Fv4.5.1%2FSystem.Runtime.dll&quot; Namespace%3DSystem Type%3DDateTimeOffset)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETCore%2Fv4.5.1%2FSystem.Runtime.dll&quot; Namespace%3DSystem Type%3DTimeSpan)]) ParameterIdentifier%3Ddate"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="0b6c89a6-8cab-4da6-a79d-9c3407ed9908"
+                      LastKnownName="DateTimeOffset"
+                      LastKnownLocation="Package2_1302.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="7f68f236-4233-4136-a557-16c4dd3f2f31"
+                  name="time"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="39d7296b-8bcc-4358-8d26-e224a4843367"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi.Windows%2Fbin%2FDebug%2FFetchItUniversalAndApi.Windows.exe&quot; Namespace%3DFetchItUniversalAndApi.Common Type%3DDateTimeCustom Member%3D(Name%3DTimeSpanAndDateOffsetToDateTime OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETCore%2Fv4.5.1%2FSystem.Runtime.dll&quot; Namespace%3DSystem Type%3DDateTimeOffset)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETCore%2Fv4.5.1%2FSystem.Runtime.dll&quot; Namespace%3DSystem Type%3DTimeSpan)]) ParameterIdentifier%3Dtime"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="0b50b7fd-4566-40be-8c50-cbceeea1e28b"
+                      LastKnownName="TimeSpan"
+                      LastKnownLocation="Package2_1302.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
