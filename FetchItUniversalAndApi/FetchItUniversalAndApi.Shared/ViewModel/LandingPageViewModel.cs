@@ -143,7 +143,7 @@ namespace FetchItUniversalAndApi.ViewModel
         /// </summary>
         private void refreshNotifications()
         {
-            Notifications = MessageHandler.GetNotifications().Result.ToObservableCollection();
+            Notifications = MessageHandler.GetNotifications().ToObservableCollection();
         }
         #endregion
         #endregion

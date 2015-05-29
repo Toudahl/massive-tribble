@@ -18,6 +18,7 @@ namespace FetchItUniversalAndApi.Handlers
         private const string RequiredInput = "More input required";
         private const string NotAllowed = "Not allowed";
         private const string OutOfBounds = "Out of bounds";
+        private const string EditTask = "Edit Task";
 
         private static LogHandler _lh;
 
@@ -190,7 +191,7 @@ namespace FetchItUniversalAndApi.Handlers
 
         #region WrongProfileStatus()
         /// <summary>
-        /// Call this if you want to inform the user that his profile does not have the correct status.
+        /// Calling this method will display a message dialog to the user, informing that the profile is not active and unable to login.
         /// </summary>
         public static void WrongProfileStatus()
         {
@@ -201,7 +202,7 @@ namespace FetchItUniversalAndApi.Handlers
 
         #region FailedLogIn(profileName)
         /// <summary>
-        /// Call this if if you want to inform the user that he login failed.
+        /// Calling this method will display a message dialog to the user, stating that the login failed due to password/username issues.
         /// </summary>
         /// <param name="profileName">Name of profile</param>
         public static void FailedLogIn(string profileName)
@@ -214,37 +215,34 @@ namespace FetchItUniversalAndApi.Handlers
 
         #region NoResponseFromApi()
         /// <summary>
-        /// Call this if no response from the API was given.
+        /// Calling this method will display a message dialog to the user, stating that the API did not respond.
         /// </summary>
         public static void NoResponseFromApi()
         {
-            _messageToUser = "Failed to contact the web api";
-            DisplayErrorMessage(_messageToUser, FailedToContactApi);
+            DisplayErrorMessage("Failed to contact the web api", FailedToContactApi);
         }
         #endregion
 
         #region RequiredFields(fields)
         /// <summary>
-        /// If some required fields are not filled, call this method.
+        /// Calling this method will display a message dialog to the user, stating that not all of the required fields was filled out.
         /// </summary>
         /// <param name="fields">List that contains the fields names.</param>
         public static void RequiredFields(List<string> fields)
         {
             _messageToUser = "You must fill out all required fields:";
-            if (fields != null)
+            if (fields == null) return;
+            foreach (var field in fields)
             {
-                foreach (var field in fields)
-                {
-                    _messageToUser += "\n" + field;
-                }
-                DisplayErrorMessage(_messageToUser, RequiredInput);
+                _messageToUser += "\n" + field;
             }
+            DisplayErrorMessage(_messageToUser, RequiredInput);
         }
         #endregion
 
         #region WrongTargetProfile(action)
         /// <summary>
-        /// Call this if you want to notify that the target profile of the action is invalid.
+        /// Calling this method will display a message dialog to the user, informing that the desired action cannot be performed on the target profile
         /// </summary>
         /// <param name="action">The action that was attempted</param>
         public static void WrongTargetProfile(string action)
@@ -255,7 +253,7 @@ namespace FetchItUniversalAndApi.Handlers
 
         #region WrongProfileLevel(profilelevel, action)
         /// <summary>
-        /// If the profile does not have the required level for the desired action
+        /// Calling this method will display a message dialog to the user, informing that the profile level of the user was not high enough for the desired action.
         /// </summary>
         /// <param name="profileLevel">Actual profile level</param>
         /// <param name="action">The desired action</param>
@@ -267,7 +265,7 @@ namespace FetchItUniversalAndApi.Handlers
 
         #region RatingOutOfBounds()
         /// <summary>
-        /// If the rating was out of bounds, calling this method will notify the user.
+        /// Calling this method will display a message dialog to the user, informing that the selected rating was out of bounds.
         /// </summary>
         public static void RatingOutOfBounds()
         {
@@ -276,9 +274,12 @@ namespace FetchItUniversalAndApi.Handlers
         #endregion
 
         #region CannotEditTask()
+        /// <summary>
+        /// Calling this method will display a message dialog to the user, informing that the selected task cannot be edited.
+        /// </summary>
         public static void CannotEditTask()
         {
-            DisplayErrorMessage("You cannot edit the task in its current condition.", "Edit Task");
+            DisplayErrorMessage("You cannot edit the task in its current condition.", EditTask);
         }
         #endregion
     }

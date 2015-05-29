@@ -24,7 +24,7 @@ namespace FetchItUniversalAndApi.ViewModel
         public string Email { get; set; }
         public string EmailConfirm { get; set; }
         public string Address { get; set; }
-        public int MobilePhone { get; set; }
+        public int? MobilePhone { get; set; }
         public static bool CreationSuccess { get; private set; }
 
         public ICommand RegisterCommand
@@ -56,7 +56,7 @@ namespace FetchItUniversalAndApi.ViewModel
             {
                 errorMessage += "\nAddress has not been filled in";
             }
-            if (MobilePhone == 0)
+            if (MobilePhone == null)
             {
                 errorMessage += "\nYou must enter a mobile phone number";
             }

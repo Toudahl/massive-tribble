@@ -11,6 +11,9 @@ using Newtonsoft.Json;
 namespace FetchItUniversalAndApi.Handlers
 {
     // Author: Morten Toudahl
+    /// <summary>
+    /// This handler will take care of anything that has to do with profiles.
+    /// </summary>
     class ProfileHandler: IDelete, ICreate, ISuspend, IDisable, IUpdate, ISearch
     {
         #region Enums
@@ -391,6 +394,11 @@ namespace FetchItUniversalAndApi.Handlers
         #endregion
 
         #region 'Supporting methods'
+        /// <summary>
+        /// This method is used internally by the class in all methods that modify the status of the profile.
+        /// </summary>
+        /// <param name="profileToModify">Which profile should be modifiled.</param>
+        /// <param name="newStatus">What should the new status be.</param>
         private async void ChangeStatus(ProfileModel profileToModify, ProfileStatus newStatus)
         {
             using (var client = new HttpClient())
@@ -410,6 +418,9 @@ namespace FetchItUniversalAndApi.Handlers
             }
         }
 
+        /// <summary>
+        /// Using this method will update the content of <see cref="AllProfiles"/>
+        /// </summary>
         public async void GetAllProfiles()
         {
             using (var client = new HttpClient())

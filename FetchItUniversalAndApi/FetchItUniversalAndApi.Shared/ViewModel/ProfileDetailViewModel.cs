@@ -44,13 +44,20 @@ namespace FetchItUniversalAndApi.ViewModel
 			selectedProfileRating = "Rating: " + GetAverageRating();
 		}
 
+        /// <summary>
+        /// Gets all the tasks of current user
+        /// </summary>
+        /// <returns></returns>
 		public IEnumerable<TaskModel> GetCurrentUsersTasks()
 		{
 			return
 				TaskHandler.GetTasks(TaskHandler.TaskStatus.Active)
 				.Where(task => task.FK_TaskFetcher == ProfileHandler.CurrentLoggedInProfile.ProfileId);
 		}
-
+        /// <summary>
+        /// Gets the average rating of a user based on all rating he has received.
+        /// </summary>
+        /// <returns></returns>
 		public double GetAverageRating()
 		{
 			var allfedbacks = MessageHandler.GetFeedback(MessageHandler.FeedbackStatus.Active);

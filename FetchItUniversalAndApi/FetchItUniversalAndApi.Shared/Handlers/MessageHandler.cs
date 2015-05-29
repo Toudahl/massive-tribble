@@ -255,11 +255,11 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="fromTask">The Task that you want the comments from</param>
         /// <returns>IENumerable of CommentModels</returns>
-        public static async Task<IEnumerable<CommentModel>> GetTaskComments(TaskModel fromTask)
+        public static IEnumerable<CommentModel> GetTaskComments(TaskModel fromTask)
         {
             try
             {
-                var updatedTaskStream = await Task.Run(() => msgWebClient.GetAsync("CommentModels"));
+                var updatedTaskStream = Task.Run(async () => await msgWebClient.GetAsync("CommentModels")).Result;
                 return
                     updatedTaskStream.Content.ReadAsAsync<IEnumerable<CommentModel>>()
                         .Result.Where(c => c.FK_CommentTask == fromTask.TaskId);
@@ -331,12 +331,12 @@ namespace FetchItUniversalAndApi.Handlers
         /// A method that returns a collection of all Notification objects sent to or from the CurrentLoggedInProfile
         /// </summary>
         /// <returns>IENumerable of NotificationModels</returns>
-        public static async Task<IEnumerable<NotificationModel>> GetNotifications()
+        public static IEnumerable<NotificationModel> GetNotifications()
         {
             try
             {
-                var notificationsStream = await Task.Run(() => msgWebClient.GetAsync("NotificationModels"));
-                var notificationStreamContent = notificationsStream.Content;
+                var notificationsStream = Task.Run(async () => await msgWebClient.GetAsync("NotificationModels"));
+                var notificationStreamContent = notificationsStream.Result.Content;
                 return 
                     notificationStreamContent.ReadAsAsync<IEnumerable<NotificationModel>>()
                         .Result.Select(n => n)

@@ -22,7 +22,9 @@ namespace FetchItUniversalAndApi.Handlers
 		private static ReportHandler _handler;
 		private static HttpClient Client { get; set; }
 
-		// Must be set to the same values as the values in the db.
+		/// <summary>
+		/// The different statuses a report can have. Values correspond to the values in the database.
+		/// </summary>
 		public enum ReportStatus
 		{
 			Active,
@@ -39,6 +41,10 @@ namespace FetchItUniversalAndApi.Handlers
 
 		}
 
+		/// <summary>
+		/// Returns an Instance of the ReportHandler. Use this method instead of using the new keyword.
+		/// </summary>
+		/// <returns></returns>
 		public static ReportHandler GetInstance()
 		{
 			lock (_lockObject)

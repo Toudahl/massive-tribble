@@ -109,7 +109,7 @@ namespace FetchItUniversalAndApi.ViewModel
 				TaskStatus = (TaskHandler.TaskStatus)SelectedTask.FK_TaskStatus;
 
 				//Adds all the comments through the MessageHandler
-				CommentsForTask = MessageHandler.GetTaskComments(SelectedTask).Result.ToObservableCollection();
+				CommentsForTask = MessageHandler.GetTaskComments(SelectedTask).ToObservableCollection();
 
 				ItemPrice = SelectedTask.TaskItemPrice.ToString();
 				TaskFee = SelectedTask.TaskFee.ToString();
@@ -388,7 +388,7 @@ namespace FetchItUniversalAndApi.ViewModel
 			{
 				MessageHandler.CreateTaskComment(SelectedTask, CommentToLeave, ProfileHandler.CurrentLoggedInProfile);
 				await Task.Delay(1000);
-				CommentsForTask = MessageHandler.GetTaskComments(SelectedTask).Result.ToObservableCollection();
+				CommentsForTask = MessageHandler.GetTaskComments(SelectedTask).ToObservableCollection();
 				CommentToLeave = "";
 				SuccessMessage = "Visible";
 				await Task.Delay(5000);
