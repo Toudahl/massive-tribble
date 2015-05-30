@@ -7,18 +7,65 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="using:FetchItUniversalAndApi.ViewModel"
     mc:Ignorable="d">
-<Page.DataContext>
+    <Page.DataContext>
         <viewModel:LogInViewModel/>
-</Page.DataContext>
+    </Page.DataContext>
+
     <Grid Background="{StaticResource FetchitBackgroundColour}">
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
-            <TextBlock Text="Enter information:" FontSize="25"/>
-            <TextBox Text="{Binding Username, Mode=TwoWay}" PlaceholderText="Username"/>
-            <PasswordBox Password="{Binding Password, Mode=TwoWay}" PlaceholderText="Password" />
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button x:Name="button_login" Content="Log in" Command="{Binding LogInCommand}"  Click="LoginButton_OnClick"/>
-                <Button x:Name="button_register" Content="Register" Click="RegisterButton_OnClick" Width="100"/>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="362*"/>
+            <RowDefinition Height="169*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <TextBlock Text="FetchIt!" 
+                   Grid.Column="1" 
+                   FontSize="480"
+                   HorizontalAlignment="Center" 
+                   TextWrapping="Wrap" 
+                   VerticalAlignment="center" 
+                   FontFamily="Remachine Script Personal Use " Foreground="#FFCCFFCC"/>
+
+        <Grid Row="1">
+            <StackPanel Grid.Column="1"  
+                        Grid.Row="1"
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Top">
+
+                <TextBlock Text="LOG IN" 
+                           Height="30"
+                           VerticalAlignment="Top"
+                           FontSize="25" 
+                           HorizontalAlignment="Left" 
+                           Width="79"/>
+
+                <TextBox Text="{Binding Username, Mode=TwoWay}" 
+                         PlaceholderText="Username"/>
+
+                <PasswordBox Password="{Binding Password, Mode=TwoWay}" 
+                             PlaceholderText="Password" />
+
+                <StackPanel Orientation="Vertical" 
+                            HorizontalAlignment="Center">
+                    <Button x:Name="button_login" 
+                            Content="Log in" 
+                            Command="{Binding LogInCommand}"  
+                            Click="LoginButton_OnClick" 
+                            Width="300"/>
+
+                    <Button x:Name="button_register" 
+                            Content="Create a new account!"
+                            Click="RegisterButton_OnClick" 
+                            Width="165" 
+                            Opacity="0.595" 
+                            BorderThickness="0" 
+                            Height="30" 
+                            FontSize="12" 
+                            HorizontalAlignment="Left"/>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
+        </Grid>
     </Grid>
 </Page>

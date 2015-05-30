@@ -85,5 +85,10 @@ namespace FetchItUniversalAndApi.View
             notificationsListView.Visibility = Visibility.Visible;
             NotificationStackPanel.Visibility = Visibility.Visible;
         }
+
+        private void backButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof (LandingPage));
+        }
     }
 }

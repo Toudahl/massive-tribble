@@ -8,153 +8,178 @@
 			xmlns:c="using:FetchItUniversalAndApi.Common"
 			xmlns:viewModel="using:FetchItUniversalAndApi.ViewModel"
 			mc:Ignorable="d">
-	<Page.DataContext>
-		<viewModel:LandingPageViewModel />
-	</Page.DataContext>
+    <Page.DataContext>
+        <viewModel:LandingPageViewModel />
+    </Page.DataContext>
 
-	<Grid Background="{StaticResource FetchitBackgroundColour}">
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="50" />
-			<ColumnDefinition Width="100*" />
-			<ColumnDefinition Width="100*" />
-			<ColumnDefinition Width="50" />
-		</Grid.ColumnDefinitions>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="50" />
-			<RowDefinition Height="100*" />
-			<RowDefinition Height="100*" />
-			<RowDefinition Height="50" />
-		</Grid.RowDefinitions>
-		<StackPanel Orientation="Vertical"
-								Grid.Column="1"
-								Grid.Row="1"
-								Grid.RowSpan="2">
-			<StackPanel Orientation="Horizontal">
-				<TextBlock x:Name="welcomeText"
-									 Text="{Binding WelcomeText}"
-									 FontSize="45" />
-				<Button x:Name="messageHubButton"
-								Content="Message Hub"
-								Click="MessageHubButton_OnClickButton_Click" />
-				<Button x:Name="profileDetailsButton"
-								Height="36"
-								Width="36"
-								Click="profileDetailsButton_Click"
-								Style="{StaticResource FetchitButtonUser}" />
-				<Button x:Name="issuePageButton"
-								BorderBrush="{x:Null}"
-								Click="issuePageButton_Click">
-					<StackPanel>
-						<Image Source="../Assets/Button Icons/ExclamationMark.png"
-									 MaxWidth="30"
-									 MaxHeight="30" />
-					</StackPanel>
-				</Button>
-			</StackPanel>
-			<StackPanel Orientation="Horizontal"
-									HorizontalAlignment="Center">
-				<StackPanel Orientation="Vertical">
-					<StackPanel Orientation="Horizontal"
-											HorizontalAlignment="Center">
-						<TextBlock Text="Notifications"
-											 FontSize="25" />
-						<Button x:Name="notificationsRefreshButton"
-										Width="28"
-										Height="28"
-										HorizontalAlignment="Left"
-										Style="{StaticResource FetchitButtonRefresh}"
-										VerticalAlignment="Top"
-										Command="{Binding RefreshNotifications}" />
-					</StackPanel>
-					<ListView x:Name="notificationsListView"
-										ItemsSource="{Binding Notifications, Mode=TwoWay}"
-										Height="500"
-										Width="300"
-										BorderThickness="1"
-										BorderBrush="MistyRose"
-										SelectionChanged="notificationsListView_SelectionChanged">
-						<ListView.ItemTemplate>
-							<DataTemplate>
-								<StackPanel Orientation="Horizontal"
-														VerticalAlignment="Top">
-									<StackPanel.Resources>
-										<c:NullToPictureConverter x:Key="NullToPictureConverter" />
-									</StackPanel.Resources>
-									<Image Source="{Binding NotificationRead, Converter={StaticResource NullToPictureConverter}}"
-												 Stretch="UniformToFill"
-												 Height="20"
-												 Width="20" />
-									<StackPanel Orientation="Vertical">
-										<TextBlock Text="{Binding NotificationSent}"
+    <Grid Background="{StaticResource FetchitBackgroundColour}">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Top Grid -->
+        <Grid Background="#FF0099CC">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="548"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="appBarButton" Margin="39,59,0,0"
+                    Style="{StaticResource NavigationBackButtonNormalStyle}" 
+                    RenderTransformOrigin="0.5,0.5" Height="41" Width="41">
+                <Button.RenderTransform>
+                    <CompositeTransform Rotation="180"/>
+                </Button.RenderTransform>
+            </Button>
+            <TextBlock Text="Menu"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Bottom"
+                       Margin="46,0,46,20" Height="13" Width="28"/>
+
+            <TextBlock x:Name="pageTitle" 
+                        Text="{Binding WelcomeText}"
+                        Style="{StaticResource HeaderTextBlockStyle}" 
+                        Grid.Column="1" 
+                        IsHitTestVisible="false" 
+                        TextWrapping="NoWrap" 
+                        VerticalAlignment="Bottom"
+                        Margin="0,0,0,40" Height="40"/>
+
+            <TextBlock Text="FetchIt!" 
+                   Grid.Column="2" 
+                   FontSize="140"
+                   HorizontalAlignment="Center" 
+                   TextWrapping="Wrap" 
+                   VerticalAlignment="center" 
+                   FontFamily="Remachine Script Personal Use " Foreground="#FFCCFFCC" Height="149" Margin="83,-7,294,-2" Width="321"/>
+
+        </Grid>
+
+        <Grid Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+
+                <ColumnDefinition Width="*"/>
+
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Column="0">
+                <TextBlock Text="Notifications"
+                           FontSize="35"
+                           Margin="15,0,130,0"
+                           VerticalAlignment="Center"/>
+
+                <Button x:Name="notificationsRefreshButton"
+						Width="47"
+						Height="47"
+						HorizontalAlignment="Left"
+						Style="{StaticResource FetchitButtonRefresh}"
+						VerticalAlignment="Top"
+						Command="{Binding RefreshNotifications}" 
+                        Margin="250,7,0,0" />
+            </Grid>
+
+
+            <Grid Column="1">
+                <TextBlock Text="My Tasks"
+                           FontSize="35"
+                           Margin="15,0,130,0"
+                           VerticalAlignment="Center"/>
+                <Button x:Name="activeTasksRefreshButton"
+						Width="48"
+						Height="48"
+						Style="{StaticResource FetchitButtonRefresh}"
+						HorizontalAlignment="Left"
+						VerticalAlignment="Top"
+						Command="{Binding RefreshMarketplace}"  
+                        Margin="250,7,0,0"/>
+            </Grid>
+
+            <Grid Column="2">
+                <TextBlock Text="Marketplace"
+                           FontSize="35"
+                           Margin="15,0,130,0"
+                           VerticalAlignment="Center"/>
+                <Button x:Name="refreshMarketplaceButton"
+            		Style="{StaticResource FetchitButtonRefresh}"
+            		Command="{Binding RefreshMarketplace}"
+            		Click="refreshMarketplaceButton_Click"
+            		Width="48"
+            		Height="48" Margin="250,7,0,5" />
+                <Button x:Name="CreateTaskButton"
+            		Style="{StaticResource FetchitButtonAdd}"
+            		Width="48"
+            		Height="47"
+            		Click="CreateTaskButton_Click" Margin="329,7,0,6"/>
+            </Grid>
+
+            <Grid Row="2">
+                <ListView x:Name="notificationsListView"
+						  ItemsSource="{Binding Notifications, Mode=TwoWay}"
+						  SelectionChanged="notificationsListView_SelectionChanged">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding NotificationContent}"
+															 FontSize="18"
+															 TextWrapping="NoWrap"
+															 Margin="10,0,0,0" />
+                                <TextBlock Text="{Binding NotificationSent}"
 															 FontSize="12"
 															 TextWrapping="NoWrap"
 															 Margin="10,0,0,0" />
-										<TextBlock Text="{Binding NotificationContent}"
-															 FontSize="12"
-															 TextWrapping="NoWrap"
-															 Margin="10,0,0,0" />
-									</StackPanel>
-								</StackPanel>
-							</DataTemplate>
-						</ListView.ItemTemplate>
-					</ListView>
-				</StackPanel>
-				<StackPanel Margin="10,0,0,0">
-					<StackPanel Orientation="Horizontal"
-											HorizontalAlignment="Center">
-						<TextBlock Text="My Tasks"
-											 HorizontalAlignment="Center"
-											 FontSize="25" />
-						<Button x:Name="activeTasksRefreshButton"
-										Width="28"
-										Height="28"
-										Style="{StaticResource FetchitButtonRefresh}"
-										HorizontalAlignment="Left"
-										VerticalAlignment="Top"
-										Command="{Binding RefreshMarketplace}" />
-					</StackPanel>
-					<ListView x:Name="userActiveTasksListView"
-										ItemsSource="{Binding ActiveTasks, Mode=TwoWay}"
-										Height="500"
-										Width="300"
-										BorderThickness="1"
-										BorderBrush="MistyRose"
-										SelectionChanged="userActiveTasksListView_SelectionChanged"
-										SelectedItem="{Binding th.SelectedTask, Mode=TwoWay}" />
-				</StackPanel>
-			</StackPanel>
-		</StackPanel>
-		<StackPanel Orientation="Vertical"
-								Grid.Column="2"
-								Grid.Row="1"
-								Grid.RowSpan="2">
-			<StackPanel Orientation="Horizontal"
-									HorizontalAlignment="Center">
-				<TextBlock x:Name="marketplaceTitleTextBlock"
-									 Text="Marketplace"
-									 FontSize="40"
-									 Margin="30,0,0,0" />
-				<Button x:Name="refreshMarketplaceButton"
-								Style="{StaticResource FetchitButtonRefresh}"
-								Command="{Binding RefreshMarketplace}"
-								Click="refreshMarketplaceButton_Click"
-								Width="28"
-								Height="28" />
-				<Button x:Name="CreateTaskButton"
-								Style="{StaticResource FetchitButtonAdd}"
-								Width="28"
-								Height="28"
-								Click="CreateTaskButton_Click" />
-			</StackPanel>
-			<ListView x:Name="marketplaceListView"
-								ItemsSource="{Binding Marketplace}"
-								Height="600"
-								Width="600"
-								FontSize="4"
-								SelectedItem="{Binding th.SelectedTask, Mode=TwoWay}"
-								SelectionChanged="marketplaceListView_SelectionChanged"
-								BorderThickness="1"
-								BorderBrush="MistyRose" />
-		</StackPanel>
-	</Grid>
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+
+            <Grid Row="2"
+                  Column="1">
+                <ListView x:Name="userActiveTasksListView"
+					  	  ItemsSource="{Binding ActiveTasks, Mode=TwoWay}"
+						  SelectionChanged="userActiveTasksListView_SelectionChanged"
+						  SelectedItem="{Binding th.SelectedTask, Mode=TwoWay}" />
+            </Grid>
+
+            <Grid Row ="2"
+                  Column="4">
+                <ListView x:Name="marketplaceListView"
+                          ItemsSource="{Binding Marketplace}"
+						  SelectedItem="{Binding th.SelectedTask, Mode=TwoWay}"
+                          SelectionChanged="marketplaceListView_SelectionChanged" 
+                          FontSize="18"/>
+
+            </Grid>
+
+            <AppBar Grid.ColumnSpan="2"
+                    Grid.RowSpan="2">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal"/>
+                    <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal"/>
+                </Grid>
+            </AppBar>
+
+        </Grid>
+    </Grid>
 </Page>

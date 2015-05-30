@@ -366,7 +366,11 @@ namespace FetchItUniversalAndApi.Handlers
 
         #region Get Tasks
         /// <summary>
+<<<<<<< Updated upstream
         /// GetTasks returns tasks of the supplied Status (All, Active, Reported...)
+=======
+        /// GetTasks returuns all active, completed, and semi-completetd tasks
+>>>>>>> Stashed changes
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -378,6 +382,7 @@ namespace FetchItUniversalAndApi.Handlers
             {
                 getAll = Task.Run(async () => JsonConvert.DeserializeObject<IEnumerable<TaskModel>>(
                 await client.GetStringAsync(taskAPI))).Result;
+<<<<<<< Updated upstream
             }
             if (value == TaskStatus.All)
             {
@@ -410,6 +415,9 @@ namespace FetchItUniversalAndApi.Handlers
             if (value == TaskStatus.FetcherCompleted)
             {
                 return getAll.Where(s => s.FK_TaskStatus == 7);
+=======
+                return getAll.Where(n =>  n.FK_TaskStatus == 1 || n.FK_TaskStatus == 5 || n.FK_TaskStatus == 6 || n.FK_TaskStatus == 7);
+>>>>>>> Stashed changes
             }
             return null;
         }

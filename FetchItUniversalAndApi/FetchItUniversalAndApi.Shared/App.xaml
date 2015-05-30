@@ -5,7 +5,7 @@
     xmlns:local="using:FetchItUniversalAndApi">
     <Application.Resources>
         <x:String x:Key="AppName">Fetch it!</x:String>
-        <Brush x:Key="FetchitBackgroundColour">MidnightBlue</Brush>
+        <Brush x:Key="FetchitBackgroundColour">#66CCFF</Brush>
         
         
         <Style TargetType="Button" x:Key="FetchitButtonBaseStyle">
@@ -68,7 +68,15 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
+        
+        
+        <Style x:Key="FetchitMenuButton" TargetType="Button" BasedOn="{StaticResource FetchitButtonBaseStyle}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Assets/Button Icons/overflowdots.png"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
     </Application.Resources>
 </Application>

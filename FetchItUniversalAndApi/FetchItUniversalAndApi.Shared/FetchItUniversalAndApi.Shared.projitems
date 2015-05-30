@@ -75,7 +75,9 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\Button Icons\Add.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Button Icons\Done.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Button Icons\ExclamationMark.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Button Icons\overflowdots.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Button Icons\Refresh.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Button Icons\User.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Patterns\628143.png" />
   </ItemGroup>
 </Project>
