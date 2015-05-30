@@ -1,4 +1,7 @@
 ﻿
+using System.Linq;
+using FetchItUniversalAndApi.Handlers;
+
 namespace FetchItUniversalAndApi.Models
 {
     public partial class CommentModel
@@ -15,7 +18,18 @@ namespace FetchItUniversalAndApi.Models
 
 	    public override string ToString()
 	    {
-		    return CommentText;
+		    var ph = ProfileHandler.GetInstance();
+		    var profiles = ph.AllProfiles;
+		    var profileName = profiles.Where(profile => profile.ProfileId == FK_CommentCreator).Select(profile => profile.ProfileName).First();
+
+		    if (profileName != null)
+		    {
+				return profileName + ": " + CommentText;
+		    }
+		    else
+		    {
+			    return CommentText;
+		    }
 	    }
     }
 }

@@ -94,47 +94,6 @@
               LastKnownLocation="Modeling.uml" />
           </interfaceRealization>
         </suppliersInternal>
-        <targetEnds>
-          <association
-            Id="b3071fc6-6b6b-4be6-9cd1-6ab44181d761"
-            isDerived="false"
-            sourceEndRoleName="ProfileHandler"
-            targetEndRoleName="ProfileModel"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="e1e7f1d2-8fd0-40d7-b78d-906ec1681ada"
-              LastKnownName="ProfileModel"
-              LastKnownLocation="Package1_1302.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="626dc93e-7e91-4eb5-8373-550333f97ec5"
-                  name="ProfileHandler"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="6534024a-60dc-4e3f-9d0c-c27c4451be66"
-                  name="ProfileModel"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-        </targetEnds>
         <ownedAttributesInternal>
           <property
             Id="1eef4534-7f34-4b90-b0ae-be33fe88d891"

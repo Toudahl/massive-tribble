@@ -314,7 +314,7 @@ namespace FetchItUniversalAndApi.Handlers
             notificationToPost.NotificationSent = DateTime.UtcNow;
             notificationToPost.FK_NotificationTo = profileTo.ProfileId;
             //TODO: Make sure after database is flushed that this is the System profile
-            notificationToPost.FK_NotificationFrom = 1;
+            notificationToPost.FK_NotificationFrom = 45;
             notificationToPost.NotificationContent = notificationMessage;
             #endregion
             try

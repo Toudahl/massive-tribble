@@ -1,4 +1,5 @@
-﻿using Windows.UI.Popups;
+﻿using System.Threading.Tasks;
+using Windows.UI.Popups;
 using FetchItUniversalAndApi.Common;
 using System;
 using Windows.UI.Xaml;
@@ -96,6 +97,17 @@ namespace FetchItUniversalAndApi.View
 
 		private void cancelButton_Click(object sender, RoutedEventArgs e)
 		{
+			navigationHelper.GoBack();
+		}
+
+		async private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			//Similar implementation on TaskDetailPage and CreateFeedBackPage, here used to
+			//navigate back to the detail page after a report has been submitted.
+			while (ReportSuccessMessage.Visibility == Visibility.Collapsed)
+			{
+				await Task.Delay(500);
+			}
 			navigationHelper.GoBack();
 		}
 	}

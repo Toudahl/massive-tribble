@@ -23,7 +23,6 @@ namespace FetchItUniversalAndApi.ViewModel
 		public ProfileHandler ProfileHandler { get; set; }
 		public ReportHandler ReportHandler { get; set; }
 		public ICommand SubmitReportCommand { get; set; }
-		public bool ReportSubmitted { get; set; }
 
 		#endregion
 
@@ -34,8 +33,7 @@ namespace FetchItUniversalAndApi.ViewModel
 			//pop up, telling the user that reporting the profile was successful, also used 
 			//to navigate back.
 			SuccessMessage = "Collapsed";
-			ReportSubmitted = false;
-
+			
 			ProfileHandler = ProfileHandler.GetInstance();
 			ReportHandler = ReportHandler.GetInstance();
 			ProfileToReport = ProfileHandler.SelectedProfile;
@@ -50,27 +48,19 @@ namespace FetchItUniversalAndApi.ViewModel
 		/// </summary>
 		async private void SubmitReport()
 		{
-			if (ReportSubmitted)
-			{
-				MessageDialog message = new MessageDialog("You have already reported this profile.", "Submit Report");
-				await message.ShowAsync();
-			}
-			else
-			{
-				var reportToSubmit = ReportHandler.CreateNewReport(ProfileToReport, ReportMessage);
-				MessageDialog message = new MessageDialog("Are you sure you want to submit this report?", "Submit Report");
-				message.Commands.Add(new UICommand(
-					"Yes",
-					command => CreateTheReport(reportToSubmit)));
+			var reportToSubmit = ReportHandler.CreateNewReport(ProfileToReport, ReportMessage);
+			MessageDialog message = new MessageDialog("Are you sure you want to submit this report?", "Submit Report");
+			message.Commands.Add(new UICommand(
+				"Yes",
+				command => CreateTheReport(reportToSubmit)));
 
-				message.Commands.Add(new UICommand(
-					"No"));
+			message.Commands.Add(new UICommand(
+				"No"));
 
-				message.DefaultCommandIndex = 0;
-				message.CancelCommandIndex = 1;
+			message.DefaultCommandIndex = 0;
+			message.CancelCommandIndex = 1;
 
-				await message.ShowAsync();
-			}
+			await message.ShowAsync();
 		}
 
 		/// <summary>
@@ -82,10 +72,10 @@ namespace FetchItUniversalAndApi.ViewModel
 			try
 			{
 				ReportHandler.Create(reportToSubmit);
+				MessageHandler.SendNotification("Profile: '" + LoggedInProfile.ProfileName + "' has just reported you.", ProfileToReport);
 				await Task.Delay(500);
 				ReportMessage = "";
 				SuccessMessage = "Visible";
-				ReportSubmitted = true;
 				await Task.Delay(5000);
 				SuccessMessage = "Collapsed";
 			}

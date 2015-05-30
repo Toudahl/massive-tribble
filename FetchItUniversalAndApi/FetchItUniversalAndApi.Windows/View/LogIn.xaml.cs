@@ -17,6 +17,7 @@ namespace FetchItUniversalAndApi.View
         {
             this.InitializeComponent();
             ph = ProfileHandler.GetInstance();
+			ph.GetAllProfiles();
         }
 
         private void RegisterButton_OnClick(object sender, RoutedEventArgs e)

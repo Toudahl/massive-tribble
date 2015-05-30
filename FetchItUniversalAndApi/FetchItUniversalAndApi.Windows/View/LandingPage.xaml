@@ -50,6 +50,11 @@
 									 MaxHeight="30" />
 					</StackPanel>
 				</Button>
+				<Button x:Name="profileLogoutButton"
+								Height="46"
+								Width="48"
+								Style="{StaticResource FetchitButtonLogOut}"
+								Click="profileLogoutButton_Click" />
 			</StackPanel>
 			<StackPanel Orientation="Horizontal"
 									HorizontalAlignment="Center">
