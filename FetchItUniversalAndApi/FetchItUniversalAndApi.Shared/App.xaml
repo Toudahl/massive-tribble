@@ -77,6 +77,15 @@
                 </Setter.Value>
             </Setter>
         </Style>
+		<Style x:Key="FetchitButtonLogOut"
+					 TargetType="Button"
+					 BasedOn="{StaticResource FetchitButtonBaseStyle}">
+			<Setter Property="Background">
+				<Setter.Value>
+					<ImageBrush ImageSource="Assets/Button Icons/Logout.png" />
+				</Setter.Value>
+			</Setter>
+		</Style>
 
-    </Application.Resources>
+	</Application.Resources>
 </Application>

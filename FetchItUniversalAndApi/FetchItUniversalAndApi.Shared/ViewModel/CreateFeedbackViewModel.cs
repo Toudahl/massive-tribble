@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -21,6 +22,7 @@ namespace FetchItUniversalAndApi.ViewModel
 
 		public TaskHandler TaskHandler { get; set; }
 		public TaskModel SelectedTask { get; set; }
+		public ProfileModel Fetcher { get; set; }
 		public ProfileHandler ProfileHandler { get; set; }
 		public ProfileModel LoggedInProfile { get; set; }
 		public ICommand SubmitFeedbackCommand { get; set; }
@@ -39,6 +41,11 @@ namespace FetchItUniversalAndApi.ViewModel
 			ProfileHandler = ProfileHandler.GetInstance();
 			LoggedInProfile = ProfileHandler.CurrentLoggedInProfile;
 			SelectedTask = TaskHandler.SelectedTask;
+			
+			//Needs the fetcher so it can use the SendNotification Method
+			Fetcher =
+				ProfileHandler.Search(new ProfileModel() {ProfileId = (int)SelectedTask.FK_TaskFetcher}).ToObservableCollection().First()
+					as ProfileModel;
 
 			SubmitFeedbackCommand = new RelayCommand(SubmitFeedback);
 
@@ -73,7 +80,7 @@ namespace FetchItUniversalAndApi.ViewModel
 		}
 
 		/// <summary>
-		/// This method calls the message handler to create and POST a feedback from the user to the database.
+		/// This method calls the message handler to create and POST a feedback from the user to the database. Also sends a notification to the fetcher.
 		/// </summary>
 		async public void CreateTheFeedback()
 		{
@@ -81,6 +88,7 @@ namespace FetchItUniversalAndApi.ViewModel
 			{
 				await Task.Delay(500);
 				MessageHandler.CreateFeedback(Rating, OptionalText, SelectedTask);
+				MessageHandler.SendNotification("Taskmaster: '" + ProfileHandler.CurrentLoggedInProfile.ProfileName + "' just left you a feedback for your performance on task '" + SelectedTask.TaskId + "'.", Fetcher);
 				SuccessMessage = "Visible";
 				OptionalText = "";
 				Rating = 0;

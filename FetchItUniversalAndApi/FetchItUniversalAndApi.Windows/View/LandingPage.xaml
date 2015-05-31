@@ -79,6 +79,11 @@
 
             <!-- Notifications Listview-->
             <Grid Column="0">
+				<Button x:Name="profileLogoutButton"
+								Height="46"
+								Width="48"
+								Style="{StaticResource FetchitButtonLogOut}"
+								Click="profileLogoutButton_Click" />
                 <TextBlock Text="Notifications"
                            FontSize="35"
                            Margin="15,0,130,0"

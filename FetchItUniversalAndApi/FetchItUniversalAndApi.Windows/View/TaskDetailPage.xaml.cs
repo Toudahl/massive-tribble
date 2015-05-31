@@ -105,6 +105,7 @@ namespace FetchItUniversalAndApi.View
 			var th = TaskHandler.GetInstance();
 			var ph = ProfileHandler.GetInstance();
 
+			#region Button instantiations
 			//This code makes the Create Feedback button visible on three conditions:
 			//1. If the current logged in profile is the taskmaster of the task.
 			//2. If the task does not have any feedbacks.
@@ -193,8 +194,9 @@ namespace FetchItUniversalAndApi.View
 					}
 				}
 			}
+			#endregion
 		}
-
+			
 		protected override void OnNavigatedFrom(NavigationEventArgs e)
 		{
 			navigationHelper.OnNavigatedFrom(e);
@@ -244,14 +246,6 @@ namespace FetchItUniversalAndApi.View
 				await Task.Delay(500);
 			}
 			CommentBorder.Visibility = Visibility.Collapsed;
-		}
-
-
-
-		private void Button_Click_1(object sender, RoutedEventArgs e)
-		{
-			this.Frame.Navigate(typeof(IssuesView));
-
 		}
 
 		private void taskFetcherBind_Tapped(object sender, TappedRoutedEventArgs e)

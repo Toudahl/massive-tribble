@@ -134,6 +134,13 @@ namespace FetchItUniversalAndApi.View
 			this.Frame.Navigate(typeof(TaskDetailPage));
 		}
 
+		private void profileLogoutButton_Click(object sender, RoutedEventArgs e)
+		{
+			var ph = ProfileHandler.GetInstance();
+			ph.LogOut();
+			this.Frame.Navigate(typeof(MainPage));
+		}
+
         private void appBarButton_Click(object sender, RoutedEventArgs e)
         {
             if (appBar.IsOpen == true)

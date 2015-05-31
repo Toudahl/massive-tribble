@@ -101,7 +101,7 @@ namespace FetchItUniversalAndApi.View
 
 		async private void submitFeedbackBtn_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
-			//Similar implementation in TaskDetailPage to close CommentGrid, here used to
+			//Similar implementation on TaskDetailPage and CreateFeedBackPage, here used to
 			//navigate back to the detail page after a feedback has been submitted.
 			while (FeedbackSuccessMessage.Visibility == Visibility.Collapsed)
 			{

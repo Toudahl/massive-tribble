@@ -187,7 +187,7 @@
 		<TextBlock x:Name="FetcherBlock"
 							 Grid.Column="3"
 							 HorizontalAlignment="Left"
-							 Margin="44,102,0,0"
+							 Margin="32,102,0,0"
 							 TextWrapping="Wrap"
 							 Text="Fetcher:"
 							 VerticalAlignment="Top"
@@ -198,14 +198,13 @@
 		<TextBlock x:Name="FetcherBind"
 							 Grid.Column="3"
 							 HorizontalAlignment="Left"
-							 Margin="44,168,0,0"
+							 Margin="32,171,-13,0"
 							 TextWrapping="Wrap"
 							 Text="{Binding FetcherName}"
 							 VerticalAlignment="Top"
-							 FontSize="40"
-							 Width="336"
+							 FontSize="30"
 							 Grid.Row="2"
-							 Height="54" />
+							 Grid.ColumnSpan="2" />
 
 	</Grid>
 </Page>

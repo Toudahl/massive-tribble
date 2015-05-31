@@ -72,7 +72,7 @@
         <referencesInternal>
           <reference
             Id="1c7c6483-ccba-4b72-98cd-222f6e7d83c7"
-            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJakub%2FDesktop%2Fproject%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi.Windows%2Fbin%2FDebug%2FFetchItUniversalAndApi.Windows.exe Namespace%3DFetchItUniversalAndApi.Handlers.Interfaces Type%3DICreate"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi.Windows%2Fbin%2FDebug%2FFetchItUniversalAndApi.Windows.exe&quot; Namespace%3DFetchItUniversalAndApi.Handlers.Interfaces Type%3DICreate"
             tag="ViewCode" />
         </referencesInternal>
         <appliedStereotypesInternal>
@@ -123,7 +123,7 @@
         <referencesInternal>
           <reference
             Id="2749ef29-ecda-42bc-a98c-4ef43916f0ef"
-            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJakub%2FDesktop%2Fproject%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi.Windows%2Fbin%2FDebug%2FFetchItUniversalAndApi.Windows.exe Namespace%3DFetchItUniversalAndApi.Handlers.Interfaces Type%3DIDelete"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi.Windows%2Fbin%2FDebug%2FFetchItUniversalAndApi.Windows.exe&quot; Namespace%3DFetchItUniversalAndApi.Handlers.Interfaces Type%3DIDelete"
             tag="ViewCode" />
         </referencesInternal>
         <appliedStereotypesInternal>
@@ -174,7 +174,7 @@
         <referencesInternal>
           <reference
             Id="c4f4eb50-951f-4652-91bb-b15f3088ae2d"
-            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJakub%2FDesktop%2Fproject%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi.Windows%2Fbin%2FDebug%2FFetchItUniversalAndApi.Windows.exe Namespace%3DFetchItUniversalAndApi.Handlers.Interfaces Type%3DIDisable"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi.Windows%2Fbin%2FDebug%2FFetchItUniversalAndApi.Windows.exe&quot; Namespace%3DFetchItUniversalAndApi.Handlers.Interfaces Type%3DIDisable"
             tag="ViewCode" />
         </referencesInternal>
         <appliedStereotypesInternal>
@@ -225,7 +225,7 @@
         <referencesInternal>
           <reference
             Id="4529d4bd-0e44-473a-897a-542969c0dddc"
-            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJakub%2FDesktop%2Fproject%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi.Windows%2Fbin%2FDebug%2FFetchItUniversalAndApi.Windows.exe Namespace%3DFetchItUniversalAndApi.Handlers.Interfaces Type%3DISearch"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi.Windows%2Fbin%2FDebug%2FFetchItUniversalAndApi.Windows.exe&quot; Namespace%3DFetchItUniversalAndApi.Handlers.Interfaces Type%3DISearch"
             tag="ViewCode" />
         </referencesInternal>
         <appliedStereotypesInternal>
@@ -276,7 +276,7 @@
         <referencesInternal>
           <reference
             Id="479d13ad-7691-4887-aac9-8baa40a40755"
-            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJakub%2FDesktop%2Fproject%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi.Windows%2Fbin%2FDebug%2FFetchItUniversalAndApi.Windows.exe Namespace%3DFetchItUniversalAndApi.Handlers.Interfaces Type%3DISuspend"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi.Windows%2Fbin%2FDebug%2FFetchItUniversalAndApi.Windows.exe&quot; Namespace%3DFetchItUniversalAndApi.Handlers.Interfaces Type%3DISuspend"
             tag="ViewCode" />
         </referencesInternal>
         <appliedStereotypesInternal>
@@ -327,7 +327,7 @@
         <referencesInternal>
           <reference
             Id="3df4a761-c60e-43d3-a687-1942e9fdcd53"
-            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJakub%2FDesktop%2Fproject%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi.Windows%2Fbin%2FDebug%2FFetchItUniversalAndApi.Windows.exe Namespace%3DFetchItUniversalAndApi.Handlers.Interfaces Type%3DIUpdate"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3D&quot;file:%2F%2F%2Fd:%2FDokumenter%2FVisual Studio 2013%2FProjects%2F2. Semester%2FFetchItApp%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi%2FFetchItUniversalAndApi.Windows%2Fbin%2FDebug%2FFetchItUniversalAndApi.Windows.exe&quot; Namespace%3DFetchItUniversalAndApi.Handlers.Interfaces Type%3DIUpdate"
             tag="ViewCode" />
         </referencesInternal>
         <appliedStereotypesInternal>

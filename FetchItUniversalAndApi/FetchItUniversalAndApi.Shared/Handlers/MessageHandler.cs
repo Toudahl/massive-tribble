@@ -274,23 +274,56 @@ namespace FetchItUniversalAndApi.Handlers
 
         #region Pertaining to Notifications
         /// <summary>
-        /// Creates a Notification object and POSTs it to the database server by parsing it to json.
+        /// Creates a Notification object sent from a profile and POSTs it to the database server by parsing it to json.
         /// </summary>
-        /// <param name="notification">The Notification to Send</param>
+        /// <param name="notificationMessage">The notification text to Send. Currently has no formatting guidelines</param>
+        /// <param name="profileTo">The profile receiving the notification</param>
+        /// <param name="profileFrom">The profile sending the notification. If it's not being sent from a profile use the other overload</param>
         //TODO: Make return type Task
-        public static async void SendNotification(NotificationModel notification)
+        public static async void SendNotification(string notificationMessage, ProfileModel profileTo, ProfileModel profileFrom)
         {
             #region Build Notification
-            notification.FK_NotificationStatus = 1;
-            notification.NotificationSent = DateTime.UtcNow;
+            NotificationModel notificationToPost = new NotificationModel();
+            notificationToPost.FK_NotificationStatus = 1;
+            notificationToPost.NotificationSent = DateTime.UtcNow;
+            notificationToPost.FK_NotificationTo = profileTo.ProfileId;
+            notificationToPost.FK_NotificationFrom = profileFrom.ProfileId;
+            notificationToPost.NotificationContent = notificationMessage;
             #endregion
             try
             {
-                await msgWebClient.PostAsJsonAsync("NotificationModels", notification);
+                await msgWebClient.PostAsJsonAsync("NotificationModels", notificationToPost);
             }
             catch (Exception)
             {
-                ErrorHandler.CreatingError(notification);
+                ErrorHandler.CreatingError(notificationToPost);
+            }
+        }
+
+        /// <summary>
+        /// Creates a Notification object sent from the system and POSTs it to the database server by parsing it to json.
+        /// </summary>
+        /// <param name="notificationMessage">The notification text to Send. Currently has no formatting guidelines</param>
+        /// <param name="profileTo">The profile receiving the notification</param>
+        //TODO: Make return type Task
+        public static async void SendNotification(string notificationMessage, ProfileModel profileTo)
+        {
+            #region Build Notification
+            NotificationModel notificationToPost = new NotificationModel();
+            notificationToPost.FK_NotificationStatus = 1;
+            notificationToPost.NotificationSent = DateTime.UtcNow;
+            notificationToPost.FK_NotificationTo = profileTo.ProfileId;
+            //TODO: Make sure after database is flushed that this is the System profile
+            notificationToPost.FK_NotificationFrom = 45;
+            notificationToPost.NotificationContent = notificationMessage;
+            #endregion
+            try
+            {
+                await msgWebClient.PostAsJsonAsync("NotificationModels", notificationToPost);
+            }
+            catch (Exception)
+            {
+                ErrorHandler.CreatingError(notificationToPost);
             }
         }
 

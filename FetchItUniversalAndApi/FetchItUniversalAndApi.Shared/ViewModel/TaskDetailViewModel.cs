@@ -51,7 +51,8 @@ namespace FetchItUniversalAndApi.ViewModel
 
 			TaskHandler = TaskHandler.GetInstance();
 			ProfileHandler = ProfileHandler.GetInstance();
-
+			ProfileHandler.GetAllProfiles();
+			
 			SaveChangesCommand = new RelayCommand(SaveChanges);
 			AssignToTaskCommand = new RelayCommand(AssignToTask);
 			ResignFromTaskCommand = new RelayCommand(ResignFromTask);
@@ -312,24 +313,26 @@ namespace FetchItUniversalAndApi.ViewModel
 		}
 
 		/// <summary>
-		/// This method assigns the logged in profile as Fetcher for the selected task, and calls the UpdateTask method.
+		/// This method assigns the logged in profile as Fetcher for the selected task, and calls the UpdateTask method. Also sends notification to the Taskmaster.
 		/// </summary>
 		public void AssignProfileToTask()
 		{
 			SelectedTask.FK_TaskFetcher = ProfileHandler.CurrentLoggedInProfile.ProfileId;
 			UpdateTask();
+			MessageHandler.SendNotification("Profile: '" + ProfileHandler.CurrentLoggedInProfile.ProfileName + "' just assigned himself as a fetcher for a task of yours. The task id is '" + SelectedTask.TaskId + "'.", Taskmaster);
 			Fetcher = ProfileHandler.CurrentLoggedInProfile;
 			OnPropertyChanged("FetcherName");
 		}
 
 		/// <summary>
-		/// This method resigns the logged in profile from the selected task, and calls the UpdateTask method.
+		/// This method resigns the logged in profile from the selected task, and calls the UpdateTask method. Also sends notification to the Taskmaster.
 		/// </summary>
 		public void ResignProfileFromTask()
 		{
 			SelectedTask.FK_TaskFetcher = null;
-			UpdateTask();
 			Fetcher = null;
+			UpdateTask();
+			MessageHandler.SendNotification("Fetcher: '" + ProfileHandler.CurrentLoggedInProfile.ProfileName + "' just resigned himself from a task of yours. The task id is " + SelectedTask.TaskId + ".", Taskmaster);
 			OnPropertyChanged("FetcherName");
 		}
 
@@ -342,15 +345,19 @@ namespace FetchItUniversalAndApi.ViewModel
 		}
 
 		/// <summary>
-		/// This method changes the status of the selected task to "FetcherCompleted" and calls the updateTask method
+		/// This method changes the status of the selected task to "FetcherCompleted" and calls the updateTask method. If the task is already "MasterCompleted" the status will change to "Completed". Also sends notification to relative profiles.
 		/// </summary>
 		public void MarkAsCompletedFetcher()
 		{
+			MessageHandler.SendNotification("Fetcher: '" + ProfileHandler.CurrentLoggedInProfile.ProfileName + "' just marked task '" + SelectedTask.TaskId + "' as completed.", Taskmaster);
+
 			if (SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.TaskMasterCompleted)
 			{
 				SelectedTask.FK_TaskStatus = (int)TaskHandler.TaskStatus.Completed;
 				UpdateTask();
 				TaskStatus = TaskHandler.TaskStatus.Completed;
+				MessageHandler.SendNotification("The task '" + SelectedTask.TaskDescription.Substring(0, 10) + "' has successfully been completed.", ProfileHandler.CurrentLoggedInProfile);
+				MessageHandler.SendNotification("The task '" + SelectedTask.TaskDescription.Substring(0, 10) + "' has successfully been completed.", Taskmaster);
 			}
 			else
 			{
@@ -361,15 +368,19 @@ namespace FetchItUniversalAndApi.ViewModel
 		}
 
 		/// <summary>
-		/// This method changes the status of the selected task to "TaskmasterCompleted" and calls the updateTask method
+		/// This method changes the status of the selected task to "TaskmasterCompleted" and calls the updateTask method. If the task is already "FetcherCompleted" the status will change to "Completed". Also sends notification to relative profiles.
 		/// </summary>
 		public void MarkAsCompletedTaskMaster()
 		{
+			MessageHandler.SendNotification("Taskmaster: '" + Taskmaster.ProfileName + "' just marked task '" + SelectedTask.TaskId + "' as completed.", Fetcher);
+
 			if (SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.FetcherCompleted)
 			{
 				SelectedTask.FK_TaskStatus = (int)TaskHandler.TaskStatus.Completed;
 				UpdateTask();
 				TaskStatus = TaskHandler.TaskStatus.Completed;
+				MessageHandler.SendNotification("The task '" + SelectedTask.TaskId + "' has successfully been completed.", ProfileHandler.CurrentLoggedInProfile);
+				MessageHandler.SendNotification("The task '" + SelectedTask.TaskId + "' has successfully been completed.", Fetcher);
 			}
 			else
 			{
@@ -380,13 +391,26 @@ namespace FetchItUniversalAndApi.ViewModel
 		}
 
 		/// <summary>
-		/// This method uses the Messagehandler to POST a new comment to the database, and then refreshes the comments listview.
+		/// This method uses the Messagehandler to POST a new comment to the database, and then refreshes the comments listview. Also sends notifications to relative profiles.
 		/// </summary>
 		async private void AddCommentToTask()
 		{
 			try
 			{
 				MessageHandler.CreateTaskComment(SelectedTask, CommentToLeave, ProfileHandler.CurrentLoggedInProfile);
+
+				if (Fetcher.ProfileId == ProfileHandler.CurrentLoggedInProfile.ProfileId)
+				{
+					MessageHandler.SendNotification("Fetcher: '" + ProfileHandler.CurrentLoggedInProfile.ProfileName + "' just added a comment on task '" + SelectedTask.TaskId + "'.", Taskmaster);
+				}
+				else
+				{
+					if (Fetcher != null)
+					{
+						MessageHandler.SendNotification("Taskmaster: '" + ProfileHandler.CurrentLoggedInProfile.ProfileName + "' just added a comment on task '" + SelectedTask.TaskId + "'.", Fetcher);
+					}
+				}
+
 				await Task.Delay(1000);
 				CommentsForTask = MessageHandler.GetTaskComments(SelectedTask).ToObservableCollection();
 				CommentToLeave = "";
