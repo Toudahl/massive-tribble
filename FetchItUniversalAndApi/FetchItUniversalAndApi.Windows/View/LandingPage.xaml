@@ -13,7 +13,7 @@
     </Page.DataContext>
 
     <Grid Background="{StaticResource FetchitBackgroundColour}">
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
@@ -58,6 +58,18 @@
                        Foreground="#FFCCFFCC" Height="149" 
                        Margin="83,-7,294,-2"
                        Width="321"/>
+            <AppBarButton x:Name="notificationsRefreshButton"
+            	Width="123"
+            	Height="88"
+            	HorizontalAlignment="Left"
+            	Style="{StaticResource RefreshAppBarButtonStyle}"
+            	VerticalAlignment="Top"
+            	Command="{Binding RefreshNotifications}" 
+            	Margin="58,35,0,0" Grid.Column="1" >
+                <AppBarButton.Background>
+                    <ImageBrush Stretch="Fill"/>
+                </AppBarButton.Background>
+            </AppBarButton>
 
         </Grid>
 
@@ -75,28 +87,15 @@
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
 
             <!-- Notifications Listview-->
             <Grid Column="0">
-				<Button x:Name="profileLogoutButton"
-								Height="46"
-								Width="48"
-								Style="{StaticResource FetchitButtonLogOut}"
-								Click="profileLogoutButton_Click" />
+
                 <TextBlock Text="Notifications"
                            FontSize="35"
                            Margin="15,0,130,0"
                            VerticalAlignment="Center"/>
 
-                <Button x:Name="notificationsRefreshButton"
-						Width="47"
-						Height="47"
-						HorizontalAlignment="Left"
-						Style="{StaticResource FetchitButtonRefresh}"
-						VerticalAlignment="Top"
-						Command="{Binding RefreshNotifications}" 
-                        Margin="250,7,0,0" />
             </Grid>
             <Grid Row="2">
                 <ListView x:Name="notificationsListView"
@@ -120,7 +119,6 @@
                 </ListView>
             </Grid>
 
-            
             <!-- My Tasks Listview-->
             <Grid Column="1">
                 <TextBlock Text="My Tasks"
@@ -144,7 +142,6 @@
 						  SelectedItem="{Binding th.SelectedTask, Mode=TwoWay}" />
             </Grid>
 
-            
             <!--Marketplace-->
             <Grid Column="2">
                 <TextBlock Text="Marketplace"
@@ -167,7 +164,9 @@
                   Column="4">
                 <ListView x:Name="marketplaceListView"
                           ItemsSource="{Binding Marketplace}"
-                          SelectionChanged="marketplaceListView_SelectionChanged">
+                          SelectionChanged="marketplaceListView_SelectionChanged"
+                          SelectedItem="{Binding th.SelectedTask}">
+
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
@@ -185,14 +184,14 @@
                 </ListView>
 
             </Grid>
-            
+
             <!--Appbar-->
             <AppBar x:Name="appBar" 
                     Grid.ColumnSpan="2"
                     Grid.RowSpan="2"
                     Background="NavajoWhite"
                     Opacity="20">
-                
+
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60"/>
@@ -209,13 +208,25 @@
                     </StackPanel>
                     <Grid Row="1">
                         <StackPanel Orientation="Vertical">
-                            
+                            <Button BorderThickness="0" Content="MessageHub" >
+                                <Button.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="Black" Offset="0"/>
+                                        <GradientStop Color="White" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
+                            <Button x:Name="profileLogoutButton"
+								Height="46"
+								Width="48"
+								Style="{StaticResource FetchitButtonLogOut}"
+								Click="profileLogoutButton_Click" />
                         </StackPanel>
                     </Grid>
-                    
+
                 </Grid>
             </AppBar>
-            
+
         </Grid>
     </Grid>
 </Page>
