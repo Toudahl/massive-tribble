@@ -79,7 +79,6 @@
 
             <!-- Notifications Listview-->
             <Grid Column="0">
-				
                 <TextBlock Text="Notifications"
                            FontSize="35"
                            Margin="15,0,130,0"
@@ -168,9 +167,10 @@
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="{Binding FK_TaskMaster}"
-															 FontSize="18"
-															 TextWrapping="NoWrap"
-															 Margin="10,0,0,0" />
+										   FontSize="18"
+										   TextWrapping="NoWrap"
+										   Margin="10,0,0,0"
+                                           FontWeight="Bold"/>
                                 <TextBlock Text="{Binding TaskDescription}"
 															 FontSize="12"
 															 TextWrapping="NoWrap"
@@ -205,11 +205,7 @@
                     </StackPanel>
                     <Grid Row="1">
                         <StackPanel Orientation="Vertical">
-                            <Button x:Name="profileLogoutButton"
-								Height="46"
-								Width="48"
-								Style="{StaticResource FetchitButtonLogOut}"
-								Click="profileLogoutButton_Click" />
+                            
                         </StackPanel>
                     </Grid>
                     

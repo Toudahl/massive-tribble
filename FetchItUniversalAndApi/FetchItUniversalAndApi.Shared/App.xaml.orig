@@ -1,0 +1,91 @@
+﻿<Application
+    x:Class="FetchItUniversalAndApi.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FetchItUniversalAndApi">
+    <Application.Resources>
+        <x:String x:Key="AppName">Fetch it!</x:String>
+        <Brush x:Key="FetchitBackgroundColour">#66CCFF</Brush>
+        
+        
+        <Style TargetType="Button" x:Key="FetchitButtonBaseStyle">
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver" />
+                                    <VisualState x:Name="Pressed" />
+                                    <VisualState x:Name="Disabled" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Margin="3">
+                                <ContentPresenter x:Name="ContentPresenter"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTransitions="{TemplateBinding ContentTransitions}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                          AutomationProperties.AccessibilityView="Raw"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        
+        <Style x:Key="FetchitButtonRefresh" TargetType="Button" BasedOn="{StaticResource FetchitButtonBaseStyle}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Assets/Button Icons/Refresh.png" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+
+        <Style x:Key="FetchitButtonUser" TargetType="Button" BasedOn="{StaticResource FetchitButtonBaseStyle}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Assets/Button Icons/User.png"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+
+        <Style x:Key="FetchitButtonAdd" TargetType="Button" BasedOn="{StaticResource FetchitButtonBaseStyle}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Assets/Button Icons/Add.png"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        
+        <Style x:Key="FetchitMenuButton" TargetType="Button" BasedOn="{StaticResource FetchitButtonBaseStyle}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Assets/Button Icons/overflowdots.png"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+		<Style x:Key="FetchitButtonLogOut"
+					 TargetType="Button"
+					 BasedOn="{StaticResource FetchitButtonBaseStyle}">
+			<Setter Property="Background">
+				<Setter.Value>
+					<ImageBrush ImageSource="Assets/Button Icons/Logout.png" />
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+	</Application.Resources>
+</Application>
