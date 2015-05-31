@@ -134,6 +134,18 @@ namespace FetchItUniversalAndApi.View
 			this.Frame.Navigate(typeof(TaskDetailPage));
 		}
 
+        private void appBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (appBar.IsOpen == true)
+            {
+                appBar.IsOpen = false;
+            }
+            else
+            {
+                appBar.IsOpen = true;
+            }
+        }
+
         
 	}
 }

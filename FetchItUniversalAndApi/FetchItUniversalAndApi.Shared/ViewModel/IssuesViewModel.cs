@@ -49,10 +49,6 @@ namespace FetchItUniversalAndApi.ViewModel
 
             }
 
-
-
-
-
         }
 
     }

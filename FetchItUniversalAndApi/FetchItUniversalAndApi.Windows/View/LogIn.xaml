@@ -28,6 +28,7 @@
                    VerticalAlignment="center" 
                    FontFamily="Remachine Script Personal Use " Foreground="#FFCCFFCC"/>
 
+
         <Grid Row="1">
             <StackPanel Grid.Column="1"  
                         Grid.Row="1"

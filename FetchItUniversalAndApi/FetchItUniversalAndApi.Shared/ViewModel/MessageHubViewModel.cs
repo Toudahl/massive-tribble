@@ -102,7 +102,6 @@ namespace FetchItUniversalAndApi.ViewModel
         {
             ph = ProfileHandler.GetInstance();
             th = TaskHandler.GetInstance();
-            ph.GetAllProfiles();
             GetNotifications();
             GetFeedback();
             RefreshNotifications = new RelayCommand(GetNotifications);
