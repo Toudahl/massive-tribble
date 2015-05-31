@@ -13,11 +13,7 @@
     </Page.DataContext>
 
     <Grid Background="{StaticResource FetchitBackgroundColour}">
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition/>
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
@@ -63,12 +59,11 @@
 
         </Grid>
 
+        <!--Grid definitions-->
         <Grid Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-
                 <ColumnDefinition Width="*"/>
-
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -76,6 +71,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
+            <!-- Notifications Listview-->
             <Grid Column="0">
                 <TextBlock Text="Notifications"
                            FontSize="35"
@@ -91,8 +87,30 @@
 						Command="{Binding RefreshNotifications}" 
                         Margin="250,7,0,0" />
             </Grid>
+            <Grid Row="2">
+                <ListView x:Name="notificationsListView"
+						  ItemsSource="{Binding Notifications, Mode=TwoWay}"
+						  SelectionChanged="notificationsListView_SelectionChanged">
 
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding NotificationContent}"
+															 FontSize="18"
+															 TextWrapping="NoWrap"
+															 Margin="10,0,0,0" />
+                                <TextBlock Text="{Binding NotificationSent}"
+															 FontSize="12"
+															 TextWrapping="NoWrap"
+															 Margin="10,0,0,0" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
 
+            
+            <!-- My Tasks Listview-->
             <Grid Column="1">
                 <TextBlock Text="My Tasks"
                            FontSize="35"
@@ -107,7 +125,16 @@
 						Command="{Binding RefreshMarketplace}"  
                         Margin="250,7,0,0"/>
             </Grid>
+            <Grid Row="2"
+                  Column="1">
+                <ListView x:Name="userActiveTasksListView"
+					  	  ItemsSource="{Binding ActiveTasks, Mode=TwoWay}"
+						  SelectionChanged="userActiveTasksListView_SelectionChanged"
+						  SelectedItem="{Binding th.SelectedTask, Mode=TwoWay}" />
+            </Grid>
 
+            
+            <!--Marketplace-->
             <Grid Column="2">
                 <TextBlock Text="Marketplace"
                            FontSize="35"
@@ -125,38 +152,6 @@
             		Height="47"
             		Click="CreateTaskButton_Click" Margin="329,7,0,6"/>
             </Grid>
-
-            <Grid Row="2">
-                <ListView x:Name="notificationsListView"
-						  ItemsSource="{Binding Notifications, Mode=TwoWay}"
-						  SelectionChanged="notificationsListView_SelectionChanged">
-
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding NotificationContent}"
-															 FontSize="18"
-															 TextWrapping="NoWrap"
-															 Margin="10,0,0,0" />
-                                <TextBlock Text="{Binding NotificationSent}"
-															 FontSize="12"
-															 TextWrapping="NoWrap"
-															 Margin="10,0,0,0" />
-
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Grid>
-
-            <Grid Row="2"
-                  Column="1">
-                <ListView x:Name="userActiveTasksListView"
-					  	  ItemsSource="{Binding ActiveTasks, Mode=TwoWay}"
-						  SelectionChanged="userActiveTasksListView_SelectionChanged"
-						  SelectedItem="{Binding th.SelectedTask, Mode=TwoWay}" />
-            </Grid>
-
             <Grid Row ="2"
                   Column="4">
                 <ListView x:Name="marketplaceListView"
@@ -166,7 +161,8 @@
                           FontSize="18"/>
 
             </Grid>
-
+            
+            <!--Appbar-->
             <AppBar Grid.ColumnSpan="2"
                     Grid.RowSpan="2">
 

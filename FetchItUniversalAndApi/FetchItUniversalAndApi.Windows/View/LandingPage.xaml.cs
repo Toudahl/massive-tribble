@@ -134,9 +134,6 @@ namespace FetchItUniversalAndApi.View
 			this.Frame.Navigate(typeof(TaskDetailPage));
 		}
 
-        private void appbarButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof (BasicPage1));
-        }
+        
 	}
 }
