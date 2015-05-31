@@ -108,7 +108,8 @@ namespace FetchItUniversalAndApi.View
 			//This code makes the Create Feedback button visible on three conditions:
 			//1. If the current logged in profile is the taskmaster of the task.
 			//2. If the task does not have any feedbacks.
-			//3. If the task status is set to 5 (or TaskStatus.Completed)
+            //3. If the task status is set to 5 (or TaskStatus.Completed)
+		    
 			if (th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.Completed)
 			{
 				if (th.SelectedTask.Feedbacks.Count < 1 && ph.CurrentLoggedInProfile.ProfileId == th.SelectedTask.FK_TaskMaster)

@@ -94,7 +94,7 @@ namespace FetchItUniversalAndApi.View
 
 		private void CreateTaskButton_Click(object sender, RoutedEventArgs e)
 		{
-			this.Frame.Navigate(typeof(TaskDetailPage));
+			this.Frame.Navigate(typeof(TaskCreation));
 		}
 
 		private void refreshMarketplaceButton_Click(object sender, RoutedEventArgs e)
@@ -145,7 +145,6 @@ namespace FetchItUniversalAndApi.View
                 appBar.IsOpen = true;
             }
         }
-
         
 	}
 }

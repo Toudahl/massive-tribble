@@ -182,7 +182,8 @@
             </Grid>
             
             <!--Appbar-->
-            <AppBar x:Name="appBar" Grid.ColumnSpan="2"
+            <AppBar x:Name="appBar" 
+                    Grid.ColumnSpan="2"
                     Grid.RowSpan="2"
                     Background="NavajoWhite"
                     Opacity="20">
@@ -194,17 +195,19 @@
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="Menu"
-                           FontSize="35"
-                           Margin="15,0,130,0"
-                           VerticalAlignment="Center"/>
+                                   FontSize="50"
+                                   Margin="15,0,130,0"
+                                   VerticalAlignment="Center" 
+                                   FontFamily="Remachine Script Personal Use " 
+                                   Foreground="#FFFB4A07" 
+                                   FontWeight="Bold"/>
                     </StackPanel>
                     <Grid Row="1">
                         <StackPanel Orientation="Vertical">
                             
                         </StackPanel>
                     </Grid>
-
-                  
+                    
                 </Grid>
             </AppBar>
             
