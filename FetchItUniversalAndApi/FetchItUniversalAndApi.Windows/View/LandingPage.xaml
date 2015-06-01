@@ -58,19 +58,6 @@
                        Foreground="#FFCCFFCC" Height="149" 
                        Margin="83,-7,294,-2"
                        Width="321"/>
-            <AppBarButton x:Name="notificationsRefreshButton"
-            	Width="123"
-            	Height="88"
-            	HorizontalAlignment="Left"
-            	Style="{StaticResource RefreshAppBarButtonStyle}"
-            	VerticalAlignment="Top"
-            	Command="{Binding RefreshNotifications}" 
-            	Margin="58,35,0,0" Grid.Column="1" >
-                <AppBarButton.Background>
-                    <ImageBrush Stretch="Fill"/>
-                </AppBarButton.Background>
-            </AppBarButton>
-
         </Grid>
 
         <!--Grid definitions-->
@@ -84,20 +71,35 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
+                <RowDefinition Height="65"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <!-- Notifications Listview-->
-            <Grid Column="0">
+            <Grid x:Name="Column0Row1Grid" 
+                  Column="0" 
+                  PointerEntered="Grid_PointerEntered01"
+                  PointerExited="Column0Row1Grid_PointerExited01">
 
                 <TextBlock Text="Notifications"
                            FontSize="35"
                            Margin="15,0,130,0"
                            VerticalAlignment="Center"/>
-
+                <AppBarButton x:Name="notificationsRefreshButton"
+            	                Width="125"
+            	                Height="72"
+            	                HorizontalAlignment="Left"
+            	                Style="{StaticResource RefreshAppBarButtonStyle}"
+            	                VerticalAlignment="Top"
+            	                Command="{Binding RefreshNotifications}" 
+            	                Margin="227,0,-10,-13" >
+                </AppBarButton>
             </Grid>
-            <Grid Row="2">
+            <Grid x:Name="Column0Row2Grid" 
+                  Row="2" 
+                  PointerEntered="Column0Row2Grid_PointerEntered" 
+                  PointerExited="Column0Row2Grid_PointerExited">
+                
                 <ListView x:Name="notificationsListView"
 						  ItemsSource="{Binding Notifications, Mode=TwoWay}"
 						  SelectionChanged="notificationsListView_SelectionChanged">
@@ -120,22 +122,27 @@
             </Grid>
 
             <!-- My Tasks Listview-->
-            <Grid Column="1">
+            <Grid x:Name="Column1Row1Grid"
+                  Column="1" PointerEntered="Column1Row1Grid_PointerEntered" PointerExited="Column1Row1Grid_PointerExited">
                 <TextBlock Text="My Tasks"
                            FontSize="35"
                            Margin="15,0,130,0"
                            VerticalAlignment="Center"/>
-                <Button x:Name="activeTasksRefreshButton"
-						Width="48"
-						Height="48"
-						Style="{StaticResource FetchitButtonRefresh}"
-						HorizontalAlignment="Left"
-						VerticalAlignment="Top"
-						Command="{Binding RefreshMarketplace}"  
-                        Margin="250,7,0,0"/>
+
+                <AppBarButton x:Name="activeTasksRefreshbutton"
+            	                Width="125"
+            	                Height="67"
+            	                HorizontalAlignment="Left"
+            	                Style="{StaticResource RefreshAppBarButtonStyle}"
+            	                VerticalAlignment="Top"
+            	                Command="{Binding RefreshMarketplace}" 
+            	                Margin="228,-2,-12,0" >
+                </AppBarButton>
+
             </Grid>
-            <Grid Row="2"
-                  Column="1">
+            <Grid x:Name="Column1Row2Grid"
+                  Row="2"
+                  Column="1" PointerEntered="Column1Row2Grid_PointerEntered" PointerExited="Column1Row2Grid_PointerExited">
                 <ListView x:Name="userActiveTasksListView"
 					  	  ItemsSource="{Binding ActiveTasks, Mode=TwoWay}"
 						  SelectionChanged="userActiveTasksListView_SelectionChanged"
@@ -143,25 +150,31 @@
             </Grid>
 
             <!--Marketplace-->
-            <Grid Column="2">
+            <Grid x:Name="Column2Row1Grid" 
+                  Column="2" >
                 <TextBlock Text="Marketplace"
                            FontSize="35"
                            Margin="15,0,130,0"
                            VerticalAlignment="Center"/>
-                <Button x:Name="refreshMarketplaceButton"
-            		Style="{StaticResource FetchitButtonRefresh}"
-            		Command="{Binding RefreshMarketplace}"
-            		Click="refreshMarketplaceButton_Click"
-            		Width="48"
-            		Height="48" Margin="250,7,0,5" />
-                <Button x:Name="CreateTaskButton"
-            		Style="{StaticResource FetchitButtonAdd}"
-            		Width="48"
-            		Height="47"
-            		Click="CreateTaskButton_Click" Margin="329,7,0,6"/>
+                <AppBarButton x:Name="refreshMarketplaceButton"
+            	                Width="125"
+            	                Height="67"
+            	                HorizontalAlignment="Left"
+                              Icon="Refresh"
+            	                VerticalAlignment="Top"
+            	                Command="{Binding RefreshMarketplace}" 
+            	                Margin="228,0,0,-2" >
+                </AppBarButton>
+                <AppBarButton HorizontalAlignment="Left" 
+                              Icon="Add" 
+                              Label="AppBarButton" 
+                              Margin="305,0,0,-5" 
+                              VerticalAlignment="Top"
+                              Click="CreateTaskButton_Click"/>
             </Grid>
-            <Grid Row ="2"
-                  Column="4">
+            <Grid x:Name="Column2Row2Grid"
+                  Row ="2"
+                  Column="4" >
                 <ListView x:Name="marketplaceListView"
                           ItemsSource="{Binding Marketplace}"
                           SelectionChanged="marketplaceListView_SelectionChanged"
@@ -171,7 +184,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Text="{Binding FK_TaskMaster}"
-															 FontSize="18"
+															 FontSize="28"
 															 TextWrapping="NoWrap"
 															 Margin="10,0,0,0" />
                                 <TextBlock Text="{Binding TaskDescription}"
