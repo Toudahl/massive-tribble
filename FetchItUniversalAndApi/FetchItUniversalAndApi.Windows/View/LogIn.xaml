@@ -52,12 +52,15 @@
                             Content="Log in" 
                             Command="{Binding LogInCommand}"  
                             Click="LoginButton_OnClick" 
-                            Width="300"/>
+                            Width="300"
+                            BorderThickness="0"
+                            Background="#FFCCFFCC" 
+                            Opacity="0.8"/>
 
                     <Button x:Name="button_register" 
                             Content="Create a new account!"
                             Click="RegisterButton_OnClick" 
-                            Width="165" 
+                            Width="158" 
                             Opacity="0.595" 
                             BorderThickness="0" 
                             Height="30" 

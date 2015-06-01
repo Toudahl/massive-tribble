@@ -246,6 +246,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </Grid>
+            
             <!--Appbar-->
             <AppBar x:Name="appBar" 
                     Grid.Column="0"
@@ -264,7 +265,7 @@
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5*"/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width="4"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Orientation="Vertical">
@@ -286,13 +287,16 @@
                         </StackPanel>
                     </Grid>
                     <Grid Column ="1">
-                        <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" FontSize="24">Log Out</TextBlock>
                             <Button x:Name="profileLogoutButton"
                                     HorizontalAlignment="Center"
 								    Height="78"
 								    Width="85"
 								    Style="{StaticResource DeleteAppBarButtonStyle}"
 								    Click="profileLogoutButton_Click" Margin="15,0,14,0" />
+                            
+                           
                         </StackPanel>
                     </Grid>
                     <Grid Grid.Column="2" Background="#FFFB4A07"/>
