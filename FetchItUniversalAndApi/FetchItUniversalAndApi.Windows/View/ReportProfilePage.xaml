@@ -68,7 +68,7 @@
 							 Grid.Column="2" />
         <TextBlock x:Name="LoggedInBlock"
 							 HorizontalAlignment="Left"
-							 Margin="212,98,0,0"
+							 Margin="192,98,0,0"
 							 Grid.Row="1"
 							 TextWrapping="Wrap"
 							 Text="Logged in profile"
@@ -107,7 +107,8 @@
 							Height="60"
 							Width="218"
 							FontSize="25"
-							Click="Button_Click" />
+							Click="Button_Click"
+							BorderThickness="0" />
             <Button x:Name="goBackBtn"
 							Content="Go back"
 							HorizontalAlignment="Left"
@@ -149,7 +150,7 @@
 							 Height="125"
 							 Width="343"
 							 Grid.Column="1" />
-        <Grid Background="#FF0099CC" Grid.ColumnSpan="4" Margin="0,0,0,244" Grid.RowSpan="2">
+        <Grid Background="#FF0099CC" Grid.ColumnSpan="4" Margin="0,0,0,244" Grid.RowSpan="2" Grid.Column="0" Grid.Row="0">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>
