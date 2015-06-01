@@ -392,8 +392,9 @@ namespace FetchItUniversalAndApi.Handlers
                 case TaskStatus.Completed: return getAll.Where(s => s.FK_TaskStatus == 5);
                 case TaskStatus.TaskMasterCompleted: return getAll.Where(s => s.FK_TaskStatus == 6);
                 case TaskStatus.FetcherCompleted: return getAll.Where(s => s.FK_TaskStatus == 7);
+                default:
+                    return null;
             }
-            return null;
         }
         #endregion
     }
