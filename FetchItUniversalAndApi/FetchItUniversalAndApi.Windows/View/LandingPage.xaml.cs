@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using FetchItUniversalAndApi.Common;
 using System;
+using Windows.Globalization.NumberFormatting;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -203,6 +204,8 @@ namespace FetchItUniversalAndApi.View
 
         private void profileButton_Click(object sender, RoutedEventArgs e)
         {
+            var ph = ProfileHandler.GetInstance();
+            ph.SelectedProfile = ph.CurrentLoggedInProfile;
             this.Frame.Navigate(typeof(ProfileDetailPage));
         }
 

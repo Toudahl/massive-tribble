@@ -7,164 +7,217 @@
 			xmlns:ViewModel="using:FetchItUniversalAndApi.ViewModel"
 			x:Name="pageRoot"
 			x:Class="FetchItUniversalAndApi.View.ProfileDetailPage"
-			DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Mode=Self}}"
+			
 			mc:Ignorable="d">
 
-	<!--
-        This grid acts as a root panel for the page that defines two rows:
-        * Row 0 contains the back button and page title
-        * Row 1 contains the rest of the page layout
-    -->
-	<Grid Background="{StaticResource FetchitBackgroundColour}">
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="320*" />
-			<ColumnDefinition Width="278*" />
-			<ColumnDefinition Width="193*" />
-			<ColumnDefinition Width="575*" />
-		</Grid.ColumnDefinitions>
-		<Grid.ChildrenTransitions>
-			<TransitionCollection>
-				<EntranceThemeTransition />
-			</TransitionCollection>
-		</Grid.ChildrenTransitions>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="140" />
-			<RowDefinition Height="152*" />
-			<RowDefinition Height="138*" />
-			<RowDefinition Height="91*" />
-			<RowDefinition Height="121*" />
-			<RowDefinition Height="126*" />
-		</Grid.RowDefinitions>
+    <Page.DataContext>
+        <ViewModel:ProfileDetailViewModel />
+    </Page.DataContext>
 
-		<Grid.DataContext>
-			<ViewModel:ProfileDetailViewModel />
-		</Grid.DataContext>
+    <Grid Background="{StaticResource FetchitBackgroundColour}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="31*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+        </Grid.RowDefinitions>
 
-		<!-- Back button and page title -->
-		<Grid Grid.ColumnSpan="4">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="120" />
-				<ColumnDefinition Width="*" />
-			</Grid.ColumnDefinitions>
-			<Button x:Name="backButton"
-							Margin="39,59,39,0"
-							Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
-							Style="{StaticResource NavigationBackButtonNormalStyle}"
-							VerticalAlignment="Top"
-							AutomationProperties.Name="Back"
-							AutomationProperties.AutomationId="BackButton"
-							AutomationProperties.ItemType="Navigation Button" />
-			<TextBlock x:Name="pageTitle"
-								 Text="{StaticResource AppName}"
-								 Style="{StaticResource HeaderTextBlockStyle}"
-								 Grid.Column="1"
-								 IsHitTestVisible="false"
-								 TextWrapping="NoWrap"
-								 VerticalAlignment="Bottom"
-								 Margin="0,0,30,40" />
-		</Grid>
-		<TextBlock HorizontalAlignment="Left"
-							 Margin="76,31,0,0"
+        <!-- Top Grid -->
+        <Grid Background="#FF0099CC">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="548"/>
+                <ColumnDefinition/>
+
+            </Grid.ColumnDefinitions>
+
+            <!-- Back Button -->
+            <Button x:Name="menuButton" 
+                    Margin="39,59,0,0"
+                    Style="{StaticResource NavigationBackButtonNormalStyle}" 
+                    RenderTransformOrigin="0.5,0.5" 
+                    Height="41" 
+                    Width="41">
+
+                <Button.RenderTransform>
+                    <CompositeTransform Rotation="180"/>
+                </Button.RenderTransform>
+            </Button>
+
+            <TextBlock Text="Menu"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Bottom"
+                       Margin="46,0,46,20" Height="13" Width="28"/>
+            <!-- Enter a convinient title for the view  -->
+            <TextBlock x:Name="pageTitle" 
+                        Text="{Binding WelcomeText}"
+                        Style="{StaticResource HeaderTextBlockStyle}" 
+                        Grid.Column="1" 
+                        IsHitTestVisible="false" 
+                        TextWrapping="NoWrap" 
+                        VerticalAlignment="Bottom"
+                        Margin="0,0,0,40" Height="40"/>
+
+            <TextBlock Text="FetchIt!" 
+                       Grid.Column="2" 
+                       FontSize="140"
+                       TextWrapping="Wrap" 
+                       VerticalAlignment="center" 
+                       FontFamily="Remachine Script Personal Use " 
+                       Foreground="#FFCCFFCC" Height="149" 
+                       Margin="83,-7,294,-2"
+                       Width="321"/>
+
+            <!--Appbar-->
+            <AppBar x:Name="appBar" 
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Grid.RowSpan="5"
+                    Background="NavajoWhite"
+                    Opacity="20" 
+                    BorderBrush="#FFFB4A07">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="4"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Menu"
+                                   FontSize="50"
+                                   Margin="15,0,130,0"
+                                   VerticalAlignment="Center" 
+                                   FontFamily="Remachine Script Personal Use " 
+                                   Foreground="#FFFB4A07" 
+                                   FontWeight="Bold"/>
+                    </StackPanel>
+                    <Grid Grid.Row="1">
+                        <StackPanel Orientation="Vertical">
+
+                        </StackPanel>
+                    </Grid>
+                    <Grid Column ="1">
+                        <StackPanel Orientation="Vertical">
+                            <AppBarButton x:Name="profileLogoutButton"
+                                    HorizontalAlignment="Center"
+								    Height="78"
+								    Width="85"
+                                    />
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="2" Background="#FFFB4A07"/>
+                    <Grid Grid.Column="2" Grid.Row ="1" Background="#FFFB4A07"/>
+                </Grid>
+            </AppBar>
+        </Grid>
+
+        <Grid Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock HorizontalAlignment="Left"
+							 Margin="30,30,0,0"
+							 Grid.Row="1"
+							 TextWrapping="Wrap"
+							 Text="Name"
+							 VerticalAlignment="Top"
+							 RenderTransformOrigin="0.628,-0.058" />
+            <TextBlock HorizontalAlignment="Left"
+							 Margin="30,60,0,0"
+							 Grid.Row="1"
+							 TextWrapping="Wrap"
+							 Text="{Binding selectedprofileName}"
+							 VerticalAlignment="Top"
+							 FontSize="20" />
+            <TextBlock Grid.Column="1" Margin="30,30,0,0"
+                       TextWrapping="Wrap"
+                       Text="{Binding selectedProfileRating}"
+                       VerticalAlignment="Top"
+                       FontSize="24" 
+                       HorizontalAlignment="Left"/>
+        </Grid>
+        <Grid Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock HorizontalAlignment="Left"
+							 Margin="30,30,0,0"
 							 Grid.Row="2"
 							 TextWrapping="Wrap"
 							 Text="Email"
 							 VerticalAlignment="Top"
 							 RenderTransformOrigin="0.628,-0.058" />
-		<TextBlock HorizontalAlignment="Left"
-							 Margin="76,49,0,0"
+            <TextBlock HorizontalAlignment="Left"
+							 Margin="30,60,0,0"
 							 Grid.Row="2"
 							 TextWrapping="Wrap"
 							 Text="{Binding selectedprofileEmail}"
 							 VerticalAlignment="Top"
 							 FontSize="22"
 							 RenderTransformOrigin="0.906,2.8" />
-		<TextBlock HorizontalAlignment="Left"
-							 Margin="76,17,0,0"
+            <TextBlock Grid.Column="1"
+						HorizontalAlignment="Left"
+						Margin="30,30,0,0"
+						Grid.Row="1"
+						TextWrapping="Wrap"
+						Text="Is this profile Verified"
+						FontSize="20"
+						VerticalAlignment="Top" />
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left"
+							 Margin="230,30,0,0"
+							 TextWrapping="Wrap"
+							 Text="{Binding IsProfileVerified}"
+							 VerticalAlignment="Top"
+							 FontSize="20"
+							 FontWeight="Bold"
+							 
+							 Grid.Row="1" />
+        </Grid>
+        <Grid Row="3">
+            <TextBlock HorizontalAlignment="Left"
+							 Margin="30,30,0,0"
 							 Grid.Row="3"
 							 TextWrapping="Wrap"
 							 Text="Address"
 							 VerticalAlignment="Top"
 							 RenderTransformOrigin="0.628,-0.058" />
-		<TextBlock HorizontalAlignment="Left"
-							 Margin="76,35,0,0"
+            <TextBlock HorizontalAlignment="Left"
+							 Margin="30,60,0,0"
 							 Grid.Row="3"
 							 TextWrapping="Wrap"
 							 Text="{Binding selectedprofileAddress}"
 							 VerticalAlignment="Top"
 							 FontSize="22"
 							 RenderTransformOrigin="0.906,2.8" />
-		<TextBlock HorizontalAlignment="Left"
-							 Margin="218,32,0,0"
-							 Grid.Row="1"
+        </Grid>
+        <Grid Row="4">
+            <TextBlock HorizontalAlignment="Left"
+							 Margin="30,30,0,0"
+							 Grid.Row="4"
 							 TextWrapping="Wrap"
-							 Text="{Binding selectedProfileRating}"
+							 Text="Mobile"
 							 VerticalAlignment="Top"
-							 FontSize="24"
-							 Grid.Column="3" />
-		<TextBlock HorizontalAlignment="Left"
-							 Margin="61,104,0,0"
-							 Grid.Row="1"
-							 TextWrapping="Wrap"
-							 Text="{Binding selectedProfileDescription}"
-							 VerticalAlignment="Top"
-							 Grid.RowSpan="4"
-							 Grid.Column="3"
-							 FontSize="16" />
-		<TextBlock HorizontalAlignment="Left"
-							 Margin="76,25,0,0"
+							 RenderTransformOrigin="0.628,-0.058" />
+            <TextBlock HorizontalAlignment="Left"
+							 Margin="30,60,0,0"
 							 Grid.Row="4"
 							 TextWrapping="Wrap"
 							 Text="{Binding selectedprofileMobile}"
 							 VerticalAlignment="Top"
 							 FontSize="22"
 							 RenderTransformOrigin="0.906,2.8" />
-		<TextBlock HorizontalAlignment="Left"
-							 Margin="76,7,0,0"
-							 Grid.Row="4"
-							 TextWrapping="Wrap"
-							 Text="Mobile"
-							 VerticalAlignment="Top"
-							 RenderTransformOrigin="0.628,-0.058" />
-		<TextBlock HorizontalAlignment="Left"
-							 Margin="76,59,0,0"
-							 Grid.Row="1"
-							 TextWrapping="Wrap"
-							 Text="Name"
-							 VerticalAlignment="Top"
-							 RenderTransformOrigin="0.628,-0.058" />
-		<TextBlock HorizontalAlignment="Left"
-							 Margin="76,77,0,0"
-							 Grid.Row="1"
-							 TextWrapping="Wrap"
-							 Text="{Binding selectedprofileName}"
-							 VerticalAlignment="Top"
-							 FontSize="20" />
-		<TextBlock Grid.Column="1"
-							 HorizontalAlignment="Right"
-							 Margin="86,44,0,0"
-							 Grid.Row="1"
-							 TextWrapping="Wrap"
-							 Text="Is this profile Verified"
-							 FontSize="20"
-							 VerticalAlignment="Top" />
-		<TextBlock HorizontalAlignment="Left"
-							 Margin="60,44,0,0"
-							 TextWrapping="Wrap"
-							 Text="{Binding IsProfileVerified}"
-							 VerticalAlignment="Top"
-							 FontSize="20"
-							 FontWeight="Bold"
-							 Grid.Column="2"
-							 Grid.Row="1" />
-		<Button x:Name="ReportProfileButton"
-						Content="Report Profile"
-						Grid.Column="1"
-						HorizontalAlignment="Left"
-						Margin="75,22,0,0"
-						Grid.Row="4"
-						VerticalAlignment="Top"
-						Height="60"
-						Click="ReportProfileButton_Click"
-						Visibility="Collapsed" />
-	</Grid>
+            <Button x:Name="reportProfileButton" Content="Report this profile!" HorizontalAlignment="Left" Margin="425,35,0,0" VerticalAlignment="Top" Click="reportProfileButton_Click" BorderThickness="0" Background="#FFFB4A07"/>
+        </Grid>
+    </Grid>
 </Page>
