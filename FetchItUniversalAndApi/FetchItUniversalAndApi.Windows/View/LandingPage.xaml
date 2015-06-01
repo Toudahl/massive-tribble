@@ -178,7 +178,7 @@
                 <ListView x:Name="marketplaceListView"
                           ItemsSource="{Binding Marketplace}"
                           SelectionChanged="marketplaceListView_SelectionChanged"
-                          SelectedItem="{Binding th.SelectedTask, Mode=TwoWay}">
+                          SelectedItem="{Binding th.SelectedTask, Mode=TwoWay}" IsRightTapEnabled="False">
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -211,7 +211,6 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-
             </Grid>
 
             <!--Appbar-->

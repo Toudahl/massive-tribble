@@ -80,7 +80,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\Button Icons\Refresh.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Button Icons\User.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Patterns\628143.png" />
-    <Content Include="$(MSBuildThisFileDirectory)RemachineScript_PERSONAL_USE_ONLY.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Common\StandardStyles.xaml">

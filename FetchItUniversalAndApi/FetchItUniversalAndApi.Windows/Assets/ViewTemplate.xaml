@@ -16,7 +16,11 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="31*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
         </Grid.RowDefinitions>
 
         <!-- Top Grid -->
@@ -26,6 +30,7 @@
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="548"/>
                 <ColumnDefinition/>
+
             </Grid.ColumnDefinitions>
 
             <!-- Back Button -->
@@ -35,12 +40,12 @@
                     RenderTransformOrigin="0.5,0.5" 
                     Height="41" 
                     Width="41">
-                
+
                 <Button.RenderTransform>
                     <CompositeTransform Rotation="180"/>
                 </Button.RenderTransform>
             </Button>
-            
+
             <TextBlock Text="Menu"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Bottom"
@@ -64,6 +69,153 @@
                        Foreground="#FFCCFFCC" Height="149" 
                        Margin="83,-7,294,-2"
                        Width="321"/>
+
+            <!--Appbar-->
+            <AppBar x:Name="appBar" 
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Grid.RowSpan="5"
+                    Background="NavajoWhite"
+                    Opacity="20" 
+                    BorderBrush="#FFFB4A07">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="4"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Menu"
+                                   FontSize="50"
+                                   Margin="15,0,130,0"
+                                   VerticalAlignment="Center" 
+                                   FontFamily="Remachine Script Personal Use " 
+                                   Foreground="#FFFB4A07" 
+                                   FontWeight="Bold"/>
+                    </StackPanel>
+                    <Grid Grid.Row="1">
+                        <StackPanel Orientation="Vertical">
+
+                        </StackPanel>
+                    </Grid>
+                    <Grid Column ="1">
+                        <StackPanel Orientation="Vertical">
+                            <AppBarButton x:Name="profileLogoutButton"
+                                    HorizontalAlignment="Center"
+								    Height="78"
+								    Width="85"
+                                    />
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="2" Background="#FFFB4A07"/>
+                    <Grid Grid.Column="2" Grid.Row ="1" Background="#FFFB4A07"/>
+                </Grid>
+            </AppBar>
+        </Grid>
+
+        <Grid Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock HorizontalAlignment="Left"
+							 Margin="30,30,0,0"
+							 Grid.Row="1"
+							 TextWrapping="Wrap"
+							 Text="Name"
+							 VerticalAlignment="Top"
+							 RenderTransformOrigin="0.628,-0.058" />
+            <TextBlock HorizontalAlignment="Left"
+							 Margin="30,60,0,0"
+							 Grid.Row="1"
+							 TextWrapping="Wrap"
+							 Text="{Binding selectedprofileName}"
+							 VerticalAlignment="Top"
+							 FontSize="20" />
+            <TextBlock Grid.Column="1" Margin="30,30,0,0"
+                       TextWrapping="Wrap"
+                       Text="{Binding selectedProfileRating}"
+                       VerticalAlignment="Top"
+                       FontSize="24" 
+                       HorizontalAlignment="Left"/>
+        </Grid>
+        <Grid Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock HorizontalAlignment="Left"
+							 Margin="30,30,0,0"
+							 Grid.Row="2"
+							 TextWrapping="Wrap"
+							 Text="Email"
+							 VerticalAlignment="Top"
+							 RenderTransformOrigin="0.628,-0.058" />
+            <TextBlock HorizontalAlignment="Left"
+							 Margin="30,60,0,0"
+							 Grid.Row="2"
+							 TextWrapping="Wrap"
+							 Text="{Binding selectedprofileEmail}"
+							 VerticalAlignment="Top"
+							 FontSize="22"
+							 RenderTransformOrigin="0.906,2.8" />
+            <TextBlock Grid.Column="1"
+						HorizontalAlignment="Left"
+						Margin="30,30,0,0"
+						Grid.Row="1"
+						TextWrapping="Wrap"
+						Text="Is this profile Verified"
+						FontSize="20"
+						VerticalAlignment="Top" />
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left"
+							 Margin="30,30,0,0"
+							 TextWrapping="Wrap"
+							 Text="{Binding IsProfileVerified}"
+							 VerticalAlignment="Top"
+							 FontSize="20"
+							 FontWeight="Bold"
+							 
+							 Grid.Row="1" />
+        </Grid>
+        <Grid Row="3">
+            <TextBlock HorizontalAlignment="Left"
+							 Margin="30,30,0,0"
+							 Grid.Row="3"
+							 TextWrapping="Wrap"
+							 Text="Address"
+							 VerticalAlignment="Top"
+							 RenderTransformOrigin="0.628,-0.058" />
+            <TextBlock HorizontalAlignment="Left"
+							 Margin="30,60,0,0"
+							 Grid.Row="3"
+							 TextWrapping="Wrap"
+							 Text="{Binding selectedprofileAddress}"
+							 VerticalAlignment="Top"
+							 FontSize="22"
+							 RenderTransformOrigin="0.906,2.8" />
+        </Grid>
+        <Grid Row="4">
+            <TextBlock HorizontalAlignment="Left"
+							 Margin="30,30,0,0"
+							 Grid.Row="4"
+							 TextWrapping="Wrap"
+							 Text="Mobile"
+							 VerticalAlignment="Top"
+							 RenderTransformOrigin="0.628,-0.058" />
+            <TextBlock HorizontalAlignment="Left"
+							 Margin="30,60,0,0"
+							 Grid.Row="4"
+							 TextWrapping="Wrap"
+							 Text="{Binding selectedprofileMobile}"
+							 VerticalAlignment="Top"
+							 FontSize="22"
+							 RenderTransformOrigin="0.906,2.8" />
         </Grid>
     </Grid>
 </Page>

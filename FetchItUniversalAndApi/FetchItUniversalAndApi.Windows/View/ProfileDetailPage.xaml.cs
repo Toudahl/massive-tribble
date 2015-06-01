@@ -93,7 +93,7 @@ namespace FetchItUniversalAndApi.View
 			{
 				if (ph.SelectedProfile.ProfileId != ph.CurrentLoggedInProfile.ProfileId)
 				{
-					ReportProfileButton.Visibility = Visibility.Visible;
+					reportProfileButton.Visibility = Visibility.Visible;
 				}
 			}
 		}
@@ -105,7 +105,7 @@ namespace FetchItUniversalAndApi.View
 
 		#endregion
 
-		private void ReportProfileButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		private void reportProfileButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
 			this.Frame.Navigate(typeof(ReportProfilePage));
 		}
