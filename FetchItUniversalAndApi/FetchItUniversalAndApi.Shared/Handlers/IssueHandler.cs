@@ -116,11 +116,9 @@ namespace FetchItUniversalAndApi.Handlers
               }
               catch (Exception)
               {
-
-                  throw;
+                  ErrorHandler.NoResponseFromApi();
+                  return null;
               }
-           
-   
           }
           
       }
