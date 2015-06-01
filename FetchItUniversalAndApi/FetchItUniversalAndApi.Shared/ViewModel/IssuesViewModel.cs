@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
+using FetchItUniversalAndApi.Annotations;
 using FetchItUniversalAndApi.Handlers;
 using FetchItUniversalAndApi.Models;
 using FetchItUniversalAndApi.View;
 
 namespace FetchItUniversalAndApi.ViewModel
 {
-    class IssuesViewModel
+    class IssuesViewModel:INotifyPropertyChanged
         // Author: Jakub Czapski
     {
         private IssueModel _selectedIssue;
@@ -23,7 +26,11 @@ namespace FetchItUniversalAndApi.ViewModel
         public IssueModel SelectedIssue
         {
             get { return _selectedIssue; }
-            set { _selectedIssue = value; }
+            set
+            {
+                _selectedIssue = value;
+                OnPropertyChanged("SelectedIssue");
+            }
         }
 
         public  IssuesViewModel()
@@ -51,5 +58,13 @@ namespace FetchItUniversalAndApi.ViewModel
 
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            var handler = PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

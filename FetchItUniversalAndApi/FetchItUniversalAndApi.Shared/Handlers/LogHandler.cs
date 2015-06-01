@@ -133,7 +133,8 @@ namespace FetchItUniversalAndApi.Handlers
             catch (Exception exception)
             {
                 //Add standardized error handling (fx. LogHandler.GetInstance().LogEvent(exception.message) and MessageBox.Show("Yo user, something went wrong!"));
-                throw exception;
+                ErrorHandler.NoResponseFromApi();
+                return null;
             }
         }
 

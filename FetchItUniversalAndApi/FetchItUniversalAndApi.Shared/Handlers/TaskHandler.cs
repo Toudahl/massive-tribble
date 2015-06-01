@@ -10,6 +10,9 @@ using Newtonsoft.Json;
 namespace FetchItUniversalAndApi.Handlers
 {
     // Author : Bruno Damjanovic
+    /// <summary>
+    /// This is the 
+    /// </summary>
     public class TaskHandler : ICreate, IDelete, IDisable, ISuspend, ISearch, IUpdate
     {
         private const string taskAPI = "http://fetchit.mortentoudahl.dk/api/TaskModels";
@@ -99,7 +102,7 @@ namespace FetchItUniversalAndApi.Handlers
                     }
                     catch (Exception)
                     {
-                        throw;
+                        ErrorHandler.NoResponseFromApi();
                     }
                 }
             }
@@ -134,7 +137,7 @@ namespace FetchItUniversalAndApi.Handlers
                         }
                         catch (Exception)
                         {
-                            throw;
+                            ErrorHandler.NoResponseFromApi();
                         }
                     }
                 }
@@ -171,7 +174,7 @@ namespace FetchItUniversalAndApi.Handlers
                         }
                         catch (Exception)
                         {
-                            throw;
+                            ErrorHandler.NoResponseFromApi();
                         }
                     }
                 }
@@ -211,7 +214,7 @@ namespace FetchItUniversalAndApi.Handlers
                         }
                         catch (Exception)
                         {
-                            throw;
+                            ErrorHandler.NoResponseFromApi();
                         }
                     }
                 }
@@ -263,7 +266,7 @@ namespace FetchItUniversalAndApi.Handlers
                     }
                     catch (Exception)
                     {
-                        throw;
+                        ErrorHandler.NoResponseFromApi();
                     }
                 }
             }
@@ -353,7 +356,7 @@ namespace FetchItUniversalAndApi.Handlers
                     }
                     catch (Exception)
                     {
-                        throw;
+                        ErrorHandler.NoResponseFromApi();
                     }
                 }
             }

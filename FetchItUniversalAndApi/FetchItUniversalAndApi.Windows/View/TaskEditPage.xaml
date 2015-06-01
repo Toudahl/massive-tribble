@@ -45,7 +45,7 @@
 		<TextBox x:Name="taskDescriptionBind"
 						 Grid.Column="2"
 						 HorizontalAlignment="Left"
-						 Margin="303,119,0,0"
+						 Margin="303,146,0,0"
 						 Grid.Row="1"
 						 TextWrapping="Wrap"
 						 Text="{Binding SelectedTask.TaskDescription, Mode=TwoWay}"
@@ -57,7 +57,7 @@
 		<TextBlock x:Name="taskDescriptionBlock"
 							 Grid.Column="3"
 							 HorizontalAlignment="Left"
-							 Margin="0,63,0,0"
+							 Margin="0,95,0,0"
 							 Grid.Row="1"
 							 TextWrapping="Wrap"
 							 VerticalAlignment="Top"
@@ -68,7 +68,7 @@
 		<TextBlock x:Name="taskFeeBlock"
 							 Grid.Column="1"
 							 HorizontalAlignment="Left"
-							 Margin="120,190,0,0"
+							 Margin="120,214,0,0"
 							 Grid.Row="1"
 							 TextWrapping="Wrap"
 							 Text="Task Fee"
@@ -79,7 +79,7 @@
 		<TextBox x:Name="TaskFeeBind"
 						 Grid.Column="1"
 						 HorizontalAlignment="Left"
-						 Margin="341,190,0,0"
+						 Margin="341,214,0,0"
 						 Grid.Row="1"
 						 TextWrapping="Wrap"
 						 Text="{Binding TaskFee, Mode=TwoWay}"
@@ -92,7 +92,7 @@
 		<TextBlock x:Name="itemPriceBlock"
 							 Grid.Column="1"
 							 HorizontalAlignment="Left"
-							 Margin="120,120,0,0"
+							 Margin="120,146,0,0"
 							 Grid.Row="1"
 							 TextWrapping="Wrap"
 							 Text="Task Item Price"
@@ -103,7 +103,7 @@
 		<TextBox x:Name="ItemPriceBind"
 						 Grid.Column="1"
 						 HorizontalAlignment="Left"
-						 Margin="341,120,0,0"
+						 Margin="341,146,0,0"
 						 Grid.Row="1"
 						 TextWrapping="Wrap"
 						 Text="{Binding ItemPrice, Mode=TwoWay}"
@@ -116,7 +116,7 @@
 		<TextBlock x:Name="endAddressBlock"
 							 Grid.Column="1"
 							 HorizontalAlignment="Left"
-							 Margin="120,260,0,0"
+							 Margin="120,286,0,0"
 							 Grid.Row="1"
 							 TextWrapping="Wrap"
 							 Text="End Address"
@@ -127,7 +127,7 @@
 		<TextBox x:Name="endAddressBind"
 						 Grid.Column="1"
 						 HorizontalAlignment="Left"
-						 Margin="341,260,0,0"
+						 Margin="341,286,0,0"
 						 Grid.Row="1"
 						 TextWrapping="Wrap"
 						 Text="{Binding SelectedTask.TaskEndPointAddress, Mode=TwoWay}"
@@ -205,6 +205,51 @@
 							 FontSize="30"
 							 Grid.Row="2"
 							 Grid.ColumnSpan="2" />
+        <Grid Background="#FF0099CC" Grid.ColumnSpan="5" Margin="0,0,0,244" Grid.RowSpan="2">
 
-	</Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="548"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Back Button -->
+            <Button x:Name="menuButton" 
+				Margin="39,59,0,0"
+				Style="{StaticResource NavigationBackButtonNormalStyle}" 
+				RenderTransformOrigin="0.5,0.5" 
+				Height="41" 
+				Width="41">
+
+                <Button.RenderTransform>
+                    <CompositeTransform Rotation="180"/>
+                </Button.RenderTransform>
+            </Button>
+
+            <TextBlock Text="Menu"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Bottom"
+				Margin="46,0,46,20" Height="13" Width="28"/>
+            <!-- Enter a convinient title for the view  -->
+            <TextBlock x:Name="pageTitle" 
+				Text="{Binding WelcomeText}"
+				Style="{StaticResource HeaderTextBlockStyle}" 
+				Grid.Column="1" 
+				IsHitTestVisible="false" 
+				TextWrapping="NoWrap" 
+				VerticalAlignment="Bottom"
+				Margin="0,0,0,40" Height="40"/>
+
+            <TextBlock Text="FetchIt!" 
+				Grid.Column="2" 
+				FontSize="140"
+				TextWrapping="Wrap" 
+				VerticalAlignment="center" 
+				FontFamily="Remachine Script Personal Use " 
+				Foreground="#FFCCFFCC" Height="149" 
+				Margin="83,-7,294,-2"
+				Width="321"/>
+        </Grid>
+
+    </Grid>
 </Page>

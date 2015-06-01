@@ -109,8 +109,8 @@ namespace FetchItUniversalAndApi.View
 			//This code makes the Create Feedback button visible on three conditions:
 			//1. If the current logged in profile is the taskmaster of the task.
 			//2. If the task does not have any feedbacks.
-            //3. If the task status is set to 5 (or TaskStatus.Completed)
-		    
+			//3. If the task status is set to 5 (or TaskStatus.Completed)
+
 			if (th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.Completed)
 			{
 				if (th.SelectedTask.Feedbacks.Count < 1 && ph.CurrentLoggedInProfile.ProfileId == th.SelectedTask.FK_TaskMaster)
@@ -167,7 +167,6 @@ namespace FetchItUniversalAndApi.View
 
 				//This LeaveCommentButton is only available ATM to fetchers or taskmasters of
 				//the selected task
-				LeaveCommentButton.Visibility = Visibility.Visible;
 
 				if (th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.Active ||
 					th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.FetcherCompleted ||
@@ -196,18 +195,13 @@ namespace FetchItUniversalAndApi.View
 			}
 			#endregion
 		}
-			
+
 		protected override void OnNavigatedFrom(NavigationEventArgs e)
 		{
 			navigationHelper.OnNavigatedFrom(e);
 		}
 
 		#endregion
-
-		private void goBackButton_Click(object sender, RoutedEventArgs e)
-		{
-			this.Frame.Navigate(typeof(LandingPage));
-		}
 
 		private void CreateFeedbackButton_Click(object sender, RoutedEventArgs e)
 		{
@@ -227,68 +221,47 @@ namespace FetchItUniversalAndApi.View
 			}
 		}
 
-		private void CancelCommentButton_Click(object sender, RoutedEventArgs e)
-		{
-			//CommentBorder.Visibility = Visibility.Collapsed;
-		}
-
-		async private void LeaveCommentButton_Click(object sender, RoutedEventArgs e)
-		{
-			//CommentBorder.Visibility = Visibility.Visible;
-
-			//Success message is a TextBlock control in the UI, which has a bind to the
-			//TaskDetailViewModel, it gets set in VM when the comment has been successfully 
-			//added to the database. Here it is used to make the CommentGrid dissappear
-			//after a comment is added.
-			//TODO: Make a more clever way to make the comment grid collapse, any good ideas are appreciated 
-			while (SuccessMessage.Visibility == Visibility.Collapsed)
-			{
-				await Task.Delay(500);
-			}
-            //CommentBorder.Visibility = Visibility.Collapsed;
-		}
-
 		private void taskFetcherBind_Tapped(object sender, TappedRoutedEventArgs e)
 		{
 			var ph = ProfileHandler.GetInstance();
-            //var taskViewModel = MainGrid.DataContext as TaskDetailViewModel;
+			var taskViewModel = pageRoot.DataContext as TaskDetailViewModel;
 
-            //if (taskViewModel != null)
-            //{
-            //    ph.SelectedProfile = taskViewModel.Fetcher;
-            //}
+			if (taskViewModel != null)
+			{
+				ph.SelectedProfile = taskViewModel.Fetcher;
+			}
 			this.Frame.Navigate(typeof(ProfileDetailPage));
 		}
 
 		private void taskmasterBind_Tapped(object sender, TappedRoutedEventArgs e)
 		{
 			var ph = ProfileHandler.GetInstance();
-            //var taskViewModel = MainGrid.DataContext as TaskDetailViewModel;
+			var taskViewModel = pageRoot.DataContext as TaskDetailViewModel;
 
-            //if (taskViewModel != null)
-            //{
-            //    ph.SelectedProfile = taskViewModel.Taskmaster;
-            //}
+			if (taskViewModel != null)
+			{
+				ph.SelectedProfile = taskViewModel.Taskmaster;
+			}
 			this.Frame.Navigate(typeof(ProfileDetailPage));
 		}
 
-        private void appBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (appBar.IsOpen == true)
-            {
-                appBar.IsOpen = false;
-            }
-            else
-            {
-                appBar.IsOpen = true;
-            }
-        }
+		private void appBarButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (appBar.IsOpen == true)
+			{
+				appBar.IsOpen = false;
+			}
+			else
+			{
+				appBar.IsOpen = true;
+			}
+		}
 
-        private void profileLogoutButton_Click(object sender, RoutedEventArgs e)
-        {
-            var ph = ProfileHandler.GetInstance();
-            ph.LogOut();
-            this.Frame.Navigate(typeof(MainPage));
-        }
+		private void profileLogoutButton_Click(object sender, RoutedEventArgs e)
+		{
+			var ph = ProfileHandler.GetInstance();
+			ph.LogOut();
+			this.Frame.Navigate(typeof(MainPage));
+		}
 	}
 }

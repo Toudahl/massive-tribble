@@ -51,10 +51,55 @@
                        VerticalAlignment="Bottom"
                        Margin="0,0,30,40"/>
             <Button x:Name="notificationsButton" Command="{Binding RefreshNotifications}"
-                    Content="Notifications" Grid.Column="1" HorizontalAlignment="Left" Margin="748,57,0,0" VerticalAlignment="Top" Click="notificationsButton_Click" Height="46" Width="134"/>
-            <Button x:Name="feedbackButton" Content="Feedback" Command="{Binding RefreshFeedback}" Grid.Column="1" HorizontalAlignment="Left" Margin="881,57,0,0" VerticalAlignment="Top" Click="feedbackButton_Click" Height="46" Width="124"/>
+                    Content="Notifications" Grid.Column="1" HorizontalAlignment="Left" Margin="41,142,0,-48" VerticalAlignment="Top" Click="notificationsButton_Click" Height="46" Width="134" BorderThickness="0"/>
+            <Button x:Name="feedbackButton" Content="Feedback" Command="{Binding RefreshFeedback}" HorizontalAlignment="Left" Margin="10,142,0,-48" VerticalAlignment="Top" Click="feedbackButton_Click" Height="46" Width="124" Grid.ColumnSpan="2" BorderThickness="0"/>
+            <Grid Background="#FF0099CC" Grid.ColumnSpan="2">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="548"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Back Button -->
+                <Button x:Name="menuButton" 
+            		Margin="39,59,0,0"
+            		Style="{StaticResource NavigationBackButtonNormalStyle}" 
+            		RenderTransformOrigin="0.5,0.5" 
+            		Height="41" 
+            		Width="41">
+
+                    <Button.RenderTransform>
+                        <CompositeTransform Rotation="180"/>
+                    </Button.RenderTransform>
+                </Button>
+
+                <TextBlock Text="Menu"
+            		HorizontalAlignment="Center"
+            		VerticalAlignment="Bottom"
+            		Margin="46,0,46,20" Height="13" Width="28"/>
+                <!-- Enter a convinient title for the view  -->
+                <TextBlock x:Name="pageTitle1" 
+            		Text="{Binding WelcomeText}"
+            		Style="{StaticResource HeaderTextBlockStyle}" 
+            		Grid.Column="1" 
+            		IsHitTestVisible="false" 
+            		TextWrapping="NoWrap" 
+            		VerticalAlignment="Bottom"
+            		Margin="0,0,0,40" Height="40"/>
+
+                <TextBlock Text="FetchIt!" 
+            		Grid.Column="2" 
+            		FontSize="140"
+            		TextWrapping="Wrap" 
+            		VerticalAlignment="center" 
+            		FontFamily="Remachine Script Personal Use " 
+            		Foreground="#FFCCFFCC" Height="149" 
+            		Margin="83,-7,294,-2"
+            		Width="321"/>
+            </Grid>
         </Grid>
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="1" Grid.Column="0" Margin="10,0,0,10">
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="1" Grid.Column="0" Margin="10,40,0,-30">
             <ListView x:Name="notificationsListView" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top"
                        ItemsSource="{Binding Notifications, Mode=TwoWay}" SelectedItem="{Binding SelectedNotification, Mode=TwoWay}"/>
             <ListView x:Name="feedbackListView" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" 
@@ -80,28 +125,27 @@
                        Text= "{Binding SelectedNotification.NotificationSent, Mode=TwoWay}"/>
             </StackPanel>
             <StackPanel Height="100" Orientation="Horizontal">
-            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="25,44,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Content:" VerticalAlignment="Top" Style="{StaticResource HeaderTextBlockStyle}"/>
-            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="25,44,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource HeaderTextBlockStyle}" 
-                       Text= "{Binding SelectedNotification.NotificationContent, Mode=TwoWay}"/>
+                <TextBlock HorizontalAlignment="Left" Margin="25,44,0,0" TextWrapping="Wrap" Text="Content:" VerticalAlignment="Top" Style="{StaticResource HeaderTextBlockStyle}"/>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="25,44,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource HeaderTextBlockStyle}" 
+            		Text= "{Binding SelectedNotification.NotificationContent, Mode=TwoWay}"/>
             </StackPanel>
         </StackPanel>
 
         <StackPanel Name="feedbackStackPanel" 
-                    Grid.Column="1" 
                     HorizontalAlignment="Left" 
                     Height="608" 
-                    Margin="10,10,0,0" 
+                    Margin="5,10,0,0" 
                     Grid.Row="1" 
                     VerticalAlignment="Top" 
                     Orientation="Vertical"
-                    Width="759">
+                    Width="759" Grid.Column="1">
             <TextBlock Text="Feedback:" 
                        HorizontalAlignment="Left"
                        Margin="25,44,0,0" Grid.Row="1" 
                        TextWrapping="Wrap" 
                        VerticalAlignment="Top" 
                        Style="{StaticResource HeaderTextBlockStyle}"/>
-            
+
             <TextBlock HorizontalAlignment="Left" 
                        Margin="25,44,0,0" 
                        TextWrapping="Wrap" 

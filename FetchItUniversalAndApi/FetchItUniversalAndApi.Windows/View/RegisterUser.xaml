@@ -36,16 +36,17 @@
                         VerticalAlignment="Center"
                         Width="300"
                         >
+                <TextBlock Text="Sign up for Fetch it!" FontSize="20"/>
                 <TextBox x:Name="textbox_Username" PlaceholderText="Username" Text="{Binding Username, Mode=TwoWay}"/>
-            <TextBox x:Name="textbox_Email" PlaceholderText="Email" InputScope="EmailSmtpAddress" Text="{Binding Email, Mode=TwoWay}"/>
-            <TextBox x:Name="textbox_ConfirmEmail" PlaceholderText="Confirm Email" InputScope="EmailSmtpAddress" Text="{Binding EmailConfirm, Mode=TwoWay}"/>
-            <PasswordBox x:Name="passwordbox_Password" PlaceholderText="Password" Password="{Binding Password, Mode=TwoWay}" />
-            <PasswordBox x:Name="passwordbox_ConfirmPassword" PlaceholderText="Confirm Password" Password="{Binding PasswordConfirm, Mode=TwoWay}"/>
-            <TextBox x:Name="textbox_address" PlaceholderText="Address" Text="{Binding Address, Mode=TwoWay}"/>
-            <TextBox x:Name="textbox_mobile" PlaceholderText="Mobile number" Text="{Binding MobilePhone, Mode=TwoWay}" InputScope="TelephoneNumber"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button x:Name="button_createUser" Command="{Binding RegisterCommand}" Content="Create User" Click="createUserButton_Click" HorizontalAlignment="Center"/>
-                    <Button x:Name="button_cancel" Content="Cancel" Click="cancelButton_Click" HorizontalAlignment="Center"/>
+                <TextBox x:Name="textbox_Email" PlaceholderText="Email" InputScope="EmailSmtpAddress" Text="{Binding Email, Mode=TwoWay}"/>
+                <TextBox x:Name="textbox_ConfirmEmail" PlaceholderText="Confirm Email" InputScope="EmailSmtpAddress" Text="{Binding EmailConfirm, Mode=TwoWay}"/>
+                <PasswordBox x:Name="passwordbox_Password" PlaceholderText="Password" Password="{Binding Password, Mode=TwoWay}" />
+                <PasswordBox x:Name="passwordbox_ConfirmPassword" PlaceholderText="Confirm Password" Password="{Binding PasswordConfirm, Mode=TwoWay}"/>
+                <TextBox x:Name="textbox_address" PlaceholderText="Address" Text="{Binding Address, Mode=TwoWay}"/>
+                <TextBox x:Name="textbox_mobile" PlaceholderText="Mobile number" Text="{Binding MobilePhone, Mode=TwoWay}" InputScope="TelephoneNumber"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <Button x:Name="button_createUser" Command="{Binding RegisterCommand}" Content="Create User" Click="createUserButton_Click" HorizontalAlignment="Stretch" Width="150"/>
+                    <Button x:Name="button_cancel" Content="Cancel" Click="cancelButton_Click" HorizontalAlignment="Stretch" Width="150"/>
                 </StackPanel>
             </StackPanel>
     </Grid>
