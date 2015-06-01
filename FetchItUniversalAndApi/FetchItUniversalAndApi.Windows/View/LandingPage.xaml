@@ -183,14 +183,30 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding FK_TaskMaster}"
-															 FontSize="28"
-															 TextWrapping="NoWrap"
-															 Margin="10,0,0,0" />
                                 <TextBlock Text="{Binding TaskDescription}"
-															 FontSize="12"
+															 FontSize="14"
+															 TextWrapping="NoWrap"
+															 Margin="10,0,0,0" 
+                                                             Foreground="#FFCCFFCC" 
+                                                             FontWeight="Bold" />
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Fee: " FontSize="16"
 															 TextWrapping="NoWrap"
 															 Margin="10,0,0,0" />
+                                    <TextBlock Text="{Binding TaskFee}"
+															 FontSize="16"
+															 TextWrapping="NoWrap"
+															 Margin="10,0,0,0" 
+                                                             FontWeight="Bold" />
+                                    <TextBlock Text="DeadLine: " FontSize="16"
+															 TextWrapping="NoWrap"
+															 Margin="10,0,0,0" />
+                                    <TextBlock Text="{Binding TaskDeadline}"
+															 FontSize="16"
+															 TextWrapping="NoWrap"
+															 Margin="20,0,0,0" 
+                                                             FontWeight="Bold" />
+                                </StackPanel>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
