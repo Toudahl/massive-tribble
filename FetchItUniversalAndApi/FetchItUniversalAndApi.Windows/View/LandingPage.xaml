@@ -246,6 +246,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </Grid>
+            
             <!--Appbar-->
             <AppBar x:Name="appBar" 
                     Grid.Column="0"
