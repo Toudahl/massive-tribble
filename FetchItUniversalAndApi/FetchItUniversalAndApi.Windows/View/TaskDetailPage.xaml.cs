@@ -229,12 +229,12 @@ namespace FetchItUniversalAndApi.View
 
 		private void CancelCommentButton_Click(object sender, RoutedEventArgs e)
 		{
-			CommentBorder.Visibility = Visibility.Collapsed;
+			//CommentBorder.Visibility = Visibility.Collapsed;
 		}
 
 		async private void LeaveCommentButton_Click(object sender, RoutedEventArgs e)
 		{
-			CommentBorder.Visibility = Visibility.Visible;
+			//CommentBorder.Visibility = Visibility.Visible;
 
 			//Success message is a TextBlock control in the UI, which has a bind to the
 			//TaskDetailViewModel, it gets set in VM when the comment has been successfully 
@@ -245,31 +245,50 @@ namespace FetchItUniversalAndApi.View
 			{
 				await Task.Delay(500);
 			}
-			CommentBorder.Visibility = Visibility.Collapsed;
+            //CommentBorder.Visibility = Visibility.Collapsed;
 		}
 
 		private void taskFetcherBind_Tapped(object sender, TappedRoutedEventArgs e)
 		{
 			var ph = ProfileHandler.GetInstance();
-			var taskViewModel = MainGrid.DataContext as TaskDetailViewModel;
+            //var taskViewModel = MainGrid.DataContext as TaskDetailViewModel;
 
-			if (taskViewModel != null)
-			{
-				ph.SelectedProfile = taskViewModel.Fetcher;
-			}
+            //if (taskViewModel != null)
+            //{
+            //    ph.SelectedProfile = taskViewModel.Fetcher;
+            //}
 			this.Frame.Navigate(typeof(ProfileDetailPage));
 		}
 
 		private void taskmasterBind_Tapped(object sender, TappedRoutedEventArgs e)
 		{
 			var ph = ProfileHandler.GetInstance();
-			var taskViewModel = MainGrid.DataContext as TaskDetailViewModel;
+            //var taskViewModel = MainGrid.DataContext as TaskDetailViewModel;
 
-			if (taskViewModel != null)
-			{
-				ph.SelectedProfile = taskViewModel.Taskmaster;
-			}
+            //if (taskViewModel != null)
+            //{
+            //    ph.SelectedProfile = taskViewModel.Taskmaster;
+            //}
 			this.Frame.Navigate(typeof(ProfileDetailPage));
 		}
+
+        private void appBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (appBar.IsOpen == true)
+            {
+                appBar.IsOpen = false;
+            }
+            else
+            {
+                appBar.IsOpen = true;
+            }
+        }
+
+        private void profileLogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            var ph = ProfileHandler.GetInstance();
+            ph.LogOut();
+            this.Frame.Navigate(typeof(MainPage));
+        }
 	}
 }
