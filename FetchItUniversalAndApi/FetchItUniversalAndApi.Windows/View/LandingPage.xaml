@@ -83,7 +83,7 @@
 
                 <TextBlock Text="Notifications"
                            FontSize="35"
-                           Margin="15,0,130,0"
+                           Margin="15,0,0,0"
                            VerticalAlignment="Center"/>
                 <AppBarButton x:Name="notificationsRefreshButton"
             	                Width="125"
@@ -92,7 +92,7 @@
             	                Style="{StaticResource RefreshAppBarButtonStyle}"
             	                VerticalAlignment="Top"
             	                Command="{Binding RefreshNotifications}" 
-            	                Margin="227,0,-10,-13" >
+            	                Margin="228,0,0,0" >
                 </AppBarButton>
             </Grid>
             <Grid x:Name="Column0Row2Grid" 
@@ -136,7 +136,7 @@
             	                Style="{StaticResource RefreshAppBarButtonStyle}"
             	                VerticalAlignment="Top"
             	                Command="{Binding RefreshMarketplace}" 
-            	                Margin="228,-2,-12,0" >
+            	                Margin="228,0,0,0" >
                 </AppBarButton>
 
             </Grid>
@@ -163,23 +163,32 @@
                               Icon="Refresh"
             	                VerticalAlignment="Top"
             	                Command="{Binding RefreshMarketplace}" 
-            	                Margin="228,0,0,-2" >
+            	                Margin="228,0,0,0" >
                 </AppBarButton>
                 <AppBarButton HorizontalAlignment="Left" 
                               Icon="Add" 
                               Label="AppBarButton" 
-                              Margin="305,0,0,-5" 
+                              Margin="305,0,0,0" 
                               VerticalAlignment="Top"
                               Click="CreateTaskButton_Click"/>
             </Grid>
             <Grid x:Name="Column2Row2Grid"
                   Row ="2"
                   Column="4" >
+                <!-- Marketplace: Displays all active Tasks
+                     Sets the SelectedTask when an object is clicked
+                     and navigates to the TaskDetailPage which shows
+                     SelectedTask.
+                -->
                 <ListView x:Name="marketplaceListView"
                           ItemsSource="{Binding Marketplace}"
                           SelectionChanged="marketplaceListView_SelectionChanged"
-                          SelectedItem="{Binding th.SelectedTask}">
-
+                          SelectedItem="{Binding th.SelectedTask, Mode=TwoWay}">
+                          <!-- Sets the Content for the ListView so each object 
+                               in the Marketplace Binding is shown as the ItemTemplate
+                               specifies. Shows: Description of Task, Fee advertised and
+                               Deadline of the Task.
+                            -->
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
@@ -219,7 +228,8 @@
                     Grid.ColumnSpan="2"
                     Grid.RowSpan="2"
                     Background="NavajoWhite"
-                    Opacity="20">
+                    Opacity="20"
+                    >
 
                 <Grid>
                     <Grid.RowDefinitions>
