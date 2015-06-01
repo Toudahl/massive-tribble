@@ -169,7 +169,9 @@
 							 VerticalAlignment="Top"
 							 FontSize="22"
 							 RenderTransformOrigin="0.906,2.8" />
-            <Button x:Name="reportProfileButton" Content="Report this profile!" HorizontalAlignment="Left" Margin="425,35,0,0" VerticalAlignment="Top" Click="reportProfileButton_Click" BorderThickness="0" Background="#FFFB4A07"/>
+            <Button x:Name="reportProfileButton" Content="Report this profile!" HorizontalAlignment="Left" Margin="425,35,0,0" VerticalAlignment="Top" Click="reportProfileButton_Click" BorderThickness="0"
+							Height="60"
+							FontSize="25" />
         </Grid>
         <!--Appbar-->
         <AppBar x:Name="appBar" 

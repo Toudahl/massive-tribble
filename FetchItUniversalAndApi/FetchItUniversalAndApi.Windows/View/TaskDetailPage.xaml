@@ -289,14 +289,6 @@
 										 Text="Comments"
 										 VerticalAlignment="Center"
 										 FontSize="35" />
-					<TextBlock x:Name="SuccessMessage"
-										 HorizontalAlignment="Left"
-										 Margin="40,0,0,0"
-										 TextWrapping="Wrap"
-										 Text="Your comment has been added"
-										 VerticalAlignment="Top"
-										 FontSize="25"
-										 Visibility="{Binding SuccessMessage, Mode=TwoWay}" />
 					<ListView x:Name="CommentsListView"
 										ItemsSource="{Binding CommentsForTask, Mode=TwoWay}"
 										BorderThickness="1"
@@ -319,17 +311,25 @@
 										 Text="Add your Comment"
 										 VerticalAlignment="Center"
 										 FontSize="40"
-										 Margin="83,15,42,0" />
+										 Margin="0,15,0,0" />
 					<Button x:Name="AddCommentButton"
 									Content=""
 									Command="{Binding AddCommentCommand}"
 									FontSize="25"
 									Style="{StaticResource FetchitButtonAdd}"
-									Margin="40,20,0,0"
+									Margin="0,-2,0,0"
 									Height="60"
 									Width="60"
 									HorizontalAlignment="Center"
 									BorderThickness="0" />
+					<TextBlock x:Name="SuccessMessage"
+										 HorizontalAlignment="Center"
+										 Margin="0,2,0,0"
+										 TextWrapping="Wrap"
+										 Text="Your comment has been added"
+										 VerticalAlignment="Top"
+										 FontSize="25"
+										 Visibility="{Binding SuccessMessage, Mode=TwoWay}" />
 				</StackPanel>
 			</Grid>
 			<!--Grid Row 1 Column 2 called: TaskFeedbackDetails-->
