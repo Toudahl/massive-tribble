@@ -179,22 +179,25 @@
                            FontSize="35"
                            Margin="15,0,130,0"
                            VerticalAlignment="Center"/>
-                <AppBarButton x:Name="refreshMarketplaceButton"
-            	              Width="125"
-            	              Height="67"
-            	              HorizontalAlignment="Left"
-                              Icon="Refresh"
-            	              VerticalAlignment="Top"
-            	              Command="{Binding RefreshMarketplace}" 
-            	              Margin="228,0,0,0"
-                              Click="refreshButtons_Click" >
+                <AppBarButton x:Name="marketplaceRefreshbutton"
+            	                Width="125"
+            	                Height="67"
+            	                HorizontalAlignment="Left"
+            	                Style="{StaticResource RefreshAppBarButtonStyle}"
+            	                VerticalAlignment="Top"
+            	                Command="{Binding RefreshMarketplace}" 
+            	                Margin="228,0,0,0" 
+                                Click="refreshButtons_Click" >
                 </AppBarButton>
-                <AppBarButton HorizontalAlignment="Left" 
-                              Icon="Add" 
-                              Label="AppBarButton" 
-                              Margin="305,0,0,0" 
-                              VerticalAlignment="Top"
-                              Click="CreateTaskButton_Click"/>
+                <AppBarButton x:Name="addTaskbutton"
+            	                Width="125"
+            	                Height="67"
+            	                HorizontalAlignment="Left"
+            	                Style="{StaticResource AddAppBarButtonStyle}"
+            	                VerticalAlignment="Top"
+            	                Margin="288,0,0,0" 
+                                Click="CreateTaskButton_Click" >
+                </AppBarButton>
             </Grid>
             <Grid x:Name="Column2Row2Grid"
                   Row ="2"
@@ -243,11 +246,13 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </Grid>
-
+            
             <!--Appbar-->
             <AppBar x:Name="appBar" 
-                    Grid.ColumnSpan="2"
+                    Grid.Column="0"
+                    Grid.Row="0"
                     Grid.RowSpan="2"
+                    Grid.ColumnSpan="2"
                     Background="NavajoWhite"
                     Opacity="20" 
                     BorderBrush="#FFFB4A07">
@@ -260,7 +265,7 @@
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5*"/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width="4"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Orientation="Vertical">
@@ -274,6 +279,7 @@
                     </StackPanel>
                     <Grid Grid.Row="1">
                         <StackPanel Orientation="Vertical">
+                            <Button x:Name="homeButton" Click="homeButton_Click" BorderThickness="0" FontSize="24">Home</Button>
                             <Button x:Name="profileButton" Click="profileButton_Click" BorderThickness="0" FontSize="24">My Profile</Button>
                             <Button x:Name="messageHubButton" Click="messageHubButton_Click" BorderThickness="0" FontSize="24">Message Hub</Button>
                             <Button x:Name="issuesButton" Click="issuesButton_Click" BorderThickness="0" FontSize="24">My Issues</Button>
@@ -281,13 +287,16 @@
                         </StackPanel>
                     </Grid>
                     <Grid Column ="1">
-                        <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" FontSize="24">Log Out</TextBlock>
                             <Button x:Name="profileLogoutButton"
                                     HorizontalAlignment="Center"
 								    Height="78"
 								    Width="85"
-								    Style="{StaticResource SkipBackAppBarButtonStyle}"
+								    Style="{StaticResource DeleteAppBarButtonStyle}"
 								    Click="profileLogoutButton_Click" Margin="15,0,14,0" />
+                            
+                           
                         </StackPanel>
                     </Grid>
                     <Grid Grid.Column="2" Background="#FFFB4A07"/>

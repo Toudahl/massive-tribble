@@ -18,8 +18,8 @@
 
     <Grid Background="{StaticResource FetchitBackgroundColour}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="587*"/>
-            <ColumnDefinition Width="779*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.ChildrenTransitions>
             <TransitionCollection>
@@ -31,7 +31,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Back button and page title -->
+        <!-- Top Grid -->
         <Grid Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>
@@ -50,9 +50,33 @@
                        TextWrapping="NoWrap" 
                        VerticalAlignment="Bottom"
                        Margin="0,0,30,40"/>
-            <Button x:Name="notificationsButton" Command="{Binding RefreshNotifications}"
-                    Content="Notifications" Grid.Column="1" HorizontalAlignment="Left" Margin="41,142,0,-48" VerticalAlignment="Top" Click="notificationsButton_Click" Height="46" Width="134" BorderThickness="0"/>
-            <Button x:Name="feedbackButton" Content="Feedback" Command="{Binding RefreshFeedback}" HorizontalAlignment="Left" Margin="10,142,0,-48" VerticalAlignment="Top" Click="feedbackButton_Click" Height="46" Width="124" Grid.ColumnSpan="2" BorderThickness="0"/>
+            <Button x:Name="notificationsButton" 
+                    Command="{Binding RefreshNotifications}"
+                    Content="Notifications" 
+                    Grid.Column="1" 
+                    HorizontalAlignment="Left" 
+                    Margin="41,142,0,-48" 
+                    VerticalAlignment="Top" 
+                    Click="notificationsButton_Click" 
+                    Height="50"  
+                    Width="125"
+                    BorderThickness="0" 
+                    Background="#FFCCFFCC" 
+                    Opacity="0.8"/>
+            <Button x:Name="feedbackButton" 
+                    Content="Feedback" 
+                    Command="{Binding RefreshFeedback}" 
+                    HorizontalAlignment="Left"
+                    Margin="10,142,0,-48" 
+                    VerticalAlignment="Top" 
+                    Click="feedbackButton_Click" 
+                    Height="50" 
+                    Width="125"
+                    Grid.ColumnSpan="2" 
+                    BorderThickness="0"
+                    Background="#FFCCFFCC" 
+                    Opacity="0.8"/>
+            
             <Grid Background="#FF0099CC" Grid.ColumnSpan="2">
 
                 <Grid.ColumnDefinitions>
@@ -61,7 +85,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <!-- Back Button -->
+                <!-- Menu Button -->
                 <Button x:Name="menuButton" 
             		Margin="39,59,0,0"
             		Style="{StaticResource NavigationBackButtonNormalStyle}" 
@@ -73,11 +97,11 @@
                         <CompositeTransform Rotation="180"/>
                     </Button.RenderTransform>
                 </Button>
-
                 <TextBlock Text="Menu"
             		HorizontalAlignment="Center"
             		VerticalAlignment="Bottom"
             		Margin="46,0,46,20" Height="13" Width="28"/>
+                
                 <!-- Enter a convinient title for the view  -->
                 <TextBlock x:Name="pageTitle1" 
             		Text="{Binding WelcomeText}"
@@ -87,7 +111,6 @@
             		TextWrapping="NoWrap" 
             		VerticalAlignment="Bottom"
             		Margin="0,0,0,40" Height="40"/>
-
                 <TextBlock Text="FetchIt!" 
             		Grid.Column="2" 
             		FontSize="140"
@@ -99,7 +122,8 @@
             		Width="321"/>
             </Grid>
         </Grid>
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="1" Grid.Column="0" Margin="10,40,0,-30">
+        
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="1" Grid.Column="0" Margin="10,40,0,0">
             <ListView x:Name="notificationsListView" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top"
                        ItemsSource="{Binding Notifications, Mode=TwoWay}" SelectedItem="{Binding SelectedNotification, Mode=TwoWay}"/>
             <ListView x:Name="feedbackListView" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" 
@@ -115,6 +139,7 @@
                     Grid.Row="1" 
                     VerticalAlignment="Top" 
                     Width="759">
+            
             <StackPanel Height="100" Orientation="Horizontal">
                 <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="25,44,0,0" Grid.Row="1" TextWrapping="Wrap" Text="From:" VerticalAlignment="Top" Style="{StaticResource HeaderTextBlockStyle}"/>
                 <TextBlock HorizontalAlignment="Left" Margin="25,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Style="{StaticResource HeaderTextBlockStyle}" Text= "{Binding FromProfile.ProfileName, Mode=TwoWay}"/>
@@ -154,7 +179,57 @@
                        Text="{Binding FromProfile.ProfileName, Mode=TwoWay}"/>
         </StackPanel>
 
+        
+        <!--Appbar-->
+        <AppBar x:Name="appBar"
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Background="NavajoWhite"
+                    Opacity="20" 
+                    BorderBrush="#FFFB4A07">
 
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="4"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Menu"
+                                   FontSize="50"
+                                   Margin="15,0,130,0"
+                                   VerticalAlignment="Center" 
+                                   FontFamily="Remachine Script Personal Use " 
+                                   Foreground="#FFFB4A07" 
+                                   FontWeight="Bold"/>
+                </StackPanel>
+                <Grid Grid.Row="1">
+                    <StackPanel Orientation="Vertical">
+                        <Button x:Name="homeButton" Click="homeButton_Click" BorderThickness="0" FontSize="24">Home</Button>
+                        <Button x:Name="profileButton" Click="profileButton_Click" BorderThickness="0" FontSize="24">My Profile</Button>
+                        <Button x:Name="messageHubButton" Click="messageHubButton_Click" BorderThickness="0" FontSize="24">Message Hub</Button>
+                        <Button x:Name="issuesButton" Click="issuesButton_Click" BorderThickness="0" FontSize="24">My Issues</Button>
+                        <Button x:Name="createNewTaskButton" Click="issuesButton_Click" BorderThickness="0" FontSize="24">Create New Task</Button>
+                    </StackPanel>
+                </Grid>
+                <Grid Column ="1">
+                    <StackPanel Orientation="Vertical">
+                        <Button x:Name="profileLogoutButton"
+                                    HorizontalAlignment="Center"
+								    Height="78"
+								    Width="85"
+								    Style="{StaticResource DeleteAppBarButtonStyle}"
+								    Click="profileLogoutButton_Click" Margin="15,0,14,0" />
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="2" Background="#FFFB4A07"/>
+                <Grid Grid.Column="2" Grid.Row ="1" Background="#FFFB4A07"/>
+            </Grid>
+        </AppBar>
     </Grid>
 </Page>

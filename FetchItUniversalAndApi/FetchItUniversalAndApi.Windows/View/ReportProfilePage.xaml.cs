@@ -7,6 +7,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
+using FetchItUniversalAndApi.Handlers;
 
 namespace FetchItUniversalAndApi.View
 {
@@ -100,6 +101,40 @@ namespace FetchItUniversalAndApi.View
 			navigationHelper.GoBack();
 		}
 
+        #region AppBar Buttons
+        private void profileButton_Click(object sender, RoutedEventArgs e)
+        {
+            var ph = ProfileHandler.GetInstance();
+            ph.SelectedProfile = ph.CurrentLoggedInProfile;
+            this.Frame.Navigate(typeof(ProfileDetailPage));
+        }
+
+        private async void messageHubButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(50);
+            this.Frame.Navigate(typeof(MessageHub));
+        }
+
+        private async void issuesButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(50);
+            this.Frame.Navigate(typeof(IssuesView));
+        }
+
+        private async void CreateTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(50);
+            this.Frame.Navigate(typeof(TaskCreation));
+        }
+
+        private void profileLogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            var ph = ProfileHandler.GetInstance();
+            ph.LogOut();
+            this.Frame.Navigate(typeof(MainPage));
+        }
+        #endregion
+
 		async private void Button_Click(object sender, RoutedEventArgs e)
 		{
 			//Similar implementation on TaskDetailPage and CreateFeedBackPage, here used to
@@ -110,5 +145,10 @@ namespace FetchItUniversalAndApi.View
 			}
 			navigationHelper.GoBack();
 		}
+
+        private void homeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof (LandingPage));
+        }
 	}
 }

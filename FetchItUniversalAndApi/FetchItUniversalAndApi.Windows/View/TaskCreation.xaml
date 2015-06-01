@@ -1,7 +1,6 @@
 ﻿<Page
     x:Name="pageRoot"
     x:Class="FetchItUniversalAndApi.View.TaskCreation"
-    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:FetchItUniversalAndApi.View"
@@ -20,16 +19,6 @@
         <Grid.DataContext>
             <viewModel:TaskCreationViewModel/>
         </Grid.DataContext>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="25*"/>
-            <ColumnDefinition Width="50*"/>
-            <ColumnDefinition Width="25*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition/>
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
@@ -48,7 +37,7 @@
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"/>
         </Grid>
-        <StackPanel Grid.Column="1" 
+        <StackPanel Grid.Column="2" 
                     Grid.Row="1" Margin="0,176,0,-176">
             <TextBox x:Name="textbox_Description" Text="{Binding Description,Mode=TwoWay}" PlaceholderText="Describe your task here" Height="150" AcceptsReturn="True" IsSpellCheckEnabled="True"/>
             <TextBox x:Name="textbox_EndPointAddress" Text="{Binding EndPointAddress, Mode=TwoWay}" PlaceholderText="Your address"/>
@@ -110,5 +99,55 @@
         		Margin="83,-7,294,-2"
         		Width="321"/>
         </Grid>
+        <!--Appbar-->
+        <AppBar x:Name="appBar" 
+                    Grid.ColumnSpan="3"
+                    Grid.RowSpan="2"
+                    Background="NavajoWhite"
+                    Opacity="20" 
+                    BorderBrush="#FFFB4A07" Margin="0,10,0,-10">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="4"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Menu"
+                                   FontSize="50"
+                                   Margin="15,0,130,0"
+                                   VerticalAlignment="Center" 
+                                   FontFamily="Remachine Script Personal Use " 
+                                   Foreground="#FFFB4A07" 
+                                   FontWeight="Bold"/>
+                </StackPanel>
+                <Grid Grid.Row="1">
+                    <StackPanel Orientation="Vertical">
+                        <Button x:Name="profileButton" Click="profileButton_Click" BorderThickness="0" FontSize="24">My Profile</Button>
+                        <Button x:Name="messageHubButton" Click="messageHubButton_Click" BorderThickness="0" FontSize="24">Message Hub</Button>
+                        <Button x:Name="issuesButton" Click="issuesButton_Click" BorderThickness="0" FontSize="24">My Issues</Button>
+                        <Button x:Name="createNewTaskButton" Click="issuesButton_Click" BorderThickness="0" FontSize="24">Create New Task</Button>
+                    </StackPanel>
+                </Grid>
+                <Grid Column ="1">
+                    <StackPanel Orientation="Vertical">
+                        <Button x:Name="profileLogoutButton"
+                                    HorizontalAlignment="Center"
+								    Height="78"
+								    Width="85"
+								    Style="{StaticResource SkipBackAppBarButtonStyle}"
+								    Click="profileLogoutButton_Click" Margin="15,0,14,0" />
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="2" Background="#FFFB4A07"/>
+                <Grid Grid.Column="2" Grid.Row ="1" Background="#FFFB4A07"/>
+            </Grid>
+        </AppBar>
     </Grid>
 </Page>

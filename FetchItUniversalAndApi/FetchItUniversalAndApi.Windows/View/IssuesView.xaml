@@ -13,10 +13,9 @@
     </Page.DataContext>
 
     <Grid Background="{StaticResource FetchitBackgroundColour}">
-       
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="405*"/>
-            <ColumnDefinition Width="961*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="9*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -120,5 +119,57 @@
             <TextBlock HorizontalAlignment="Left" Margin="144,0,0,261" TextWrapping="Wrap" Text="{Binding SelectedIssue.IssueCreator.IssueCreator[0].IssueCreator.ProfileName}" VerticalAlignment="Bottom" RenderTransformOrigin="0.333,2.154" FontSize="20"/>
             <TextBlock HorizontalAlignment="Left" Margin="128,0,0,308" TextWrapping="Wrap" Text="{Binding SelectedIssue.IssueTarget.IssueTarget[0].IssueTarget.ProfileName}" VerticalAlignment="Bottom" RenderTransformOrigin="0.333,2.154" FontSize="20"/>
         </Grid>
+        <!--Appbar-->
+        <AppBar x:Name="appBar" 
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Grid.RowSpan="2"
+                    Background="NavajoWhite"
+                    Opacity="20" 
+                    BorderBrush="#FFFB4A07">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="4"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Menu"
+                                   FontSize="50"
+                                   Margin="15,0,130,0"
+                                   VerticalAlignment="Center" 
+                                   FontFamily="Remachine Script Personal Use " 
+                                   Foreground="#FFFB4A07" 
+                                   FontWeight="Bold"/>
+                </StackPanel>
+                <Grid Grid.Row="1">
+                    <StackPanel Orientation="Vertical">
+                        <Button x:Name="homeButton" Click="homeButton_Click" BorderThickness="0" FontSize="24">Home</Button>
+                        <Button x:Name="profileButton" Click="profileButton_Click" BorderThickness="0" FontSize="24">My Profile</Button>
+                        <Button x:Name="messageHubButton" Click="messageHubButton_Click" BorderThickness="0" FontSize="24">Message Hub</Button>
+                        <Button x:Name="issuesButton" Click="issuesButton_Click" BorderThickness="0" FontSize="24">My Issues</Button>
+                        <Button x:Name="createNewTaskButton" Click="issuesButton_Click" BorderThickness="0" FontSize="24">Create New Task</Button>
+                    </StackPanel>
+                </Grid>
+                <Grid Column ="1">
+                    <StackPanel Orientation="Vertical">
+                        <Button x:Name="profileLogoutButton"
+                                    HorizontalAlignment="Center"
+								    Height="78"
+								    Width="85"
+								    Style="{StaticResource DeleteAppBarButtonStyle}"
+								    Click="profileLogoutButton_Click" Margin="15,0,14,0" />
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="2" Background="#FFFB4A07"/>
+                <Grid Grid.Column="2" Grid.Row ="1" Background="#FFFB4A07"/>
+            </Grid>
+        </AppBar>
     </Grid>
 </Page>

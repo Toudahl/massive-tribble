@@ -117,8 +117,8 @@
 				Grid.Column="1"
 				FontSize="25"
 				FontFamily="Global User Interface"
-				Click="submitFeedbackBtn_Click"
-				BorderThickness="0" 
+						Click="submitFeedbackBtn_Click"
+						BorderThickness="0" />
                 Background="#FFCCFFCC" 
                 Opacity="0.8"/>
             

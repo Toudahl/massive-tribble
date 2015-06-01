@@ -257,11 +257,42 @@ namespace FetchItUniversalAndApi.View
 			}
 		}
 
-		private void profileLogoutButton_Click(object sender, RoutedEventArgs e)
-		{
-			var ph = ProfileHandler.GetInstance();
-			ph.LogOut();
-			this.Frame.Navigate(typeof(MainPage));
-		}
+        #region AppBar Buttons
+        private void profileButton_Click(object sender, RoutedEventArgs e)
+        {
+            var ph = ProfileHandler.GetInstance();
+            ph.SelectedProfile = ph.CurrentLoggedInProfile;
+            this.Frame.Navigate(typeof(ProfileDetailPage));
+        }
+
+        private async void messageHubButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(50);
+            this.Frame.Navigate(typeof(MessageHub));
+        }
+
+        private async void issuesButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(50);
+            this.Frame.Navigate(typeof(IssuesView));
+        }
+
+        private async void CreateTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(50);
+            this.Frame.Navigate(typeof(TaskCreation));
+        }
+
+        private void profileLogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            var ph = ProfileHandler.GetInstance();
+            ph.LogOut();
+            this.Frame.Navigate(typeof(MainPage));
+        }
+        private void homeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(LandingPage));
+        }
+        #endregion
 	}
 }
