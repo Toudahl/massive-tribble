@@ -335,6 +335,8 @@
 			<!--Grid Row 1 Column 2 called: TaskFeedbackDetails-->
             <!--Appbar-->
             <AppBar x:Name="appBar" 
+                    Grid.Row="1"
+                    Grid.Column="0"
                     Grid.ColumnSpan="2"
                     Grid.RowSpan="2"
                     Background="NavajoWhite"
@@ -363,6 +365,7 @@
                     </StackPanel>
                     <Grid Grid.Row="1">
                         <StackPanel Orientation="Vertical">
+                            <Button x:Name="homeButton" Click="homeButton_Click" BorderThickness="0" FontSize="24">Home</Button>
                             <Button x:Name="profileButton" Click="profileButton_Click" BorderThickness="0" FontSize="24">My Profile</Button>
                             <Button x:Name="messageHubButton" Click="messageHubButton_Click" BorderThickness="0" FontSize="24">Message Hub</Button>
                             <Button x:Name="issuesButton" Click="issuesButton_Click" BorderThickness="0" FontSize="24">My Issues</Button>
@@ -375,7 +378,7 @@
                                     HorizontalAlignment="Center"
 								    Height="78"
 								    Width="85"
-								    Style="{StaticResource SkipBackAppBarButtonStyle}"
+								    Style="{StaticResource DeleteAppBarButtonStyle}"
 								    Click="profileLogoutButton_Click" Margin="15,0,14,0" />
                         </StackPanel>
                     </Grid>
