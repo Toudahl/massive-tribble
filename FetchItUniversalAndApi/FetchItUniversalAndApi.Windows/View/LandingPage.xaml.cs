@@ -37,7 +37,6 @@ namespace FetchItUniversalAndApi.View
 		{
 		}
 
-		
 		private void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
 		{
 		}
@@ -74,16 +73,7 @@ namespace FetchItUniversalAndApi.View
             
 		}
 
-		private void MessageHubButton_OnClickButton_Click(object sender, RoutedEventArgs e)
-		{
-			this.Frame.Navigate(typeof(MessageHub));
-		}
-
-		private void issuePageButton_Click(object sender, RoutedEventArgs e)
-		{
-			this.Frame.Navigate(typeof(IssuesView));
-		}
-
+		
 		private void notificationsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			this.Frame.Navigate(typeof(MessageHub));
@@ -113,7 +103,6 @@ namespace FetchItUniversalAndApi.View
             }
         }
 
-        
         #region Notifications Pointer actions
 
         /// <summary>
@@ -210,6 +199,16 @@ namespace FetchItUniversalAndApi.View
         private void issuesButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof (IssuesView));
+        }
+
+        private void profileButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(ProfileDetailPage));
+        }
+
+        private void messageHubButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MessageHub));
         }
     }
 }
