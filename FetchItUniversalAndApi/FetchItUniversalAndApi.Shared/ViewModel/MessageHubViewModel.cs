@@ -108,7 +108,6 @@ namespace FetchItUniversalAndApi.ViewModel
             RefreshFeedback = new RelayCommand(GetFeedback);
         }
 
-
         #region Methods
 
         public void GetNotifications()

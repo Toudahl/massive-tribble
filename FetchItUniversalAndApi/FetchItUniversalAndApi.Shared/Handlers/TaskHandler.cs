@@ -102,7 +102,7 @@ namespace FetchItUniversalAndApi.Handlers
                     }
                     catch (Exception)
                     {
-                        throw;
+                        ErrorHandler.NoResponseFromApi();
                     }
                 }
             }
@@ -137,7 +137,7 @@ namespace FetchItUniversalAndApi.Handlers
                         }
                         catch (Exception)
                         {
-                            throw;
+                            ErrorHandler.NoResponseFromApi();
                         }
                     }
                 }
@@ -174,7 +174,7 @@ namespace FetchItUniversalAndApi.Handlers
                         }
                         catch (Exception)
                         {
-                            throw;
+                            ErrorHandler.NoResponseFromApi();
                         }
                     }
                 }
@@ -214,7 +214,7 @@ namespace FetchItUniversalAndApi.Handlers
                         }
                         catch (Exception)
                         {
-                            throw;
+                            ErrorHandler.NoResponseFromApi();
                         }
                     }
                 }
@@ -266,7 +266,7 @@ namespace FetchItUniversalAndApi.Handlers
                     }
                     catch (Exception)
                     {
-                        throw;
+                        ErrorHandler.NoResponseFromApi();
                     }
                 }
             }
@@ -356,7 +356,7 @@ namespace FetchItUniversalAndApi.Handlers
                     }
                     catch (Exception)
                     {
-                        throw;
+                        ErrorHandler.NoResponseFromApi();
                     }
                 }
             }
