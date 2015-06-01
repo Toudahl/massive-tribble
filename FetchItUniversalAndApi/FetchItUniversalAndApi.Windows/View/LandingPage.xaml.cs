@@ -53,7 +53,7 @@ namespace FetchItUniversalAndApi.View
             
 		}
 
-        #region Buttons OnClick
+        #region Appbar Buttons OnClick
         /// <summary>
         /// Makes sure that the button cannot be clicked more than every 3 seconds
         /// </summary>
