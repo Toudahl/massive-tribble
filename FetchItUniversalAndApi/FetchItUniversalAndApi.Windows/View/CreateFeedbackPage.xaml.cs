@@ -144,5 +144,10 @@ namespace FetchItUniversalAndApi.View
             this.Frame.Navigate(typeof(MainPage));
         }
         #endregion
+
+        private void homeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof (LandingPage));
+        }
 	}
 }
