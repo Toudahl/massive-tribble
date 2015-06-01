@@ -129,7 +129,6 @@
                            FontSize="35"
                            Margin="15,0,130,0"
                            VerticalAlignment="Center"/>
-
                 <AppBarButton x:Name="activeTasksRefreshbutton"
             	                Width="125"
             	                Height="67"
@@ -140,7 +139,6 @@
             	                Margin="228,0,0,0" 
                                 Click="refreshButtons_Click" >
                 </AppBarButton>
-
             </Grid>
             <Grid x:Name="Column1Row2Grid"
                   Row="2"
@@ -148,7 +146,30 @@
                 <ListView x:Name="userActiveTasksListView"
 					  	  ItemsSource="{Binding ActiveTasks, Mode=TwoWay}"
 						  SelectionChanged="userActiveTasksListView_SelectionChanged"
-						  SelectedItem="{Binding th.SelectedTask, Mode=TwoWay}" />
+						  SelectedItem="{Binding th.SelectedTask, Mode=TwoWay}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding TaskDescription}"
+															 FontSize="14"
+															 TextWrapping="NoWrap"
+															 Margin="10,0,0,0" 
+                                                             Foreground="#FFCCFFCC" 
+                                                             FontWeight="Bold" />
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="DeadLine: " FontSize="16"
+															 TextWrapping="NoWrap"
+															 Margin="10,0,0,0" />
+                                    <TextBlock Text="{Binding TaskDeadline}"
+															 FontSize="16"
+															 TextWrapping="NoWrap"
+															 Margin="20,0,0,0" 
+                                                             FontWeight="Bold" />
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </Grid>
 
             <!--Marketplace-->
