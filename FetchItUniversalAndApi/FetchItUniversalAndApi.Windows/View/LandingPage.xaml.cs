@@ -65,27 +65,6 @@ namespace FetchItUniversalAndApi.View
             {
                 coolDown((AppBarButton)sender);
             }
-		
-        }
-
-        private async void CreateTaskButton_Click(object sender, RoutedEventArgs e)
-        {
-            await Task.Delay(50);
-            this.Frame.Navigate(typeof(TaskCreation));
-        }
-
-		private void profileLogoutButton_Click(object sender, RoutedEventArgs e)
-		{
-			var ph = ProfileHandler.GetInstance();
-			ph.LogOut();
-			this.Frame.Navigate(typeof(MainPage));
-		}
-
-        private void profileDetailsButton_Click(object sender, RoutedEventArgs e)
-        {
-            var ph = ProfileHandler.GetInstance();
-            ph.SelectedProfile = ph.CurrentLoggedInProfile;
-            this.Frame.Navigate(typeof(ProfileDetailPage));
         }
 
         private void appBarButton_Click(object sender, RoutedEventArgs e)
@@ -99,6 +78,40 @@ namespace FetchItUniversalAndApi.View
                 appBar.IsOpen = true;
             }
         }
+
+        #region AppBar Buttons
+        private void profileButton_Click(object sender, RoutedEventArgs e)
+        {
+            var ph = ProfileHandler.GetInstance();
+            ph.SelectedProfile = ph.CurrentLoggedInProfile;
+            this.Frame.Navigate(typeof(ProfileDetailPage));
+        }
+
+        private async void messageHubButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(50);
+            this.Frame.Navigate(typeof(MessageHub));
+        }
+
+        private async void issuesButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(50);
+            this.Frame.Navigate(typeof(IssuesView));
+        }
+
+        private async void CreateTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(50);
+            this.Frame.Navigate(typeof(TaskCreation));
+        }
+
+        private void profileLogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            var ph = ProfileHandler.GetInstance();
+            ph.LogOut();
+            this.Frame.Navigate(typeof(MainPage));
+        }
+        #endregion
         #endregion
 
         #region ListView OnSelectionChanged
@@ -213,22 +226,5 @@ namespace FetchItUniversalAndApi.View
             Column2Row2Grid.Background = new SolidColorBrush();
         }
         #endregion
-
-        private void issuesButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof (IssuesView));
-        }
-
-        private void profileButton_Click(object sender, RoutedEventArgs e)
-        {
-            var ph = ProfileHandler.GetInstance();
-            ph.SelectedProfile = ph.CurrentLoggedInProfile;
-            this.Frame.Navigate(typeof(ProfileDetailPage));
-        }
-
-        private void messageHubButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(MessageHub));
-        }
     }
 }

@@ -70,54 +70,6 @@
                        Foreground="#FFCCFFCC" Height="149" 
                        Margin="83,-7,294,-2"
                        Width="321"/>
-
-            <!--Appbar-->
-            <AppBar x:Name="appBar" 
-                    Grid.Row="1"
-                    Grid.ColumnSpan="2"
-                    Grid.RowSpan="5"
-                    Background="NavajoWhite"
-                    Opacity="20" 
-                    BorderBrush="#FFFB4A07">
-
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="60"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="5*"/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="4"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Menu"
-                                   FontSize="50"
-                                   Margin="15,0,130,0"
-                                   VerticalAlignment="Center" 
-                                   FontFamily="Remachine Script Personal Use " 
-                                   Foreground="#FFFB4A07" 
-                                   FontWeight="Bold"/>
-                    </StackPanel>
-                    <Grid Grid.Row="1">
-                        <StackPanel Orientation="Vertical">
-
-                        </StackPanel>
-                    </Grid>
-                    <Grid Column ="1">
-                        <StackPanel Orientation="Vertical">
-                            <AppBarButton x:Name="profileLogoutButton"
-                                    HorizontalAlignment="Center"
-								    Height="78"
-								    Width="85"
-                                    />
-                        </StackPanel>
-                    </Grid>
-                    <Grid Grid.Column="2" Background="#FFFB4A07"/>
-                    <Grid Grid.Column="2" Grid.Row ="1" Background="#FFFB4A07"/>
-                </Grid>
-            </AppBar>
         </Grid>
 
         <Grid Row="1">
@@ -219,5 +171,55 @@
 							 RenderTransformOrigin="0.906,2.8" />
             <Button x:Name="reportProfileButton" Content="Report this profile!" HorizontalAlignment="Left" Margin="425,35,0,0" VerticalAlignment="Top" Click="reportProfileButton_Click" BorderThickness="0" Background="#FFFB4A07"/>
         </Grid>
+        <!--Appbar-->
+        <AppBar x:Name="appBar" 
+                    Grid.ColumnSpan="2"
+                    Grid.RowSpan="2"
+                    Background="NavajoWhite"
+                    Opacity="20" 
+                    BorderBrush="#FFFB4A07">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="4"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Menu"
+                                   FontSize="50"
+                                   Margin="15,0,130,0"
+                                   VerticalAlignment="Center" 
+                                   FontFamily="Remachine Script Personal Use " 
+                                   Foreground="#FFFB4A07" 
+                                   FontWeight="Bold"/>
+                </StackPanel>
+                <Grid Grid.Row="1">
+                    <StackPanel Orientation="Vertical">
+                        <Button x:Name="profileButton" Click="profileButton_Click" BorderThickness="0" FontSize="24">My Profile</Button>
+                        <Button x:Name="messageHubButton" Click="messageHubButton_Click" BorderThickness="0" FontSize="24">Message Hub</Button>
+                        <Button x:Name="issuesButton" Click="issuesButton_Click" BorderThickness="0" FontSize="24">My Issues</Button>
+                        <Button x:Name="createNewTaskButton" Click="issuesButton_Click" BorderThickness="0" FontSize="24">Create New Task</Button>
+                    </StackPanel>
+                </Grid>
+                <Grid Column ="1">
+                    <StackPanel Orientation="Vertical">
+                        <Button x:Name="profileLogoutButton"
+                                    HorizontalAlignment="Center"
+								    Height="78"
+								    Width="85"
+								    Style="{StaticResource SkipBackAppBarButtonStyle}"
+								    Click="profileLogoutButton_Click" Margin="15,0,14,0" />
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="2" Background="#FFFB4A07"/>
+                <Grid Grid.Column="2" Grid.Row ="1" Background="#FFFB4A07"/>
+            </Grid>
+        </AppBar>
     </Grid>
 </Page>

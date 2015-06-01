@@ -179,22 +179,25 @@
                            FontSize="35"
                            Margin="15,0,130,0"
                            VerticalAlignment="Center"/>
-                <AppBarButton x:Name="refreshMarketplaceButton"
-            	              Width="125"
-            	              Height="67"
-            	              HorizontalAlignment="Left"
-                              Icon="Refresh"
-            	              VerticalAlignment="Top"
-            	              Command="{Binding RefreshMarketplace}" 
-            	              Margin="228,0,0,0"
-                              Click="refreshButtons_Click" >
+                <AppBarButton x:Name="marketplaceRefreshbutton"
+            	                Width="125"
+            	                Height="67"
+            	                HorizontalAlignment="Left"
+            	                Style="{StaticResource RefreshAppBarButtonStyle}"
+            	                VerticalAlignment="Top"
+            	                Command="{Binding RefreshMarketplace}" 
+            	                Margin="228,0,0,0" 
+                                Click="refreshButtons_Click" >
                 </AppBarButton>
-                <AppBarButton HorizontalAlignment="Left" 
-                              Icon="Add" 
-                              Label="AppBarButton" 
-                              Margin="305,0,0,0" 
-                              VerticalAlignment="Top"
-                              Click="CreateTaskButton_Click"/>
+                <AppBarButton x:Name="addTaskbutton"
+            	                Width="125"
+            	                Height="67"
+            	                HorizontalAlignment="Left"
+            	                Style="{StaticResource AddAppBarButtonStyle}"
+            	                VerticalAlignment="Top"
+            	                Margin="288,0,0,0" 
+                                Click="CreateTaskButton_Click" >
+                </AppBarButton>
             </Grid>
             <Grid x:Name="Column2Row2Grid"
                   Row ="2"
