@@ -119,7 +119,8 @@
 						FontFamily="Global User Interface"
 						Click="submitFeedbackBtn_Click"
                 BorderThickness="0" 
-                Background="#FFCCFFCC" Opacity=".8/>
+                Background="#FFCCFFCC" Opacity="0.8"/>
+            
         <TextBlock x:Name="FeedbackSuccessMessage"
 							 HorizontalAlignment="Left"
 							 Margin="82,106,0,0"
