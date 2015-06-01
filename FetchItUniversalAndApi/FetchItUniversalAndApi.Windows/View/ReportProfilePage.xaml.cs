@@ -145,5 +145,10 @@ namespace FetchItUniversalAndApi.View
 			}
 			navigationHelper.GoBack();
 		}
+
+        private void homeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof (LandingPage));
+        }
 	}
 }

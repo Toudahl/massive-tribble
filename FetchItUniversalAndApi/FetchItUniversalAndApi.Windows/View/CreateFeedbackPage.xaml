@@ -234,6 +234,7 @@
                     </StackPanel>
                     <Grid Grid.Row="1">
                         <StackPanel Orientation="Vertical">
+                            <Button x:Name="homeButton" Click="homeButton_Click" BorderThickness="0" FontSize="24">Home</Button>
                             <Button x:Name="profileButton" Click="profileButton_Click" BorderThickness="0" FontSize="24">My Profile</Button>
                             <Button x:Name="messageHubButton" Click="messageHubButton_Click" BorderThickness="0" FontSize="24">Message Hub</Button>
                             <Button x:Name="issuesButton" Click="issuesButton_Click" BorderThickness="0" FontSize="24">My Issues</Button>
