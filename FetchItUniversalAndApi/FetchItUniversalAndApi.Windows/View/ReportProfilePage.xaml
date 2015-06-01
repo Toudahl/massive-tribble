@@ -10,41 +10,41 @@
 			DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Mode=Self}}"
 			mc:Ignorable="d">
 
-    <Page.Resources>
-        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
-        <x:String x:Key="AppName">My Application</x:String>
-    </Page.Resources>
+	<Page.Resources>
+		<!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
+		<x:String x:Key="AppName">My Application</x:String>
+	</Page.Resources>
 
-    <!--
+	<!--
         This grid acts as a root panel for the page that defines two rows:
         * Row 0 contains the back button and page title
         * Row 1 contains the rest of the page layout
     -->
-    <Grid Background="{StaticResource FetchitBackgroundColour}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50" />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition Width="50" />
-        </Grid.ColumnDefinitions>
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition />
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition Height="50" />
-        </Grid.RowDefinitions>
+	<Grid Background="{StaticResource FetchitBackgroundColour}">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="50" />
+			<ColumnDefinition />
+			<ColumnDefinition />
+			<ColumnDefinition Width="50" />
+		</Grid.ColumnDefinitions>
+		<Grid.ChildrenTransitions>
+			<TransitionCollection>
+				<EntranceThemeTransition />
+			</TransitionCollection>
+		</Grid.ChildrenTransitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="139" />
+			<RowDefinition Height="245*" />
+			<RowDefinition Height="334*" />
+			<RowDefinition Height="50" />
+		</Grid.RowDefinitions>
 
-        <Grid.DataContext>
-            <ViewModel:ReportProfileViewModel />
-        </Grid.DataContext>
+		<Grid.DataContext>
+			<ViewModel:ReportProfileViewModel />
+		</Grid.DataContext>
 
-        <!-- Back button and page title -->
-        <TextBlock x:Name="ReportingBlock"
+		<!-- Back button and page title -->
+		<TextBlock x:Name="ReportingBlock"
 							 HorizontalAlignment="Left"
 							 Margin="192,96,0,0"
 							 Grid.Row="2"
@@ -55,7 +55,7 @@
 							 Height="58"
 							 Width="289"
 							 Grid.Column="2" />
-        <TextBlock x:Name="ReportingBind"
+		<TextBlock x:Name="ReportingBind"
 							 HorizontalAlignment="Left"
 							 Margin="192,154,0,0"
 							 Grid.Row="2"
@@ -66,7 +66,7 @@
 							 Height="67"
 							 Width="269"
 							 Grid.Column="2" />
-        <TextBlock x:Name="LoggedInBlock"
+		<TextBlock x:Name="LoggedInBlock"
 							 HorizontalAlignment="Left"
 							 Margin="192,98,0,0"
 							 Grid.Row="1"
@@ -77,7 +77,7 @@
 							 Height="55"
 							 Width="269"
 							 Grid.Column="2" />
-        <TextBlock x:Name="LoggedInBind"
+		<TextBlock x:Name="LoggedInBind"
 							 HorizontalAlignment="Left"
 							 Margin="192,153,0,0"
 							 Grid.Row="1"
@@ -88,17 +88,17 @@
 							 Height="47"
 							 Width="317"
 							 Grid.Column="2" />
-        <Grid x:Name="leftSideGrid"
+		<Grid x:Name="leftSideGrid"
 					Grid.Row="1"
 					Grid.Column="1"
 					Grid.RowSpan="2"
 					Grid.ColumnSpan="2"
 					Margin="10,0,623,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="507*" />
-                <RowDefinition Height="161*" />
-            </Grid.RowDefinitions>
-            <Button Content="Submit report"
+			<Grid.RowDefinitions>
+				<RowDefinition Height="507*" />
+				<RowDefinition Height="161*" />
+			</Grid.RowDefinitions>
+			<Button Content="Submit report"
 							HorizontalAlignment="Left"
 							Margin="237,50,0,0"
 							Grid.Row="1"
@@ -109,7 +109,7 @@
 							FontSize="25"
 							Click="Button_Click"
 							BorderThickness="0" />
-            <Button x:Name="goBackBtn"
+			<Button x:Name="goBackBtn"
 							Content="Go back"
 							HorizontalAlignment="Left"
 							Margin="132,50,0,0"
@@ -120,7 +120,7 @@
 							Width="60"
 							FontSize="25"
 							Style="{StaticResource NavigationBackButtonNormalStyle}" />
-            <TextBox x:Name="reportTextbox"
+			<TextBox x:Name="reportTextbox"
 							 HorizontalAlignment="Left"
 							 Margin="85,154,0,0"
 							 TextWrapping="Wrap"
@@ -129,7 +129,7 @@
 							 Height="234"
 							 Width="424"
 							 FontSize="25" />
-            <TextBlock x:Name="ReportSuccessMessage"
+			<TextBlock x:Name="ReportSuccessMessage"
 								 HorizontalAlignment="Left"
 								 Margin="160,112,0,0"
 								 Grid.Row="1"
@@ -138,8 +138,8 @@
 								 VerticalAlignment="Top"
 								 FontSize="25"
 								 Visibility="{Binding SuccessMessage, Mode=TwoWay}" />
-        </Grid>
-        <TextBlock x:Name="ReportCommentBox"
+		</Grid>
+		<TextBlock x:Name="ReportCommentBox"
 							 HorizontalAlignment="Left"
 							 Margin="150,98,0,0"
 							 Grid.Row="1"
@@ -150,50 +150,58 @@
 							 Height="125"
 							 Width="343"
 							 Grid.Column="1" />
-        <Grid Background="#FF0099CC" Grid.ColumnSpan="4" Margin="0,0,0,244" Grid.RowSpan="2" Grid.Column="0" Grid.Row="0">
+		<Grid Background="#FF0099CC"
+					Grid.ColumnSpan="4"
+					Margin="0,0,0,1"
+					Grid.Column="0"
+					Grid.Row="0">
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120"/>
-                <ColumnDefinition Width="548"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="120" />
+				<ColumnDefinition Width="548" />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
 
-            <!-- Back Button -->
-            <Button x:Name="menuButton" 
-				Margin="39,59,0,0"
-				Style="{StaticResource NavigationBackButtonNormalStyle}" 
-				RenderTransformOrigin="0.5,0.5" 
-				Height="41" 
-				Width="41">
+			<!-- Back Button -->
+			<Button x:Name="menuButton"
+							Margin="39,59,0,0"
+							Style="{StaticResource NavigationBackButtonNormalStyle}"
+							RenderTransformOrigin="0.5,0.5"
+							Height="41"
+							Width="41">
 
-                <Button.RenderTransform>
-                    <CompositeTransform Rotation="180"/>
-                </Button.RenderTransform>
-            </Button>
+				<Button.RenderTransform>
+					<CompositeTransform Rotation="180" />
+				</Button.RenderTransform>
+			</Button>
 
-            <TextBlock Text="Menu"
-				HorizontalAlignment="Center"
-				VerticalAlignment="Bottom"
-				Margin="46,0,46,20" Height="13" Width="28"/>
-            <!-- Enter a convinient title for the view  -->
-            <TextBlock x:Name="pageTitle" 
-				Text="{Binding WelcomeText}"
-				Style="{StaticResource HeaderTextBlockStyle}" 
-				Grid.Column="1" 
-				IsHitTestVisible="false" 
-				TextWrapping="NoWrap" 
-				VerticalAlignment="Bottom"
-				Margin="0,0,0,40" Height="40"/>
+			<TextBlock Text="Menu"
+								 HorizontalAlignment="Center"
+								 VerticalAlignment="Bottom"
+								 Margin="46,0,46,20"
+								 Height="13"
+								 Width="28" />
+			<!-- Enter a convinient title for the view  -->
+			<TextBlock x:Name="pageTitle"
+								 Text="{Binding WelcomeText}"
+								 Style="{StaticResource HeaderTextBlockStyle}"
+								 Grid.Column="1"
+								 IsHitTestVisible="false"
+								 TextWrapping="NoWrap"
+								 VerticalAlignment="Bottom"
+								 Margin="0,0,0,40"
+								 Height="40" />
 
-            <TextBlock Text="FetchIt!" 
-				Grid.Column="2" 
-				FontSize="140"
-				TextWrapping="Wrap" 
-				VerticalAlignment="center" 
-				FontFamily="Remachine Script Personal Use " 
-				Foreground="#FFCCFFCC" Height="149" 
-				Margin="83,-7,294,-2"
-				Width="321"/>
-        </Grid>
-    </Grid>
+			<TextBlock Text="FetchIt!"
+								 Grid.Column="2"
+								 FontSize="140"
+								 TextWrapping="Wrap"
+								 VerticalAlignment="center"
+								 FontFamily="Remachine Script Personal Use "
+								 Foreground="#FFCCFFCC"
+								 Height="149"
+								 Margin="83,-7,294,-2"
+								 Width="321" />
+		</Grid>
+	</Grid>
 </Page>
