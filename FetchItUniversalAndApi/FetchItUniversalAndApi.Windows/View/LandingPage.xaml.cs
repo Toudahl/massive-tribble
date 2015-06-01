@@ -146,8 +146,7 @@ namespace FetchItUniversalAndApi.View
         }
         #endregion
 
-
-
+        #region Tasks Pointer actions
         /// <summary>
         /// These handle the Ponter Enter and Exit change of the background in the grids that contain the MyTasks listview
         /// </summary>
@@ -178,7 +177,7 @@ namespace FetchItUniversalAndApi.View
             Column1Row2Grid.Background = new SolidColorBrush();
         }
 
-       
+        #endregion
 
 
     }
