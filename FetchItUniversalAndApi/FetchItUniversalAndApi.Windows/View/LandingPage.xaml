@@ -221,11 +221,7 @@
                     </StackPanel>
                     <Grid Row="1">
                         <StackPanel Orientation="Vertical">
-                            <Button BorderThickness="0" Content="MessageHub" >
-                                <Button.Background>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="Black" Offset="0"/>
-                                        <GradientStop Color="White" Offset="1"/>
+                            
                             <Button x:Name="profileLogoutButton"
 								Height="46"
 								Width="48"
