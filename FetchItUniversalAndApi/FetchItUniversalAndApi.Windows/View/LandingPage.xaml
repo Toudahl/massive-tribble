@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
 
         <!-- Top Grid -->
-        <Grid Background="#FF0099CC">
+        <Grid Background="{StaticResource FetchitTopGridBackgroundColor}">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>
@@ -99,7 +99,7 @@
                   Row="2" 
                   PointerEntered="Column0Row2Grid_PointerEntered" 
                   PointerExited="Column0Row2Grid_PointerExited">
-                
+
                 <ListView x:Name="notificationsListView"
 						  ItemsSource="{Binding Notifications, Mode=TwoWay}"
 						  SelectionChanged="notificationsListView_SelectionChanged">
@@ -151,7 +151,7 @@
 
             <!--Marketplace-->
             <Grid x:Name="Column2Row1Grid" 
-                  Column="2" >
+                  Column="2" PointerEntered="Column2Row1Grid_PointerEntered" PointerExited="Column2Row1Grid_PointerExited" >
                 <TextBlock Text="Marketplace"
                            FontSize="35"
                            Margin="15,0,130,0"
@@ -174,7 +174,7 @@
             </Grid>
             <Grid x:Name="Column2Row2Grid"
                   Row ="2"
-                  Column="4" >
+                  Column="4" PointerEntered="Column2Row2Grid_PointerEntered" PointerExited="Column2Row2Grid_PointerExited" >
                 <ListView x:Name="marketplaceListView"
                           ItemsSource="{Binding Marketplace}"
                           SelectionChanged="marketplaceListView_SelectionChanged"
@@ -210,6 +210,11 @@
                         <RowDefinition Height="60"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="Menu"
                                    FontSize="50"
@@ -220,13 +225,61 @@
                                    FontWeight="Bold"/>
                     </StackPanel>
                     <Grid Row="1">
+
+                    </Grid>
+                    <Grid Column ="2">
                         <StackPanel Orientation="Vertical">
-                            
                             <Button x:Name="profileLogoutButton"
-								Height="46"
-								Width="48"
-								Style="{StaticResource FetchitButtonLogOut}"
-								Click="profileLogoutButton_Click" />
+                                    HorizontalAlignment="Center"
+								    Height="78"
+								    Width="85"
+								    Style="{StaticResource SkipBackAppBarButtonStyle}"
+								    Click="profileLogoutButton_Click" Margin="15,0,14,0" />
+                        </StackPanel>
+                    </Grid>
+
+                </Grid>
+            </AppBar>
+            <AppBar x:Name="appBar_Copy" 
+            	Grid.ColumnSpan="2"
+            	Grid.RowSpan="2"
+            	Background="NavajoWhite"
+            	Opacity="20">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="72"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Menu"
+            				    FontSize="70"
+            				    Margin="45,0,130,0"
+            				    VerticalAlignment="Center" 
+            				    FontFamily="Remachine Script Personal Use " 
+            				    Foreground="#FFFB4A07" 
+            				    FontWeight="Bold"/>
+                        </StackPanel>
+                    <Grid Grid.Row="1">
+                        <Button x:Name="issuesButton" Click="issuesButton_Click"></Button>
+                    </Grid>
+                    <Grid Grid.Column ="2">
+                        <StackPanel Orientation="Horizontal" >
+                            <AppBarButton Click="profileLogoutButton_Click" 
+                                          BorderThickness="0" 
+                                          Height="70" 
+                                          Icon="Delete"
+                                          Content="Log Out"
+                                          Margin="0,-3" Width="87">
+                            </AppBarButton>
+                            <TextBlock FontSize="28" 
+                                       VerticalAlignment="Center">Log out</TextBlock>
                         </StackPanel>
                     </Grid>
 

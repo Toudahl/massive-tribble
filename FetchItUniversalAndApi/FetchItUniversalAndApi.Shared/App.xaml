@@ -10,8 +10,9 @@
         
         <x:String x:Key="AppName">Fetch it!</x:String>
         <Brush x:Key="FetchitBackgroundColour">#66CCFF</Brush>
-        
-        
+        <Brush x:Key="FetchitTopGridBackgroundColor">#FF0099CC</Brush> 
+
+
         <Style TargetType="Button" x:Key="FetchitButtonBaseStyle">
             <Setter Property="BorderBrush" Value="{x:Null}" />
             <Setter Property="Template">

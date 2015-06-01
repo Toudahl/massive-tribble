@@ -69,7 +69,9 @@ namespace FetchItUniversalAndApi.View
 
 		private void marketplaceListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
+            
 			this.Frame.Navigate(typeof(TaskDetailPage));
+            
 		}
 
 		private void MessageHubButton_OnClickButton_Click(object sender, RoutedEventArgs e)
@@ -179,6 +181,35 @@ namespace FetchItUniversalAndApi.View
 
         #endregion
 
+        #region Marketplace actions
+        private void Column2Row1Grid_PointerEntered(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            Column2Row1Grid.Background = new SolidColorBrush(Color.FromArgb(255, 120, 210, 255));
+            Column2Row2Grid.Background = new SolidColorBrush(Color.FromArgb(255, 120, 210, 255));
+        }
 
+        private void Column2Row1Grid_PointerExited(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            Column2Row1Grid.Background = new SolidColorBrush();
+            Column2Row2Grid.Background = new SolidColorBrush();
+        }
+
+        private void Column2Row2Grid_PointerEntered(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            Column2Row1Grid.Background = new SolidColorBrush(Color.FromArgb(255, 120, 210, 255));
+            Column2Row2Grid.Background = new SolidColorBrush(Color.FromArgb(255, 120, 210, 255));
+        }
+
+        private void Column2Row2Grid_PointerExited(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            Column2Row1Grid.Background = new SolidColorBrush();
+            Column2Row2Grid.Background = new SolidColorBrush();
+        }
+        #endregion
+
+        private void issuesButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof (IssuesView));
+        }
     }
 }
