@@ -105,7 +105,7 @@ namespace FetchItUniversalAndApi.View
 
 		#endregion
 
-		private void reportProfileButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		private void reportProfileButton_Click(object sender,RoutedEventArgs e)
 		{
 			this.Frame.Navigate(typeof(ReportProfilePage));
 		}
