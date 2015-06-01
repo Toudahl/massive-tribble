@@ -291,7 +291,7 @@ namespace FetchItUniversalAndApi.Handlers
 			}
 			catch (Exception exception)
 			{
-				throw exception;
+				ErrorHandler.DisplayErrorMessage("Creating the report object failed","Contact support");
 			}
 			return newReport;
 		}

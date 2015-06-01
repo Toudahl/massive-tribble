@@ -30,10 +30,8 @@
 
 
         <Grid Row="1">
-            <StackPanel Grid.Column="1"  
-                        Grid.Row="1"
-                        HorizontalAlignment="Center" 
-                        VerticalAlignment="Top">
+            <StackPanel HorizontalAlignment="Center" 
+                        VerticalAlignment="Top" >
 
                 <TextBlock Text="LOG IN" 
                            Height="30"
