@@ -190,14 +190,22 @@
                                                              Foreground="#FFCCFFCC" 
                                                              FontWeight="Bold" />
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding TaskItemPrice}"
+                                    <TextBlock Text="Fee: " FontSize="16"
+															 TextWrapping="NoWrap"
+															 Margin="10,0,0,0" />
+                                    <TextBlock Text="{Binding TaskFee}"
 															 FontSize="16"
+															 TextWrapping="NoWrap"
+															 Margin="10,0,0,0" 
+                                                             FontWeight="Bold" />
+                                    <TextBlock Text="DeadLine: " FontSize="16"
 															 TextWrapping="NoWrap"
 															 Margin="10,0,0,0" />
                                     <TextBlock Text="{Binding TaskDeadline}"
 															 FontSize="16"
 															 TextWrapping="NoWrap"
-															 Margin="20,0,0,0" />
+															 Margin="20,0,0,0" 
+                                                             FontWeight="Bold" />
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>
