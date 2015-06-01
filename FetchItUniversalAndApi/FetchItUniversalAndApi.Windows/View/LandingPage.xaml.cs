@@ -50,7 +50,6 @@ namespace FetchItUniversalAndApi.View
             clickedButton.IsEnabled = false;
 			await Task.Delay(3000);
             clickedButton.IsEnabled = true;
-            
 		}
 
         #region Appbar Buttons OnClick
@@ -140,7 +139,6 @@ namespace FetchItUniversalAndApi.View
         #endregion
 
         #region Notifications Pointer actions
-
         /// <summary>
         /// These handle the Ponter Enter and Exit change of the background in the grids that contain the NotificationsList
         /// </summary>

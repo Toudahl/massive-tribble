@@ -83,7 +83,10 @@
 						Margin="15,10,0,0"
 						VerticalAlignment="Top"
 						Command="{Binding SaveChangesCommand}"
-						FontSize="25"/>
+						FontSize="25"
+                        BorderThickness="0"
+                        Background="#FFCCFFCC"
+                        Opacity="0.8"/>
                 <TextBlock x:Name="taskFeeBlock"
 							 HorizontalAlignment="Left"
 							 Margin="15,20,0,0"
@@ -150,7 +153,10 @@
 						FontSize="25"
 						Style="{StaticResource NavigationBackButtonNormalStyle}"
 						Height="54"
-						Width="102"/>
+						Width="102"
+                        BorderThickness="0"
+                        Background="#FFCCFFCC"
+                        Opacity="0.8"/>
                     <TextBlock x:Name="SuccessBlock"
 							 HorizontalAlignment="Left"
 							 Margin="0,15,0,0"
@@ -161,7 +167,6 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Column="1">
-						BorderThickness="0" />
                 <Button x:Name="RemoveTaskButton"
 						Content="Remove Task"
 						HorizontalAlignment="Left"
@@ -169,7 +174,9 @@
 						VerticalAlignment="Top"
 						FontSize="25"
 						Click="RemoveTaskButton_Click"
-						BorderThickness="0" />
+                        BorderThickness="0"
+                        Background="#FFCCFFCC"
+                        Opacity="0.8" />
                 <TextBlock x:Name="taskDescriptionBlock"
 							 HorizontalAlignment="Left"
 							 Margin="0,20,0,0"
