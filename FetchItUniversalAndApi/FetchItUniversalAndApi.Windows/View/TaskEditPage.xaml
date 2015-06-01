@@ -7,231 +7,52 @@
 			xmlns:ViewModel="using:FetchItUniversalAndApi.ViewModel"
 			x:Name="pageRoot"
 			x:Class="FetchItUniversalAndApi.View.TaskEditPage"
-			DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Mode=Self}}"
 			mc:Ignorable="d">
 
-	<Page.Resources>
-		<!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
-		<x:String x:Key="AppName">My Application</x:String>
-	</Page.Resources>
-
-	<!--
-        This grid acts as a root panel for the page that defines two rows:
-        * Row 0 contains the back button and page title
-        * Row 1 contains the rest of the page layout
-    -->
-	<Grid Background="{StaticResource FetchitBackgroundColour}">
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="50" />
-			<ColumnDefinition />
-			<ColumnDefinition />
-			<ColumnDefinition />
-			<ColumnDefinition Width="50" />
-		</Grid.ColumnDefinitions>
-		<Grid.ChildrenTransitions>
-			<TransitionCollection>
-				<EntranceThemeTransition />
-			</TransitionCollection>
-		</Grid.ChildrenTransitions>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="50" />
-			<RowDefinition Height="100*" />
-			<RowDefinition Height="100*" />
-			<RowDefinition Height="50" />
-		</Grid.RowDefinitions>
-		<Grid.DataContext>
-			<ViewModel:TaskDetailViewModel />
-		</Grid.DataContext>
-		<TextBox x:Name="taskDescriptionBind"
-						 Grid.Column="2"
-						 HorizontalAlignment="Left"
-						 Margin="303,146,0,0"
-						 Grid.Row="1"
-						 TextWrapping="Wrap"
-						 Text="{Binding SelectedTask.TaskDescription, Mode=TwoWay}"
-						 VerticalAlignment="Top"
-						 FontSize="25"
-						 Height="188"
-						 Width="420"
-						 Grid.ColumnSpan="2" />
-		<TextBlock x:Name="taskDescriptionBlock"
-							 Grid.Column="3"
-							 HorizontalAlignment="Left"
-							 Margin="0,95,0,0"
-							 Grid.Row="1"
-							 TextWrapping="Wrap"
-							 VerticalAlignment="Top"
-							 FontSize="40"
-							 Text="Description"
-							 Height="51"
-							 Width="221" />
-		<TextBlock x:Name="taskFeeBlock"
-							 Grid.Column="1"
-							 HorizontalAlignment="Left"
-							 Margin="120,214,0,0"
-							 Grid.Row="1"
-							 TextWrapping="Wrap"
-							 Text="Task Fee"
-							 VerticalAlignment="Top"
-							 FontSize="30"
-							 Height="38"
-							 Width="132" />
-		<TextBox x:Name="TaskFeeBind"
-						 Grid.Column="1"
-						 HorizontalAlignment="Left"
-						 Margin="341,214,0,0"
-						 Grid.Row="1"
-						 TextWrapping="Wrap"
-						 Text="{Binding TaskFee, Mode=TwoWay}"
-						 VerticalAlignment="Top"
-						 FontSize="20"
-						 Height="38"
-						 Width="192"
-						 Grid.ColumnSpan="2"
-						 FontFamily="Global User Interface" />
-		<TextBlock x:Name="itemPriceBlock"
-							 Grid.Column="1"
-							 HorizontalAlignment="Left"
-							 Margin="120,146,0,0"
-							 Grid.Row="1"
-							 TextWrapping="Wrap"
-							 Text="Task Item Price"
-							 VerticalAlignment="Top"
-							 FontSize="30"
-							 Height="38"
-							 Width="216" />
-		<TextBox x:Name="ItemPriceBind"
-						 Grid.Column="1"
-						 HorizontalAlignment="Left"
-						 Margin="341,146,0,0"
-						 Grid.Row="1"
-						 TextWrapping="Wrap"
-						 Text="{Binding ItemPrice, Mode=TwoWay}"
-						 VerticalAlignment="Top"
-						 FontSize="20"
-						 Height="38"
-						 Width="192"
-						 Grid.ColumnSpan="2"
-						 FontFamily="Global User Interface" />
-		<TextBlock x:Name="endAddressBlock"
-							 Grid.Column="1"
-							 HorizontalAlignment="Left"
-							 Margin="120,286,0,0"
-							 Grid.Row="1"
-							 TextWrapping="Wrap"
-							 Text="End Address"
-							 VerticalAlignment="Top"
-							 FontSize="30"
-							 Height="33"
-							 Width="174" />
-		<TextBox x:Name="endAddressBind"
-						 Grid.Column="1"
-						 HorizontalAlignment="Left"
-						 Margin="341,286,0,0"
-						 Grid.Row="1"
-						 TextWrapping="Wrap"
-						 Text="{Binding SelectedTask.TaskEndPointAddress, Mode=TwoWay}"
-						 VerticalAlignment="Top"
-						 FontSize="20"
-						 Height="38"
-						 Width="192"
-						 Grid.ColumnSpan="2"
-						 FontFamily="Global User Interface" />
-		<Button x:Name="goBackButton"
-						Content=""
-						Grid.Column="1"
-						HorizontalAlignment="Left"
-						Margin="140,150,0,0"
-						Grid.Row="2"
-						VerticalAlignment="Top"
-						Click="goBackButton_Click"
-						FontSize="25"
-						Style="{StaticResource NavigationBackButtonNormalStyle}"
-						Height="54"
-						Width="102" />
-		<Button x:Name="saveButton"
-						Content="Save changes"
-						Grid.Column="1"
-						HorizontalAlignment="Left"
-						Margin="294,148,0,0"
-						Grid.Row="2"
-						VerticalAlignment="Top"
-						Command="{Binding SaveChangesCommand}"
-						Height="60"
-						Width="203"
-						FontSize="25"
-						Grid.ColumnSpan="2" />
-		<Button x:Name="RemoveTaskButton"
-						Content="Remove Task"
-						Grid.Column="2"
-						HorizontalAlignment="Left"
-						Margin="103,148,0,0"
-						Grid.Row="2"
-						VerticalAlignment="Top"
-						Width="202"
-						Height="60"
-						FontSize="25"
-						Click="RemoveTaskButton_Click" />
-		<TextBlock x:Name="SuccessBlock"
-							 Grid.Column="1"
-							 HorizontalAlignment="Left"
-							 Margin="312,210,0,0"
-							 Grid.Row="2"
-							 TextWrapping="Wrap"
-							 Text="Your task was successfully updated"
-							 VerticalAlignment="Top"
-							 FontSize="25"
-							 Grid.ColumnSpan="2"
-							 Width="392"
-							 Visibility="{Binding SuccessMessage, Mode=TwoWay}" />
-		<TextBlock x:Name="FetcherBlock"
-							 Grid.Column="3"
-							 HorizontalAlignment="Left"
-							 Margin="32,102,0,0"
-							 TextWrapping="Wrap"
-							 Text="Fetcher:"
-							 VerticalAlignment="Top"
-							 FontSize="40"
-							 Height="66"
-							 Width="183"
-							 Grid.Row="2" />
-		<TextBlock x:Name="FetcherBind"
-							 Grid.Column="3"
-							 HorizontalAlignment="Left"
-							 Margin="32,171,-13,0"
-							 TextWrapping="Wrap"
-							 Text="{Binding FetcherName}"
-							 VerticalAlignment="Top"
-							 FontSize="30"
-							 Grid.Row="2"
-							 Grid.ColumnSpan="2" />
-        <Grid Background="#FF0099CC" Grid.ColumnSpan="5" Margin="0,0,0,244" Grid.RowSpan="2">
-
+    <Page.DataContext>
+        <ViewModel:TaskDetailViewModel />
+    </Page.DataContext>
+    
+    <Grid Background="{StaticResource FetchitBackgroundColour}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="301" />
+            <ColumnDefinition Width="478" />
+            <ColumnDefinition Width="601" />
+        </Grid.ColumnDefinitions>
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition />
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="#FF0099CC" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="548"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-
-            <!-- Back Button -->
-            <Button x:Name="menuButton" 
+                <!-- Back Button -->
+                <Button x:Name="menuButton" 
 				Margin="39,59,0,0"
 				Style="{StaticResource NavigationBackButtonNormalStyle}" 
 				RenderTransformOrigin="0.5,0.5" 
 				Height="41" 
 				Width="41">
 
-                <Button.RenderTransform>
-                    <CompositeTransform Rotation="180"/>
-                </Button.RenderTransform>
-            </Button>
+                    <Button.RenderTransform>
+                        <CompositeTransform Rotation="180"/>
+                    </Button.RenderTransform>
+                </Button>
 
-            <TextBlock Text="Menu"
+                <TextBlock Text="Menu"
 				HorizontalAlignment="Center"
 				VerticalAlignment="Bottom"
 				Margin="46,0,46,20" Height="13" Width="28"/>
-            <!-- Enter a convinient title for the view  -->
-            <TextBlock x:Name="pageTitle" 
+                <!-- Enter a convinient title for the view  -->
+                <TextBlock x:Name="pageTitle" 
 				Text="{Binding WelcomeText}"
 				Style="{StaticResource HeaderTextBlockStyle}" 
 				Grid.Column="1" 
@@ -250,12 +71,140 @@
 				Margin="83,-7,294,-2"
 				Width="321"/>
         </Grid>
+        <Grid Grid.Row="1" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <Button x:Name="saveButton"
+						Content="Save changes"
+						HorizontalAlignment="Left"
+						Margin="15,10,0,0"
+						VerticalAlignment="Top"
+						Command="{Binding SaveChangesCommand}"
+						FontSize="25"/>
+                <TextBlock x:Name="taskFeeBlock"
+							 HorizontalAlignment="Left"
+							 Margin="15,20,0,0"
+							 TextWrapping="Wrap"
+							 Text="Task Fee"
+							 VerticalAlignment="Top"
+							 FontSize="30"
+							 Height="38"
+							 Width="132" />
+                <TextBox x:Name="TaskFeeBind"
+                	         HorizontalAlignment="Left"
+							 Margin="15,0,0,0"
+                	         TextWrapping="Wrap"
+                	         Text="{Binding TaskFee, Mode=TwoWay}"
+                	         VerticalAlignment="Top"
+                	         FontSize="20"
+                	         Height="38"
+                	         Width="192"
+                	         FontFamily="Global User Interface" />
+                <TextBlock x:Name="itemPriceBlock"
+							 HorizontalAlignment="Left"
+							 Margin="15,15,0,0"
+							 TextWrapping="Wrap"
+							 Text="Task Item Price"
+							 VerticalAlignment="Top"
+							 FontSize="30"
+							 Height="38"
+							 Width="216" />
+                <TextBox x:Name="ItemPriceBind"
+						     HorizontalAlignment="Left"
+							 Margin="15,0,0,0"
+						     TextWrapping="Wrap"
+						     Text="{Binding ItemPrice, Mode=TwoWay}"
+						     VerticalAlignment="Top"
+						     FontSize="20"
+						     Height="38"
+						     Width="192"
+						     FontFamily="Global User Interface" />
+                <TextBlock x:Name="endAddressBlock"
+							 HorizontalAlignment="Left"
+							 Margin="15,15,0,0"
+							 TextWrapping="Wrap"
+							 Text="End Address"
+							 VerticalAlignment="Top"
+							 FontSize="30"
+							 Height="33"
+							 Width="174" />
+                <TextBox x:Name="endAddressBind"
+						 HorizontalAlignment="Left"
+						 Margin="15,0,0,0"
+						 TextWrapping="Wrap"
+						 Text="{Binding SelectedTask.TaskEndPointAddress, Mode=TwoWay}"
+						 VerticalAlignment="Top"
+						 FontSize="20"
+						 Height="38"
+						 Width="192"
+						 FontFamily="Global User Interface" />
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                    <Button x:Name="goBackButton"
+						HorizontalAlignment="Left"
+						Margin="0,0,0,0"
+						VerticalAlignment="Top"
+						Click="goBackButton_Click"
+						FontSize="25"
+						Style="{StaticResource NavigationBackButtonNormalStyle}"
+						Height="54"
+						Width="102"/>
+                    <TextBlock x:Name="SuccessBlock"
+							 HorizontalAlignment="Left"
+							 Margin="0,15,0,0"
+							 Text="Your task was successfully updated"
+							 VerticalAlignment="Top"
+							 FontSize="20"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <Button x:Name="RemoveTaskButton"
+						Content="Remove Task"
+						HorizontalAlignment="Left"
+						Margin="0,10,0,0"
+						VerticalAlignment="Top"
+						FontSize="25"
+						Click="RemoveTaskButton_Click" />
+                <TextBlock x:Name="taskDescriptionBlock"
+							 HorizontalAlignment="Left"
+							 Margin="0,20,0,0"
+							 TextWrapping="Wrap"
+							 VerticalAlignment="Top"
+							 FontSize="40"
+							 Text="Description"/>
+                <TextBox x:Name="taskDescriptionBind"
+						 HorizontalAlignment="Left"
+						 Margin="0,0,0,0"
+						 TextWrapping="Wrap"
+						 Text="{Binding SelectedTask.TaskDescription, Mode=TwoWay}"
+						 VerticalAlignment="Top"
+						 FontSize="25"
+						 Height="188"
+						 Width="420"/>
+                <TextBlock x:Name="FetcherBlock"
+							 HorizontalAlignment="Left"
+							 Margin="0,10,0,0"
+							 TextWrapping="Wrap"
+							 Text="Fetcher:"
+							 VerticalAlignment="Top"
+							 FontSize="40"/>
+                <TextBlock x:Name="FetcherBind"
+							 HorizontalAlignment="Left"
+							 Margin="0,0,0,0"
+							 TextWrapping="Wrap"
+							 Text="{Binding FetcherName}"
+							 VerticalAlignment="Top"
+							 FontSize="30" />
+            </StackPanel>
+        </Grid>
         <!--Appbar-->
-        <AppBar x:Name="appBar" 
-                    Grid.Row="1"
+        <AppBar x:Name="appBar"
                     Grid.Column="0"
-                    Grid.ColumnSpan="2"
+                    Grid.Row="1"
                     Grid.RowSpan="2"
+                    Grid.ColumnSpan="2"
                     Background="NavajoWhite"
                     Opacity="20" 
                     BorderBrush="#FFFB4A07">

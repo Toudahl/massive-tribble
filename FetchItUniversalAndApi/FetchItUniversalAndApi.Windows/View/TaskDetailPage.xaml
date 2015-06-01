@@ -334,11 +334,11 @@
 			</Grid>
 			<!--Grid Row 1 Column 2 called: TaskFeedbackDetails-->
             <!--Appbar-->
-            <AppBar x:Name="appBar" 
-                    Grid.Row="1"
+            <AppBar x:Name="appBar"
                     Grid.Column="0"
-                    Grid.ColumnSpan="2"
+                    Grid.Row="0"
                     Grid.RowSpan="2"
+                    Grid.ColumnSpan="2"
                     Background="NavajoWhite"
                     Opacity="20" 
                     BorderBrush="#FFFB4A07">
