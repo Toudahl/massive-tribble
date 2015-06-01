@@ -8,398 +8,363 @@
 			x:Name="pageRoot"
 			x:Class="FetchItUniversalAndApi.View.TaskDetailPage"
 			mc:Ignorable="d">
-    
-    <Page.DataContext>
-        <ViewModel:TaskDetailViewModel />
-    </Page.DataContext>
 
-    <Grid Background="{StaticResource FetchitBackgroundColour}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="140"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+	<Page.DataContext>
+		<ViewModel:TaskDetailViewModel />
+	</Page.DataContext>
 
-        <!-- Top Grid -->
-        <Grid Background="#FF0099CC">
+	<Grid Background="{StaticResource FetchitBackgroundColour}">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="140" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120"/>
-                <ColumnDefinition Width="548"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+		<!-- Top Grid -->
+		<Grid Background="#FF0099CC">
 
-            <Button x:Name="appBarButton" Margin="39,59,0,0"
-                    Style="{StaticResource NavigationBackButtonNormalStyle}" 
-                    RenderTransformOrigin="0.5,0.5" Height="41" Width="41" Click="appBarButton_Click">
-                <Button.RenderTransform>
-                    <CompositeTransform Rotation="180"/>
-                </Button.RenderTransform>
-            </Button>
-            <TextBlock Text="Menu"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Bottom"
-                       Margin="46,0,46,20" Height="13" Width="28"/>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="120" />
+				<ColumnDefinition Width="548" />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
 
-            <TextBlock x:Name="pageTitle" 
-                        Text="{Binding WelcomeText}"
-                        Style="{StaticResource HeaderTextBlockStyle}" 
-                        Grid.Column="1" 
-                        IsHitTestVisible="false" 
-                        TextWrapping="NoWrap" 
-                        VerticalAlignment="Bottom"
-                        Margin="0,0,0,40" Height="40"/>
+			<Button x:Name="appBarButton"
+							Margin="39,59,0,0"
+							Style="{StaticResource NavigationBackButtonNormalStyle}"
+							RenderTransformOrigin="0.5,0.5"
+							Height="41"
+							Width="41"
+							Click="appBarButton_Click">
+				<Button.RenderTransform>
+					<CompositeTransform Rotation="180" />
+				</Button.RenderTransform>
+			</Button>
+			<TextBlock Text="Menu"
+								 HorizontalAlignment="Center"
+								 VerticalAlignment="Bottom"
+								 Margin="46,0,46,20"
+								 Height="13"
+								 Width="28" />
 
-            <TextBlock Text="FetchIt!" 
-                       Grid.Column="2" 
-                       FontSize="140"
-                       TextWrapping="Wrap" 
-                       VerticalAlignment="center" 
-                       FontFamily="Remachine Script Personal Use " 
-                       Foreground="#FFCCFFCC" Height="149" 
-                       Margin="83,-7,294,-2"
-                       Width="321"/>
+			<TextBlock x:Name="pageTitle"
+								 Text="{Binding WelcomeText}"
+								 Style="{StaticResource HeaderTextBlockStyle}"
+								 Grid.Column="1"
+								 IsHitTestVisible="false"
+								 TextWrapping="NoWrap"
+								 VerticalAlignment="Bottom"
+								 Margin="0,0,0,40"
+								 Height="40" />
 
-        </Grid>
-
-        <!--Grid definitions-->
-        <Grid Row="1">
-            <Grid.Background>
-                <ImageBrush Stretch="Fill"/>
-            </Grid.Background>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300"/>
-                <ColumnDefinition Width="300"/>
-                <ColumnDefinition Width="300"/>
-                <ColumnDefinition Width="300"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <!--We can maybe put these in a GridView-->
-            <Grid Column="0" RowSpan="2">
-                <!--Grid Row 2 Column 0 called: TaskMainDetails-->
-                <StackPanel x:Name="TaskMainDetails" Grid.Column="0">
-                    <TextBlock x:Name="taskTitleBlock"
-							 HorizontalAlignment="Left"
-							 Margin="40,5,0,0"
-							 TextWrapping="Wrap"
-							 Text="Task Title:"
-							 VerticalAlignment="Top"
-							 FontSize="25" />
-                    <TextBlock x:Name="taskTitleBind"
-							 HorizontalAlignment="Left"
-							 Margin="40,5,0,0"
-							 TextWrapping="Wrap"
-							 Text="title"
-							 VerticalAlignment="Top"
-							 FontSize="25" />
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Name="taskStatusBlock"
-							 HorizontalAlignment="Left"
-							 Margin="40,10,0,0"
-							 TextWrapping="Wrap"
-							 Text="Task Status:"
-							 VerticalAlignment="Top"
-							 FontSize="25" />
-                        <TextBlock x:Name="taskStatusBind"
-							 HorizontalAlignment="Left"
-							 Margin="5,10,0,0"
-							 TextWrapping="Wrap"
-							 Text="{Binding TaskStatus}"
-							 VerticalAlignment="Top"
-							 FontSize="25" />
-                    </StackPanel>
-                    <TextBlock x:Name="taskMasterBlock"
-							 HorizontalAlignment="Left"
-							 Margin="40,5,0,0"
-							 TextWrapping="Wrap"
-							 Text="Taskmaster:"
-							 VerticalAlignment="Top"
-							 FontSize="25" />
-                    <TextBlock x:Name="taskmasterBind"
-							 HorizontalAlignment="Left"
-							 Margin="40,00,0,0"
-							 TextWrapping="Wrap"
-							 Text="{Binding Taskmaster.ProfileName}"
-							 VerticalAlignment="Top"
-							 FontSize="25"
-							 Tapped="taskmasterBind_Tapped" />
-                    <TextBlock x:Name="fetcherBlock"
-							 HorizontalAlignment="Left"
-							 Margin="40,00,0,0"
-							 TextWrapping="Wrap"
-							 Text="Fetcher:"
-							 VerticalAlignment="Top"
-							 FontSize="25" />
-                    <TextBlock x:Name="taskFetcherBind"
-							 HorizontalAlignment="Left"
-							 Margin="40,00,0,0"
-							 TextWrapping="Wrap"
-							 Text="{Binding FetcherName, Mode=TwoWay}"
-							 VerticalAlignment="Top"
-							 FontSize="25"
-							 Tapped="taskFetcherBind_Tapped" />
-                </StackPanel>
-            </Grid>
-            <!--Grid Row 1 Column 1 called: TaskSpecificDetails-->
-            <Grid Column="1" RowSpan="2">
-                <StackPanel x:Name="TaskSpecificDetails">
-                    <TextBlock x:Name="postedDateBlock"
-							 HorizontalAlignment="Left"
-							 Margin="40,0,0,0"
-							 TextWrapping="Wrap"
-							 Text="Posted Date:"
-							 VerticalAlignment="Top"
-							 FontSize="25" />
-                    <TextBlock x:Name="postedDateBind"
-							 HorizontalAlignment="Left"
-							 Margin="40,0,0,0"
-							 TextWrapping="Wrap"
-							 Text="{Binding SelectedTask.TaskTimeCreated}"
-							 VerticalAlignment="Top"
-							 FontSize="25" />
-                    <TextBlock x:Name="deadlineBlock"
-							 HorizontalAlignment="Left"
-							 Margin="40,0,0,0"
-							 TextWrapping="Wrap"
-							 Text="Deadline:"
-							 VerticalAlignment="Top"
-							 FontSize="25" />
-                    <TextBlock x:Name="deadlineBind"
-							 HorizontalAlignment="Left"
-							 Margin="40,0,0,0"
-							 TextWrapping="Wrap"
-							 Text="{Binding SelectedTask.TaskDeadline}"
-							 VerticalAlignment="Top"
-							 FontSize="25" />
-                    <TextBlock x:Name="taskDescriptionBlock"
-							 HorizontalAlignment="Left"
-							 Margin="40,0,0,0"
-							 TextWrapping="Wrap"
-							 Text="Task Description:"
-							 VerticalAlignment="Top"
-							 FontSize="25" />
-                    <Border x:Name="descriptionBoarder"
-							 Margin="40,0,0,0"
-						BorderBrush="#FFCCFFCC"
-						BorderThickness="1"
-						Padding="5,5,5,5">
-                        <TextBlock x:Name="taskDescriptionBind"
-							     Margin="40,0,0,0"
+			<TextBlock Text="FetchIt!"
+								 Grid.Column="2"
+								 FontSize="140"
 								 TextWrapping="Wrap"
-								 Text="{Binding SelectedTask.TaskDescription}"
-								 FontSize="25" />
-                    </Border>
-                </StackPanel>
-            </Grid>
-            <!--Grid Row 1 Column 2 called: TaskCommentPayDetails-->
-            <Grid Column="2" RowSpan="2">
-                <StackPanel x:Name="TaskCommentPayDetails">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Name="taskFeeBlock"
-							 HorizontalAlignment="Left"
-							 Margin="40,0,0,0"
-							 TextWrapping="Wrap"
-							 Text="Task Fee:"
-							 VerticalAlignment="Top"
-							 FontSize="25" />
-                        <TextBlock x:Name="taskFeeBind"
-							 HorizontalAlignment="Left"
-							 Margin="40,0,0,0"
-							 TextWrapping="Wrap"
-							 Text="{Binding SelectedTask.TaskFee}"
-							 VerticalAlignment="Top"
-							 FontSize="25" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Name="endAddressBlock"
-							 HorizontalAlignment="Left"
-							 Margin="40,0,0,0"
-							 TextWrapping="Wrap"
-							 Text="End Address:"
-							 VerticalAlignment="Top"
-							 FontSize="25" />
-                        <TextBlock x:Name="endAddressBind"
-							 HorizontalAlignment="Left"
-							 Margin="40,0,0,0"
-							 TextWrapping="Wrap"
-							 Text="{Binding SelectedTask.TaskEndPointAddress}"
-							 VerticalAlignment="Top"
-							 FontSize="25" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Name="itemPriceBlock"
-							 HorizontalAlignment="Left"
-							 Margin="40,0,0,0"
-							 TextWrapping="Wrap"
-							 Text="Task Item Price:"
-							 VerticalAlignment="Top"
-							 FontSize="25" />
-                        <TextBlock x:Name="itemPriceBind"
-							 HorizontalAlignment="Left"
-							 Margin="40,0,0,0"
-							 TextWrapping="Wrap"
-							 Text="{Binding SelectedTask.TaskItemPrice}"
-							 VerticalAlignment="Top"
-							 FontSize="25" />
-                    </StackPanel>
-                    <ListView x:Name="CommentsListView"
-							HorizontalAlignment="Left"
-							Height="198"
-							Margin="40,0,0,0"
-							VerticalAlignment="Top"
-							Width="585"
-							ItemsSource="{Binding CommentsForTask, Mode=TwoWay}"
-							BorderThickness="1"
-							BorderBrush="MistyRose">
-                    </ListView>
-                    <Button x:Name="LeaveCommentButton"
-						Content="Leave a Comment"
-						HorizontalAlignment="Left"
-						Margin="40,0,0,0"
-						VerticalAlignment="Top"
-						Height="60"
-						Width="256"
-						Click="LeaveCommentButton_Click"
-						FontSize="25" />
-                </StackPanel>
-            </Grid>
-            <!--Grid Row 1 Column 2 called: TaskFeedbackDetails-->
-            <Grid Column="3" RowSpan="2">
-                <StackPanel x:Name="TaskFeedbackDetails">
-                    <TextBlock x:Name="commentsBlock"
-							 HorizontalAlignment="Left"
-						     Margin="40,0,0,0"
-							 TextWrapping="Wrap"
-							 Text="Comments"
-							 VerticalAlignment="Top"
-							 FontSize="35" />
-                    <TextBlock x:Name="SuccessMessage"
-							 HorizontalAlignment="Left"
-						     Margin="40,0,0,0"
-							 TextWrapping="Wrap"
-							 Text="Your comment has been added"
-							 VerticalAlignment="Top"
-							 FontSize="25"
-							 Visibility="{Binding SuccessMessage, Mode=TwoWay}" />
-                    <Button x:Name="CancelCommentButton"
-								Content="Cancel"
-								Click="CancelCommentButton_Click"
-								FontSize="25"
-						        Margin="40,0,0,0"
-								Height="60"
-								FontFamily="Global User Interface" />
-                    <Button x:Name="AddCommentButton"
-								Content=""
-								Command="{Binding AddCommentCommand}"
-								FontSize="25"
-								Style="{StaticResource FetchitButtonAdd}"
-						        Margin="40,0,0,0"
-								Height="60"
-								Width="60" />
-                    <TextBox x:Name="CommentTextBox"
-								 TextWrapping="Wrap"
-								 FontSize="25"
-								 Text="{Binding CommentToLeave, Mode=TwoWay}"
-						         Margin="40,0,0,0"
-								 FontFamily="Global User Interface" />
-                    <TextBlock x:Name="CommentsGridBlock"
-									 HorizontalAlignment="Center"
+								 VerticalAlignment="center"
+								 FontFamily="Remachine Script Personal Use "
+								 Foreground="#FFCCFFCC"
+								 Height="149"
+								 Margin="83,-7,294,-2"
+								 Width="321" />
+
+		</Grid>
+
+		<!--Grid definitions-->
+		<Grid Row="1">
+			<Grid.Background>
+				<ImageBrush Stretch="Fill" />
+			</Grid.Background>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="301" />
+				<ColumnDefinition Width="478" />
+				<ColumnDefinition Width="601" />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="628" />
+			</Grid.RowDefinitions>
+
+			<!--We can maybe put these in a GridView-->
+			<Grid x:Name="TaskMainGrid"
+						Column="0">
+				<StackPanel x:Name="TaskMainDetails"
+										Grid.Column="0">
+					<TextBlock x:Name="taskMasterBlock"
+										 HorizontalAlignment="Left"
+										 Margin="40,25,0,0"
+										 TextWrapping="Wrap"
+										 Text="Taskmaster"
+										 VerticalAlignment="Top"
+										 FontSize="45" />
+					<TextBlock x:Name="taskmasterBind"
+										 HorizontalAlignment="Left"
+										 Margin="40,5,0,0"
+										 TextWrapping="Wrap"
+										 Text="{Binding Taskmaster.ProfileName}"
+										 VerticalAlignment="Top"
+										 FontSize="25"
+										 Tapped="taskmasterBind_Tapped" />
+					<TextBlock x:Name="fetcherBlock"
+										 HorizontalAlignment="Left"
+										 Margin="40,40,0,0"
+										 TextWrapping="Wrap"
+										 Text="Fetcher"
+										 VerticalAlignment="Top"
+										 FontSize="45" />
+					<TextBlock x:Name="taskFetcherBind"
+										 HorizontalAlignment="Left"
+										 Margin="40,5,0,0"
+										 TextWrapping="Wrap"
+										 Text="{Binding FetcherName, Mode=TwoWay}"
+										 VerticalAlignment="Top"
+										 FontSize="25"
+										 Tapped="taskFetcherBind_Tapped" />
+					<Button x:Name="AssignToTaskButton"
+									Content="Assign To Task"
+									FontSize="25"
+									Command="{Binding AssignToTaskCommand}"
+									Height="60"
+									HorizontalAlignment="Center"
+									Margin="40,30,0,0"
+									BorderThickness="0"
+									Visibility="Collapsed" />
+					<Button x:Name="ResignFromTaskButton"
+									Content="Resign From Task"
+									FontSize="25"
+									Command="{Binding ResignFromTaskCommand}"
+									Height="60"
+									HorizontalAlignment="Center"
+									Margin="40,25,0,0"
+									BorderThickness="0"
+									Visibility="Collapsed" />
+					<Button x:Name="EditTaskButton"
+									Content="Edit Task"
+									RenderTransformOrigin="0.397,0.58"
+									Click="EditTaskButton_Click"
+									FontSize="25"
+									FontFamily="Global User Interface"
+									Height="60"
+									HorizontalAlignment="Center"
+									Margin="40,25,0,0"
+									BorderThickness="0"
+									Visibility="Collapsed" />
+				</StackPanel>
+				<!--Grid Row 2 Column 0 called: TaskMainDetails-->
+			</Grid>
+			<!--Grid Row 1 Column 1 called: TaskSpecificDetails-->
+			<Grid x:Name="TaskSpecificGrid"
+						Column="1">
+				<StackPanel x:Name="TaskSpecificDetails">
+					<StackPanel x:Name="TaskFeePanel"
+											Orientation="Horizontal"
+											Margin="0,10,0,0">
+						<TextBlock x:Name="taskFeeBlock"
+											 HorizontalAlignment="Left"
+											 Margin="40,0,0,0"
+											 TextWrapping="Wrap"
+											 Text="Task Fee:"
+											 VerticalAlignment="Top"
+											 FontSize="25" />
+						<TextBlock x:Name="taskFeeBind"
+											 HorizontalAlignment="Left"
+											 Margin="40,0,0,0"
+											 TextWrapping="Wrap"
+											 Text="{Binding SelectedTask.TaskFee}"
+											 VerticalAlignment="Top"
+											 FontSize="25" />
+					</StackPanel>
+					<StackPanel x:Name="ItemPricePanel"
+											Orientation="Horizontal"
+											Margin="0,5,0,0">
+						<TextBlock x:Name="itemPriceBlock"
+											 HorizontalAlignment="Left"
+											 Margin="40,0,0,0"
+											 TextWrapping="Wrap"
+											 Text="Task Item Price:"
+											 VerticalAlignment="Top"
+											 FontSize="25" />
+						<TextBlock x:Name="itemPriceBind"
+											 HorizontalAlignment="Left"
+											 Margin="40,0,0,0"
+											 TextWrapping="Wrap"
+											 Text="{Binding SelectedTask.TaskItemPrice}"
+											 VerticalAlignment="Top"
+											 FontSize="25" />
+					</StackPanel>
+					<StackPanel x:Name="EndAddressPanel"
+											Orientation="Horizontal"
+											Margin="0,5,0,0">
+						<TextBlock x:Name="endAddressBlock"
+											 HorizontalAlignment="Left"
+											 Margin="40,0,0,0"
+											 TextWrapping="Wrap"
+											 Text="End Address:"
+											 VerticalAlignment="Top"
+											 FontSize="25" />
+						<TextBlock x:Name="endAddressBind"
+											 HorizontalAlignment="Left"
+											 Margin="40,0,0,0"
+											 TextWrapping="Wrap"
+											 Text="{Binding SelectedTask.TaskEndPointAddress}"
+											 VerticalAlignment="Top"
+											 FontSize="25" />
+					</StackPanel>
+					<TextBlock x:Name="postedDateBlock"
+										 HorizontalAlignment="Left"
+										 Margin="40,25,0,0"
+										 TextWrapping="Wrap"
+										 Text="Posted Date:"
+										 VerticalAlignment="Top"
+										 FontSize="25" />
+					<TextBlock x:Name="postedDateBind"
+										 HorizontalAlignment="Left"
+										 Margin="40,5,0,0"
+										 TextWrapping="Wrap"
+										 Text="{Binding SelectedTask.TaskTimeCreated}"
+										 VerticalAlignment="Top"
+										 FontSize="25" />
+					<TextBlock x:Name="deadlineBlock"
+										 HorizontalAlignment="Left"
+										 Margin="40,20,0,0"
+										 TextWrapping="Wrap"
+										 Text="Deadline:"
+										 VerticalAlignment="Top"
+										 FontSize="25" />
+					<TextBlock x:Name="deadlineBind"
+										 HorizontalAlignment="Left"
+										 Margin="40,5,0,0"
+										 TextWrapping="Wrap"
+										 Text="{Binding SelectedTask.TaskDeadline}"
+										 VerticalAlignment="Top"
+										 FontSize="25" />
+					<TextBlock x:Name="taskDescriptionBlock"
+										 HorizontalAlignment="Left"
+										 Margin="40,25,0,0"
+										 TextWrapping="Wrap"
+										 Text="Task Description:"
+										 VerticalAlignment="Top"
+										 FontSize="25" />
+					<Border x:Name="descriptionBoarder"
+									Margin="40,10,40,0"
+									BorderBrush="#FFCCFFCC"
+									BorderThickness="1"
+									Padding="5,5,5,5">
+						<Grid x:Name="DescriptionGrid"
+									ScrollViewer.VerticalScrollBarVisibility="Auto">
+							<TextBlock x:Name="taskDescriptionBind"
+												 TextWrapping="Wrap"
+												 Text="{Binding SelectedTask.TaskDescription}"
+												 FontSize="20" />
+						</Grid>
+					</Border>
+					<Button x:Name="MarkAsCompletedButton"
+									Content="Mark As Completed"
+									Command="{Binding MarkAsCompletedCommand}"
+									FontSize="25"
+									Height="60"
+									HorizontalAlignment="Center"
+									Margin="0,20,0,0"
+									BorderThickness="0"
+									Visibility="Collapsed" />
+					<Button x:Name="CreateFeedbackButton"
+									Content="Create Feedback"
+									RenderTransformOrigin="0.397,0.58"
+									Click="CreateFeedbackButton_Click"
+									FontSize="25"
+									Height="60"
+									HorizontalAlignment="Center"
+									Margin="0,20,0,0"
+									BorderThickness="0"
+									Visibility="Collapsed" />
+				</StackPanel>
+			</Grid>
+			<!--Grid Row 1 Column 2 called: TaskCommentPayDetails-->
+			<Grid x:Name="CommentsGrid"
+						Column="2"
+						Margin="0,10,0,0">
+				<StackPanel x:Name="TaskCommentDetails">
+					<TextBlock x:Name="commentsBlock"
+										 HorizontalAlignment="Center"
+										 Margin="0,10,0,0"
+										 TextWrapping="Wrap"
+										 Text="Comments"
+										 VerticalAlignment="Center"
+										 FontSize="35" />
+					<TextBlock x:Name="SuccessMessage"
+										 HorizontalAlignment="Left"
+										 Margin="40,0,0,0"
+										 TextWrapping="Wrap"
+										 Text="Your comment has been added"
+										 VerticalAlignment="Top"
+										 FontSize="25"
+										 Visibility="{Binding SuccessMessage, Mode=TwoWay}" />
+					<ListView x:Name="CommentsListView"
+										ItemsSource="{Binding CommentsForTask, Mode=TwoWay}"
+										BorderThickness="1"
+										BorderBrush="MistyRose"
+										Width="500"
+										Height="300"
+										Margin="0,20,0,0" />
+					<TextBox x:Name="CommentTextBox"
 									 TextWrapping="Wrap"
-									 Text="Add your Comment"
-									 VerticalAlignment="Center"
-									 FontSize="40"
-						             Margin="40,0,0,0"/>
-                    <StackPanel x:Name="OptionalButtons">
-                        <Button x:Name="CreateFeedbackButton"
-						Content="Create Feedback"
-						HorizontalAlignment="Left"
-						Margin="40,0,0,0"
-						VerticalAlignment="Top"
-						RenderTransformOrigin="0.397,0.58"
-						Height="60"
-						Width="226"
-						Click="CreateFeedbackButton_Click"
-						FontSize="25"
-						Visibility="Collapsed" />
-                        <Button x:Name="EditTaskButton"
-						Content="Edit Task"
-						HorizontalAlignment="Left"
-						Margin="40,0,0,0"
-						VerticalAlignment="Top"
-						RenderTransformOrigin="0.397,0.58"
-						Height="60"
-						Width="156"
-						Click="EditTaskButton_Click"
-						FontSize="25"
-						Visibility="Collapsed"
-						FontFamily="Global User Interface" />
-                        <Button x:Name="AssignToTaskButton"
-						Content="Assign To Task"
-						HorizontalAlignment="Left"
-						Margin="40,0,0,0"
-						VerticalAlignment="Top"
-						Height="60"
-						Width="247"
-						FontSize="25"
-						Command="{Binding AssignToTaskCommand}"
-						Visibility="Collapsed" />
-                        <Button x:Name="ResignFromTaskButton"
-						Content="Resign From Task"
-						HorizontalAlignment="Left"
-						Margin="40,0,0,0"
-						VerticalAlignment="Top"
-						Height="60"
-						Width="247"
-						FontSize="25"
-						Command="{Binding ResignFromTaskCommand}"
-						Visibility="Collapsed" />
-                        <Button x:Name="MarkAsCompletedButton"
-						Content="Mark As Completed"
-						HorizontalAlignment="Left"
-						Margin="40,0,0,0"
-						VerticalAlignment="Top"
-						Height="60"
-						Width="269"
-						Command="{Binding MarkAsCompletedCommand}"
-						FontSize="25"
-						Visibility="Collapsed" />
-                    </StackPanel>
-                </StackPanel>
-                <!--Appbar-->
-                <AppBar x:Name="appBar" 
-                    Grid.ColumnSpan="2"
-                    Grid.RowSpan="2"
-                    Background="NavajoWhite"
-                    Opacity="20">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="60"/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Text="Menu"
-                                   FontSize="50"
-                                   Margin="15,0,130,0"
-                                   VerticalAlignment="Center" 
-                                   FontFamily="Remachine Script Personal Use " 
-                                   Foreground="#FFFB4A07" 
-                                   FontWeight="Bold"/>
-                        </StackPanel>
-                        <Grid Row="1">
-                            <StackPanel Orientation="Vertical">
-                                <Button x:Name="profileLogoutButton"
-								Height="46"
-								Width="48"
-								Style="{StaticResource FetchitButtonLogOut}"
-								Click="profileLogoutButton_Click" />
-                            </StackPanel>
-                        </Grid>
-                    </Grid>
-                </AppBar>
-            </Grid>
-        </Grid>
-    </Grid>
+									 FontSize="25"
+									 Text="{Binding CommentToLeave, Mode=TwoWay}"
+									 FontFamily="Global User Interface"
+									 Width="500"
+									 Height="50"
+									 Margin="0,20,0,0"
+									 BorderThickness="0" />
+					<TextBlock x:Name="CommentsGridBlock"
+										 HorizontalAlignment="Center"
+										 TextWrapping="Wrap"
+										 Text="Add your Comment"
+										 VerticalAlignment="Center"
+										 FontSize="40"
+										 Margin="83,15,42,0" />
+					<Button x:Name="AddCommentButton"
+									Content=""
+									Command="{Binding AddCommentCommand}"
+									FontSize="25"
+									Style="{StaticResource FetchitButtonAdd}"
+									Margin="40,20,0,0"
+									Height="60"
+									Width="60"
+									HorizontalAlignment="Center"
+									BorderThickness="0" />
+				</StackPanel>
+			</Grid>
+			<!--Grid Row 1 Column 2 called: TaskFeedbackDetails-->
+			<!--Appbar-->
+			<AppBar x:Name="appBar"
+							Grid.Column="0"
+							Grid.ColumnSpan="2"
+							Background="NavajoWhite"
+							Opacity="20"
+							Margin="-5,10,5,-10">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="60" />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+					<StackPanel Orientation="Vertical">
+						<TextBlock Text="Menu"
+											 FontSize="50"
+											 Margin="15,0,130,0"
+											 VerticalAlignment="Center"
+											 FontFamily="Remachine Script Personal Use "
+											 Foreground="#FFFB4A07"
+											 FontWeight="Bold" />
+					</StackPanel>
+					<Grid Row="1">
+						<StackPanel Orientation="Vertical">
+							<Button x:Name="profileLogoutButton"
+											Height="46"
+											Width="48"
+											Style="{StaticResource FetchitButtonLogOut}"
+											Click="profileLogoutButton_Click" />
+						</StackPanel>
+					</Grid>
+				</Grid>
+			</AppBar>
+		</Grid>
+	</Grid>
 </Page>
