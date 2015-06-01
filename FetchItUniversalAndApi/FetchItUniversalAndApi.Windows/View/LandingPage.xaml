@@ -83,7 +83,7 @@
 
                 <TextBlock Text="Notifications"
                            FontSize="35"
-                           Margin="15,0,130,0"
+                           Margin="15,0,0,0"
                            VerticalAlignment="Center"/>
                 <AppBarButton x:Name="notificationsRefreshButton"
             	                Width="125"
@@ -92,7 +92,8 @@
             	                Style="{StaticResource RefreshAppBarButtonStyle}"
             	                VerticalAlignment="Top"
             	                Command="{Binding RefreshNotifications}" 
-            	                Margin="227,0,-10,-13" >
+            	                Margin="228,0,0,0" 
+                                Click="refreshButtons_Click" >
                 </AppBarButton>
             </Grid>
             <Grid x:Name="Column0Row2Grid" 
@@ -128,7 +129,6 @@
                            FontSize="35"
                            Margin="15,0,130,0"
                            VerticalAlignment="Center"/>
-
                 <AppBarButton x:Name="activeTasksRefreshbutton"
             	                Width="125"
             	                Height="67"
@@ -136,9 +136,9 @@
             	                Style="{StaticResource RefreshAppBarButtonStyle}"
             	                VerticalAlignment="Top"
             	                Command="{Binding RefreshMarketplace}" 
-            	                Margin="228,-2,-12,0" >
+            	                Margin="228,0,0,0" 
+                                Click="refreshButtons_Click" >
                 </AppBarButton>
-
             </Grid>
             <Grid x:Name="Column1Row2Grid"
                   Row="2"
@@ -146,7 +146,30 @@
                 <ListView x:Name="userActiveTasksListView"
 					  	  ItemsSource="{Binding ActiveTasks, Mode=TwoWay}"
 						  SelectionChanged="userActiveTasksListView_SelectionChanged"
-						  SelectedItem="{Binding th.SelectedTask, Mode=TwoWay}" />
+						  SelectedItem="{Binding th.SelectedTask, Mode=TwoWay}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding TaskDescription}"
+															 FontSize="14"
+															 TextWrapping="NoWrap"
+															 Margin="10,0,0,0" 
+                                                             Foreground="#FFCCFFCC" 
+                                                             FontWeight="Bold" />
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="DeadLine: " FontSize="16"
+															 TextWrapping="NoWrap"
+															 Margin="10,0,0,0" />
+                                    <TextBlock Text="{Binding TaskDeadline}"
+															 FontSize="16"
+															 TextWrapping="NoWrap"
+															 Margin="20,0,0,0" 
+                                                             FontWeight="Bold" />
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </Grid>
 
             <!--Marketplace-->
@@ -157,29 +180,37 @@
                            Margin="15,0,130,0"
                            VerticalAlignment="Center"/>
                 <AppBarButton x:Name="refreshMarketplaceButton"
-            	                Width="125"
-            	                Height="67"
-            	                HorizontalAlignment="Left"
+            	              Width="125"
+            	              Height="67"
+            	              HorizontalAlignment="Left"
                               Icon="Refresh"
-            	                VerticalAlignment="Top"
-            	                Command="{Binding RefreshMarketplace}" 
-            	                Margin="228,0,0,-2" >
+            	              VerticalAlignment="Top"
+            	              Command="{Binding RefreshMarketplace}" 
+            	              Margin="228,0,0,0"
+                              Click="refreshButtons_Click" >
                 </AppBarButton>
                 <AppBarButton HorizontalAlignment="Left" 
                               Icon="Add" 
                               Label="AppBarButton" 
-                              Margin="305,0,0,-5" 
+                              Margin="305,0,0,0" 
                               VerticalAlignment="Top"
                               Click="CreateTaskButton_Click"/>
             </Grid>
             <Grid x:Name="Column2Row2Grid"
                   Row ="2"
                   Column="4" >
+                <!-- Marketplace: Displays all active Tasks
+                     Sets the SelectedTask when an object is clicked
+                     and navigates to the TaskDetailPage which shows
+                     SelectedTask. -->
                 <ListView x:Name="marketplaceListView"
                           ItemsSource="{Binding Marketplace}"
                           SelectionChanged="marketplaceListView_SelectionChanged"
-                          SelectedItem="{Binding th.SelectedTask}">
-
+                          SelectedItem="{Binding th.SelectedTask, Mode=TwoWay}">
+                          <!-- Sets the Content for the ListView so each object 
+                               in the Marketplace Binding is shown as the ItemTemplate
+                               specifies. Shows: Description of Task, Fee advertised and
+                               Deadline of the Task. -->
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
@@ -211,7 +242,6 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-
             </Grid>
 
             <!--Appbar-->
@@ -219,7 +249,8 @@
                     Grid.ColumnSpan="2"
                     Grid.RowSpan="2"
                     Background="NavajoWhite"
-                    Opacity="20">
+                    Opacity="20"
+                    >
 
                 <Grid>
                     <Grid.RowDefinitions>

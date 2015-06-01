@@ -40,6 +40,11 @@ namespace FetchItUniversalAndApi.Handlers
             Disabled = 3,
         }
 
+        public enum UserIdentification
+        {
+            System = 11
+        }
+
         /// <summary>
         /// LEGACY: E-mails are not being handled by this app
         /// The types of E-mails that the Handler can send.
@@ -52,7 +57,7 @@ namespace FetchItUniversalAndApi.Handlers
             NotificationEmail,
             AdministratorMessage,
         }
-    #endregion
+        #endregion
 
         #region Fields and Properties
         //The HttpClient used for doing POST, GET and etc. commands to the web api.
@@ -314,7 +319,7 @@ namespace FetchItUniversalAndApi.Handlers
             notificationToPost.NotificationSent = DateTime.UtcNow;
             notificationToPost.FK_NotificationTo = profileTo.ProfileId;
             //TODO: Make sure after database is flushed that this is the System profile
-            notificationToPost.FK_NotificationFrom = 45;
+            notificationToPost.FK_NotificationFrom = (int)UserIdentification.System;
             notificationToPost.NotificationContent = notificationMessage;
             #endregion
             try

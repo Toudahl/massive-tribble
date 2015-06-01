@@ -12,7 +12,6 @@ namespace FetchItUniversalAndApi.View
 	
 	public sealed partial class LandingPage : Page
 	{
-
 		private NavigationHelper navigationHelper;
 		private ObservableDictionary defaultViewModel = new ObservableDictionary();
 		public ObservableDictionary DefaultViewModel
@@ -42,55 +41,36 @@ namespace FetchItUniversalAndApi.View
 		{
 		}
 
-        
-		private void profileDetailsButton_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Makes the AppBarButton unabled for 3 seconds to avoid too many needless calls to server
+        /// </summary>
+        /// <param name="clickedButton">The AppBarButton being clicked</param>
+		private async void coolDown(AppBarButton clickedButton)
 		{
-			var ph = ProfileHandler.GetInstance();
-			ph.SelectedProfile = ph.CurrentLoggedInProfile;
-			this.Frame.Navigate(typeof(ProfileDetailPage));
+            clickedButton.IsEnabled = false;
+			await Task.Delay(3000);
+            clickedButton.IsEnabled = true;
 		}
 
-		private void CreateTaskButton_Click(object sender, RoutedEventArgs e)
-		{
-			this.Frame.Navigate(typeof(TaskCreation));
-		}
+        #region Buttons OnClick
+        /// <summary>
+        /// Makes sure that the button cannot be clicked more than every 3 seconds
+        /// </summary>
+        /// <param name="sender">The UI object calling this event</param>
+        /// <param name="e">Event arguments provided. Not used.</param>
+        private void refreshButtons_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is AppBarButton)
+            {
+                coolDown((AppBarButton)sender);
+            }
+        }
 
-		private void refreshMarketplaceButton_Click(object sender, RoutedEventArgs e)
-		{
-			coolDown();
-		}
-
-		private async void coolDown()
-		{
-			refreshMarketplaceButton.IsEnabled = false;
-			await Task.Delay(5000);
-			refreshMarketplaceButton.IsEnabled = true;
-		}
-
-		private void marketplaceListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			this.Frame.Navigate(typeof(TaskDetailPage));
-		}
-
-		private void MessageHubButton_OnClickButton_Click(object sender, RoutedEventArgs e)
-		{
-			this.Frame.Navigate(typeof(MessageHub));
-		}
-
-		private void issuePageButton_Click(object sender, RoutedEventArgs e)
-		{
-			this.Frame.Navigate(typeof(IssuesView));
-		}
-
-		private void notificationsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			this.Frame.Navigate(typeof(MessageHub));
-		}
-
-		private void userActiveTasksListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			this.Frame.Navigate(typeof(TaskDetailPage));
-		}
+        private async void CreateTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(50);
+            this.Frame.Navigate(typeof(TaskCreation));
+        }
 
 		private void profileLogoutButton_Click(object sender, RoutedEventArgs e)
 		{
@@ -98,6 +78,13 @@ namespace FetchItUniversalAndApi.View
 			ph.LogOut();
 			this.Frame.Navigate(typeof(MainPage));
 		}
+
+        private void profileDetailsButton_Click(object sender, RoutedEventArgs e)
+        {
+            var ph = ProfileHandler.GetInstance();
+            ph.SelectedProfile = ph.CurrentLoggedInProfile;
+            this.Frame.Navigate(typeof(ProfileDetailPage));
+        }
 
         private void appBarButton_Click(object sender, RoutedEventArgs e)
         {
@@ -110,8 +97,28 @@ namespace FetchItUniversalAndApi.View
                 appBar.IsOpen = true;
             }
         }
+        #endregion
 
-        
+        #region ListView OnSelectionChanged
+        private async void marketplaceListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            await Task.Delay(50);
+            this.Frame.Navigate(typeof(TaskDetailPage));
+        }
+
+        private async void notificationsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            await Task.Delay(50);
+            this.Frame.Navigate(typeof(MessageHub));
+        }
+
+        private async void userActiveTasksListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            await Task.Delay(50);
+            this.Frame.Navigate(typeof(TaskDetailPage));
+        }
+        #endregion
+
         #region Notifications Pointer actions
 
         /// <summary>
@@ -178,7 +185,5 @@ namespace FetchItUniversalAndApi.View
         }
 
         #endregion
-
-
     }
 }
