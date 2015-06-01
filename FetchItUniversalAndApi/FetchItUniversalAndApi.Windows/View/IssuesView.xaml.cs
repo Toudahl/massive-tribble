@@ -1,4 +1,5 @@
-﻿using FetchItUniversalAndApi.Common;
+﻿using System.Threading.Tasks;
+using FetchItUniversalAndApi.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using FetchItUniversalAndApi.Handlers;
 using FetchItUniversalAndApi.Models;
 using FetchItUniversalAndApi.ViewModel;
 
@@ -105,15 +107,43 @@ namespace FetchItUniversalAndApi.View
 
         #endregion
 
+        #region AppBar Buttons
+        private void profileButton_Click(object sender, RoutedEventArgs e)
+        {
+            var ph = ProfileHandler.GetInstance();
+            ph.SelectedProfile = ph.CurrentLoggedInProfile;
+            this.Frame.Navigate(typeof(ProfileDetailPage));
+        }
 
+        private async void messageHubButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(50);
+            this.Frame.Navigate(typeof(MessageHub));
+        }
 
-        //private void ListViewBase_OnItemClick(object sender, ItemClickEventArgs e)
-        //{
-        //    IssueModel issue = e.ClickedItem as IssueModel;
-        //    if (issue != null)
-        //    {
-        //        Frame.Navigate(typeof (IssueDetailView), issue);
-        //    }
-        //}
+        private async void issuesButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(50);
+            this.Frame.Navigate(typeof(IssuesView));
+        }
+
+        private async void CreateTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(50);
+            this.Frame.Navigate(typeof(TaskCreation));
+        }
+
+        private void profileLogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            var ph = ProfileHandler.GetInstance();
+            ph.LogOut();
+            this.Frame.Navigate(typeof(MainPage));
+        }
+
+        private void homeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(LandingPage));
+        }
+        #endregion
     }
 }
