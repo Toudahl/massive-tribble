@@ -16,6 +16,7 @@
     <SynthesizeLinkMetadata>true</SynthesizeLinkMetadata>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>FetchItUniversalAndApi.Windows_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <AppxBundle>Always</AppxBundle>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -153,12 +154,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Logo.scale-100.png" />
-    <Content Include="Assets\SmallLogo.scale-100.png" />
-    <Content Include="Assets\SplashScreen.scale-100.png" />
-    <Content Include="Assets\StoreLogo.scale-100.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="Assets\ViewTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -229,6 +224,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Sources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\BadgeLogo.scale-180.png" />
+    <Content Include="Assets\Logo.scale-180.png" />
+    <Content Include="Assets\SmallLogo.targetsize-256.png" />
+    <Content Include="Assets\SplashScreen.scale-180.png" />
+    <Content Include="Assets\Square30x30Logo.targetsize-256.png" />
+    <Content Include="Assets\Square310x310Logo.scale-180.png" />
+    <Content Include="Assets\Square70x70Logo.scale-180.png" />
+    <Content Include="Assets\StoreLogo.scale-180.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-180.png" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
