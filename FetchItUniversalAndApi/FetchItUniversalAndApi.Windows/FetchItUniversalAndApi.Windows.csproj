@@ -110,9 +110,6 @@
     <Compile Include="View\CreateFeedbackPage.xaml.cs">
       <DependentUpon>CreateFeedbackPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\IssueDetailView.xaml.cs">
-      <DependentUpon>IssueDetailView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\IssuesView.xaml.cs">
       <DependentUpon>IssuesView.xaml</DependentUpon>
     </Compile>
@@ -167,10 +164,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CreateFeedbackPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\IssueDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

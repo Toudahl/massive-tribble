@@ -10,8 +10,12 @@
         
         <x:String x:Key="AppName">Fetch it!</x:String>
         <Brush x:Key="FetchitBackgroundColour">#66CCFF</Brush>
-        <Brush x:Key="FetchitTopGridBackgroundColor">#FF0099CC</Brush> 
-
+        <Brush x:Key="FetchitTopGridBackgroundColor">#FF0099CC</Brush>
+        <SolidColorBrush x:Key="ListViewItemSelectedBackgroundThemeBrush" Color="#FFCCFFCC" Opacity="0.08"></SolidColorBrush>
+        <SolidColorBrush x:Key="ListViewItemPointerOverBackgroundThemeBrush" Color="#FFCCFFCC" Opacity="0.08"></SolidColorBrush>
+        <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBackgroundThemeBrush" Color="#FFCCFFCC" Opacity="0.08"></SolidColorBrush>
+        <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBorderThemeBrush" Color="#FFCCFFCC" Opacity="0.08"></SolidColorBrush>
+        <!-- ... -->
 
         <Style TargetType="Button" x:Key="FetchitButtonBaseStyle">
             <Setter Property="BorderBrush" Value="{x:Null}" />
