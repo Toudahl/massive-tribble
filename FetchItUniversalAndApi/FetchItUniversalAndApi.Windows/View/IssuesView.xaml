@@ -27,6 +27,7 @@
             <RowDefinition Height="537*"/>
         </Grid.RowDefinitions>
 
+
         <!-- Top Grid -->
         <Grid Background="#FF0099CC" Grid.ColumnSpan="2">
 
@@ -35,6 +36,7 @@
                 <ColumnDefinition Width="548"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+
 
             <!-- Back Button -->
             <Button x:Name="menuButton" 
@@ -74,6 +76,50 @@
                        Width="321"/>
         </Grid>
         <ListView Margin="24,23,0,0" Grid.Row="2" ItemsSource="{Binding IssuesToDisplay}"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="103,50,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding WelcomeText}" VerticalAlignment="Top"/>
+        <Grid Grid.Column="1" HorizontalAlignment="Left" Height="504" Margin="10,23,0,0" Grid.Row="2" VerticalAlignment="Top" Width="951">
+            <TextBlock HorizontalAlignment="Left" Margin="188,-60,0,0" TextWrapping="Wrap" Text="{Binding WelcomeText}" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="201,135,0,0" TextWrapping="Wrap" Text="{Binding SelectedIssue.IssueDescription}" VerticalAlignment="Top" FontSize="20"/>
+            <TextBlock HorizontalAlignment="Left" Margin="27.999,89,0,0" TextWrapping="Wrap" Text="Title:" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                <TextBlock.RenderTransform>
+                    <CompositeTransform Rotation="0.764"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="30.665,128.999,0,0" TextWrapping="Wrap" Text="Description:" FontSize="24" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" VerticalAlignment="Top">
+                <TextBlock.RenderTransform>
+                    <CompositeTransform Rotation="0.764"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="27.999,41.333,0,0" TextWrapping="Wrap" Text="ID:" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" RenderTransformOrigin="0.895,0.458" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                <TextBlock.RenderTransform>
+                    <CompositeTransform Rotation="0.764" TranslateX="0.012" TranslateY="0.101"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="26.665,262.031,0,0" TextWrapping="Wrap" Text="Time created:" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                <TextBlock.RenderTransform>
+                    <CompositeTransform Rotation="0.764"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="25.999,0,0,164.666" TextWrapping="Wrap" Text="Time resolved:" VerticalAlignment="Bottom" FontSize="24" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                <TextBlock.RenderTransform>
+                    <CompositeTransform Rotation="0.764"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="128,46,0,0" TextWrapping="Wrap" Text="{Binding SelectedIssue.IssueId}" VerticalAlignment="Top" FontSize="20"/>
+            <TextBlock HorizontalAlignment="Left" Margin="115,90,0,0" TextWrapping="Wrap" Text="{Binding SelectedIssue.IssueTitle}" VerticalAlignment="Top" RenderTransformOrigin="0.333,2.154" FontSize="20"/>
+            <TextBlock HorizontalAlignment="Left" Margin="207,268,0,212" TextWrapping="Wrap" Text="{Binding SelectedIssue.IssueTimeCreated}" VerticalAlignment="Center" RenderTransformOrigin="0.333,2.154" FontSize="20"/>
+            <TextBlock HorizontalAlignment="Left" Margin="207,0,0,166" TextWrapping="Wrap" Text="{Binding SelectedIssue.IssueTimeResolved}" VerticalAlignment="Bottom" RenderTransformOrigin="0.333,2.154" FontSize="20"/>
+            <TextBlock HorizontalAlignment="Left" Margin="28.665,0,0,258.332" TextWrapping="Wrap" Text="Creator:" VerticalAlignment="Bottom" FontSize="24" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                <TextBlock.RenderTransform>
+                    <CompositeTransform Rotation="0.764"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="32,0,0,304.166" TextWrapping="Wrap" Text="Target:" VerticalAlignment="Bottom" FontSize="24" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                <TextBlock.RenderTransform>
+                    <CompositeTransform Rotation="0.764"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="144,0,0,261" TextWrapping="Wrap" Text="{Binding SelectedIssue.IssueCreator.IssueCreator[0].IssueCreator.ProfileName}" VerticalAlignment="Bottom" RenderTransformOrigin="0.333,2.154" FontSize="20"/>
+            <TextBlock HorizontalAlignment="Left" Margin="128,0,0,308" TextWrapping="Wrap" Text="{Binding SelectedIssue.IssueTarget.IssueTarget[0].IssueTarget.ProfileName}" VerticalAlignment="Bottom" RenderTransformOrigin="0.333,2.154" FontSize="20"/>
+        </Grid>
     </Grid>
 </Page>
