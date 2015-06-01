@@ -142,6 +142,11 @@ namespace FetchItUniversalAndApi.View
             ph.LogOut();
             this.Frame.Navigate(typeof(MainPage));
         }
+
+        private void homeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(LandingPage));
+        }
         #endregion
 	}
 }
