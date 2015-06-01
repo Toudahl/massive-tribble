@@ -382,37 +382,16 @@ namespace FetchItUniversalAndApi.Handlers
                 getAll = Task.Run(async () => JsonConvert.DeserializeObject<IEnumerable<TaskModel>>(
                 await client.GetStringAsync(taskAPI))).Result;
             }
-            if (value == TaskStatus.All)
+            switch (value)
             {
-                return getAll;
-            }
-            if (value == TaskStatus.Active)
-            {
-                return getAll.Where(s => s.FK_TaskStatus == 1);
-            }
-            if (value == TaskStatus.Reported)
-            {
-                return getAll.Where(s => s.FK_TaskStatus == 2);
-            }
-            if (value == TaskStatus.Removed)
-            {
-                return getAll.Where(s => s.FK_TaskStatus == 3);
-            }
-            if (value == TaskStatus.Deleted)
-            {
-                return getAll.Where(s => s.FK_TaskStatus == 4);
-            }
-            if (value == TaskStatus.Completed)
-            {
-                return getAll.Where(s => s.FK_TaskStatus == 5);
-            }
-            if (value == TaskStatus.TaskMasterCompleted)
-            {
-                return getAll.Where(s => s.FK_TaskStatus == 6);
-            }
-            if (value == TaskStatus.FetcherCompleted)
-            {
-                return getAll.Where(s => s.FK_TaskStatus == 7);
+                case TaskStatus.All: return getAll;
+                case TaskStatus.Active: return getAll.Where(s => s.FK_TaskStatus == 1);
+                case TaskStatus.Reported: return getAll.Where(s => s.FK_TaskStatus == 2);
+                case TaskStatus.Removed: return getAll.Where(s => s.FK_TaskStatus == 3);
+                case TaskStatus.Deleted: return getAll.Where(s => s.FK_TaskStatus == 4);
+                case TaskStatus.Completed: return getAll.Where(s => s.FK_TaskStatus == 5);
+                case TaskStatus.TaskMasterCompleted: return getAll.Where(s => s.FK_TaskStatus == 6);
+                case TaskStatus.FetcherCompleted: return getAll.Where(s => s.FK_TaskStatus == 7);
             }
             return null;
         }
