@@ -178,7 +178,7 @@
                 <ListView x:Name="marketplaceListView"
                           ItemsSource="{Binding Marketplace}"
                           SelectionChanged="marketplaceListView_SelectionChanged"
-                          SelectedItem="{Binding th.SelectedTask}">
+                          SelectedItem="{Binding th.SelectedTask,Mode=TwoWay }">
 
                     <ListView.ItemTemplate>
                         <DataTemplate>

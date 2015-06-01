@@ -105,15 +105,15 @@ namespace FetchItUniversalAndApi.View
 
         #endregion
 
-        
 
-        private void ListViewBase_OnItemClick(object sender, ItemClickEventArgs e)
-        {
-            IssueModel issue = e.ClickedItem as IssueModel;
-            if (issue != null)
-            {
-                Frame.Navigate(typeof (IssueDetailView), issue);
-            }
-        }
+
+        //private void ListViewBase_OnItemClick(object sender, ItemClickEventArgs e)
+        //{
+        //    IssueModel issue = e.ClickedItem as IssueModel;
+        //    if (issue != null)
+        //    {
+        //        Frame.Navigate(typeof (IssueDetailView), issue);
+        //    }
+        //}
     }
 }
