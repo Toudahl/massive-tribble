@@ -90,11 +90,12 @@
 										Grid.Column="0">
 					<TextBlock x:Name="taskMasterBlock"
 										 HorizontalAlignment="Left"
-										 Margin="40,25,0,0"
+										 Margin="40,17,-103,0"
 										 TextWrapping="Wrap"
 										 Text="Taskmaster"
 										 VerticalAlignment="Top"
-										 FontSize="45" />
+										 FontSize="45"
+										 Width="364" />
 					<TextBlock x:Name="taskmasterBind"
 										 HorizontalAlignment="Left"
 										 Margin="40,5,0,0"
@@ -126,7 +127,10 @@
 									HorizontalAlignment="Center"
 									Margin="40,30,0,0"
 									BorderThickness="0"
-									Visibility="Collapsed" />
+									Visibility="Collapsed"
+									Opacity="0.8"
+									Background="#FFCCFFCC"
+									FontFamily="Global User Interface" />
 					<Button x:Name="ResignFromTaskButton"
 									Content="Resign From Task"
 									FontSize="25"
@@ -135,7 +139,10 @@
 									HorizontalAlignment="Center"
 									Margin="40,25,0,0"
 									BorderThickness="0"
-									Visibility="Collapsed" />
+									Visibility="Collapsed"
+									Opacity="0.8"
+									Background="#FFCCFFCC"
+									FontFamily="Global User Interface" />
 					<Button x:Name="EditTaskButton"
 									Content="Edit Task"
 									RenderTransformOrigin="0.397,0.58"
@@ -146,7 +153,10 @@
 									HorizontalAlignment="Center"
 									Margin="40,25,0,0"
 									BorderThickness="0"
-									Visibility="Collapsed" />
+									Visibility="Collapsed"
+									Opacity="0.8"
+									Background="#FFCCFFCC"
+									 />
 				</StackPanel>
 				<!--Grid Row 2 Column 0 called: TaskMainDetails-->
 			</Grid>
@@ -156,7 +166,7 @@
 				<StackPanel x:Name="TaskSpecificDetails">
 					<StackPanel x:Name="TaskFeePanel"
 											Orientation="Horizontal"
-											Margin="0,10,0,0">
+											Margin="0,30,0,0">
 						<TextBlock x:Name="taskFeeBlock"
 											 HorizontalAlignment="Left"
 											 Margin="40,0,0,0"
@@ -264,7 +274,10 @@
 									HorizontalAlignment="Center"
 									Margin="0,20,0,0"
 									BorderThickness="0"
-									Visibility="Collapsed" />
+									Visibility="Collapsed"
+									Opacity="0.8"
+									Background="#FFCCFFCC"
+									FontFamily="Global User Interface" />
 					<Button x:Name="CreateFeedbackButton"
 									Content="Create Feedback"
 									RenderTransformOrigin="0.397,0.58"
@@ -274,7 +287,10 @@
 									HorizontalAlignment="Center"
 									Margin="0,20,0,0"
 									BorderThickness="0"
-									Visibility="Collapsed" />
+									Visibility="Collapsed"
+									Opacity="0.8"
+									Background="#FFCCFFCC"
+									FontFamily="Global User Interface" />
 				</StackPanel>
 			</Grid>
 			<!--Grid Row 1 Column 2 called: TaskCommentPayDetails-->
@@ -333,59 +349,78 @@
 				</StackPanel>
 			</Grid>
 			<!--Grid Row 1 Column 2 called: TaskFeedbackDetails-->
-            <!--Appbar-->
-            <AppBar x:Name="appBar"
-                    Grid.Column="0"
-                    Grid.Row="0"
-                    Grid.RowSpan="2"
-                    Grid.ColumnSpan="2"
-                    Background="NavajoWhite"
-                    Opacity="20" 
-                    BorderBrush="#FFFB4A07">
+			<!--Appbar-->
+			<AppBar x:Name="appBar"
+							Grid.Column="0"
+							Grid.Row="0"
+							Grid.RowSpan="2"
+							Grid.ColumnSpan="2"
+							Background="NavajoWhite"
+							Opacity="20"
+							BorderBrush="#FFFB4A07">
 
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="60"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="60" />
+						<RowDefinition />
+					</Grid.RowDefinitions>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="5*"/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="4"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Menu"
-                                   FontSize="50"
-                                   Margin="15,0,130,0"
-                                   VerticalAlignment="Center" 
-                                   FontFamily="Remachine Script Personal Use " 
-                                   Foreground="#FFFB4A07" 
-                                   FontWeight="Bold"/>
-                    </StackPanel>
-                    <Grid Grid.Row="1">
-                        <StackPanel Orientation="Vertical">
-                            <Button x:Name="homeButton" Click="homeButton_Click" BorderThickness="0" FontSize="24">Home</Button>
-                            <Button x:Name="profileButton" Click="profileButton_Click" BorderThickness="0" FontSize="24">My Profile</Button>
-                            <Button x:Name="messageHubButton" Click="messageHubButton_Click" BorderThickness="0" FontSize="24">Message Hub</Button>
-                            <Button x:Name="issuesButton" Click="issuesButton_Click" BorderThickness="0" FontSize="24">My Issues</Button>
-                            <Button x:Name="createNewTaskButton" Click="issuesButton_Click" BorderThickness="0" FontSize="24">Create New Task</Button>
-                        </StackPanel>
-                    </Grid>
-                    <Grid Column ="1">
-                        <StackPanel Orientation="Vertical">
-                            <Button x:Name="profileLogoutButton"
-                                    HorizontalAlignment="Center"
-								    Height="78"
-								    Width="85"
-								    Style="{StaticResource DeleteAppBarButtonStyle}"
-								    Click="profileLogoutButton_Click" Margin="15,0,14,0" />
-                        </StackPanel>
-                    </Grid>
-                    <Grid Grid.Column="2" Background="#FFFB4A07"/>
-                    <Grid Grid.Column="2" Grid.Row ="1" Background="#FFFB4A07"/>
-                </Grid>
-            </AppBar>
-        </Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="5*" />
+						<ColumnDefinition />
+						<ColumnDefinition Width="4" />
+					</Grid.ColumnDefinitions>
+					<StackPanel Orientation="Vertical">
+						<TextBlock Text="Menu"
+											 FontSize="50"
+											 Margin="15,0,130,0"
+											 VerticalAlignment="Center"
+											 FontFamily="Remachine Script Personal Use "
+											 Foreground="#FFFB4A07"
+											 FontWeight="Bold" />
+					</StackPanel>
+					<Grid Grid.Row="1">
+						<StackPanel Orientation="Vertical">
+							<Button x:Name="homeButton"
+											Click="homeButton_Click"
+											BorderThickness="0"
+											FontSize="24">Home</Button>
+							<Button x:Name="profileButton"
+											Click="profileButton_Click"
+											BorderThickness="0"
+											FontSize="24">My Profile</Button>
+							<Button x:Name="messageHubButton"
+											Click="messageHubButton_Click"
+											BorderThickness="0"
+											FontSize="24">Message Hub</Button>
+							<Button x:Name="issuesButton"
+											Click="issuesButton_Click"
+											BorderThickness="0"
+											FontSize="24">My Issues</Button>
+							<Button x:Name="createNewTaskButton"
+											Click="issuesButton_Click"
+											BorderThickness="0"
+											FontSize="24">Create New Task</Button>
+						</StackPanel>
+					</Grid>
+					<Grid Column="1">
+						<StackPanel Orientation="Vertical">
+							<Button x:Name="profileLogoutButton"
+											HorizontalAlignment="Center"
+											Height="78"
+											Width="85"
+											Style="{StaticResource DeleteAppBarButtonStyle}"
+											Click="profileLogoutButton_Click"
+											Margin="15,0,14,0" />
+						</StackPanel>
+					</Grid>
+					<Grid Grid.Column="2"
+								Background="#FFFB4A07" />
+					<Grid Grid.Column="2"
+								Grid.Row="1"
+								Background="#FFFB4A07" />
+				</Grid>
+			</AppBar>
+		</Grid>
 	</Grid>
 </Page>
