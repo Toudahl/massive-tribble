@@ -24,7 +24,7 @@ namespace FetchItUniversalAndApi.ViewModel
         public string Email { get; set; }
         public string EmailConfirm { get; set; }
         public string Address { get; set; }
-        public int? MobilePhone { get; set; }
+        public int MobilePhone { get; set; }
         public static bool CreationSuccess { get; private set; }
 
         public ICommand RegisterCommand
