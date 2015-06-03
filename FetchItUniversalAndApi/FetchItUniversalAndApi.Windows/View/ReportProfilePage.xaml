@@ -100,7 +100,7 @@
 			</Grid.RowDefinitions>
 			<Button Content="Submit report"
 							HorizontalAlignment="Left"
-							Margin="237,50,0,0"
+							Margin="85,49,0,0"
 							Grid.Row="1"
 							VerticalAlignment="Top"
 							Command="{Binding SubmitReportCommand}"
@@ -108,18 +108,10 @@
 							Width="218"
 							FontSize="25"
 							Click="Button_Click"
-							BorderThickness="0" />
-			<Button x:Name="goBackBtn"
-							Content="Go back"
-							HorizontalAlignment="Left"
-							Margin="132,50,0,0"
-							Grid.Row="1"
-							VerticalAlignment="Top"
-							Click="cancelButton_Click"
-							Height="60"
-							Width="60"
-							FontSize="25"
-							Style="{StaticResource NavigationBackButtonNormalStyle}" />
+							BorderThickness="0" 
+							Opacity="0.8"
+							Background="#FFCCFFCC"
+							FontFamily="Global User Interface"/>
 			<TextBox x:Name="reportTextbox"
 							 HorizontalAlignment="Left"
 							 Margin="85,154,0,0"
@@ -131,8 +123,7 @@
 							 FontSize="25" />
 			<TextBlock x:Name="ReportSuccessMessage"
 								 HorizontalAlignment="Left"
-								 Margin="160,112,0,0"
-								 Grid.Row="1"
+								 Margin="109,393,0,0"
 								 TextWrapping="Wrap"
 								 Text="Report was successfully submitted"
 								 VerticalAlignment="Top"
@@ -141,7 +132,7 @@
 		</Grid>
 		<TextBlock x:Name="ReportCommentBox"
 							 HorizontalAlignment="Left"
-							 Margin="150,98,0,0"
+							 Margin="95,98,0,0"
 							 Grid.Row="1"
 							 TextWrapping="Wrap"
 							 Text="Report Comment"
