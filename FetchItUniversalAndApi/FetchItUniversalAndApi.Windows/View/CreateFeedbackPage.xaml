@@ -20,7 +20,8 @@
         * Row 0 contains the back button and page title
         * Row 1 contains the rest of the page layout
     -->
-	<Grid Background="{StaticResource FetchitBackgroundColour}">
+	<Grid Background="{StaticResource FetchitBackgroundColour}"
+				Margin="0">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="50" />
 			<ColumnDefinition />
@@ -33,9 +34,8 @@
 			</TransitionCollection>
 		</Grid.ChildrenTransitions>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="50" />
-			<RowDefinition Height="479*" />
-			<RowDefinition Height="189*" />
+			<RowDefinition Height="140" />
+			<RowDefinition />
 			<RowDefinition Height="50" />
 		</Grid.RowDefinitions>
 
@@ -44,118 +44,8 @@
 		</Grid.DataContext>
 
 		<!-- Back button and page title -->
-		<Grid Grid.ColumnSpan="4">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="120" />
-				<ColumnDefinition Width="*" />
-			</Grid.ColumnDefinitions>
-		</Grid>
-		<Slider x:Name="ratingSlider"
-						HorizontalAlignment="Left"
-						Margin="90,81,0,0"
-						Grid.Row="2"
-						VerticalAlignment="Top"
-						Width="280"
-						Height="55"
-						Maximum="10"
-						Minimum="1"
-						LargeChange="1"
-						Value="{Binding Rating, Mode=TwoWay}"
-						Grid.Column="2"
-						FontSize="35" />
-		<TextBox x:Name="optionalTextBox"
-						 HorizontalAlignment="Left"
-						 Margin="70,161,0,0"
-						 Grid.Row="1"
-						 TextWrapping="Wrap"
-						 Text="{Binding OptionalText, Mode=TwoWay}"
-						 VerticalAlignment="Top"
-						 Height="275"
-						 Width="449"
-						 Grid.Column="1"
-						 FontSize="25" />
-		<TextBlock x:Name="loggedInBlock"
-							 HorizontalAlignment="Center"
-							 Margin="0,124,0,0"
-							 Grid.Row="1"
-							 TextWrapping="Wrap"
-							 Text="Logged In Profile"
-							 VerticalAlignment="Top"
-							 FontSize="35"
-							 Height="58"
-							 Width="280"
-							 Grid.Column="2" />
-		<TextBlock x:Name="loggedInBind"
-							 HorizontalAlignment="Center"
-							 Margin="0,187,0,0"
-							 Grid.Row="1"
-							 TextWrapping="Wrap"
-							 Text="{Binding LoggedInProfile.ProfileName}"
-							 VerticalAlignment="Top"
-							 FontSize="35"
-							 Grid.Column="2" />
-		<TextBlock x:Name="feedbackCommentBlock"
-							 HorizontalAlignment="Left"
-							 Margin="70,112,0,0"
-							 Grid.Row="1"
-							 TextWrapping="Wrap"
-							 Text="Comment"
-							 VerticalAlignment="Top"
-							 FontSize="40"
-							 Height="63"
-							 Width="208"
-							 Grid.Column="1" />
-		<Button x:Name="submitFeedbackBtn"
-						Content="Submit feedback"
-						HorizontalAlignment="Left"
-						Margin="70,89,0,0"
-						Grid.Row="2"
-						VerticalAlignment="Top"
-						Command="{Binding SubmitFeedbackCommand}"
-						Width="226"
-						Height="60"
-						Grid.Column="1"
-						FontSize="25"
-						FontFamily="Global User Interface"
-						Click="submitFeedbackBtn_Click"
-						BorderThickness="0"
-						Background="#FFCCFFCC"
-						Opacity="0.8" />
-
-		<TextBlock x:Name="FeedbackSuccessMessage"
-							 HorizontalAlignment="Left"
-							 Margin="92,441,0,0"
-							 Grid.Row="1"
-							 TextWrapping="Wrap"
-							 Text="Feedback was successfully submitted"
-							 VerticalAlignment="Top"
-							 Visibility="{Binding SuccessMessage, Mode=TwoWay}"
-							 Grid.Column="1"
-							 FontSize="25" />
-		<TextBlock x:Name="feedbackRatingBlock"
-							 HorizontalAlignment="Left"
-							 Margin="90,35,0,0"
-							 Grid.Row="2"
-							 TextWrapping="Wrap"
-							 Text="Rate Fetcher:"
-							 VerticalAlignment="Top"
-							 FontSize="40"
-							 Height="63"
-							 Width="236"
-							 Grid.Column="2" />
-		<TextBlock x:Name="fetcherNameBInd"
-							 HorizontalAlignment="Left"
-							 Margin="332,35,0,0"
-							 Grid.Row="2"
-							 TextWrapping="Wrap"
-							 Text="{Binding Fetcher.ProfileName, Mode=TwoWay}"
-							 VerticalAlignment="Top"
-							 FontSize="40"
-							 Grid.Column="2" />
 		<Grid Background="#FF0099CC"
-					Grid.ColumnSpan="4"
-					Margin="0,0,0,389"
-					Grid.RowSpan="2">
+					Grid.ColumnSpan="4">
 
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="120" />
@@ -266,13 +156,98 @@
 											Margin="15,0,14,0" />
 						</StackPanel>
 					</Grid>
-					<Grid Grid.Column="2"
-								Background="#FFFB4A07" />
-					<Grid Grid.Column="2"
-								Grid.Row="1"
-								Background="#FFFB4A07" />
 				</Grid>
 			</AppBar>
+		</Grid>
+		<Grid x:Name="CommentGrid"
+					Grid.Row="1"
+					Grid.Column="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="379*" />
+				<RowDefinition Height="55*" />
+				<RowDefinition Height="144*" />
+			</Grid.RowDefinitions>
+			<TextBox x:Name="optionalTextBox"
+							 TextWrapping="Wrap"
+							 Text="{Binding OptionalText, Mode=TwoWay}"
+							 FontSize="25"
+							 Margin="40,100,40,0" />
+			<TextBlock x:Name="feedbackCommentBlock"
+								 TextWrapping="Wrap"
+								 Text="Comment"
+								 FontSize="40"
+								 HorizontalAlignment="Left"
+								 VerticalAlignment="Top"
+								 Margin="40,50,0,0" />
+			<Button x:Name="submitFeedbackBtn"
+							Content="Submit feedback"
+							Command="{Binding SubmitFeedbackCommand}"
+							FontSize="25"
+							FontFamily="Global User Interface"
+							Click="submitFeedbackBtn_Click"
+							BorderThickness="0"
+							Background="#FFCCFFCC"
+							Opacity="0.8"
+							Margin="40,42,0,42"
+							VerticalAlignment="Center"
+							Grid.Row="2"
+							Height="60" />
+
+			<TextBlock x:Name="FeedbackSuccessMessage"
+								 TextWrapping="Wrap"
+								 Text="Feedback was successfully submitted"
+								 Visibility="{Binding SuccessMessage, Mode=TwoWay}"
+								 FontSize="25"
+								 Grid.Row="1"
+								 HorizontalAlignment="Center"
+								 VerticalAlignment="Center" />
+		</Grid>
+		<Grid x:Name="FetcherMasterGrid"
+					Grid.Row="1"
+					Grid.Column="2">
+			<Slider x:Name="ratingSlider"
+							Maximum="10"
+							Minimum="1"
+							LargeChange="1"
+							Value="{Binding Rating, Mode=TwoWay}"
+							FontSize="35"
+							VerticalAlignment="Top"
+							Margin="80,400,200,0" />
+			<TextBlock x:Name="loggedInBlock"
+								 TextWrapping="Wrap"
+								 Text="Logged In Profile"
+								 FontSize="40"
+								 HorizontalAlignment="Left"
+								 VerticalAlignment="Top"
+								 Margin="80,100,0,0" />
+			<TextBlock x:Name="loggedInBind"
+								 TextWrapping="Wrap"
+								 Text="{Binding LoggedInProfile.ProfileName}"
+								 FontSize="35"
+								 HorizontalAlignment="Left"
+								 VerticalAlignment="Top"
+								 Margin="80,150,0,0" />
+			<TextBlock x:Name="FetcherNameBlock"
+								 TextWrapping="Wrap"
+								 Text="Feedback for Fetcher"
+								 FontSize="40"
+								 HorizontalAlignment="Left"
+								 VerticalAlignment="Top"
+								 Margin="80,250,0,0" />
+			<TextBlock x:Name="fetcherNameBInd"
+								 TextWrapping="Wrap"
+								 Text="{Binding Fetcher.ProfileName, Mode=TwoWay}"
+								 FontSize="35"
+								 HorizontalAlignment="Left"
+								 VerticalAlignment="Top"
+								 Margin="80,300,0,0" />
+			<TextBlock x:Name="RatingBlock"
+								 TextWrapping="Wrap"
+								 Text="Your rating"
+								 FontSize="40"
+								 HorizontalAlignment="Left"
+								 VerticalAlignment="Top"
+								 Margin="170,450,0,0" />
 		</Grid>
 	</Grid>
 </Page>

@@ -124,25 +124,29 @@
 									FontSize="25"
 									Command="{Binding AssignToTaskCommand}"
 									Height="60"
-									HorizontalAlignment="Center"
-									Margin="40,30,0,0"
+									HorizontalAlignment="Left"
+									Margin="40,25,0,0"
 									BorderThickness="0"
-									Visibility="Collapsed"
 									Opacity="0.8"
 									Background="#FFCCFFCC"
-									FontFamily="Global User Interface" />
+									FontFamily="Global User Interface"
+									Click="AssignToTaskButton_Click"
+									VerticalAlignment="Top"
+									Visibility="Collapsed" />
 					<Button x:Name="ResignFromTaskButton"
 									Content="Resign From Task"
 									FontSize="25"
 									Command="{Binding ResignFromTaskCommand}"
 									Height="60"
-									HorizontalAlignment="Center"
+									HorizontalAlignment="Left"
 									Margin="40,25,0,0"
 									BorderThickness="0"
-									Visibility="Collapsed"
 									Opacity="0.8"
 									Background="#FFCCFFCC"
-									FontFamily="Global User Interface" />
+									FontFamily="Global User Interface"
+									Click="ResignFromTaskButton_Click"
+									VerticalAlignment="Top"
+									Visibility="Collapsed" />
 					<Button x:Name="EditTaskButton"
 									Content="Edit Task"
 									RenderTransformOrigin="0.397,0.58"
@@ -150,13 +154,13 @@
 									FontSize="25"
 									FontFamily="Global User Interface"
 									Height="60"
-									HorizontalAlignment="Center"
+									HorizontalAlignment="Left"
 									Margin="40,25,0,0"
 									BorderThickness="0"
-									Visibility="Collapsed"
 									Opacity="0.8"
 									Background="#FFCCFFCC"
-									 />
+									VerticalAlignment="Top"
+									Visibility="Collapsed" />
 				</StackPanel>
 				<!--Grid Row 2 Column 0 called: TaskMainDetails-->
 			</Grid>
@@ -176,7 +180,7 @@
 											 FontSize="25" />
 						<TextBlock x:Name="taskFeeBind"
 											 HorizontalAlignment="Left"
-											 Margin="40,0,0,0"
+											 Margin="5,0,0,0"
 											 TextWrapping="Wrap"
 											 Text="{Binding SelectedTask.TaskFee}"
 											 VerticalAlignment="Top"
@@ -194,7 +198,7 @@
 											 FontSize="25" />
 						<TextBlock x:Name="itemPriceBind"
 											 HorizontalAlignment="Left"
-											 Margin="40,0,0,0"
+											 Margin="5,0,0,0"
 											 TextWrapping="Wrap"
 											 Text="{Binding SelectedTask.TaskItemPrice}"
 											 VerticalAlignment="Top"
@@ -212,7 +216,7 @@
 											 FontSize="25" />
 						<TextBlock x:Name="endAddressBind"
 											 HorizontalAlignment="Left"
-											 Margin="40,0,0,0"
+											 Margin="5,0,0,0"
 											 TextWrapping="Wrap"
 											 Text="{Binding SelectedTask.TaskEndPointAddress}"
 											 VerticalAlignment="Top"
@@ -257,40 +261,46 @@
 									Margin="40,10,40,0"
 									BorderBrush="#FFCCFFCC"
 									BorderThickness="1"
-									Padding="5,5,5,5">
-						<Grid x:Name="DescriptionGrid"
-									ScrollViewer.VerticalScrollBarVisibility="Auto">
+									Padding="5,5,5,5"
+									Width="390"
+									Height="140"
+									HorizontalAlignment="Left"
+									VerticalAlignment="Top">
+						<ScrollViewer>
 							<TextBlock x:Name="taskDescriptionBind"
 												 TextWrapping="Wrap"
 												 Text="{Binding SelectedTask.TaskDescription}"
 												 FontSize="20" />
-						</Grid>
+						</ScrollViewer>
+
 					</Border>
 					<Button x:Name="MarkAsCompletedButton"
 									Content="Mark As Completed"
 									Command="{Binding MarkAsCompletedCommand}"
 									FontSize="25"
 									Height="60"
-									HorizontalAlignment="Center"
-									Margin="0,20,0,0"
+									HorizontalAlignment="Left"
+									Margin="40,20,0,0"
 									BorderThickness="0"
-									Visibility="Collapsed"
 									Opacity="0.8"
 									Background="#FFCCFFCC"
-									FontFamily="Global User Interface" />
+									FontFamily="Global User Interface"
+									Click="MarkAsCompletedButton_Click"
+									VerticalAlignment="Top"
+									Visibility="Collapsed" />
 					<Button x:Name="CreateFeedbackButton"
 									Content="Create Feedback"
 									RenderTransformOrigin="0.397,0.58"
 									Click="CreateFeedbackButton_Click"
 									FontSize="25"
 									Height="60"
-									HorizontalAlignment="Center"
-									Margin="0,20,0,0"
+									HorizontalAlignment="Left"
+									Margin="40,20,0,0"
 									BorderThickness="0"
-									Visibility="Collapsed"
 									Opacity="0.8"
 									Background="#FFCCFFCC"
-									FontFamily="Global User Interface" />
+									FontFamily="Global User Interface"
+									Visibility="Collapsed" />
 				</StackPanel>
 			</Grid>
 			<!--Grid Row 1 Column 2 called: TaskCommentPayDetails-->
@@ -353,11 +363,11 @@
 			<AppBar x:Name="appBar"
 							Grid.Column="0"
 							Grid.Row="0"
-							Grid.RowSpan="2"
 							Grid.ColumnSpan="2"
 							Background="NavajoWhite"
 							Opacity="20"
-							BorderBrush="#FFFB4A07">
+							BorderBrush="#FFFB4A07"
+							Margin="-5,0,5,0">
 
 				<Grid>
 					<Grid.RowDefinitions>

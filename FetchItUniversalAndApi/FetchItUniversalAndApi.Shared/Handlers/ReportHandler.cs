@@ -104,8 +104,8 @@ namespace FetchItUniversalAndApi.Handlers
 		public void FindProfiles(ReportModel report)
 		{
 			var ph = ProfileHandler.GetInstance();
-			report.ReportedProfile = ph.Search(new ProfileModel() { ProfileId = report.FK_ReportedProfile }).ToList().First() as ProfileModel;
-			report.ReportingProfile = ph.Search(new ProfileModel() { ProfileId = report.FK_ReportingProfile }).ToList().First() as ProfileModel;
+			report.ReportedProfile = ph.AllProfiles.Where(profile => profile.ProfileId == report.FK_ReportedProfile).Select(profile => profile).ToList().First();
+			report.ReportingProfile = ph.AllProfiles.Where(profile => profile.ProfileId == report.FK_ReportingProfile).Select(profile => profile).ToList().First();
 		}
 
 		/// <summary>
@@ -291,7 +291,7 @@ namespace FetchItUniversalAndApi.Handlers
 			}
 			catch (Exception exception)
 			{
-				ErrorHandler.DisplayErrorMessage("Creating the report object failed","Contact support");
+				ErrorHandler.DisplayErrorMessage("Creating the report object failed", "Contact support");
 			}
 			return newReport;
 		}

@@ -102,10 +102,22 @@ namespace FetchItUniversalAndApi.View
 		{
 			navigationHelper.OnNavigatedTo(e);
 
+			RefreshButtons();
+		}
+
+		//This method gets called everytime the buttons visibility need to be refreshed
+		private void RefreshButtons()
+		{
 			var th = TaskHandler.GetInstance();
 			var ph = ProfileHandler.GetInstance();
 
-			#region Button instantiations
+			CreateFeedbackButton.Visibility = Visibility.Collapsed;
+			EditTaskButton.Visibility = Visibility.Collapsed;
+			AssignToTaskButton.Visibility = Visibility.Collapsed;
+			ResignFromTaskButton.Visibility = Visibility.Collapsed;
+			MarkAsCompletedButton.Visibility = Visibility.Collapsed;
+
+			#region RefreshingButtons
 			//This code makes the Create Feedback button visible on three conditions:
 			//1. If the current logged in profile is the taskmaster of the task.
 			//2. If the task does not have any feedbacks.
@@ -156,7 +168,6 @@ namespace FetchItUniversalAndApi.View
 				}
 			}
 
-
 			//This code makes the MarkAsCompleted button visible if:
 			//1. The current logged in profile is either a fethcer or a taskmaster
 			//2. The task status is either: Active, FetcherCompleted or TaskMasterCompleted
@@ -164,9 +175,6 @@ namespace FetchItUniversalAndApi.View
 			if (th.SelectedTask.FK_TaskFetcher == ph.CurrentLoggedInProfile.ProfileId ||
 				th.SelectedTask.FK_TaskMaster == ph.CurrentLoggedInProfile.ProfileId)
 			{
-
-				//This LeaveCommentButton is only available ATM to fetchers or taskmasters of
-				//the selected task
 
 				if (th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.Active ||
 					th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.FetcherCompleted ||
@@ -221,6 +229,8 @@ namespace FetchItUniversalAndApi.View
 			}
 		}
 
+		//This code makes it possible to tap a Profile name and view it
+		#region TappingProfileNames
 		private void taskFetcherBind_Tapped(object sender, TappedRoutedEventArgs e)
 		{
 			var ph = ProfileHandler.GetInstance();
@@ -233,6 +243,7 @@ namespace FetchItUniversalAndApi.View
 			this.Frame.Navigate(typeof(ProfileDetailPage));
 		}
 
+
 		private void taskmasterBind_Tapped(object sender, TappedRoutedEventArgs e)
 		{
 			var ph = ProfileHandler.GetInstance();
@@ -244,6 +255,7 @@ namespace FetchItUniversalAndApi.View
 			}
 			this.Frame.Navigate(typeof(ProfileDetailPage));
 		}
+		#endregion
 
 		private void appBarButton_Click(object sender, RoutedEventArgs e)
 		{
@@ -257,42 +269,87 @@ namespace FetchItUniversalAndApi.View
 			}
 		}
 
-        #region AppBar Buttons
-        private void profileButton_Click(object sender, RoutedEventArgs e)
-        {
-            var ph = ProfileHandler.GetInstance();
-            ph.SelectedProfile = ph.CurrentLoggedInProfile;
-            this.Frame.Navigate(typeof(ProfileDetailPage));
-        }
+		#region AppBar Buttons
+		private void profileButton_Click(object sender, RoutedEventArgs e)
+		{
+			var ph = ProfileHandler.GetInstance();
+			ph.SelectedProfile = ph.CurrentLoggedInProfile;
+			this.Frame.Navigate(typeof(ProfileDetailPage));
+		}
 
-        private async void messageHubButton_Click(object sender, RoutedEventArgs e)
-        {
-            await Task.Delay(50);
-            this.Frame.Navigate(typeof(MessageHub));
-        }
+		private async void messageHubButton_Click(object sender, RoutedEventArgs e)
+		{
+			await Task.Delay(50);
+			this.Frame.Navigate(typeof(MessageHub));
+		}
 
-        private async void issuesButton_Click(object sender, RoutedEventArgs e)
-        {
-            await Task.Delay(50);
-            this.Frame.Navigate(typeof(IssuesView));
-        }
+		private async void issuesButton_Click(object sender, RoutedEventArgs e)
+		{
+			await Task.Delay(50);
+			this.Frame.Navigate(typeof(IssuesView));
+		}
 
-        private async void CreateTaskButton_Click(object sender, RoutedEventArgs e)
-        {
-            await Task.Delay(50);
-            this.Frame.Navigate(typeof(TaskCreation));
-        }
+		private async void CreateTaskButton_Click(object sender, RoutedEventArgs e)
+		{
+			await Task.Delay(50);
+			this.Frame.Navigate(typeof(TaskCreation));
+		}
 
-        private void profileLogoutButton_Click(object sender, RoutedEventArgs e)
-        {
-            var ph = ProfileHandler.GetInstance();
-            ph.LogOut();
-            this.Frame.Navigate(typeof(MainPage));
-        }
-        private void homeButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(LandingPage));
-        }
-        #endregion
+		private void profileLogoutButton_Click(object sender, RoutedEventArgs e)
+		{
+			var ph = ProfileHandler.GetInstance();
+			ph.LogOut();
+			this.Frame.Navigate(typeof(MainPage));
+		}
+		private void homeButton_Click(object sender, RoutedEventArgs e)
+		{
+			this.Frame.Navigate(typeof(LandingPage));
+		}
+		#endregion
+
+		async private void AssignToTaskButton_Click(object sender, RoutedEventArgs e)
+		{
+			var viewModel = pageRoot.DataContext as TaskDetailViewModel;
+			if (viewModel != null)
+			{
+				while (viewModel.Assigned == false)
+				{
+					await Task.Delay(500);
+				}
+				viewModel.Assigned = false;
+				AssignToTaskButton.Visibility = Visibility.Collapsed;
+				RefreshButtons();
+			}
+		}
+
+		async private void ResignFromTaskButton_Click(object sender, RoutedEventArgs e)
+		{
+			var viewModel = pageRoot.DataContext as TaskDetailViewModel;
+			if (viewModel != null)
+			{
+				while (viewModel.Resigned == false)
+				{
+					await Task.Delay(500);
+				}
+				viewModel.Resigned = false;
+				ResignFromTaskButton.Visibility = Visibility.Collapsed;
+				RefreshButtons();
+			}
+		}
+
+		async private void MarkAsCompletedButton_Click(object sender, RoutedEventArgs e)
+		{
+			var viewModel = pageRoot.DataContext as TaskDetailViewModel;
+			if (viewModel != null)
+			{
+				while (viewModel.MarkedCompleted == false)
+				{
+					await Task.Delay(500);
+				}
+				viewModel.MarkedCompleted = false;
+				MarkAsCompletedButton.Visibility = Visibility.Collapsed;
+				RefreshButtons();
+			}
+		}
 	}
 }

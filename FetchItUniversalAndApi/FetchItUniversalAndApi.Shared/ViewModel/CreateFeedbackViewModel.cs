@@ -41,11 +41,11 @@ namespace FetchItUniversalAndApi.ViewModel
 			ProfileHandler = ProfileHandler.GetInstance();
 			LoggedInProfile = ProfileHandler.CurrentLoggedInProfile;
 			SelectedTask = TaskHandler.SelectedTask;
-			
-			//Needs the fetcher so it can use the SendNotification Method
+
+			//Uses the fetcher navigation property to simplify using the SendNotification Method
 			Fetcher =
-				ProfileHandler.Search(new ProfileModel() {ProfileId = (int)SelectedTask.FK_TaskFetcher}).ToObservableCollection().First()
-					as ProfileModel;
+				ProfileHandler.AllProfiles.Where(profile => SelectedTask.FK_TaskFetcher != null && profile.ProfileId == (int)SelectedTask.FK_TaskFetcher)
+					.Select(profile => profile).First();
 
 			SubmitFeedbackCommand = new RelayCommand(SubmitFeedback);
 
@@ -86,13 +86,13 @@ namespace FetchItUniversalAndApi.ViewModel
 		{
 			try
 			{
-				await Task.Delay(500);
+				await Task.Delay(1500);
 				MessageHandler.CreateFeedback(Rating, OptionalText, SelectedTask);
 				MessageHandler.SendNotification("Taskmaster: '" + ProfileHandler.CurrentLoggedInProfile.ProfileName + "' just left you a feedback for your performance on task '" + SelectedTask.TaskId + "'.", Fetcher);
 				SuccessMessage = "Visible";
 				OptionalText = "";
 				Rating = 0;
-				await Task.Delay(5000);
+				await Task.Delay(2000);
 				SuccessMessage = "Collapsed";
 			}
 			catch (Exception)
