@@ -37,17 +37,16 @@
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"/>
         </Grid>
-        <StackPanel Grid.Column="2" 
-                    Grid.Row="1" Margin="0,176,0,-176">
+        <StackPanel Grid.Row="1" Width="500" >
             <TextBox x:Name="textbox_Description" Text="{Binding Description,Mode=TwoWay}" PlaceholderText="Describe your task here" Height="150" AcceptsReturn="True" IsSpellCheckEnabled="True"/>
             <TextBox x:Name="textbox_EndPointAddress" Text="{Binding EndPointAddress, Mode=TwoWay}" PlaceholderText="Your address"/>
             <TextBox x:Name="textbox_ItemPrice" Text="{Binding ItemPrice, Mode=TwoWay}" InputScope="Number" PlaceholderText="Price of item(s), if any"/>
             <TextBox x:Name="textbox_Fee" Text="{Binding Fee, Mode=TwoWay}" InputScope="Number" PlaceholderText="How much will you pay for this service"/>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Time:"/>
-                <TimePicker Time="{Binding Time,Mode=OneWay}" x:Name="timepicker_time" />
+                <TimePicker Time="{Binding Time,Mode=TwoWay}" x:Name="timepicker_time" />
                 <TextBlock Text="Date: " Margin="10,0,0,0"/>
-                <DatePicker Date="{Binding Date,Mode=OneWay}" x:Name="datepicker_date" Margin="0" />
+                <DatePicker Date="{Binding Date,Mode=TwoWay}" x:Name="datepicker_date" Margin="0" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Content="Create" Command="{Binding CreateTaskCommand}" Click="buttonCreate_OnClick"/>
