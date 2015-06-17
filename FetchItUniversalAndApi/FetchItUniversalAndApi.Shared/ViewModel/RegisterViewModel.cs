@@ -56,7 +56,7 @@ namespace FetchItUniversalAndApi.ViewModel
             {
                 errorMessage += "\nAddress has not been filled in";
             }
-            if (MobilePhone == null)
+            if (MobilePhone == 0)
             {
                 errorMessage += "\nYou must enter a mobile phone number";
             }
