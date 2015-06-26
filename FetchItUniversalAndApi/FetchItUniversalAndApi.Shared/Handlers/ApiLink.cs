@@ -12,9 +12,20 @@ namespace FetchItUniversalAndApi.Handlers
     {
         private const string ServerUrl = "http://fetchit.mortentoudahl.dk/api/";
 
-        public ApiLink()
+        public async Task<HttpResponseMessage> GetAsync()
         {
-            
+            try
+            {
+                using (var client = GetClient())
+                {
+                    return await client.GetAsync(typeof(T).Name);
+                }
+            }
+            catch (Exception e)
+            {
+                new MessageDialog(e.Message).ShowAsync();
+            }
+            return null;
         }
 
         public async Task<HttpResponseMessage> PostAsJsonAsync(T obj)
@@ -33,7 +44,7 @@ namespace FetchItUniversalAndApi.Handlers
             return null;
         }
 
-        public async Task<HttpResponseMessage> PutAsJsonAsync(T obj, int? id = null)
+        public async Task<HttpResponseMessage> PutAsJsonAsync(T obj, int id)
         {
             try
             {

@@ -13,7 +13,7 @@ namespace FetchItUniversalAndApi.Handlers
     /// <summary>
     /// This is the 
     /// </summary>
-    public class TaskHandler : ICreate<TaskModel>, IDelete, IDisable, ISuspend, ISearch, IUpdate
+    public class TaskHandler : ICreate<TaskModel>, IDelete, IDisable, ISuspend, IUpdate//, ISearch<TaskModel>
     {
         private const string taskAPI = "http://fetchit.mortentoudahl.dk/api/TaskModels";
 
@@ -298,7 +298,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public IEnumerable<object> Search(object obj)
+        public IEnumerable<TaskModel> Search(TaskModel obj)
         {
             if (obj is TaskModel)
             {

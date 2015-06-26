@@ -11,7 +11,7 @@ using FetchItUniversalAndApi.Models;
 
 namespace FetchItUniversalAndApi.Handlers
 {
-  public  class IssueHandler: ICreate<IssueModel>, IDelete, IDisable, ISearch, ISuspend, IUpdate
+    public class IssueHandler : ICreate<IssueModel>, IDelete, IDisable, ISuspend, IUpdate//, ISearch<IssueModel>
     {
       //Author: Jakub Czapski
         /// <summary>
@@ -154,15 +154,16 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="obj">Issue that you were looking for or all issues if you dont enter anything.</param>
         /// <returns></returns>
-        public IEnumerable<object> Search(object obj)
+        public async Task<IEnumerable<IssueModel>> Search(IssueModel obj)
         {
-            string userinput = _userInput;            
+            string userinput = _userInput;
 
-            foreach (IssueModel issueModel in _currentIssues.Where(issue => issue.IssueTitle.Contains(userinput)))
-            {
-                return issueModel.IssueDetails;
-            }
-            return  _currentIssues;
+            return null; _currentIssues.Where(issue => issue.IssueTitle.Contains(userinput)) ;
+            //foreach (IssueModel issueModel in _currentIssues.Where(issue => issue.IssueTitle.Contains(userinput)))
+            //{
+            //    return issueModel.IssueDetails;
+            //}
+            //return  _currentIssues;
         }
         /// <summary>
         /// Sets the selected issues type to suspended in the database

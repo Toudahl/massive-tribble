@@ -15,7 +15,7 @@ namespace FetchItUniversalAndApi.Handlers
     /// <summary>
     /// This handler will take care of anything that has to do with profiles.
     /// </summary>
-    class ProfileHandler: IDelete, ICreate<ProfileModel>, ISuspend, IDisable, IUpdate, ISearch
+    class ProfileHandler: IDelete, ICreate<ProfileModel>, ISuspend, IDisable, IUpdate, ISearch<ProfileModel>
     {
         #region Events & delegates
 
@@ -355,12 +355,16 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="obj">Object with the information to search for.</param>
         /// <returns>A list of objects that matches the search criteria</returns>
-        public IEnumerable<object> Search(object obj)
+        public async Task<IEnumerable<ProfileModel>> Search(ProfileModel obj)
         {
             if (obj is ProfileModel)
             {
                 var needle = obj as ProfileModel;
                 IEnumerable<ProfileModel> haystack;
+                using (var result = await apiLink.GetAsync())
+                {
+                    
+                }
                 using (var client = new HttpClient())
                 {
                     haystack = Task.Run(
