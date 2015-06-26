@@ -11,7 +11,7 @@ using FetchItUniversalAndApi.Models;
 
 namespace FetchItUniversalAndApi.Handlers
 {
-  public  class IssueHandler: ICreate, IDelete, IDisable, ISearch, ISuspend, IUpdate
+  public  class IssueHandler: ICreate<IssueModel>, IDelete, IDisable, ISearch, ISuspend, IUpdate
     {
       //Author: Jakub Czapski
         /// <summary>
@@ -77,28 +77,18 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="obj">Issue to create.</param>
         /// <returns></returns>
-        public async void Create(object obj)
+        public async void Create(IssueModel obj)
         {
-            if (obj is IssueModel)
+            if (obj == null) return;
+            using (var client = new HttpClient())
             {
-                
-                
-                    using (var client = new HttpClient())
-                    {
-                        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("appliaction/json"));
-                        await client.PostAsJsonAsync(issuemodelurl, obj);
-                        MessageHandler.SendNotification(_userInput,_selecteProfile);
-                    }
-                
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("appliaction/json"));
+                await client.PostAsJsonAsync(issuemodelurl, obj);
+                MessageHandler.SendNotification(_userInput, _selecteProfile);
             }
-            else
-            {
-                CreateLog();
-              }
-
-           
         }
-        /// <summary>
+
+      /// <summary>
         /// Gets all the issue objects from the databae.
         /// </summary>
         /// <returns></returns>

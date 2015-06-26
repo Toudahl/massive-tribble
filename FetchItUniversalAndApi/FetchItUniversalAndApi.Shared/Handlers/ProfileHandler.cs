@@ -14,7 +14,7 @@ namespace FetchItUniversalAndApi.Handlers
     /// <summary>
     /// This handler will take care of anything that has to do with profiles.
     /// </summary>
-    class ProfileHandler: IDelete, ICreate, ISuspend, IDisable, IUpdate, ISearch
+    class ProfileHandler: IDelete, ICreate<ProfileModel>, ISuspend, IDisable, IUpdate, ISearch
     {
         #region Events & delegates
 
@@ -192,30 +192,22 @@ namespace FetchItUniversalAndApi.Handlers
         /// This method adds a new user to the profile. By default, it will be an Unactivated User that has not been verified.
         /// </summary>
         /// <param name="obj">Pass in a ProfileModel with the state that you wish to create the profile in.</param>
-        public async void Create(object obj)
+        public async void Create(ProfileModel obj)
         {
-            if (obj is ProfileModel)
-            {
-                var newProfile = obj as ProfileModel;
-                newProfile.FK_ProfileLevel = (int)ProfileLevel.User;
-                newProfile.FK_ProfileStatus = (int) ProfileStatus.Active;
-                newProfile.ProfileIsVerified = false;
-                newProfile.FK_ProfileVerificationType = (int) ProfileVerificationType.NotVerified;
-                newProfile.ProfileCanReport = 1;
+            obj.FK_ProfileLevel = (int)ProfileLevel.User;
+            obj.FK_ProfileStatus = (int)ProfileStatus.Active;
+            obj.ProfileIsVerified = false;
+            obj.FK_ProfileVerificationType = (int)ProfileVerificationType.NotVerified;
+            obj.ProfileCanReport = 1;
 
-                //TODO create method to generate a salt, and hash the users password with it.
-                newProfile.ProfilePasswordSalt = 12345678;
-                //newProfile.ProfilePassword = HashPassword(newProfile.ProfilePassword, newProfile.ProfilePasswordSalt);
+            //TODO create method to generate a salt, and hash the users password with it.
+            obj.ProfilePasswordSalt = 12345678;
+            //newProfile.ProfilePassword = HashPassword(newProfile.ProfilePassword, newProfile.ProfilePasswordSalt);
 
-                using (var client = new HttpClient())
-                {
-                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    await client.PostAsJsonAsync(Apiurl, newProfile);
-                }
-            }
-            else
+            using (var client = new HttpClient())
             {
-                ErrorHandler.WrongModelError(obj, new ProfileModel());
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                await client.PostAsJsonAsync(Apiurl, obj);
             }
         }
         #endregion

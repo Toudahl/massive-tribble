@@ -13,7 +13,7 @@ namespace FetchItUniversalAndApi.Handlers
 	/// <summary>
 	/// Handles getting, deleting, creating and updating Reports.
 	/// </summary>
-	class ReportHandler : ICreate, IDelete, IDisable, ISuspend, IUpdate
+	class ReportHandler : ICreate<ReportModel>, IDelete, IDisable, ISuspend, IUpdate
 	{
 		#region Fields, enums and Properties
 
@@ -112,39 +112,32 @@ namespace FetchItUniversalAndApi.Handlers
 		/// Creates a Report from the object passed to it and POSTs it to the database.
 		/// </summary>
 		/// <param name="obj">The report object to POST</param>
-		public async void Create(object obj)
+		public async void Create(ReportModel obj)
 		{
-			var reportToCreate = obj as ReportModel;
-			if (reportToCreate != null)
-			{
-				//Sets the navigational properties to null, to make sure that the report can POSTed
-				reportToCreate.ReportedProfile = null;
-				reportToCreate.ReportingProfile = null;
-				using (Client = new HttpClient())
-				{
-					Client.BaseAddress = new Uri(_serverUrl);
-					Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-					try
-					{
-						await Client.PostAsJsonAsync("reportmodels", reportToCreate);
+		    if (obj == null) return;
+		    //Sets the navigational properties to null, to make sure that the report can POSTed
+            obj.ReportedProfile = null;
+            obj.ReportingProfile = null;
+		    using (Client = new HttpClient())
+		    {
+			    Client.BaseAddress = new Uri(_serverUrl);
+			    Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+			    try
+			    {
+                    await Client.PostAsJsonAsync("reportmodels", obj);
 
-						//Attaches the navigational properties again to the reportmodel.
-						FindProfiles(reportToCreate);
-					}
+				    //Attaches the navigational properties again to the reportmodel.
+                    FindProfiles(obj);
+			    }
 
-					catch (Exception)
-					{
-						ErrorHandler.CreatingError(new ReportModel());
+			    catch (Exception)
+			    {
+				    ErrorHandler.CreatingError(new ReportModel());
 
-						//Attaches the navigational properties again to the reportmodel.
-						FindProfiles(reportToCreate);
-					}
-				}
-			}
-			else
-			{
-				ErrorHandler.WrongModelError(obj, new ReportModel());
-			}
+				    //Attaches the navigational properties again to the reportmodel.
+                    FindProfiles(obj);
+			    }
+		    }
 		}
 
 		/// <summary>

@@ -13,13 +13,14 @@ namespace FetchItUniversalAndApi.Handlers
     /// <summary>
     /// This is the 
     /// </summary>
-    public class TaskHandler : ICreate, IDelete, IDisable, ISuspend, ISearch, IUpdate
+    public class TaskHandler : ICreate<TaskModel>, IDelete, IDisable, ISuspend, ISearch, IUpdate
     {
         private const string taskAPI = "http://fetchit.mortentoudahl.dk/api/TaskModels";
 
         private TaskModel _selectedTask;
         private TaskModel _newTask;
         private static TaskHandler _handler;
+        private ProfileHandler _ph;
         private static Object _lockObject = new object();
 
         #region TaskStatus enums
@@ -48,7 +49,7 @@ namespace FetchItUniversalAndApi.Handlers
 
         private TaskHandler()
         {
-            
+            _ph = ProfileHandler.GetInstance();
         }
 
         public static TaskHandler GetInstance()
@@ -85,14 +86,12 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="taskObject"></param>
 
-        public async void Create(object taskObject)
+        public async void Create(TaskModel taskObject)
         {
-            if (taskObject is TaskModel)
-            {
-                var addNewTask = taskObject as TaskModel;
-                addNewTask.FK_TaskMaster = ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileId;
-                addNewTask.FK_TaskStatus = (int) TaskStatus.Active;
-                addNewTask.TaskTimeCreated = DateTime.UtcNow;
+            if (taskObject == null) return;
+                taskObject.FK_TaskMaster = _ph.CurrentLoggedInProfile.ProfileId;
+                taskObject.FK_TaskStatus = (int)TaskStatus.Active;
+                taskObject.TaskTimeCreated = DateTime.UtcNow;
 
                 using (var Client = new HttpClient())
                 {
@@ -105,11 +104,6 @@ namespace FetchItUniversalAndApi.Handlers
                         ErrorHandler.NoResponseFromApi();
                     }
                 }
-            }
-            else
-            {
-
-            }
         }
         #endregion
 
