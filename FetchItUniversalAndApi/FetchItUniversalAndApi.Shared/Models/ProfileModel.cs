@@ -40,7 +40,7 @@ namespace FetchItUniversalAndApi.Models
             get { return _profileName; }
             set
             {
-                if (_profileName != null)
+                if (_profileName == null)
                 {
                     _profileName = value;
                 }
@@ -57,7 +57,7 @@ namespace FetchItUniversalAndApi.Models
             get { return _profileEmail; }
             set
             {
-                if (_profileEmail != null)
+                if (_profileEmail == null)
                 {
                     _profileEmail = value;
                 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
 using FetchItUniversalAndApi.Handlers.Interfaces;
 using FetchItUniversalAndApi.Models;
 using Newtonsoft.Json;
@@ -23,6 +24,9 @@ namespace FetchItUniversalAndApi.Handlers
 
         public delegate void LogOutDelegate();
         public event LogOutDelegate LogOutEvent;
+
+        public delegate void CreateProfile(bool success);
+        public event CreateProfile CreationEvent;
 
         #endregion
 
@@ -67,6 +71,7 @@ namespace FetchItUniversalAndApi.Handlers
         private IEnumerable<ProfileModel> _allProfiles;
         private static ProfileHandler _handler;
         private static Object _lockObject = new object();
+        private ApiLink<ProfileModel> apiLink;
 
         /// <summary>
         /// This contains the currently logged in profile.
@@ -135,7 +140,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         private ProfileHandler()
         {
-            
+            apiLink = new ApiLink<ProfileModel>();
         }
 
         /// <summary>
@@ -207,13 +212,16 @@ namespace FetchItUniversalAndApi.Handlers
             obj.ProfileCanReport = 1;
 
             //TODO create method to generate a salt, and hash the users password with it.
-            obj.ProfilePasswordSalt = 12345678;
+            obj.ProfilePasswordSalt = 12345678; //GenerateSalt();
             //newProfile.ProfilePassword = HashPassword(newProfile.ProfilePassword, newProfile.ProfilePasswordSalt);
-
-            using (var client = new HttpClient())
+            
+            using (var result = await apiLink.PostAsJsonAsync(obj))
             {
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                await client.PostAsJsonAsync(Apiurl, obj);
+                if (result != null)
+                {
+                    await new MessageDialog(result.ReasonPhrase).ShowAsync();
+                    CreationEvent(result.IsSuccessStatusCode);
+                }
             }
         }
         #endregion

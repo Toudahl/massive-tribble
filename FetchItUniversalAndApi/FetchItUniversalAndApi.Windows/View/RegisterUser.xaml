@@ -45,7 +45,7 @@
                 <TextBox x:Name="textbox_address" PlaceholderText="Address" Text="{Binding Address, Mode=TwoWay}"/>
                 <TextBox x:Name="textbox_mobile" PlaceholderText="Mobile number" Text="{Binding MobilePhone, Mode=TwoWay}" InputScope="TelephoneNumber"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                    <Button x:Name="button_createUser" Command="{Binding RegisterCommand}" Content="Create User" Click="createUserButton_Click" HorizontalAlignment="Stretch" Width="150"/>
+                    <Button x:Name="button_createUser" Command="{Binding RegisterCommand}" Content="Create User" HorizontalAlignment="Stretch" Width="150"/>
                     <Button x:Name="button_cancel" Content="Cancel" Click="cancelButton_Click" HorizontalAlignment="Stretch" Width="150"/>
                 </StackPanel>
             </StackPanel>
