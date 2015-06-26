@@ -124,7 +124,7 @@ namespace FetchItUniversalAndApi.Handlers
                              JsonConvert.DeserializeObject<IEnumerable<LogModel>>(await logWebClient.GetStringAsync("LogModels"))).Result;
                     return haystack.Where(l => l.LogMessage.Contains(phraseToSearchFor));
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 //Add standardized error handling (fx. LogHandler.GetInstance().LogEvent(exception.message) and MessageBox.Show("Yo user, something went wrong!"));
                 ErrorHandler.NoResponseFromApi();

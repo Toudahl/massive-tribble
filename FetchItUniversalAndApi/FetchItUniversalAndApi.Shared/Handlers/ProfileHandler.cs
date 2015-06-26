@@ -360,16 +360,20 @@ namespace FetchItUniversalAndApi.Handlers
             if (obj is ProfileModel)
             {
                 var needle = obj as ProfileModel;
-                IEnumerable<ProfileModel> haystack;
+                IEnumerable<ProfileModel> haystack = null;
                 using (var result = await apiLink.GetAsync())
                 {
-                    
-                }
-                using (var client = new HttpClient())
-                {
-                    haystack = Task.Run(
-                         async () =>
-                             JsonConvert.DeserializeObject<IEnumerable<ProfileModel>>(await client.GetStringAsync(Apiurl))).Result;
+                    if (result != null)
+                    {
+                        if (result.IsSuccessStatusCode)
+                        {
+                            haystack = await result.Content.ReadAsAsync<IEnumerable<ProfileModel>>();
+                        }
+                        else
+                        {
+                            await new MessageDialog(result.ReasonPhrase).ShowAsync();
+                        }
+                    }
                 }
 
                 if (needle.ProfileId != 0)
@@ -378,7 +382,7 @@ namespace FetchItUniversalAndApi.Handlers
                 }
                 if (needle.ProfileName != null)
                 {
-                    return haystack.Where(p => p.ProfileName == needle.ProfileName);
+                    return haystack.Where(p => p.ProfileName.Contains(needle.ProfileName));
                 }
                 if (needle.ProfileEmail != null)
                 {
@@ -479,7 +483,6 @@ namespace FetchItUniversalAndApi.Handlers
                     {
                         UpdateEvent(result.IsSuccessStatusCode);
                     }
-
                 }
             }
         }

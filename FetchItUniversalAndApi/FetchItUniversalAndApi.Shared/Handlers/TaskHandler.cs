@@ -13,7 +13,7 @@ namespace FetchItUniversalAndApi.Handlers
     /// <summary>
     /// This is the 
     /// </summary>
-    public class TaskHandler : ICreate<TaskModel>, IDelete, IDisable, ISuspend, IUpdate//, ISearch<TaskModel>
+    public class TaskHandler : ICreate<TaskModel>, IDelete, IDisable, ISuspend, IUpdate, ISearch<TaskModel>
     {
         private const string taskAPI = "http://fetchit.mortentoudahl.dk/api/TaskModels";
 
@@ -22,6 +22,7 @@ namespace FetchItUniversalAndApi.Handlers
         private static TaskHandler _handler;
         private ProfileHandler _ph;
         private static Object _lockObject = new object();
+        private ApiLink<TaskModel> apiLink;
 
         #region TaskStatus enums
         public enum TaskStatus
@@ -50,6 +51,7 @@ namespace FetchItUniversalAndApi.Handlers
         private TaskHandler()
         {
             _ph = ProfileHandler.GetInstance();
+            apiLink = new ApiLink<TaskModel>();
         }
 
         public static TaskHandler GetInstance()
@@ -298,18 +300,16 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public IEnumerable<TaskModel> Search(TaskModel obj)
+        public async Task<IEnumerable<TaskModel>> Search(TaskModel obj)
         {
             if (obj is TaskModel)
             {
                 var taskToSearchFor = obj as TaskModel;
                 IEnumerable<TaskModel> marketplace;
-                using (var client = new HttpClient())
+
+                using (var result = await apiLink.GetAsync())
                 {
-                    marketplace = Task.Run(
-                        async () =>
-                            JsonConvert.DeserializeObject<IEnumerable<TaskModel>>(await client.GetStringAsync(taskAPI)))
-                        .Result;
+                    marketplace = await result.Content.ReadAsAsync<IEnumerable<TaskModel>>();
                 }
                 if (taskToSearchFor.TaskId != 0)
                 {

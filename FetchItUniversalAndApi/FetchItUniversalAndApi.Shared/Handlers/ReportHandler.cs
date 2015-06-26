@@ -282,7 +282,7 @@ namespace FetchItUniversalAndApi.Handlers
 					//ReportStatusId = (int)ReportStatus.Active,
 				};
 			}
-			catch (Exception exception)
+			catch (Exception)
 			{
 				ErrorHandler.DisplayErrorMessage("Creating the report object failed", "Contact support");
 			}

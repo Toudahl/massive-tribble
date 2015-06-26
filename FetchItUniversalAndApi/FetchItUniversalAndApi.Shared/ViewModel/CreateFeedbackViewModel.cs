@@ -62,7 +62,7 @@ namespace FetchItUniversalAndApi.ViewModel
 			if (Rating < 1 || Rating > 10)
 			{
 				MessageDialog errorDialogWrongInpt = new MessageDialog("Rating is out of bounds. Please enter a number from 1 to 10.", "Rating out of bounds.");
-				errorDialogWrongInpt.ShowAsync();
+				await errorDialogWrongInpt.ShowAsync();
 				return;
 			}
 			MessageDialog message = new MessageDialog("Are you sure you want to submit this feedback?", "Submit Feedback");
