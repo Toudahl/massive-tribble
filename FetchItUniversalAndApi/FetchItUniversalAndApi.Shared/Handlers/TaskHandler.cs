@@ -13,7 +13,7 @@ namespace FetchItUniversalAndApi.Handlers
     /// <summary>
     /// This is the 
     /// </summary>
-    public class TaskHandler : ICreate<TaskModel>, IDelete, IDisable, ISuspend, IUpdate, ISearch<TaskModel>
+    public class TaskHandler : ICreate<TaskModel>, IDelete<TaskModel>, IDisable<TaskModel>, ISuspend<TaskModel>, IUpdate<TaskModel>, ISearch<TaskModel>
     {
         private const string taskAPI = "http://fetchit.mortentoudahl.dk/api/TaskModels";
 
@@ -116,7 +116,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="taskObject"></param>
 
-        public async void Delete(object taskObject)
+        public async void Delete(TaskModel taskObject)
         {
             if (taskObject is TaskModel)
             {
@@ -149,7 +149,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// <param name="taskObject"></param>
 
 
-        public async void Remove(object taskObject)
+        public async void Remove(TaskModel taskObject)
         {
             if (taskObject is TaskModel)
             {
@@ -189,7 +189,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="taskObject"></param>
 
-        public async void Report(object taskObject)
+        public async void Report(TaskModel taskObject)
         {
             if (taskObject is TaskModel)
             {
@@ -231,7 +231,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="taskObject"></param>
 
-        public async void Complete(object taskObject)
+        public async void Complete(TaskModel taskObject)
         {
             if (taskObject is TaskModel)
             {
@@ -273,7 +273,7 @@ namespace FetchItUniversalAndApi.Handlers
 
         private void setStatus(int? ID, TaskStatus status, TaskModel taskToComplete)
         {
-            if (ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileId == ID)
+            if (_ph.CurrentLoggedInProfile.ProfileId == ID)
             {
                 taskToComplete.FK_TaskStatus = (int)status;
             }
@@ -281,14 +281,14 @@ namespace FetchItUniversalAndApi.Handlers
         #endregion
 
         #region Disable Task
-        public void Disable(object obj)
+        public void Disable(TaskModel obj)
         {
             throw new NotImplementedException();
         }
         #endregion 
 
         #region Suspend Task
-        public void Suspend(object obj)
+        public void Suspend(TaskModel obj)
         {
             throw new NotImplementedException();
         }
@@ -332,7 +332,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="taskObject"></param>
 
-        async public void Update(object taskObject)
+        async public void Update(TaskModel taskObject)
         {
             if (taskObject is TaskModel)
             {

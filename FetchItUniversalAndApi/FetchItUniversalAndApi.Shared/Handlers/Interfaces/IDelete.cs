@@ -1,7 +1,7 @@
 ﻿namespace FetchItUniversalAndApi.Handlers.Interfaces
 {
-    interface IDelete
+    interface IDelete<T>
     {
-        void Delete(object obj);
+        void Delete(T obj);
     }
 }

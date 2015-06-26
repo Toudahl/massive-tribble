@@ -15,7 +15,7 @@ namespace FetchItUniversalAndApi.Handlers
     /// <summary>
     /// This handler will take care of anything that has to do with profiles.
     /// </summary>
-    class ProfileHandler: IDelete, ICreate<ProfileModel>, ISuspend, IDisable, IUpdate, ISearch<ProfileModel>
+    class ProfileHandler : IDelete<ProfileModel>, ICreate<ProfileModel>, ISuspend<ProfileModel>, IDisable<ProfileModel>, IUpdate<ProfileModel>, ISearch<ProfileModel>
     {
         #region Events & delegates
 
@@ -164,6 +164,38 @@ namespace FetchItUniversalAndApi.Handlers
         }
         #endregion
 
+        #region Create method
+        /// <summary>
+        /// This method adds a new user to the profile. By default, it will be an Unactivated User that has not been verified.
+        /// </summary>
+        /// <param name="obj">Pass in a ProfileModel with the state that you wish to create the profile in.</param>
+        public async void Create(ProfileModel obj)
+        {
+            if (obj == null) return;
+            obj.FK_ProfileLevel = (int)ProfileLevel.User;
+            obj.FK_ProfileStatus = (int)ProfileStatus.Active;
+            obj.ProfileIsVerified = false;
+            obj.FK_ProfileVerificationType = (int)ProfileVerificationType.NotVerified;
+            obj.ProfileCanReport = 1;
+
+            //TODO create method to generate a salt, and hash the users password with it.
+            obj.ProfilePasswordSalt = 12345678; //GenerateSalt();
+            //newProfile.ProfilePassword = HashPassword(newProfile.ProfilePassword, newProfile.ProfilePasswordSalt);
+
+            using (var result = await apiLink.PostAsJsonAsync(obj))
+            {
+                if (result != null)
+                {
+                    await new MessageDialog(result.ReasonPhrase).ShowAsync();
+                    if (CreationEvent != null)
+                    {
+                        CreationEvent(result.IsSuccessStatusCode);
+                    }
+                }
+            }
+        }
+        #endregion
+
         #region Delete method
 
         /// <summary>
@@ -172,7 +204,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// If modifying the profile status fails, it will throw an exception.
         /// </summary>
         /// <param name="obj">The profile to delete</param>
-        public void Delete(object obj)
+        public void Delete(ProfileModel obj)
         {
             if (CurrentLoggedInProfile.FK_ProfileLevel >= (int)ProfileLevel.Administrator)
             {
@@ -200,38 +232,6 @@ namespace FetchItUniversalAndApi.Handlers
         }
         #endregion
 
-        #region Create method
-        /// <summary>
-        /// This method adds a new user to the profile. By default, it will be an Unactivated User that has not been verified.
-        /// </summary>
-        /// <param name="obj">Pass in a ProfileModel with the state that you wish to create the profile in.</param>
-        public async void Create(ProfileModel obj)
-        {
-            if (obj == null) return;
-            obj.FK_ProfileLevel = (int)ProfileLevel.User;
-            obj.FK_ProfileStatus = (int)ProfileStatus.Active;
-            obj.ProfileIsVerified = false;
-            obj.FK_ProfileVerificationType = (int)ProfileVerificationType.NotVerified;
-            obj.ProfileCanReport = 1;
-
-            //TODO create method to generate a salt, and hash the users password with it.
-            obj.ProfilePasswordSalt = 12345678; //GenerateSalt();
-            //newProfile.ProfilePassword = HashPassword(newProfile.ProfilePassword, newProfile.ProfilePasswordSalt);
-            
-            using (var result = await apiLink.PostAsJsonAsync(obj))
-            {
-                if (result != null)
-                {
-                    await new MessageDialog(result.ReasonPhrase).ShowAsync();
-                    if (CreationEvent != null)
-                    {
-                        CreationEvent(result.IsSuccessStatusCode);
-                    }
-                }
-            }
-        }
-        #endregion
-
         #region Suspend method
         /// <summary>
         /// This method will check if the <see cref="CurrentLoggedInProfile"/> has the rights to suspend a profile.
@@ -239,7 +239,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// If modifying the profile status fails, it will throw a <see cref="ProfileUpdate"/> exception.
         /// </summary>
         /// <param name="obj">The profile to suspend</param>
-        public void Suspend(object obj)
+        public void Suspend(ProfileModel obj)
         {
             if (CurrentLoggedInProfile.FK_ProfileLevel >= (int)ProfileLevel.Administrator)
             {
@@ -274,7 +274,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// If modifying the profile status fails, it will throw a <see cref="ProfileUpdate"/> exception.
         /// </summary>
         /// <param name="obj">The profile to disable</param>
-        public void Disable(object obj)
+        public void Disable(ProfileModel obj)
         {
             if (CurrentLoggedInProfile.FK_ProfileLevel >= (int)ProfileLevel.User)
             {
@@ -309,7 +309,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// Do NOT change the ID of a profile. TODO: make the webapi prevent change of name.
         /// </summary>
         /// <param name="obj">A ProfileModel</param>
-        public async void Update(object obj)
+        public async void Update(ProfileModel obj)
         {
             if (CurrentLoggedInProfile != null)
             {

@@ -11,7 +11,7 @@ using FetchItUniversalAndApi.Models;
 
 namespace FetchItUniversalAndApi.Handlers
 {
-    public class IssueHandler : ICreate<IssueModel>, IDelete, IDisable, ISuspend, IUpdate//, ISearch<IssueModel>
+    public class IssueHandler : ICreate<IssueModel>, IDelete<IssueModel>, IDisable<IssueModel>, ISuspend<IssueModel>, IUpdate<IssueModel>//, ISearch<IssueModel>
     {
       //Author: Jakub Czapski
         /// <summary>
@@ -117,7 +117,7 @@ namespace FetchItUniversalAndApi.Handlers
       /// </summary>
       /// <param name="obj">Issue you want to delete.</param>
       /// <returns></returns>
-        public void Delete(object obj)
+      public void Delete(IssueModel obj)
         {
             
             if (obj is IssueModel)
@@ -136,7 +136,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// <param name="obj">Issue you want to disable.</param>
         /// <returns></returns>
 
-        public void Disable(object obj)
+      public void Disable(IssueModel obj)
         {
             if (obj is IssueModel)
             {
@@ -170,7 +170,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="obj">Issue you want to suspend.</param>
         /// <returns></returns>
-        public  void Suspend(object obj)
+        public void Suspend(IssueModel obj)
         {
             if (obj is IssueModel)
             {
@@ -189,7 +189,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="obj">Issue you want to update.</param>
         /// <returns></returns>
-        public async void Update(object obj)
+        public async void Update(IssueModel obj)
         {
             if (obj is IssueModel)
             {

@@ -13,7 +13,7 @@ namespace FetchItUniversalAndApi.Handlers
 	/// <summary>
 	/// Handles getting, deleting, creating and updating Reports.
 	/// </summary>
-	class ReportHandler : ICreate<ReportModel>, IDelete, IDisable, ISuspend, IUpdate
+    class ReportHandler : ICreate<ReportModel>, IDelete<ReportModel>, IDisable<ReportModel>, ISuspend<ReportModel>, IUpdate<ReportModel>
 	{
 		#region Fields, enums and Properties
 
@@ -21,6 +21,7 @@ namespace FetchItUniversalAndApi.Handlers
 		private static Object _lockObject = new object();
 		private static ReportHandler _handler;
 		private static HttpClient Client { get; set; }
+	    private ProfileHandler ph;
 
 		/// <summary>
 		/// The different statuses a report can have. Values correspond to the values in the database.
@@ -38,7 +39,7 @@ namespace FetchItUniversalAndApi.Handlers
 
 		private ReportHandler()
 		{
-
+		    ph = ProfileHandler.GetInstance();
 		}
 
 		/// <summary>
@@ -144,7 +145,7 @@ namespace FetchItUniversalAndApi.Handlers
 		/// Deletes the specified Report from the database.
 		/// </summary>
 		/// <param name="obj">The report object to DELETE.</param>
-		public async void Delete(object obj)
+        public async void Delete(ReportModel obj)
 		{
 			var reportToDelete = obj as ReportModel;
 			if (reportToDelete != null)
@@ -173,7 +174,7 @@ namespace FetchItUniversalAndApi.Handlers
 		/// Changes the status of the Report to Disabled.
 		/// </summary>
 		/// <param name="obj">The report object to disable.</param>
-		public void Disable(object obj)
+        public void Disable(ReportModel obj)
 		{
 			var reportToDisable = obj as ReportModel;
 			if (reportToDisable != null)
@@ -199,7 +200,7 @@ namespace FetchItUniversalAndApi.Handlers
 		/// Changes the status of the Report to Suspended.
 		/// </summary>
 		/// <param name="obj">The report object to suspend.</param>
-		public void Suspend(object obj)
+        public void Suspend(ReportModel obj)
 		{
 			var reportToSuspend = obj as ReportModel;
 			if (reportToSuspend != null)
@@ -225,7 +226,7 @@ namespace FetchItUniversalAndApi.Handlers
 		/// Updates the specified Report in the database.
 		/// </summary>
 		/// <param name="obj">The report object to update (PUT).</param>
-		public async void Update(object obj)
+        public async void Update(ReportModel obj)
 		{
 			var reportToUpdate = obj as ReportModel;
 			if (reportToUpdate != null)
@@ -271,7 +272,7 @@ namespace FetchItUniversalAndApi.Handlers
 					//Fills in all the fields except for the ReportId
 					//Todo: Both ReportModel in solution and in Database need a ReportStatusId.
 					FK_ReportedProfile = target.ProfileId,
-					FK_ReportingProfile = ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileId,
+					FK_ReportingProfile = ph.CurrentLoggedInProfile.ProfileId,
 					ReportMessage = reportsContent,
 					ReportTime = DateTime.UtcNow,
 
