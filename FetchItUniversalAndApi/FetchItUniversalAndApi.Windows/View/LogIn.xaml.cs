@@ -19,7 +19,7 @@ namespace FetchItUniversalAndApi.View
         {
             this.InitializeComponent();
             ph = ProfileHandler.GetInstance();
-			ph.GetAllProfiles();
+            ph.LogInEvent += NavigateToLanding;
         }
 
         private void RegisterButton_OnClick(object sender, RoutedEventArgs e)
@@ -27,26 +27,9 @@ namespace FetchItUniversalAndApi.View
             this.Frame.Navigate(typeof(RegisterUser));
         }
 
-        private void LoginButton_OnClick(object sender, RoutedEventArgs e)
+        private void NavigateToLanding()
         {
-            DoLogIn();
-        }
-
-        private async void DoLogIn()
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                await Task.Delay(500);
-                if (ph.CurrentLoggedInProfile != null)
-                {
-                    Frame.Navigate(typeof(LandingPage));
-                    break;
-                }
-            }
-            if (ph.CurrentLoggedInProfile == null)
-            {
-                ErrorHandler.NoResponseFromApi();
-            }
+            Frame.Navigate(typeof (LandingPage));
         }
     }
 }

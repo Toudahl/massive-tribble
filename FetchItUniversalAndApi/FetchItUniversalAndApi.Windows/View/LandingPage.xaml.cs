@@ -15,6 +15,7 @@ namespace FetchItUniversalAndApi.View
 	{
 		private NavigationHelper navigationHelper;
 		private ObservableDictionary defaultViewModel = new ObservableDictionary();
+	    private ProfileHandler ph;
 		public ObservableDictionary DefaultViewModel
 		{
 			get { return this.defaultViewModel; }
@@ -31,6 +32,8 @@ namespace FetchItUniversalAndApi.View
 			this.navigationHelper = new NavigationHelper(this);
 			this.navigationHelper.LoadState += navigationHelper_LoadState;
 			this.navigationHelper.SaveState += navigationHelper_SaveState;
+		    ph = ProfileHandler.GetInstance();
+		    ph.LogOutEvent += NavigateToLogIn;
 		}
 
 		private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
@@ -68,7 +71,7 @@ namespace FetchItUniversalAndApi.View
 
         private void appBarButton_Click(object sender, RoutedEventArgs e)
         {
-            if (appBar.IsOpen == true)
+            if (appBar.IsOpen)
             {
                 appBar.IsOpen = false;
             }
@@ -81,7 +84,6 @@ namespace FetchItUniversalAndApi.View
         #region AppBar Buttons
         private void profileButton_Click(object sender, RoutedEventArgs e)
         {
-            var ph = ProfileHandler.GetInstance();
             ph.SelectedProfile = ph.CurrentLoggedInProfile;
             this.Frame.Navigate(typeof(ProfileDetailPage));
         }
@@ -106,8 +108,11 @@ namespace FetchItUniversalAndApi.View
 
         private void profileLogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            var ph = ProfileHandler.GetInstance();
             ph.LogOut();
+        }
+
+	    private void NavigateToLogIn()
+	    {
             this.Frame.Navigate(typeof(MainPage));
         }
 

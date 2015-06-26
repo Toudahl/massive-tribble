@@ -16,6 +16,16 @@ namespace FetchItUniversalAndApi.Handlers
     /// </summary>
     class ProfileHandler: IDelete, ICreate, ISuspend, IDisable, IUpdate, ISearch
     {
+        #region Events & delegates
+
+        public delegate void LogInDelegate();
+        public event LogInDelegate LogInEvent;
+
+        public delegate void LogOutDelegate();
+        public event LogOutDelegate LogOutEvent;
+
+        #endregion
+
         #region Enums
         /// <summary>
         /// The values of this enum corrosponds to the id's in the database.
@@ -64,7 +74,23 @@ namespace FetchItUniversalAndApi.Handlers
         public ProfileModel CurrentLoggedInProfile
         {
             get { return _currentLoggedInProfile; }
-            private set { _currentLoggedInProfile = value; }
+            private set
+            {
+                _currentLoggedInProfile = value;
+                if (value != null)
+                {
+                    if (LogInEvent != null)
+                    {
+                        LogInEvent();
+                    }
+                }else
+                {
+                    if (LogOutEvent != null)
+                    {
+                        LogOutEvent();
+                    }
+                }
+            }
         }
 
         /// <summary>

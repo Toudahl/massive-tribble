@@ -16,7 +16,7 @@ namespace FetchItUniversalAndApi.View
     /// </summary>
     public sealed partial class TaskCreation : Page
     {
-        private ProfileHandler _ph;
+        private ProfileHandler ph;
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
@@ -44,8 +44,8 @@ namespace FetchItUniversalAndApi.View
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             this.navigationHelper.SaveState += navigationHelper_SaveState;
-            _ph = ProfileHandler.GetInstance();
-
+            ph = ProfileHandler.GetInstance();
+            ph.LogOutEvent += NavigateToLogIn;
         }
 
         /// <summary>
@@ -124,7 +124,6 @@ namespace FetchItUniversalAndApi.View
         #region AppBar Buttons
         private void profileButton_Click(object sender, RoutedEventArgs e)
         {
-            var ph = ProfileHandler.GetInstance();
             ph.SelectedProfile = ph.CurrentLoggedInProfile;
             this.Frame.Navigate(typeof(ProfileDetailPage));
         }
@@ -149,8 +148,11 @@ namespace FetchItUniversalAndApi.View
 
         private void profileLogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            var ph = ProfileHandler.GetInstance();
             ph.LogOut();
+        }
+
+        private void NavigateToLogIn()
+        {
             this.Frame.Navigate(typeof(MainPage));
         }
         #endregion
