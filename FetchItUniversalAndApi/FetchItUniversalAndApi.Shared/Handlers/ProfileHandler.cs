@@ -68,12 +68,11 @@ namespace FetchItUniversalAndApi.Handlers
 
         #region Fields and properties.
 
-        private const string Apiurl = "http://fetchit.mortentoudahl.dk/api/ProfileModels";
         private ProfileModel _currentLoggedInProfile;
         private ProfileModel _selectedProfile;
         private IEnumerable<ProfileModel> _allProfiles;
         private static ProfileHandler _handler;
-        private static Object _lockObject = new object();
+        private static object _lockObject = new object();
         private ApiLink<ProfileModel> apiLink;
 
         /// <summary>
@@ -131,7 +130,14 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         public IEnumerable<ProfileModel> AllProfiles
         {
-            get { return _allProfiles; }
+            get
+            {
+                if (_allProfiles == null)
+                {
+                    GetAllProfiles();
+                }
+                return _allProfiles;
+            }
             set { _allProfiles = value; }
         }
 
@@ -404,20 +410,20 @@ namespace FetchItUniversalAndApi.Handlers
         {
             if (profile.ProfilePassword != null && profile.ProfileName != null)
             {
-                using (var client = new HttpClient())
+                using (var result = await apiLink.GetAsync())
                 {
                     // TODO update the webapi, so i dont have to request all the information like this.
                     // All the user information is up for graps each time someone logs in.
                     try
                     {
-                        var result = await client.GetStringAsync(Apiurl);
-                        
-                        var listOfProfiles = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<ProfileModel>>(result));
+                        if (result == null) return;
+                        if (!result.IsSuccessStatusCode) return;
+                        var listOfProfiles = await result.Content.ReadAsAsync<IEnumerable<ProfileModel>>();
                         try
                         {
                             //TODO after making the hashing and salting work. Change this, so it uses the hashed password for the check
                             var selectedProfile =
-                                listOfProfiles.FirstOrDefault(p => p.ProfileName.ToLower() == profile.ProfileName.ToLower() && p.ProfilePassword == profile.ProfilePassword);
+                                listOfProfiles.FirstOrDefault(p => p.ProfileName.ToLower() == profile.ProfileName.ToLower() && p.ProfilePassword ==  /*HashPassword(profile.ProfilePassword, p.ProfilePasswordSalt)*/ profile.ProfilePassword);
 
                             if (selectedProfile.FK_ProfileStatus == (int)ProfileStatus.Active)
                             {
@@ -432,11 +438,11 @@ namespace FetchItUniversalAndApi.Handlers
                         {
                             ErrorHandler.FailedLogIn(profile.ProfileName);
                         }
-
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
-                        ErrorHandler.NoResponseFromApi();
+                        new MessageDialog(e.Message).ShowAsync();
+                        //ErrorHandler.NoResponseFromApi();
                     }
                 }
             }
@@ -492,16 +498,18 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         public async void GetAllProfiles()
         {
-            using (var client = new HttpClient())
+            if (CurrentLoggedInProfile == null) return;
+            using (var result = await apiLink.GetAsync())
             {
+                if (result == null) return;
+                if (!result.IsSuccessStatusCode) return;
                 try
                 {
-                    var result = await client.GetStringAsync(Apiurl);
-                    AllProfiles = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<ProfileModel>>(result));
+                    AllProfiles = await result.Content.ReadAsAsync<IEnumerable<ProfileModel>>();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    ErrorHandler.NoResponseFromApi();
+                    new MessageDialog(e.Message).ShowAsync();
                 }
             }
         }

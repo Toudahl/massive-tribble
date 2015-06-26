@@ -12,13 +12,13 @@ namespace FetchItUniversalAndApi.Handlers
     {
         private const string ServerUrl = "http://fetchit.mortentoudahl.dk/api/";
 
-        public async Task<HttpResponseMessage> GetAsync()
+        public async Task<HttpResponseMessage> GetAsync(int? id = null)
         {
             try
             {
                 using (var client = GetClient())
                 {
-                    return await client.GetAsync(typeof(T).Name);
+                    return await client.GetAsync(typeof(T).Name +"s/"+id);
                 }
             }
             catch (Exception e)
