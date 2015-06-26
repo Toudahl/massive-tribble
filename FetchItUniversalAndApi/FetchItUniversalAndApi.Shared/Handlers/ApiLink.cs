@@ -33,6 +33,22 @@ namespace FetchItUniversalAndApi.Handlers
             return null;
         }
 
+        public async Task<HttpResponseMessage> PutAsJsonAsync(T obj, int? id = null)
+        {
+            try
+            {
+                using (var client = GetClient())
+                {
+                    return await client.PutAsJsonAsync(obj.GetType().Name + "s/"+id, obj);
+                }
+            }
+            catch (Exception e)
+            {
+                new MessageDialog(e.Message).ShowAsync();
+            }
+            return null;
+        }
+
         private HttpClient GetClient()
         {
             var client = new HttpClient {BaseAddress = new Uri(ServerUrl)};

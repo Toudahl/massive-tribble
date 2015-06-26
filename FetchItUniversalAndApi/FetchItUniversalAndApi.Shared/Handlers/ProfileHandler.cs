@@ -28,6 +28,9 @@ namespace FetchItUniversalAndApi.Handlers
         public delegate void CreateProfile(bool success);
         public event CreateProfile CreationEvent;
 
+        delegate void UpdateStatusOrProfile(bool success);
+        private event UpdateStatusOrProfile UpdateEvent;
+
         #endregion
 
         #region Enums
@@ -220,7 +223,10 @@ namespace FetchItUniversalAndApi.Handlers
                 if (result != null)
                 {
                     await new MessageDialog(result.ReasonPhrase).ShowAsync();
-                    CreationEvent(result.IsSuccessStatusCode);
+                    if (CreationEvent != null)
+                    {
+                        CreationEvent(result.IsSuccessStatusCode);
+                    }
                 }
             }
         }
@@ -309,17 +315,24 @@ namespace FetchItUniversalAndApi.Handlers
             {
                 if (obj is ProfileModel)
                 {
-                    var profil = obj as ProfileModel;
-                    var url = Apiurl + "/" + profil.ProfileId;
-                    using (var client = new HttpClient())
+                    var profile = obj as ProfileModel;
+                    using (var result = await apiLink.PutAsJsonAsync(profile, profile.ProfileId))
                     {
-                        try
+                        if (result != null)
                         {
-                            await client.PutAsJsonAsync(url, profil);
-                        }
-                        catch (Exception)
-                        {
-                            ErrorHandler.NoResponseFromApi();
+                            if (result.IsSuccessStatusCode)
+                            {
+                                await new MessageDialog("The profile: " + profile.ProfileName + " was updated", result.ReasonPhrase).ShowAsync();
+                            }
+                            else
+                            {
+                                await new MessageDialog("Update failed", result.ReasonPhrase).ShowAsync();
+                            }
+
+                            if (UpdateEvent != null)
+                            {
+                                UpdateEvent(result.IsSuccessStatusCode);
+                            }
                         }
                     }
                 }
@@ -444,17 +457,25 @@ namespace FetchItUniversalAndApi.Handlers
         /// <param name="newStatus">What should the new status be.</param>
         private async void ChangeStatus(ProfileModel profileToModify, ProfileStatus newStatus)
         {
-            using (var client = new HttpClient())
+            profileToModify.FK_ProfileStatus = (int)newStatus;
+
+            using (var result = await apiLink.PutAsJsonAsync(profileToModify,profileToModify.ProfileId))
             {
-                var url = Apiurl + "/" + profileToModify.ProfileId;
-                profileToModify.FK_ProfileStatus = (int)newStatus;
-                try
+                if (result != null)
                 {
-                    await client.PutAsJsonAsync(url, profileToModify);
-                }
-                catch (Exception)
-                {
-                    ErrorHandler.NoResponseFromApi();
+                    if (result.IsSuccessStatusCode)
+                    {
+                        await new MessageDialog(profileToModify.ProfileName + " has been " + newStatus).ShowAsync();
+                    }
+                    else
+                    {
+                        await new MessageDialog("Update failed", result.ReasonPhrase).ShowAsync();
+                    }
+                    if (UpdateEvent != null)
+                    {
+                        UpdateEvent(result.IsSuccessStatusCode);
+                    }
+
                 }
             }
         }
@@ -525,4 +546,5 @@ namespace FetchItUniversalAndApi.Handlers
 
         #endregion
     }
+
 }
