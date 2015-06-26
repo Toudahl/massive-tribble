@@ -390,12 +390,13 @@ namespace FetchItUniversalAndApi.Handlers
                     try
                     {
                         var result = await client.GetStringAsync(Apiurl);
+                        
                         var listOfProfiles = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<ProfileModel>>(result));
                         try
                         {
-                            //TODO after making the hasing and salting work. Change this, so it uses the hashed password for the check
+                            //TODO after making the hashing and salting work. Change this, so it uses the hashed password for the check
                             var selectedProfile =
-                                listOfProfiles.FirstOrDefault(p => p.ProfileName == profile.ProfileName && p.ProfilePassword == profile.ProfilePassword);
+                                listOfProfiles.FirstOrDefault(p => p.ProfileName.ToLower() == profile.ProfileName.ToLower() && p.ProfilePassword == profile.ProfilePassword);
 
                             if (selectedProfile.FK_ProfileStatus == (int)ProfileStatus.Active)
                             {
