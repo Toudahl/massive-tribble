@@ -119,7 +119,7 @@ namespace FetchItUniversalAndApi.Handlers
             if (taskObject is TaskModel)
             {
                 var taskToDelete = taskObject as TaskModel;
-                if (ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileLevel.ProfileLevelId > 9000)
+                if (_ph.CurrentLoggedInProfile.FK_ProfileLevel >= (int)ProfileHandler.ProfileLevel.Administrator)
                 {
                     using (var Client = new HttpClient())
                     {
@@ -135,10 +135,6 @@ namespace FetchItUniversalAndApi.Handlers
                         }
                     }
                 }
-            }
-            else
-            {
-
             }
         }
         #endregion

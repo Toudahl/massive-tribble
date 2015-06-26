@@ -194,6 +194,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// <param name="obj">Pass in a ProfileModel with the state that you wish to create the profile in.</param>
         public async void Create(ProfileModel obj)
         {
+            if (obj == null) return;
             obj.FK_ProfileLevel = (int)ProfileLevel.User;
             obj.FK_ProfileStatus = (int)ProfileStatus.Active;
             obj.ProfileIsVerified = false;
@@ -433,8 +434,6 @@ namespace FetchItUniversalAndApi.Handlers
             {
                 var url = Apiurl + "/" + profileToModify.ProfileId;
                 profileToModify.FK_ProfileStatus = (int)newStatus;
-                profileToModify.ProfileStatus = null;
-                profileToModify.ProfileLevel = null;
                 try
                 {
                     await client.PutAsJsonAsync(url, profileToModify);
