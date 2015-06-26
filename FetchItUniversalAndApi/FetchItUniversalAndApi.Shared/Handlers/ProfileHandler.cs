@@ -76,19 +76,24 @@ namespace FetchItUniversalAndApi.Handlers
             get { return _currentLoggedInProfile; }
             private set
             {
-                _currentLoggedInProfile = value;
-                if (value != null)
+                if (value != SelectedProfile)
                 {
-                    if (LogInEvent != null)
+                    _currentLoggedInProfile = value;
+                    if (value != null)
                     {
-                        LogInEvent();
+                        if (LogInEvent != null)
+                        {
+                            LogInEvent();
+                        }
                     }
-                }else
-                {
-                    if (LogOutEvent != null)
+                    else
                     {
-                        LogOutEvent();
+                        if (LogOutEvent != null)
+                        {
+                            LogOutEvent();
+                        }
                     }
+
                 }
             }
         }
