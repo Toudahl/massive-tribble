@@ -100,7 +100,17 @@ namespace FetchItUniversalAndApi.Handlers
         public ProfileModel SelectedProfile
         {
             get { return _selectedProfile; }
-            set { _selectedProfile = value; }
+            set
+            {
+                if (value == CurrentLoggedInProfile)
+                {
+                    _selectedProfile = null;
+                }
+                else
+                {
+                    _selectedProfile = value;
+                }
+            }
         }
 
         /// <summary>
