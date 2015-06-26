@@ -113,7 +113,7 @@ namespace FetchItUniversalAndApi.View
         #region AppBar Buttons
         private void profileButton_Click(object sender, RoutedEventArgs e)
         {
-            ph.SelectedProfile = ph.CurrentLoggedInProfile;
+            
             this.Frame.Navigate(typeof(ProfileDetailPage));
         }
 

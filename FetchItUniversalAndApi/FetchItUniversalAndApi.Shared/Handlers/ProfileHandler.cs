@@ -83,24 +83,21 @@ namespace FetchItUniversalAndApi.Handlers
             get { return _currentLoggedInProfile; }
             private set
             {
-                if (value != SelectedProfile)
+                if (value == SelectedProfile) return;
+                _currentLoggedInProfile = value;
+                if (value != null)
                 {
-                    _currentLoggedInProfile = value;
-                    if (value != null)
+                    if (LogInEvent != null)
                     {
-                        if (LogInEvent != null)
-                        {
-                            LogInEvent();
-                        }
+                        LogInEvent();
                     }
-                    else
+                }
+                else
+                {
+                    if (LogOutEvent != null)
                     {
-                        if (LogOutEvent != null)
-                        {
-                            LogOutEvent();
-                        }
+                        LogOutEvent();
                     }
-
                 }
             }
         }
@@ -132,10 +129,6 @@ namespace FetchItUniversalAndApi.Handlers
         {
             get
             {
-                if (_allProfiles == null)
-                {
-                    GetAllProfiles();
-                }
                 return _allProfiles;
             }
             set { _allProfiles = value; }
