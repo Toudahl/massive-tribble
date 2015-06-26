@@ -39,9 +39,9 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         public enum ProfileStatus
         {
-            Deleted = 1,
-            Suspended = 2,
-            Disabled = 3,
+            Delete = 1,
+            Suspend = 2,
+            Disable = 3,
             Active = 4,
             Unactivated = 5,
         }
@@ -197,39 +197,22 @@ namespace FetchItUniversalAndApi.Handlers
         #endregion
 
         #region Delete method
-
         /// <summary>
         /// This method will check if the <see cref="CurrentLoggedInProfile"/> has the rights to delete a profile.
         /// And if so, change the status of the selected profile to deleted. Nothing is actually removed from the database.
         /// If modifying the profile status fails, it will throw an exception.
         /// </summary>
         /// <param name="obj">The profile to delete</param>
-        public void Delete(ProfileModel obj)
+        public void Delete(ProfileModel profile)
         {
-            if (CurrentLoggedInProfile.FK_ProfileLevel >= (int)ProfileLevel.Administrator)
-            {
-                if (obj is ProfileModel)
-                {
-                    var profileToDelete = obj as ProfileModel;
-                    if (profileToDelete.ProfileId == CurrentLoggedInProfile.ProfileId)
-                    {
-                        ErrorHandler.WrongTargetProfile("delete");
-                    }
-                    else
-                    {
-                        ChangeStatus(profileToDelete, ProfileStatus.Deleted);
-                    }
-                }
-                else
-                {
-                    ErrorHandler.WrongModelError(obj, new ProfileModel());
-                }
-            }
-            else
-            {
-                ErrorHandler.WrongProfileLevel((ProfileLevel)CurrentLoggedInProfile.FK_ProfileLevel, "delete");
-            }
+            DoStatusUpdate(
+                profile,
+                ProfileStatus.Delete,
+                () => CurrentLoggedInProfile.FK_ProfileLevel < (int)ProfileLevel.Administrator,
+                () => profile.ProfileId != CurrentLoggedInProfile.ProfileId
+                );
         }
+
         #endregion
 
         #region Suspend method
@@ -239,32 +222,16 @@ namespace FetchItUniversalAndApi.Handlers
         /// If modifying the profile status fails, it will throw a <see cref="ProfileUpdate"/> exception.
         /// </summary>
         /// <param name="obj">The profile to suspend</param>
-        public void Suspend(ProfileModel obj)
+        public void Suspend(ProfileModel profile)
         {
-            if (CurrentLoggedInProfile.FK_ProfileLevel >= (int)ProfileLevel.Administrator)
-            {
-                if (obj is ProfileModel)
-                {
-                    var profileToSuspend = obj as ProfileModel;
-                    if (profileToSuspend.ProfileId == CurrentLoggedInProfile.ProfileId)
-                    {
-                        ErrorHandler.WrongTargetProfile("suspend");
-                    }
-                    else
-                    {
-                        ChangeStatus(profileToSuspend, ProfileStatus.Suspended);
-                    }
-                }
-                else
-                {
-                    ErrorHandler.WrongModelError(obj, new ProfileModel());
-                }
-            }
-            else
-            {
-                ErrorHandler.WrongProfileLevel((ProfileLevel)CurrentLoggedInProfile.FK_ProfileLevel,"suspend");
-            }
+            DoStatusUpdate(
+                profile,
+                ProfileStatus.Suspend,
+                () => CurrentLoggedInProfile.FK_ProfileLevel < (int)ProfileLevel.Administrator,
+                () => profile.ProfileId != CurrentLoggedInProfile.ProfileId
+                );
         }
+
         #endregion
 
         #region Disable method
@@ -274,76 +241,46 @@ namespace FetchItUniversalAndApi.Handlers
         /// If modifying the profile status fails, it will throw a <see cref="ProfileUpdate"/> exception.
         /// </summary>
         /// <param name="obj">The profile to disable</param>
-        public void Disable(ProfileModel obj)
+        public void Disable(ProfileModel profile)
         {
-            if (CurrentLoggedInProfile.FK_ProfileLevel >= (int)ProfileLevel.User)
-            {
-                if (obj is ProfileModel)
-                {
-                    var profileToDisable = obj as ProfileModel;
-                    if (profileToDisable.ProfileId != CurrentLoggedInProfile.ProfileId)
-                    {
-                        ErrorHandler.WrongTargetProfile("suspend");
-                    }
-                    else
-                    {
-                        ChangeStatus(CurrentLoggedInProfile, ProfileStatus.Disabled);
-                    }
-
-                }
-                else
-                {
-                    ErrorHandler.WrongModelError(obj, new ProfileModel());
-                }
-            }
-            else
-            {
-                ErrorHandler.WrongProfileLevel((ProfileLevel)CurrentLoggedInProfile.FK_ProfileLevel, "disable");
-            }
+            DoStatusUpdate(
+                profile,
+                ProfileStatus.Disable,
+                () => CurrentLoggedInProfile.FK_ProfileLevel < (int)ProfileLevel.User,
+                () => profile.ProfileId == CurrentLoggedInProfile.ProfileId
+            );
         }
         #endregion
 
         #region Update method
         /// <summary>
         /// This method will take the ProfileModel it is supplied, and update it on the server
-        /// Do NOT change the ID of a profile. TODO: make the webapi prevent change of name.
         /// </summary>
         /// <param name="obj">A ProfileModel</param>
-        public async void Update(ProfileModel obj)
+        public async void Update(ProfileModel profile)
         {
-            if (CurrentLoggedInProfile != null)
+            if (profile == null) return;
+            if (CurrentLoggedInProfile == null) return;
+            using (var result = await apiLink.PutAsJsonAsync(profile, profile.ProfileId))
             {
-                if (obj is ProfileModel)
+                if (result != null)
                 {
-                    var profile = obj as ProfileModel;
-                    using (var result = await apiLink.PutAsJsonAsync(profile, profile.ProfileId))
+                    if (result.IsSuccessStatusCode)
                     {
-                        if (result != null)
-                        {
-                            if (result.IsSuccessStatusCode)
-                            {
-                                await new MessageDialog("The profile: " + profile.ProfileName + " was updated", result.ReasonPhrase).ShowAsync();
-                            }
-                            else
-                            {
-                                await new MessageDialog("Update failed", result.ReasonPhrase).ShowAsync();
-                            }
+                        await
+                            new MessageDialog("The profile: " + profile.ProfileName + " was updated",
+                                result.ReasonPhrase).ShowAsync();
+                    }
+                    else
+                    {
+                        await new MessageDialog("Update failed", result.ReasonPhrase).ShowAsync();
+                    }
 
-                            if (UpdateEvent != null)
-                            {
-                                UpdateEvent(result.IsSuccessStatusCode);
-                            }
-                        }
+                    if (UpdateEvent != null)
+                    {
+                        UpdateEvent(result.IsSuccessStatusCode);
                     }
                 }
-                else
-                {
-                    ErrorHandler.WrongModelError(obj, new ProfileModel());
-                }
-            }
-            else
-            {
-                ErrorHandler.WrongTargetProfile("update");
             }
         }
         #endregion
@@ -459,33 +396,81 @@ namespace FetchItUniversalAndApi.Handlers
 
         #region 'Supporting methods'
         /// <summary>
+        /// Used internally to make status updates to a profile. Used by, Disable, Delete and Suspend
+        /// </summary>
+        /// <param name="profile">The profile to modify</param>
+        /// <param name="newStatus">The status to give it</param>
+        /// <param name="profileLevelCheck">Used in an if statement to check if the <see cref="CurrentLoggedInProfile"/> has the correct level. Should evaluate to false to pass</param>
+        /// <param name="targetProfile">Used in an if statement to check if the action is allowed on the target profile. Should evaluate to true to pass</param>
+        private async void DoStatusUpdate(ProfileModel profile, ProfileStatus newStatus, Func<bool> profileLevelCheck, Func<bool> targetProfile)
+        {
+            if (profile == null) return;
+            if (CurrentLoggedInProfile == null) return;
+            if (profileLevelCheck.Invoke())
+            {
+                ErrorHandler.WrongProfileLevel((ProfileLevel)CurrentLoggedInProfile.FK_ProfileLevel, newStatus.ToString());
+            }
+            else
+            {
+                if (targetProfile.Invoke())
+                {
+                    profile.FK_ProfileStatus = (int)newStatus;
+
+                    using (var result = await apiLink.PutAsJsonAsync(profile,profile.ProfileId))
+                    {
+                        if (result != null)
+                        {
+                            if (result.IsSuccessStatusCode)
+                            {
+                                await new MessageDialog(profile.ProfileName + " has been " + newStatus).ShowAsync();
+                            }
+                            else
+                            {
+                                await new MessageDialog("Update failed", result.ReasonPhrase).ShowAsync();
+                            }
+                            if (UpdateEvent != null)
+                            {
+                                UpdateEvent(result.IsSuccessStatusCode);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    ErrorHandler.WrongTargetProfile(newStatus.ToString());
+                }
+            }
+        }
+
+
+        /// <summary>
         /// This method is used internally by the class in all methods that modify the status of the profile.
         /// </summary>
         /// <param name="profileToModify">Which profile should be modifiled.</param>
         /// <param name="newStatus">What should the new status be.</param>
-        private async void ChangeStatus(ProfileModel profileToModify, ProfileStatus newStatus)
-        {
-            profileToModify.FK_ProfileStatus = (int)newStatus;
+        //private async void ChangeStatus(ProfileModel profileToModify, ProfileStatus newStatus)
+        //{
+        //    profileToModify.FK_ProfileStatus = (int)newStatus;
 
-            using (var result = await apiLink.PutAsJsonAsync(profileToModify,profileToModify.ProfileId))
-            {
-                if (result != null)
-                {
-                    if (result.IsSuccessStatusCode)
-                    {
-                        await new MessageDialog(profileToModify.ProfileName + " has been " + newStatus).ShowAsync();
-                    }
-                    else
-                    {
-                        await new MessageDialog("Update failed", result.ReasonPhrase).ShowAsync();
-                    }
-                    if (UpdateEvent != null)
-                    {
-                        UpdateEvent(result.IsSuccessStatusCode);
-                    }
-                }
-            }
-        }
+        //    using (var result = await apiLink.PutAsJsonAsync(profileToModify,profileToModify.ProfileId))
+        //    {
+        //        if (result != null)
+        //        {
+        //            if (result.IsSuccessStatusCode)
+        //            {
+        //                await new MessageDialog(profileToModify.ProfileName + " has been " + newStatus).ShowAsync();
+        //            }
+        //            else
+        //            {
+        //                await new MessageDialog("Update failed", result.ReasonPhrase).ShowAsync();
+        //            }
+        //            if (UpdateEvent != null)
+        //            {
+        //                UpdateEvent(result.IsSuccessStatusCode);
+        //            }
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// Using this method will update the content of <see cref="AllProfiles"/>
