@@ -102,6 +102,7 @@ namespace FetchItUniversalAndApi.Handlers
             }
         }
 
+
         /// <summary>
         /// Contains the currently selected profile. IE, could be used to hold a profile to delete.
         /// But is it nessesary.
