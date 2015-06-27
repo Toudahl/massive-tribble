@@ -251,6 +251,7 @@ namespace FetchItUniversalAndApi.Handlers
         }
         #endregion
 
+        #region Update method
         /// <summary>
         /// Updates the selected issues info in the database.
         /// </summary>
@@ -271,23 +272,8 @@ namespace FetchItUniversalAndApi.Handlers
                 throw;
             }
         }
-
-        /// <summary>
-        /// Creates a log using loghandler.
-        /// </summary>      
-        /// <returns></returns>
-        public void CreateLog()
-        {
-            LogModel logModel = new LogModel
-            {
-                LogMessage = "The supplied model was not of the expected type",
-                LogTime = DateTime.UtcNow
-            };
-            var lh = LogHandler.GetInstance();
-            lh.Create(logModel);
-        }
-
-     
+        #endregion
+   
     }
 
 }
