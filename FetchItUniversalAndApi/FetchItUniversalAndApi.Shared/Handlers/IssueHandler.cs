@@ -25,8 +25,18 @@ namespace FetchItUniversalAndApi.Handlers
         private IssueHandler _handler;
         private IEnumerable<IssueModel> _currentIssues;
         private string _userInput;
-      private ProfileModel _selecteProfile;
-      private const string issuemodelurl = "http://fetchit.mortentoudahl.dk/api/IssueModels";
+        private ProfileModel _selecteProfile;
+        private const string issuemodelurl = "http://fetchit.mortentoudahl.dk/api/IssueModels";
+        private ProfileHandler ph;
+        private TaskHandler th;
+        private ApiLink<IssueModel> apiLink;
+
+        public IssueHandler()
+        {
+            ph = ProfileHandler.GetInstance();
+            th = TaskHandler.GetInstance();
+            apiLink = new ApiLink<IssueModel>();
+        }
 
       public ProfileModel SelecteProfile
       {
@@ -71,20 +81,55 @@ namespace FetchItUniversalAndApi.Handlers
             get { return _selectedIssue; }
             set { _selectedIssue = value; }
         }
+        //Fixed by Morten Toudahl.
+        // Now it is checking properly, and setting values correctly before using the new ApiLink class to talk with the api.
         /// <summary>
         /// Creates a issue and adds it to the database
         /// </summary>
-        /// <param name="obj">Issue to create.</param>
+        /// <param name="issue">Issue to create.</param>
         /// <returns></returns>
-        public async void Create(IssueModel obj)
+        public async void Create(IssueModel issue)
         {
-            //TODO: Make some proper checks on the object, and set the date time etc.
-            //if (obj == null) return;
-            using (var client = new HttpClient())
+            if (string.IsNullOrEmpty(issue.IssueTitle) || string.IsNullOrEmpty(issue.IssueDescription))
             {
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("appliaction/json"));
-                await client.PostAsJsonAsync(issuemodelurl, obj);
-                MessageHandler.SendNotification(_userInput, _selecteProfile);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(issue.IssueTitle) || string.IsNullOrWhiteSpace(issue.IssueDescription))
+            {
+                return;
+            }
+            if (issue.FK_IssueTarget == 0 || issue.FK_IssueTask == 0)
+            {
+                return;
+            }
+            issue.FK_IssueCreator = ph.CurrentLoggedInProfile.ProfileId;
+            issue.IssueTimeCreated = DateTime.UtcNow;
+            issue.FK_IssueTask = th.SelectedTask.TaskId;
+
+            int? target;
+            if (th.SelectedTask.FK_TaskMaster == issue.FK_IssueCreator)
+            {
+                target = th.SelectedTask.FK_TaskFetcher;
+            }
+            else
+            {
+                target = th.SelectedTask.FK_TaskMaster;
+            }
+            if (target != null)
+            {
+                issue.FK_IssueTarget = (int)target;
+            }
+            else
+            {
+                return;
+            }
+
+            using (var result = await apiLink.PostAsJsonAsync(issue))
+            {
+                if (result.IsSuccessStatusCode)
+                {
+                    MessageHandler.SendNotification(_userInput, _selecteProfile);
+                }
             }
         }
 
