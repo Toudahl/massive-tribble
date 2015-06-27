@@ -14,11 +14,8 @@ namespace FetchItUniversalAndApi.Handlers
     /// <summary>
     /// Handles getting and maintaining issues made by users.
     /// Currently only getting issues is used in the app.
-    /// 
-    /// 
-    /// 
     /// </summary>
-    public class IssueHandler : ICreate<IssueModel>, IDelete<IssueModel>, IDisable<IssueModel>, ISuspend<IssueModel>, IUpdate<IssueModel>//, ISearch<IssueModel>
+    public class IssueHandler : ICreate<IssueModel>, IDelete<IssueModel>, IDisable<IssueModel>, ISuspend<IssueModel>, IUpdate<IssueModel>, ISearch<IssueModel>
     {
         #region Fields and properties
         private IssueModel _newIssue;
@@ -88,7 +85,7 @@ namespace FetchItUniversalAndApi.Handlers
             th = TaskHandler.GetInstance();
             apiLink = new ApiLink<IssueModel>();
         }
-
+        
         #region Create method
         //Fixed by Morten Toudahl.
         // Now it is checking properly, and setting values correctly before using the new ApiLink class to talk with the api.
@@ -99,6 +96,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// <returns></returns>
         public async void Create(IssueModel issue)
         {
+            if (ph.CurrentLoggedInProfile == null) return;
             if (string.IsNullOrEmpty(issue.IssueTitle) || string.IsNullOrEmpty(issue.IssueDescription))
             {
                 return;
@@ -188,6 +186,8 @@ namespace FetchItUniversalAndApi.Handlers
         /// <returns></returns>
         public void Delete(IssueModel issue)
         {
+            if (ph.CurrentLoggedInProfile == null) return;
+            if (!(ph.CurrentLoggedInProfile.FK_ProfileLevel >= (int) ProfileHandler.ProfileLevel.Administrator)) return;
             issue.FK_IssueStatus = (int)IssueStatus.Deleted;
             Update(issue);
         }
@@ -203,6 +203,8 @@ namespace FetchItUniversalAndApi.Handlers
         /// <returns></returns>
         public void Disable(IssueModel issue)
         {
+            if (ph.CurrentLoggedInProfile == null) return;
+            if (ph.CurrentLoggedInProfile.FK_ProfileLevel != issue.FK_IssueCreator) return;
             issue.FK_IssueStatus = (int)IssueStatus.Disabled;
             Update(issue);
         }
@@ -246,6 +248,8 @@ namespace FetchItUniversalAndApi.Handlers
         /// <returns></returns>
         public void Suspend(IssueModel issue)
         {
+            if (ph.CurrentLoggedInProfile == null) return;
+            if (!(ph.CurrentLoggedInProfile.FK_ProfileLevel >= (int)ProfileHandler.ProfileLevel.Administrator)) return;
             issue.FK_IssueStatus = (int)IssueStatus.Suspended;
             Update(issue);
         }
