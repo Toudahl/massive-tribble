@@ -177,12 +177,12 @@ namespace FetchItUniversalAndApi.Handlers
         }
         #endregion
 
-          /// <summary>
-      /// Sets the selected issues type to deleted in the database
-      /// </summary>
-      /// <param name="obj">Issue you want to delete.</param>
-      /// <returns></returns>
-      public void Delete(IssueModel obj)
+        /// <summary>
+        /// Sets the selected issues type to deleted in the database
+        /// </summary>
+        /// <param name="obj">Issue you want to delete.</param>
+        /// <returns></returns>
+        public void Delete(IssueModel obj)
         {
             
             if (obj is IssueModel)
@@ -200,18 +200,10 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="obj">Issue you want to disable.</param>
         /// <returns></returns>
-
-      public void Disable(IssueModel obj)
+        public void Disable(IssueModel obj)
         {
-            if (obj is IssueModel)
-            {
-                _selectedIssue.FK_IssueStatus = (int)IssueStatus.Disabled;
-                Update(_selectedIssue);
-            }
-            else
-            {
-                    CreateLog();                
-            }
+            obj.FK_IssueStatus = (int)IssueStatus.Disabled;
+            Update(obj);
         }
 
         /// <summary>
