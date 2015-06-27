@@ -61,8 +61,6 @@ namespace FetchItUniversalAndApi.Handlers
 		}
 		#endregion
 
-		#region Methods
-
         #region GetReports method
         /// <summary>
 		/// Gets all the report objects from the database that have the specified report status.
@@ -95,6 +93,85 @@ namespace FetchItUniversalAndApi.Handlers
 		}
         #endregion
 
+        #region Update method
+        /// <summary>
+        /// Updates the specified Report in the database.
+        /// </summary>
+        /// <param name="reportToUpdate">The report object to update (PUT).</param>
+        public async void Update(ReportModel reportToUpdate)
+        {
+            if (ph.CurrentLoggedInProfile == null) return;
+            try
+            {
+                using (var result = await apiLink.PutAsJsonAsync(reportToUpdate, reportToUpdate.ReportId))
+                {
+                    if (result == null) return;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        //TODO indicate success.
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                //TODO handle exception
+                throw;
+            }
+        }
+        #endregion
+
+        #region Create method
+        /// <summary>
+        /// Creates a Report from the object passed to it and POSTs it to the database.
+        /// </summary>
+        /// <param name="report">The report object to POST</param>
+        public async void Create(ReportModel report)
+        {
+            if (report.FK_ReportedProfile == 0) return;
+            if (string.IsNullOrEmpty(report.ReportMessage) || string.IsNullOrWhiteSpace(report.ReportMessage)) return;
+            report.FK_ReportingProfile = ph.CurrentLoggedInProfile.ProfileId; // will only work if the value was 0
+            report.ReportTime = DateTime.UtcNow;
+            try
+            {
+                using (var result = await apiLink.PostAsJsonAsync(report))
+                {
+                    if (result == null) return;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        //TODO notify of success
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                //TODO handle exception
+                throw;
+            }
+
+        }
+        #endregion
+
+        #region CreateNewReport method
+        /// <summary>
+        /// Creates a new Report based on the parameters passed to it.
+        /// </summary>
+        /// <param name="target">The target profile of the report.</param>
+        /// <param name="source">The profile that is making the report.</param>
+        /// <param name="reportsContent">The comment provided with the report.</param>
+        public ReportModel CreateNewReport(ProfileModel target, string reportsContent)
+        {
+            return new ReportModel
+            {
+                //Fills in all the fields except for the ReportId
+                FK_ReportedProfile = target.ProfileId,
+                FK_ReportingProfile = ph.CurrentLoggedInProfile.ProfileId,
+                ReportMessage = reportsContent,
+                ReportTime = DateTime.UtcNow,
+            };
+        }
+        #endregion
+
+        #region Non functional methods
         ///// <summary>
         ///// Attaches the ProfileModels corresponding to the FK_ReportedId and FK_ReportingId
         ///// </summary>
@@ -105,36 +182,6 @@ namespace FetchItUniversalAndApi.Handlers
         //    report.FK_ReportingProfile = ph.AllProfiles.Where(profile => profile.ProfileId == report.FK_ReportingProfile).Select(profile => profile).ToList().First().ProfileId;
         //}
 
-        #region Create method
-        /// <summary>
-		/// Creates a Report from the object passed to it and POSTs it to the database.
-		/// </summary>
-		/// <param name="report">The report object to POST</param>
-        public async void Create(ReportModel report)
-		{
-		    if (report.FK_ReportedProfile == 0) return;
-		    if (string.IsNullOrEmpty(report.ReportMessage) || string.IsNullOrWhiteSpace(report.ReportMessage)) return;
-            report.FK_ReportingProfile = ph.CurrentLoggedInProfile.ProfileId; // will only work if the value was 0
-		    report.ReportTime = DateTime.UtcNow;
-		    try
-		    {
-                using (var result = await apiLink.PostAsJsonAsync(report))
-                {
-                    if (result == null) return;
-                    if (result.IsSuccessStatusCode)
-                    {
-                        //TODO notify of success
-                    }
-                }
-            }
-		    catch (Exception)
-		    {
-		        //TODO handle exception
-		        throw;
-		    }
-
-		}
-        #endregion
 
         /// <summary>
 		/// Currently does NOTHING. There are no report status in db.
@@ -213,50 +260,6 @@ namespace FetchItUniversalAndApi.Handlers
             //    }
 	    }
 
-        #region Update method
-        /// <summary>
-	    /// Updates the specified Report in the database.
-	    /// </summary>
-        /// <param name="reportToUpdate">The report object to update (PUT).</param>
-	    public async void Update(ReportModel reportToUpdate)
-	    {
-	        if (ph.CurrentLoggedInProfile == null) return;
-	        try
-	        {
-	            using (var result = await apiLink.PutAsJsonAsync(reportToUpdate, reportToUpdate.ReportId))
-	            {
-	                if (result == null) return;
-	                if (result.IsSuccessStatusCode)
-	                {
-	                    //TODO indicate success.
-	                }
-	            }
-	        }
-	        catch (Exception)
-	        {
-	            //TODO handle exception
-	            throw;
-	        }
-	    }
         #endregion
-
-        /// <summary>
-		/// Creates a new Report based on the parameters passed to it.
-		/// </summary>
-		/// <param name="target">The target profile of the report.</param>
-		/// <param name="source">The profile that is making the report.</param>
-		/// <param name="reportsContent">The comment provided with the report.</param>
-		public ReportModel CreateNewReport(ProfileModel target, string reportsContent)
-		{
-            return new ReportModel
-            {
-                //Fills in all the fields except for the ReportId
-                FK_ReportedProfile = target.ProfileId,
-                FK_ReportingProfile = ph.CurrentLoggedInProfile.ProfileId,
-                ReportMessage = reportsContent,
-                ReportTime = DateTime.UtcNow,
-            };
-		}
-		#endregion
-	}
+    }
 }
