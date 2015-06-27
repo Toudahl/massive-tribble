@@ -213,7 +213,8 @@ namespace FetchItUniversalAndApi.Handlers
             //    }
 	    }
 
-	    /// <summary>
+        #region Update method
+        /// <summary>
 	    /// Updates the specified Report in the database.
 	    /// </summary>
         /// <param name="reportToUpdate">The report object to update (PUT).</param>
@@ -237,8 +238,9 @@ namespace FetchItUniversalAndApi.Handlers
 	            throw;
 	        }
 	    }
+        #endregion
 
-	    /// <summary>
+        /// <summary>
 		/// Creates a new Report based on the parameters passed to it.
 		/// </summary>
 		/// <param name="target">The target profile of the report.</param>
@@ -254,27 +256,6 @@ namespace FetchItUniversalAndApi.Handlers
                 ReportMessage = reportsContent,
                 ReportTime = DateTime.UtcNow,
             };
-
-            //ReportModel newReport = new ReportModel();
-            //try
-            //{
-            //    newReport = new ReportModel
-            //    {
-            //        //Fills in all the fields except for the ReportId
-            //        //Todo: Both ReportModel in solution and in Database need a ReportStatusId.
-            //        FK_ReportedProfile = target.ProfileId,
-            //        FK_ReportingProfile = ph.CurrentLoggedInProfile.ProfileId,
-            //        ReportMessage = reportsContent,
-            //        ReportTime = DateTime.UtcNow,
-
-            //        //ReportStatusId = (int)ReportStatus.Active,
-            //    };
-            //}
-            //catch (Exception)
-            //{
-            //    ErrorHandler.DisplayErrorMessage("Creating the report object failed", "Contact support");
-            //}
-            //return newReport;
 		}
 		#endregion
 	}

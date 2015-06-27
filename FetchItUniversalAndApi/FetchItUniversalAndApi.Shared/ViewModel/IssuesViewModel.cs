@@ -33,20 +33,21 @@ namespace FetchItUniversalAndApi.ViewModel
         {
             var ph = ProfileHandler.GetInstance();
             IssueHandler = new IssueHandler();
-          PopulateAllIssues();
-            CurrentUsersIssues =
-                AllIssues.Where(
-                    issue =>
-                        issue.FK_IssueCreator == ph.CurrentLoggedInProfile.ProfileId ||
-                        issue.FK_IssueTarget == ph.CurrentLoggedInProfile.ProfileId).ToObservableCollection();
+            PopulateAllIssues();
+            IssuesToDisplay = new ObservableCollection<IssueModel>();
             if (ph.CurrentLoggedInProfile.FK_ProfileLevel >= (int)ProfileHandler.ProfileLevel.Administrator)
             {
                 IssuesToDisplay = AllIssues;
                 WelcomeText = "Welcome " + ph.CurrentLoggedInProfile.ProfileName + ", here are all the current issues";
-
             }
             else
             {
+                CurrentUsersIssues =
+                                AllIssues.Where(
+                                    issue =>
+                                    issue.FK_IssueCreator == ph.CurrentLoggedInProfile.ProfileId ||
+                                    issue.FK_IssueTarget == ph.CurrentLoggedInProfile.ProfileId).ToObservableCollection();
+
                 IssuesToDisplay = CurrentUsersIssues;
                 WelcomeText = "Welcome " + ph.CurrentLoggedInProfile.ProfileName + ", here are all the issues you are involved in";
 
@@ -56,7 +57,8 @@ namespace FetchItUniversalAndApi.ViewModel
 
         private async void PopulateAllIssues()
         {
-            AllIssues = await IssueHandler.GetAllIssues();
+            var issues = await IssueHandler.GetAllIssues();
+                AllIssues = new ObservableCollection<IssueModel>(issues);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
