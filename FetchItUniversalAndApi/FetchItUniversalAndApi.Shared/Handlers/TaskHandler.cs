@@ -305,20 +305,27 @@ namespace FetchItUniversalAndApi.Handlers
             if (obj is TaskModel)
             {
                 var taskToSearchFor = obj as TaskModel;
-                IEnumerable<TaskModel> marketplace;
-
+                IEnumerable<TaskModel> marketplace = null;
+                //TODO fix this
                 using (var result = await apiLink.GetAsync())
                 {
-                    marketplace = await result.Content.ReadAsAsync<IEnumerable<TaskModel>>();
-                }
-                if (taskToSearchFor.TaskId != 0)
-                {
-                    return marketplace.Where(task => task.TaskId == taskToSearchFor.TaskId);  
-                }
+                    if (result != null)
+                    {
+                        if (result.IsSuccessStatusCode)
+                        {
+                            marketplace = await result.Content.ReadAsAsync<IEnumerable<TaskModel>>();
+                            if (taskToSearchFor.TaskId != 0)
+                            {
+                                return marketplace.Where(task => task.TaskId == taskToSearchFor.TaskId);
+                            }
 
-                if (taskToSearchFor.FK_TaskMaster != 0)
-                {
-                    return marketplace.Where(task => task.FK_TaskMaster == taskToSearchFor.FK_TaskMaster);                    
+                            if (taskToSearchFor.FK_TaskMaster != 0)
+                            {
+                                return marketplace.Where(task => task.FK_TaskMaster == taskToSearchFor.FK_TaskMaster);
+                            }
+
+                        }
+                    }
                 }
                 
             }

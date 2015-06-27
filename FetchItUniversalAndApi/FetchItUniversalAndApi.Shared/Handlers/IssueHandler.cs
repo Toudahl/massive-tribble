@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
 using FetchItUniversalAndApi.Handlers.Interfaces;
 using FetchItUniversalAndApi.Models;
 
@@ -134,9 +135,12 @@ namespace FetchItUniversalAndApi.Handlers
             {
                 using (var result = await apiLink.PostAsJsonAsync(issue))
                 {
-                    if (result.IsSuccessStatusCode)
+                    if (result != null)
                     {
-                        MessageHandler.SendNotification(_userInput, _selecteProfile);
+                        if (result.IsSuccessStatusCode)
+                        {
+                            MessageHandler.SendNotification(_userInput, _selecteProfile);
+                        }
                     }
                 }
             }
@@ -161,9 +165,12 @@ namespace FetchItUniversalAndApi.Handlers
             {
                 using (var result = await apiLink.GetAsync())
                 {
-                    if (result.IsSuccessStatusCode)
+                    if (result != null)
                     {
-                        return await result.Content.ReadAsAsync<ObservableCollection<IssueModel>>();
+                        if (result.IsSuccessStatusCode)
+                        {
+                            return await result.Content.ReadAsAsync<ObservableCollection<IssueModel>>();
+                        }
                     }
                 }
             }
@@ -267,7 +274,13 @@ namespace FetchItUniversalAndApi.Handlers
             {
                 using (var result = await apiLink.PutAsJsonAsync(issue, issue.IssueId))
                 {
-
+                    if (result != null)
+                    {
+                        if (result.IsSuccessStatusCode)
+                        {
+                            await new MessageDialog("Updated").ShowAsync();
+                        }
+                    }
                 }
             }
             catch (Exception)

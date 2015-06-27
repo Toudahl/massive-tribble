@@ -22,6 +22,7 @@ namespace FetchItUniversalAndApi.Handlers
 		private static ReportHandler _handler;
 		private static HttpClient Client { get; set; }
 	    private ProfileHandler ph;
+	    private ApiLink<ReportModel> apiLink;
 
 		/// <summary>
 		/// The different statuses a report can have. Values correspond to the values in the database.
@@ -40,6 +41,7 @@ namespace FetchItUniversalAndApi.Handlers
 		private ReportHandler()
 		{
 		    ph = ProfileHandler.GetInstance();
+            apiLink = new ApiLink<ReportModel>();
 		}
 
 		/// <summary>
@@ -66,48 +68,40 @@ namespace FetchItUniversalAndApi.Handlers
 		/// </summary>
 		/// <param name="status">The type of status to return.</param>
 		/// <returns></returns>
-		public IEnumerable<ReportModel> GetReports(ReportStatus status)
+		public async Task<IEnumerable<ReportModel>> GetReports()
 		{
-			using (Client = new HttpClient())
-			{
-				Client.BaseAddress = new Uri(_serverUrl);
-				Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				try
-				{
-					//Does not use the ReportStatusId at this point, now it just returns all the reports from the database.
-					//TODO: Find a way to use the Report Status to get the specified reports.
-					var reports = Task.Run(async () => await Client.GetAsync("reportmodels"));
-					var reportsToReturn = reports.Result.Content.ReadAsAsync<IEnumerable<ReportModel>>().Result;
+		    if (ph.CurrentLoggedInProfile == null) return null;
+		    try
+		    {
+                using (var result = await apiLink.GetAsync())
+                {
+                    if (result != null)
+                    {
+                        if (result.IsSuccessStatusCode)
+                        {
+                            return await result.Content.ReadAsAsync<IEnumerable<ReportModel>>();
+                        }
+                    }
+                }
+            }
+		    catch (Exception)
+		    {
+		        //TODO handle exception properly.
 
-					//Attaches the Reporting and Reported Profile models (Navigational properties)
-					foreach (var reportModel in reportsToReturn)
-					{
-						FindProfiles(reportModel);
-					}
-					return reportsToReturn;
-
-					//TODO: Possibly find another way to use the Report Status to get the specified reports.
-					//Through something called Attribute routing, it is easily possible to make the 
-					//url "reportmodels/status/1" return all statuses numbered 1, etc.
-				}
-				catch (Exception)
-				{
-					ErrorHandler.GettingError(new ReportModel());
-				}
-			}
-			return new List<ReportModel>();
+		        throw;
+		    }
+		    return null;
 		}
 
-		/// <summary>
-		/// Attaches the ProfileModels corresponding to the FK_ReportedId and FK_ReportingId
-		/// </summary>
-		/// <param name="report">The report to find profiles for.</param>
-		public void FindProfiles(ReportModel report)
-		{
-			var ph = ProfileHandler.GetInstance();
-			report.FK_ReportedProfile = ph.AllProfiles.Where(profile => profile.ProfileId == report.FK_ReportedProfile).Select(profile => profile).ToList().First().ProfileId;
-			report.FK_ReportingProfile = ph.AllProfiles.Where(profile => profile.ProfileId == report.FK_ReportingProfile).Select(profile => profile).ToList().First().ProfileId;
-		}
+        ///// <summary>
+        ///// Attaches the ProfileModels corresponding to the FK_ReportedId and FK_ReportingId
+        ///// </summary>
+        ///// <param name="report">The report to find profiles for.</param>
+        //public void FindProfiles(ReportModel report)
+        //{
+        //    report.FK_ReportedProfile = ph.AllProfiles.Where(profile => profile.ProfileId == report.FK_ReportedProfile).Select(profile => profile).ToList().First().ProfileId;
+        //    report.FK_ReportingProfile = ph.AllProfiles.Where(profile => profile.ProfileId == report.FK_ReportingProfile).Select(profile => profile).ToList().First().ProfileId;
+        //}
 
 		/// <summary>
 		/// Creates a Report from the object passed to it and POSTs it to the database.
@@ -126,7 +120,7 @@ namespace FetchItUniversalAndApi.Handlers
                     await Client.PostAsJsonAsync("reportmodels", obj);
 
 				    //Attaches the navigational properties again to the reportmodel.
-                    FindProfiles(obj);
+                    //FindProfiles(obj);
 			    }
 
 			    catch (Exception)
@@ -134,7 +128,7 @@ namespace FetchItUniversalAndApi.Handlers
 				    ErrorHandler.CreatingError(new ReportModel());
 
 				    //Attaches the navigational properties again to the reportmodel.
-                    FindProfiles(obj);
+                    //FindProfiles(obj);
 			    }
 		    }
 		}
@@ -232,13 +226,13 @@ namespace FetchItUniversalAndApi.Handlers
 	                try
 	                {
 	                    await Client.PutAsJsonAsync("reportmodels/" + reportToUpdate.ReportId, reportToUpdate);
-	                    FindProfiles(reportToUpdate);
+	                    //FindProfiles(reportToUpdate);
 	                }
 
 	                catch (Exception)
 	                {
 	                    ErrorHandler.UpdatingError(new ReportModel());
-	                    FindProfiles(reportToUpdate);
+	                    //FindProfiles(reportToUpdate);
 	                }
 	            }
 	    }

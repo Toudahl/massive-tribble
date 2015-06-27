@@ -461,6 +461,37 @@ namespace FetchItUniversalAndApi.Handlers
                 }
             }
         }
+
+        public async Task<IEnumerable<ProfileModel>> GetSpecificProfiles(params int[] ids)
+        {
+            HttpResponseMessage result = null;
+            var list = new List<ProfileModel>();
+            try
+            {
+                foreach (int id in ids)
+                {
+                    result = await apiLink.GetAsync(id);
+                    if (result == null) continue;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        list.Add(await result.Content.ReadAsAsync<ProfileModel>());
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                //TODO properly handle exception
+                throw;
+            }
+            finally
+            {
+                if (result != null)
+                {
+                    result.Dispose();
+                }
+            }
+            return list;
+        }
         #endregion
 
         #region GenerateSalt()
