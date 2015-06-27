@@ -4,7 +4,20 @@ namespace FetchItUniversalAndApi.Models
 {
     public struct ReportModel
     {
-        public int ReportId { get; set; }
+        private int _reportId;
+
+        public int ReportId
+        {
+            get { return _reportId; }
+            set
+            {
+                if (_reportId == 0)
+                {
+                    _reportId = value;
+                }
+            }
+        }
+
         public int FK_ReportingProfile { get; set; }
         public string ReportMessage { get; set; }
         public DateTime ReportTime { get; set; }
