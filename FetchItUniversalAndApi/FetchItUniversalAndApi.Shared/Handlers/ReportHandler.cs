@@ -13,7 +13,7 @@ namespace FetchItUniversalAndApi.Handlers
 	/// <summary>
 	/// Handles getting, deleting, creating and updating Reports.
 	/// </summary>
-	class ReportHandler : ICreate, IDelete, IDisable, ISuspend, IUpdate
+    class ReportHandler : ICreate<ReportModel>, IDelete<ReportModel>, IDisable<ReportModel>, ISuspend<ReportModel>, IUpdate<ReportModel>
 	{
 		#region Fields, enums and Properties
 
@@ -21,6 +21,7 @@ namespace FetchItUniversalAndApi.Handlers
 		private static Object _lockObject = new object();
 		private static ReportHandler _handler;
 		private static HttpClient Client { get; set; }
+	    private ProfileHandler ph;
 
 		/// <summary>
 		/// The different statuses a report can have. Values correspond to the values in the database.
@@ -38,7 +39,7 @@ namespace FetchItUniversalAndApi.Handlers
 
 		private ReportHandler()
 		{
-
+		    ph = ProfileHandler.GetInstance();
 		}
 
 		/// <summary>
@@ -112,46 +113,39 @@ namespace FetchItUniversalAndApi.Handlers
 		/// Creates a Report from the object passed to it and POSTs it to the database.
 		/// </summary>
 		/// <param name="obj">The report object to POST</param>
-		public async void Create(object obj)
+		public async void Create(ReportModel obj)
 		{
-			var reportToCreate = obj as ReportModel;
-			if (reportToCreate != null)
-			{
-				//Sets the navigational properties to null, to make sure that the report can POSTed
-				reportToCreate.ReportedProfile = null;
-				reportToCreate.ReportingProfile = null;
-				using (Client = new HttpClient())
-				{
-					Client.BaseAddress = new Uri(_serverUrl);
-					Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-					try
-					{
-						await Client.PostAsJsonAsync("reportmodels", reportToCreate);
+		    if (obj == null) return;
+		    //Sets the navigational properties to null, to make sure that the report can POSTed
+            obj.ReportedProfile = null;
+            obj.ReportingProfile = null;
+		    using (Client = new HttpClient())
+		    {
+			    Client.BaseAddress = new Uri(_serverUrl);
+			    Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+			    try
+			    {
+                    await Client.PostAsJsonAsync("reportmodels", obj);
 
-						//Attaches the navigational properties again to the reportmodel.
-						FindProfiles(reportToCreate);
-					}
+				    //Attaches the navigational properties again to the reportmodel.
+                    FindProfiles(obj);
+			    }
 
-					catch (Exception)
-					{
-						ErrorHandler.CreatingError(new ReportModel());
+			    catch (Exception)
+			    {
+				    ErrorHandler.CreatingError(new ReportModel());
 
-						//Attaches the navigational properties again to the reportmodel.
-						FindProfiles(reportToCreate);
-					}
-				}
-			}
-			else
-			{
-				ErrorHandler.WrongModelError(obj, new ReportModel());
-			}
+				    //Attaches the navigational properties again to the reportmodel.
+                    FindProfiles(obj);
+			    }
+		    }
 		}
 
 		/// <summary>
 		/// Deletes the specified Report from the database.
 		/// </summary>
 		/// <param name="obj">The report object to DELETE.</param>
-		public async void Delete(object obj)
+        public async void Delete(ReportModel obj)
 		{
 			var reportToDelete = obj as ReportModel;
 			if (reportToDelete != null)
@@ -180,7 +174,7 @@ namespace FetchItUniversalAndApi.Handlers
 		/// Changes the status of the Report to Disabled.
 		/// </summary>
 		/// <param name="obj">The report object to disable.</param>
-		public void Disable(object obj)
+        public void Disable(ReportModel obj)
 		{
 			var reportToDisable = obj as ReportModel;
 			if (reportToDisable != null)
@@ -206,7 +200,7 @@ namespace FetchItUniversalAndApi.Handlers
 		/// Changes the status of the Report to Suspended.
 		/// </summary>
 		/// <param name="obj">The report object to suspend.</param>
-		public void Suspend(object obj)
+        public void Suspend(ReportModel obj)
 		{
 			var reportToSuspend = obj as ReportModel;
 			if (reportToSuspend != null)
@@ -232,7 +226,7 @@ namespace FetchItUniversalAndApi.Handlers
 		/// Updates the specified Report in the database.
 		/// </summary>
 		/// <param name="obj">The report object to update (PUT).</param>
-		public async void Update(object obj)
+        public async void Update(ReportModel obj)
 		{
 			var reportToUpdate = obj as ReportModel;
 			if (reportToUpdate != null)
@@ -278,7 +272,7 @@ namespace FetchItUniversalAndApi.Handlers
 					//Fills in all the fields except for the ReportId
 					//Todo: Both ReportModel in solution and in Database need a ReportStatusId.
 					FK_ReportedProfile = target.ProfileId,
-					FK_ReportingProfile = ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileId,
+					FK_ReportingProfile = ph.CurrentLoggedInProfile.ProfileId,
 					ReportMessage = reportsContent,
 					ReportTime = DateTime.UtcNow,
 
@@ -289,7 +283,7 @@ namespace FetchItUniversalAndApi.Handlers
 					//ReportStatusId = (int)ReportStatus.Active,
 				};
 			}
-			catch (Exception exception)
+			catch (Exception)
 			{
 				ErrorHandler.DisplayErrorMessage("Creating the report object failed", "Contact support");
 			}

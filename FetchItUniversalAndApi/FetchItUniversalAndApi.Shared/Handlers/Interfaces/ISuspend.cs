@@ -1,7 +1,7 @@
 ﻿namespace FetchItUniversalAndApi.Handlers.Interfaces
 {
-    interface ISuspend
+    interface ISuspend<T>
     {
-        void Suspend(object obj);
+        void Suspend(T obj);
     }
 }

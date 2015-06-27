@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
+using Windows.Security.Cryptography;
+using Windows.Security.Cryptography.Core;
+using Windows.Storage.Streams;
+using Windows.UI.Popups;
 using FetchItUniversalAndApi.Handlers.Interfaces;
 using FetchItUniversalAndApi.Models;
 using Newtonsoft.Json;
@@ -14,17 +19,33 @@ namespace FetchItUniversalAndApi.Handlers
     /// <summary>
     /// This handler will take care of anything that has to do with profiles.
     /// </summary>
-    class ProfileHandler: IDelete, ICreate, ISuspend, IDisable, IUpdate, ISearch
+    class ProfileHandler : IDelete<ProfileModel>, ICreate<ProfileModel>, ISuspend<ProfileModel>, IDisable<ProfileModel>, IUpdate<ProfileModel>, ISearch<ProfileModel>
     {
+        #region Events & delegates
+
+        public delegate void LogInDelegate();
+        public event LogInDelegate LogInEvent;
+
+        public delegate void LogOutDelegate();
+        public event LogOutDelegate LogOutEvent;
+
+        public delegate void CreateProfile(bool success);
+        public event CreateProfile CreationEvent;
+
+        delegate void UpdateStatusOrProfile(bool success);
+        private event UpdateStatusOrProfile UpdateEvent;
+
+        #endregion
+
         #region Enums
         /// <summary>
         /// The values of this enum corrosponds to the id's in the database.
         /// </summary>
         public enum ProfileStatus
         {
-            Deleted = 1,
-            Suspended = 2,
-            Disabled = 3,
+            Delete = 1,
+            Suspend = 2,
+            Disable = 3,
             Active = 4,
             Unactivated = 5,
         }
@@ -50,13 +71,12 @@ namespace FetchItUniversalAndApi.Handlers
         #endregion
 
         #region Fields and properties.
-
-        private const string Apiurl = "http://fetchit.mortentoudahl.dk/api/ProfileModels";
         private ProfileModel _currentLoggedInProfile;
         private ProfileModel _selectedProfile;
         private IEnumerable<ProfileModel> _allProfiles;
         private static ProfileHandler _handler;
-        private static Object _lockObject = new object();
+        private static object _lockObject = new object();
+        private ApiLink<ProfileModel> apiLink;
 
         /// <summary>
         /// This contains the currently logged in profile.
@@ -64,8 +84,28 @@ namespace FetchItUniversalAndApi.Handlers
         public ProfileModel CurrentLoggedInProfile
         {
             get { return _currentLoggedInProfile; }
-            private set { _currentLoggedInProfile = value; }
+            private set
+            {
+                if (value == null)
+                {
+                    _currentLoggedInProfile = value;
+                    if (LogOutEvent != null)
+                    {
+                        LogOutEvent();
+                    }
+                    return;
+                }
+                if (value == SelectedProfile) return;
+
+                _currentLoggedInProfile = value;
+                if (LogInEvent != null)
+                {
+                    LogInEvent();
+                }
+
+            }
         }
+
 
         /// <summary>
         /// Contains the currently selected profile. IE, could be used to hold a profile to delete.
@@ -74,7 +114,17 @@ namespace FetchItUniversalAndApi.Handlers
         public ProfileModel SelectedProfile
         {
             get { return _selectedProfile; }
-            set { _selectedProfile = value; }
+            set
+            {
+                if (value == CurrentLoggedInProfile)
+                {
+                    _selectedProfile = null;
+                }
+                else
+                {
+                    _selectedProfile = value;
+                }
+            }
         }
 
         /// <summary>
@@ -82,7 +132,10 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         public IEnumerable<ProfileModel> AllProfiles
         {
-            get { return _allProfiles; }
+            get
+            {
+                return _allProfiles;
+            }
             set { _allProfiles = value; }
         }
 
@@ -94,7 +147,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         private ProfileHandler()
         {
-            
+            apiLink = new ApiLink<ProfileModel>();
         }
 
         /// <summary>
@@ -115,73 +168,54 @@ namespace FetchItUniversalAndApi.Handlers
         }
         #endregion
 
-        #region Delete method
+        #region Create method
+        /// <summary>
+        /// This method adds a new user to the profile. By default, it will be an Activated User that has not been verified.
+        /// </summary>
+        /// <param name="profile">Pass in a ProfileModel with the state that you wish to create the profile in.</param>
+        public async void Create(ProfileModel profile)
+        {
+            if (profile == null) return;
+            profile.FK_ProfileLevel = (int)ProfileLevel.User;
+            profile.FK_ProfileStatus = (int)ProfileStatus.Active;
+            profile.ProfileIsVerified = false;
+            profile.FK_ProfileVerificationType = (int)ProfileVerificationType.NotVerified;
+            profile.ProfileCanReport = 1;
 
+            profile.ProfilePasswordSalt = GenerateSalt();
+            profile.ProfilePassword = HashPassword(profile.ProfilePassword, profile.ProfilePasswordSalt);
+
+            using (var result = await apiLink.PostAsJsonAsync(profile))
+            {
+                if (result != null)
+                {
+                    await new MessageDialog(result.ReasonPhrase).ShowAsync();
+                    if (CreationEvent != null)
+                    {
+                        CreationEvent(result.IsSuccessStatusCode);
+                    }
+                }
+            }
+        }
+        #endregion
+
+        #region Delete method
         /// <summary>
         /// This method will check if the <see cref="CurrentLoggedInProfile"/> has the rights to delete a profile.
         /// And if so, change the status of the selected profile to deleted. Nothing is actually removed from the database.
         /// If modifying the profile status fails, it will throw an exception.
         /// </summary>
         /// <param name="obj">The profile to delete</param>
-        public void Delete(object obj)
+        public void Delete(ProfileModel profile)
         {
-            if (CurrentLoggedInProfile.FK_ProfileLevel >= (int)ProfileLevel.Administrator)
-            {
-                if (obj is ProfileModel)
-                {
-                    var profileToDelete = obj as ProfileModel;
-                    if (profileToDelete.ProfileId == CurrentLoggedInProfile.ProfileId)
-                    {
-                        ErrorHandler.WrongTargetProfile("delete");
-                    }
-                    else
-                    {
-                        ChangeStatus(profileToDelete, ProfileStatus.Deleted);
-                    }
-                }
-                else
-                {
-                    ErrorHandler.WrongModelError(obj, new ProfileModel());
-                }
-            }
-            else
-            {
-                ErrorHandler.WrongProfileLevel((ProfileLevel)CurrentLoggedInProfile.FK_ProfileLevel, "delete");
-            }
+            DoStatusUpdate(
+                profile,
+                ProfileStatus.Delete,
+                () => CurrentLoggedInProfile.FK_ProfileLevel < (int)ProfileLevel.Administrator,
+                () => profile.ProfileId != CurrentLoggedInProfile.ProfileId
+                );
         }
-        #endregion
 
-        #region Create method
-        /// <summary>
-        /// This method adds a new user to the profile. By default, it will be an Unactivated User that has not been verified.
-        /// </summary>
-        /// <param name="obj">Pass in a ProfileModel with the state that you wish to create the profile in.</param>
-        public async void Create(object obj)
-        {
-            if (obj is ProfileModel)
-            {
-                var newProfile = obj as ProfileModel;
-                newProfile.FK_ProfileLevel = (int)ProfileLevel.User;
-                newProfile.FK_ProfileStatus = (int) ProfileStatus.Active;
-                newProfile.ProfileIsVerified = false;
-                newProfile.FK_ProfileVerificationType = (int) ProfileVerificationType.NotVerified;
-                newProfile.ProfileCanReport = 1;
-
-                //TODO create method to generate a salt, and hash the users password with it.
-                newProfile.ProfilePasswordSalt = 12345678;
-                //newProfile.ProfilePassword = HashPassword(newProfile.ProfilePassword, newProfile.ProfilePasswordSalt);
-
-                using (var client = new HttpClient())
-                {
-                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    await client.PostAsJsonAsync(Apiurl, newProfile);
-                }
-            }
-            else
-            {
-                ErrorHandler.WrongModelError(obj, new ProfileModel());
-            }
-        }
         #endregion
 
         #region Suspend method
@@ -191,32 +225,16 @@ namespace FetchItUniversalAndApi.Handlers
         /// If modifying the profile status fails, it will throw a <see cref="ProfileUpdate"/> exception.
         /// </summary>
         /// <param name="obj">The profile to suspend</param>
-        public void Suspend(object obj)
+        public void Suspend(ProfileModel profile)
         {
-            if (CurrentLoggedInProfile.FK_ProfileLevel >= (int)ProfileLevel.Administrator)
-            {
-                if (obj is ProfileModel)
-                {
-                    var profileToSuspend = obj as ProfileModel;
-                    if (profileToSuspend.ProfileId == CurrentLoggedInProfile.ProfileId)
-                    {
-                        ErrorHandler.WrongTargetProfile("suspend");
-                    }
-                    else
-                    {
-                        ChangeStatus(profileToSuspend, ProfileStatus.Suspended);
-                    }
-                }
-                else
-                {
-                    ErrorHandler.WrongModelError(obj, new ProfileModel());
-                }
-            }
-            else
-            {
-                ErrorHandler.WrongProfileLevel((ProfileLevel)CurrentLoggedInProfile.FK_ProfileLevel,"suspend");
-            }
+            DoStatusUpdate(
+                profile,
+                ProfileStatus.Suspend,
+                () => CurrentLoggedInProfile.FK_ProfileLevel < (int)ProfileLevel.Administrator,
+                () => profile.ProfileId != CurrentLoggedInProfile.ProfileId
+                );
         }
+
         #endregion
 
         #region Disable method
@@ -226,69 +244,46 @@ namespace FetchItUniversalAndApi.Handlers
         /// If modifying the profile status fails, it will throw a <see cref="ProfileUpdate"/> exception.
         /// </summary>
         /// <param name="obj">The profile to disable</param>
-        public void Disable(object obj)
+        public void Disable(ProfileModel profile)
         {
-            if (CurrentLoggedInProfile.FK_ProfileLevel >= (int)ProfileLevel.User)
-            {
-                if (obj is ProfileModel)
-                {
-                    var profileToDisable = obj as ProfileModel;
-                    if (profileToDisable.ProfileId != CurrentLoggedInProfile.ProfileId)
-                    {
-                        ErrorHandler.WrongTargetProfile("suspend");
-                    }
-                    else
-                    {
-                        ChangeStatus(CurrentLoggedInProfile, ProfileStatus.Disabled);
-                    }
-
-                }
-                else
-                {
-                    ErrorHandler.WrongModelError(obj, new ProfileModel());
-                }
-            }
-            else
-            {
-                ErrorHandler.WrongProfileLevel((ProfileLevel)CurrentLoggedInProfile.FK_ProfileLevel, "disable");
-            }
+            DoStatusUpdate(
+                profile,
+                ProfileStatus.Disable,
+                () => CurrentLoggedInProfile.FK_ProfileLevel < (int)ProfileLevel.User,
+                () => profile.ProfileId == CurrentLoggedInProfile.ProfileId
+            );
         }
         #endregion
 
         #region Update method
         /// <summary>
         /// This method will take the ProfileModel it is supplied, and update it on the server
-        /// Do NOT change the ID of a profile. TODO: make the webapi prevent change of name.
         /// </summary>
         /// <param name="obj">A ProfileModel</param>
-        public async void Update(object obj)
+        public async void Update(ProfileModel profile)
         {
-            if (CurrentLoggedInProfile != null)
+            if (profile == null) return;
+            if (CurrentLoggedInProfile == null) return;
+            using (var result = await apiLink.PutAsJsonAsync(profile, profile.ProfileId))
             {
-                if (obj is ProfileModel)
+                if (result != null)
                 {
-                    var profil = obj as ProfileModel;
-                    var url = Apiurl + "/" + profil.ProfileId;
-                    using (var client = new HttpClient())
+                    if (result.IsSuccessStatusCode)
                     {
-                        try
-                        {
-                            await client.PutAsJsonAsync(url, profil);
-                        }
-                        catch (Exception)
-                        {
-                            ErrorHandler.NoResponseFromApi();
-                        }
+                        await
+                            new MessageDialog("The profile: " + profile.ProfileName + " was updated",
+                                result.ReasonPhrase).ShowAsync();
+                    }
+                    else
+                    {
+                        await new MessageDialog("Update failed", result.ReasonPhrase).ShowAsync();
+                    }
+
+                    if (UpdateEvent != null)
+                    {
+                        UpdateEvent(result.IsSuccessStatusCode);
                     }
                 }
-                else
-                {
-                    ErrorHandler.WrongModelError(obj, new ProfileModel());
-                }
-            }
-            else
-            {
-                ErrorHandler.WrongTargetProfile("update");
             }
         }
         #endregion
@@ -300,34 +295,36 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="obj">Object with the information to search for.</param>
         /// <returns>A list of objects that matches the search criteria</returns>
-        public IEnumerable<object> Search(object obj)
+        public async Task<IEnumerable<ProfileModel>> Search(ProfileModel needle)
         {
-            if (obj is ProfileModel)
+            IEnumerable<ProfileModel> haystack = null;
+            using (var result = await apiLink.GetAsync())
             {
-                var needle = obj as ProfileModel;
-                IEnumerable<ProfileModel> haystack;
-                using (var client = new HttpClient())
+                if (result != null)
                 {
-                    haystack = Task.Run(
-                         async () =>
-                             JsonConvert.DeserializeObject<IEnumerable<ProfileModel>>(await client.GetStringAsync(Apiurl))).Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        haystack = await result.Content.ReadAsAsync<IEnumerable<ProfileModel>>();
+                    }
+                    else
+                    {
+                        await new MessageDialog(result.ReasonPhrase).ShowAsync();
+                    }
                 }
-
-                if (needle.ProfileId != 0)
-                {
-                    return haystack.Where(p => p.ProfileId == needle.ProfileId);
-                }
-                if (needle.ProfileName != null)
-                {
-                    return haystack.Where(p => p.ProfileName == needle.ProfileName);
-                }
-                if (needle.ProfileEmail != null)
-                {
-                    return haystack.Where(p => p.ProfileEmail == needle.ProfileEmail);
-                }
-                return null;
             }
-            ErrorHandler.WrongModelError(obj, new ProfileModel());
+
+            if (needle.ProfileId != 0)
+            {
+                return haystack.Where(p => p.ProfileId == needle.ProfileId);
+            }
+            if (needle.ProfileName != null)
+            {
+                return haystack.Where(p => p.ProfileName.Contains(needle.ProfileName));
+            }
+            if (needle.ProfileEmail != null)
+            {
+                return haystack.Where(p => p.ProfileEmail == needle.ProfileEmail);
+            }
             return null;
         }
         #endregion
@@ -339,48 +336,51 @@ namespace FetchItUniversalAndApi.Handlers
         /// <param name="profile">Must contain password and username</param>
         public async void LogIn(ProfileModel profile)
         {
-            if (profile.ProfilePassword != null && profile.ProfileName != null)
+            if (profile.ProfilePassword == null || profile.ProfileName == null)
             {
-                using (var client = new HttpClient())
+                ErrorHandler.RequiredFields(new List<string> {"Username", "Password"});
+                return;
+            }
+            using (var result = await apiLink.GetAsync())
+            {
+                // TODO update the webapi, so i dont have to request all the information like this.
+                // All the user information is up for graps each time someone logs in.
+                try
                 {
-                    // TODO update the webapi, so i dont have to request all the information like this.
-                    // All the user information is up for graps each time someone logs in.
+                    if (result == null) return;
+                    if (!result.IsSuccessStatusCode) return;
+                    var listOfProfiles = await result.Content.ReadAsAsync<IEnumerable<ProfileModel>>();
                     try
                     {
-                        var result = await client.GetStringAsync(Apiurl);
-                        var listOfProfiles = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<ProfileModel>>(result));
-                        try
-                        {
-                            //TODO after making the hasing and salting work. Change this, so it uses the hashed password for the check
-                            var selectedProfile =
-                                listOfProfiles.FirstOrDefault(p => p.ProfileName == profile.ProfileName && p.ProfilePassword == profile.ProfilePassword);
+                        var selectedProfile =
+                            listOfProfiles.FirstOrDefault(
+                                p =>
+                                    p.ProfileName.ToLower() == profile.ProfileName.ToLower() &&
+                                    p.ProfilePassword ==
+                                    HashPassword(profile.ProfilePassword, p.ProfilePasswordSalt));
 
-                            if (selectedProfile.FK_ProfileStatus == (int)ProfileStatus.Active)
-                            {
-                                CurrentLoggedInProfile = selectedProfile;
-                            }
-                            else
-                            {
-                                ErrorHandler.WrongProfileStatus();
-                            }
-                        }
-                        catch (Exception)
+                        if (selectedProfile.FK_ProfileStatus == (int) ProfileStatus.Active)
                         {
-                            ErrorHandler.FailedLogIn(profile.ProfileName);
+                            CurrentLoggedInProfile = selectedProfile;
                         }
-
+                        else
+                        {
+                            ErrorHandler.WrongProfileStatus();
+                        }
                     }
                     catch (Exception)
                     {
-                        ErrorHandler.NoResponseFromApi();
+                        ErrorHandler.FailedLogIn(profile.ProfileName);
                     }
                 }
-            }
-            else
-            {
-                ErrorHandler.RequiredFields(new List<string>{"Username","Password"});
+                catch (Exception e)
+                {
+                    new MessageDialog(e.Message).ShowAsync();
+                    //ErrorHandler.NoResponseFromApi();
+                }
             }
         }
+
         #endregion
 
         #region LogOut method
@@ -394,94 +394,119 @@ namespace FetchItUniversalAndApi.Handlers
         #endregion
 
         #region 'Supporting methods'
+        #region DoStatusUpdate(args)
         /// <summary>
-        /// This method is used internally by the class in all methods that modify the status of the profile.
+        /// Used internally to make status updates to a profile. Used by, Disable, Delete and Suspend
         /// </summary>
-        /// <param name="profileToModify">Which profile should be modifiled.</param>
-        /// <param name="newStatus">What should the new status be.</param>
-        private async void ChangeStatus(ProfileModel profileToModify, ProfileStatus newStatus)
+        /// <param name="profile">The profile to modify</param>
+        /// <param name="newStatus">The status to give it</param>
+        /// <param name="profileLevelCheck">Used in an if statement to check if the <see cref="CurrentLoggedInProfile"/> has the correct level. Should evaluate to false to pass</param>
+        /// <param name="targetProfile">Used in an if statement to check if the action is allowed on the target profile. Should evaluate to true to pass</param>
+        private async void DoStatusUpdate(ProfileModel profile, ProfileStatus newStatus, Func<bool> profileLevelCheck, Func<bool> targetProfile)
         {
-            using (var client = new HttpClient())
+            if (profile == null) return;
+            if (CurrentLoggedInProfile == null) return;
+            if (profileLevelCheck.Invoke())
             {
-                var url = Apiurl + "/" + profileToModify.ProfileId;
-                profileToModify.FK_ProfileStatus = (int)newStatus;
-                profileToModify.ProfileStatus = null;
-                profileToModify.ProfileLevel = null;
-                try
+                ErrorHandler.WrongProfileLevel((ProfileLevel)CurrentLoggedInProfile.FK_ProfileLevel, newStatus.ToString());
+            }
+            else
+            {
+                if (targetProfile.Invoke())
                 {
-                    await client.PutAsJsonAsync(url, profileToModify);
+                    profile.FK_ProfileStatus = (int)newStatus;
+
+                    using (var result = await apiLink.PutAsJsonAsync(profile,profile.ProfileId))
+                    {
+                        if (result != null)
+                        {
+                            if (result.IsSuccessStatusCode)
+                            {
+                                await new MessageDialog(profile.ProfileName + " has been " + newStatus).ShowAsync();
+                            }
+                            else
+                            {
+                                await new MessageDialog("Update failed", result.ReasonPhrase).ShowAsync();
+                            }
+                            if (UpdateEvent != null)
+                            {
+                                UpdateEvent(result.IsSuccessStatusCode);
+                            }
+                        }
+                    }
                 }
-                catch (Exception)
+                else
                 {
-                    ErrorHandler.NoResponseFromApi();
+                    ErrorHandler.WrongTargetProfile(newStatus.ToString());
                 }
             }
         }
+        #endregion
 
+        #region GetAllProfiles()
         /// <summary>
         /// Using this method will update the content of <see cref="AllProfiles"/>
         /// </summary>
         public async void GetAllProfiles()
         {
-            using (var client = new HttpClient())
+            if (CurrentLoggedInProfile == null) return;
+            using (var result = await apiLink.GetAsync())
             {
+                if (result == null) return;
+                if (!result.IsSuccessStatusCode) return;
                 try
                 {
-                    var result = await client.GetStringAsync(Apiurl);
-                    AllProfiles = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<ProfileModel>>(result));
+                    AllProfiles = await result.Content.ReadAsAsync<IEnumerable<ProfileModel>>();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    ErrorHandler.NoResponseFromApi();
+                    new MessageDialog(e.Message).ShowAsync();
                 }
             }
         }
+        #endregion
 
+        #region GenerateSalt()
+        /// <summary>
+        /// This will generate a cryptographic grade random string
+        /// </summary>
+        /// <returns>Random string</returns>
+        public long GenerateSalt()
+        {
+            //This is a very weak salt. The database was set up incorrectly.
+            // TODO: Change the EF generated models in API, to work with a better database data type
+            string randomnumber = CryptographicBuffer.GenerateRandomNumber().ToString();
+            string eightDigits = "";
+            for (int i = 0; i < 8; i++)
+            {
+                eightDigits += randomnumber[i];
+            }
+            return Convert.ToInt64(eightDigits); //CryptographicBuffer.EncodeToBase64String(CryptographicBuffer.GenerateRandom(64));
+        }
+        #endregion
 
-        //#region GenerateSalt()
-        ///// <summary>
-        ///// This will generate a cryptographic grade random string
-        ///// </summary>
-        ///// <returns>Random string</returns>
-        //private string GenerateSalt()
-        //{
-        //    // http://stackoverflow.com/questions/7272771/encrypting-the-password-using-salt-in-c-sharp
-        //    var bytes = new Byte[32];
-        //    using (var random = new RNGCryptoServiceProvider())
-        //    {
-        //        random.GetBytes(bytes);
-        //        string result = "";
-        //        // TODO: look into stringbuilders
-        //        foreach (byte b in bytes)
-        //        {
-        //            result += b;
-        //        }
-        //        return result;
-        //    }
-        //}
-        //#endregion
+        #region HashPassword()
+        /// <summary>
+        /// This method hashes the input, for use as a password.
+        /// </summary>
+        /// <param name="password">The string you wish to Hash</param>
+        /// <param name="salt">The salt</param>
+        /// <returns>The hashed result of the two inputs</returns>
+        private string HashPassword(string password, long salt)
+        {
+            var passwordAndSalt = password + salt;
+            var provider = HashAlgorithmProvider.OpenAlgorithm(HashAlgorithmNames.Sha512);
+            var hash = provider.CreateHash();
 
-        //#region HashPassword()
-        ///// <summary>
-        ///// This method hashes the input, for use as a password.
-        ///// </summary>
-        ///// <param name="password">The string you wish to Hash</param>
-        ///// <param name="salt">The salt</param>
-        ///// <returns>The hashed result of the two inputs</returns>
-        //private string HashPassword(string password, string salt)
-        //{
-        //    var passwordAndSalt = password + salt;
-        //    var pwdAsBytesArray = Encoding.UTF8.GetBytes(passwordAndSalt);
-        //    string result = "";
-        //    var sha256 = HashAlgorithmProvider.OpenAlgorithm("SHA256");
-            
-        //        // https://msdn.microsoft.com/en-us/library/bb548651.aspx
-        //        // Take the current, and the next as arguement. Concatenate them, and save in current.
-        //        // Do it for all the occurances in the byte array, and add all of it to result
-        //        return sha256.ComputeHash(pwdAsBytesArray).Aggregate(result, (current, next) => current + next);
-        //}
-        //#endregion
+            IBuffer buffer = CryptographicBuffer.ConvertStringToBinary(passwordAndSalt, BinaryStringEncoding.Utf8);
+            hash.Append(buffer);
+            IBuffer hashedBuffer = hash.GetValueAndReset();
+
+            return CryptographicBuffer.EncodeToBase64String(hashedBuffer);
+        }
+        #endregion
 
         #endregion
     }
+
 }

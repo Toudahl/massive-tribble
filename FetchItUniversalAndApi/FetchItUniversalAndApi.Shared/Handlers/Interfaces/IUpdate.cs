@@ -1,7 +1,7 @@
 ﻿namespace FetchItUniversalAndApi.Handlers.Interfaces
 {
-    interface IUpdate
+    interface IUpdate<T>
     {
-        void Update(object obj);
+        void Update(T obj);
     }
 }

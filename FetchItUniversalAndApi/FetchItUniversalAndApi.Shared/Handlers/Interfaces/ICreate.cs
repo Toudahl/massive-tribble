@@ -1,7 +1,7 @@
 ﻿namespace FetchItUniversalAndApi.Handlers.Interfaces
 {
-    interface ICreate
+    interface ICreate<T>
     {
-        void Create(object obj);
+        void Create(T obj);
     }
 }

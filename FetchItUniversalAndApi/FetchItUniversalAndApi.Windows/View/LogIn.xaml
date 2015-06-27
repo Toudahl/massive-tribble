@@ -51,7 +51,6 @@
                     <Button x:Name="button_login" 
                             Content="Log in" 
                             Command="{Binding LogInCommand}"  
-                            Click="LoginButton_OnClick" 
                             Width="300"
                             BorderThickness="0"
                             Background="#FFCCFFCC" 

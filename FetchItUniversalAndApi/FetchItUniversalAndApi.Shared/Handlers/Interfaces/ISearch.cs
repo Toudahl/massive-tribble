@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FetchItUniversalAndApi.Handlers.Interfaces
 {
-    interface ISearch
+    interface ISearch<T>
     {
-        IEnumerable<object> Search(object obj);
+        Task<IEnumerable<T>> Search(T obj);
     }
 }

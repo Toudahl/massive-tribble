@@ -20,6 +20,7 @@ namespace FetchItUniversalAndApi.View
 
 		private NavigationHelper navigationHelper;
 		private ObservableDictionary defaultViewModel = new ObservableDictionary();
+	    private ProfileHandler ph;
 
 		/// <summary>
 		/// This can be changed to a strongly typed view model.
@@ -45,7 +46,8 @@ namespace FetchItUniversalAndApi.View
 			this.navigationHelper = new NavigationHelper(this);
 			this.navigationHelper.LoadState += navigationHelper_LoadState;
 			this.navigationHelper.SaveState += navigationHelper_SaveState;
-
+            ph = ProfileHandler.GetInstance();
+		    ph.LogOutEvent += NavigateToLogIn;
 
 		}
 
@@ -149,8 +151,7 @@ namespace FetchItUniversalAndApi.View
         #region AppBar Buttons
         private void profileButton_Click(object sender, RoutedEventArgs e)
         {
-            var ph = ProfileHandler.GetInstance();
-            ph.SelectedProfile = ph.CurrentLoggedInProfile;
+            
             this.Frame.Navigate(typeof(ProfileDetailPage));
         }
 
@@ -174,8 +175,11 @@ namespace FetchItUniversalAndApi.View
 
         private void profileLogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            var ph = ProfileHandler.GetInstance();
             ph.LogOut();
+        }
+
+        private void NavigateToLogIn()
+        {
             this.Frame.Navigate(typeof(MainPage));
         }
 

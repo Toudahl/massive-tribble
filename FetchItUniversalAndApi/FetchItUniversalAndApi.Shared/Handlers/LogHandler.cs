@@ -15,7 +15,7 @@ namespace FetchItUniversalAndApi.Handlers
     /// Handles creating Logs when a system error has occured
     /// Should in most situations be only used through the ErrorHandler
     /// </summary>
-    class LogHandler: ICreate
+    class LogHandler: ICreate<LogModel>
     {
         #region Fields and Properties
         //A field containing a reference to this class to be returned using GetInstance()
@@ -70,25 +70,19 @@ namespace FetchItUniversalAndApi.Handlers
         /// Creates a Log object in the database adding the time created and posting the <see cref="LogModel"/>
         /// </summary>
         /// <param name="objectBeingLogged">A LogModel object</param>
-        public void Create(object objectBeingLogged)
+        public void Create(LogModel objectBeingLogged)
         {
-            if (objectBeingLogged != null)
+            if (objectBeingLogged == null) return;
+            objectBeingLogged.LogTime = DateTime.UtcNow;
+            try
             {
-                if (objectBeingLogged is LogModel)
-                {
-                    var sendingLog = objectBeingLogged as LogModel;
-                    sendingLog.LogTime = DateTime.UtcNow;
-                    try
-                    {
-                        logWebClient.PostAsJsonAsync("LogModels", sendingLog);
-                    }
-                    catch (Exception)
-                    {
-                        //For now we suppress the errors
-                        //If we'd call the ErrorHandler here we'd have an infinite loop
-                        //We do not want the user experience to be affected when we are unable to log system errors
-                    }
-                }
+                logWebClient.PostAsJsonAsync("LogModels", objectBeingLogged);
+            }
+            catch (Exception)
+            {
+                //For now we suppress the errors
+                //If we'd call the ErrorHandler here we'd have an infinite loop
+                //We do not want the user experience to be affected when we are unable to log system errors
             }
         }
 
@@ -130,7 +124,7 @@ namespace FetchItUniversalAndApi.Handlers
                              JsonConvert.DeserializeObject<IEnumerable<LogModel>>(await logWebClient.GetStringAsync("LogModels"))).Result;
                     return haystack.Where(l => l.LogMessage.Contains(phraseToSearchFor));
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 //Add standardized error handling (fx. LogHandler.GetInstance().LogEvent(exception.message) and MessageBox.Show("Yo user, something went wrong!"));
                 ErrorHandler.NoResponseFromApi();

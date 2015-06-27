@@ -13,14 +13,16 @@ namespace FetchItUniversalAndApi.Handlers
     /// <summary>
     /// This is the 
     /// </summary>
-    public class TaskHandler : ICreate, IDelete, IDisable, ISuspend, ISearch, IUpdate
+    public class TaskHandler : ICreate<TaskModel>, IDelete<TaskModel>, IDisable<TaskModel>, ISuspend<TaskModel>, IUpdate<TaskModel>, ISearch<TaskModel>
     {
         private const string taskAPI = "http://fetchit.mortentoudahl.dk/api/TaskModels";
 
         private TaskModel _selectedTask;
         private TaskModel _newTask;
         private static TaskHandler _handler;
+        private ProfileHandler _ph;
         private static Object _lockObject = new object();
+        private ApiLink<TaskModel> apiLink;
 
         #region TaskStatus enums
         public enum TaskStatus
@@ -48,7 +50,8 @@ namespace FetchItUniversalAndApi.Handlers
 
         private TaskHandler()
         {
-            
+            _ph = ProfileHandler.GetInstance();
+            apiLink = new ApiLink<TaskModel>();
         }
 
         public static TaskHandler GetInstance()
@@ -85,14 +88,12 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="taskObject"></param>
 
-        public async void Create(object taskObject)
+        public async void Create(TaskModel taskObject)
         {
-            if (taskObject is TaskModel)
-            {
-                var addNewTask = taskObject as TaskModel;
-                addNewTask.FK_TaskMaster = ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileId;
-                addNewTask.FK_TaskStatus = (int) TaskStatus.Active;
-                addNewTask.TaskTimeCreated = DateTime.UtcNow;
+            if (taskObject == null) return;
+                taskObject.FK_TaskMaster = _ph.CurrentLoggedInProfile.ProfileId;
+                taskObject.FK_TaskStatus = (int)TaskStatus.Active;
+                taskObject.TaskTimeCreated = DateTime.UtcNow;
 
                 using (var Client = new HttpClient())
                 {
@@ -105,11 +106,6 @@ namespace FetchItUniversalAndApi.Handlers
                         ErrorHandler.NoResponseFromApi();
                     }
                 }
-            }
-            else
-            {
-
-            }
         }
         #endregion
 
@@ -120,12 +116,12 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="taskObject"></param>
 
-        public async void Delete(object taskObject)
+        public async void Delete(TaskModel taskObject)
         {
             if (taskObject is TaskModel)
             {
                 var taskToDelete = taskObject as TaskModel;
-                if (ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileLevel.ProfileLevelId > 9000)
+                if (_ph.CurrentLoggedInProfile.FK_ProfileLevel >= (int)ProfileHandler.ProfileLevel.Administrator)
                 {
                     using (var Client = new HttpClient())
                     {
@@ -142,10 +138,6 @@ namespace FetchItUniversalAndApi.Handlers
                     }
                 }
             }
-            else
-            {
-
-            }
         }
         #endregion
 
@@ -157,7 +149,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// <param name="taskObject"></param>
 
 
-        public async void Remove(object taskObject)
+        public async void Remove(TaskModel taskObject)
         {
             if (taskObject is TaskModel)
             {
@@ -197,7 +189,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="taskObject"></param>
 
-        public async void Report(object taskObject)
+        public async void Report(TaskModel taskObject)
         {
             if (taskObject is TaskModel)
             {
@@ -239,7 +231,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="taskObject"></param>
 
-        public async void Complete(object taskObject)
+        public async void Complete(TaskModel taskObject)
         {
             if (taskObject is TaskModel)
             {
@@ -281,7 +273,7 @@ namespace FetchItUniversalAndApi.Handlers
 
         private void setStatus(int? ID, TaskStatus status, TaskModel taskToComplete)
         {
-            if (ProfileHandler.GetInstance().CurrentLoggedInProfile.ProfileId == ID)
+            if (_ph.CurrentLoggedInProfile.ProfileId == ID)
             {
                 taskToComplete.FK_TaskStatus = (int)status;
             }
@@ -289,14 +281,14 @@ namespace FetchItUniversalAndApi.Handlers
         #endregion
 
         #region Disable Task
-        public void Disable(object obj)
+        public void Disable(TaskModel obj)
         {
             throw new NotImplementedException();
         }
         #endregion 
 
         #region Suspend Task
-        public void Suspend(object obj)
+        public void Suspend(TaskModel obj)
         {
             throw new NotImplementedException();
         }
@@ -308,18 +300,16 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public IEnumerable<object> Search(object obj)
+        public async Task<IEnumerable<TaskModel>> Search(TaskModel obj)
         {
             if (obj is TaskModel)
             {
                 var taskToSearchFor = obj as TaskModel;
                 IEnumerable<TaskModel> marketplace;
-                using (var client = new HttpClient())
+
+                using (var result = await apiLink.GetAsync())
                 {
-                    marketplace = Task.Run(
-                        async () =>
-                            JsonConvert.DeserializeObject<IEnumerable<TaskModel>>(await client.GetStringAsync(taskAPI)))
-                        .Result;
+                    marketplace = await result.Content.ReadAsAsync<IEnumerable<TaskModel>>();
                 }
                 if (taskToSearchFor.TaskId != 0)
                 {
@@ -342,7 +332,7 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="taskObject"></param>
 
-        async public void Update(object taskObject)
+        async public void Update(TaskModel taskObject)
         {
             if (taskObject is TaskModel)
             {

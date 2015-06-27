@@ -14,13 +14,26 @@ namespace FetchItUniversalAndApi.ViewModel
 	{
 		//Author: Jakub Czapski
 		#region properties
-		public ProfileHandler ProfileHandler { get; set; }
-		public string selectedprofileName { get; set; }
+		public ProfileHandler ph { get; set; }
+
+	    public ProfileModel DisplayedProfile
+	    {
+	        get
+	        {
+	            if (ph.SelectedProfile == null)
+	            {
+	                return ph.CurrentLoggedInProfile;
+	            }
+	            return ph.SelectedProfile;
+	        }
+	    }
+
+	    public string selectedprofileName { get; set; }
 		public string selectedprofileMobile { get; set; }
 		public string selectedprofileAddress { get; set; }
 		public string selectedprofileEmail { get; set; }
 		public int selectedprofileId { get; set; }
-		public string selectedProfileRating { get; set; }
+		public string ProfileRating { get; set; }
 		public string selectedProfileDescription { get; set; }
 		public string IsProfileVerified { get; set; }
 		public TaskHandler TaskHandler { get; set; }
@@ -31,17 +44,11 @@ namespace FetchItUniversalAndApi.ViewModel
 
 		public ProfileDetailViewModel()
 		{
-			ProfileHandler = ProfileHandler.GetInstance();
+			ph = ProfileHandler.GetInstance();
 			TaskHandler = TaskHandler.GetInstance();
 
-			selectedprofileName = ProfileHandler.SelectedProfile.ProfileName;
-			selectedprofileMobile = ProfileHandler.SelectedProfile.ProfileMobile;
-			selectedprofileEmail = ProfileHandler.SelectedProfile.ProfileEmail;
-			selectedprofileAddress = ProfileHandler.SelectedProfile.ProfileAddress;
-			selectedprofileId = ProfileHandler.SelectedProfile.ProfileId;
-			selectedProfileDescription = ProfileHandler.SelectedProfile.ProfileText;
-			IsProfileVerified = ProfileHandler.SelectedProfile.ProfileIsVerified == false ? "No" : "Yup";
-			selectedProfileRating = "Rating: " + GetAverageRating();
+            IsProfileVerified = DisplayedProfile.ProfileIsVerified == false ? "No" : "Yes";
+            ProfileRating = "Rating: " + GetAverageRating();
 		}
 
         /// <summary>
@@ -52,18 +59,19 @@ namespace FetchItUniversalAndApi.ViewModel
 		{
 			return
 				TaskHandler.GetTasks(TaskHandler.TaskStatus.Active)
-				.Where(task => task.FK_TaskFetcher == ProfileHandler.CurrentLoggedInProfile.ProfileId);
+				.Where(task => task.FK_TaskFetcher == ph.CurrentLoggedInProfile.ProfileId);
 		}
+
         /// <summary>
         /// Gets the average rating of a user based on all rating he has received.
         /// </summary>
         /// <returns></returns>
 		public double GetAverageRating()
 		{
-			var allfedbacks = MessageHandler.GetFeedback(MessageHandler.FeedbackStatus.Active);
+			var allfeedbacks = MessageHandler.GetFeedback(MessageHandler.FeedbackStatus.Active);
 
-			var UsersFeedbacks = from task in GetCurrentUsersTasks()
-								 join feedback in allfedbacks
+			var usersFeedbacks = from task in GetCurrentUsersTasks()
+								 join feedback in allfeedbacks
 									 on task.TaskId equals feedback.FK_FeedbackForTask
 								 select new
 								 {
@@ -72,11 +80,10 @@ namespace FetchItUniversalAndApi.ViewModel
 
 			try
 			{
-				return UsersFeedbacks.Average(f => f.Rating);
+				return usersFeedbacks.Average(f => f.Rating);
 			}
 			catch (Exception)
 			{
-
 				return 0;
 			}
 		}

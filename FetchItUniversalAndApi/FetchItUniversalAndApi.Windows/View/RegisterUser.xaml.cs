@@ -1,10 +1,12 @@
-﻿using FetchItUniversalAndApi.Common;
+﻿using System.Runtime.CompilerServices;
+using FetchItUniversalAndApi.Common;
 using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
+using FetchItUniversalAndApi.Handlers;
 using FetchItUniversalAndApi.ViewModel;
 
 namespace FetchItUniversalAndApi.View
@@ -17,6 +19,7 @@ namespace FetchItUniversalAndApi.View
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private ProfileHandler ph;
 
         /// <summary>
         /// This can be changed to a strongly typed view model.
@@ -42,6 +45,8 @@ namespace FetchItUniversalAndApi.View
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             this.navigationHelper.SaveState += navigationHelper_SaveState;
+            ph = ProfileHandler.GetInstance();
+            ph.CreationEvent += NavigateToLogIn;
         }
 
         /// <summary>
@@ -93,13 +98,13 @@ namespace FetchItUniversalAndApi.View
         }
 
         #endregion
-
             
-        private void createUserButton_Click(object sender, RoutedEventArgs e)
+
+        private void NavigateToLogIn(bool creationSuccess)
         {
-            if (RegisterViewModel.CreationSuccess)
+            if (creationSuccess)
             {
-                this.Frame.Navigate(typeof(MainPage));
+                Frame.Navigate(typeof (MainPage));
             }
         }
 

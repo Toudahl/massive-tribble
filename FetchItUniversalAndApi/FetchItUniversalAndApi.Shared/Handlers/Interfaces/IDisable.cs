@@ -1,7 +1,7 @@
 ﻿namespace FetchItUniversalAndApi.Handlers.Interfaces
 {
-    interface IDisable
+    interface IDisable<T>
     {
-        void Disable(object obj);
+        void Disable(T obj);
     }
 }

@@ -21,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\ObservableDictionary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\RelayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Handlers\ApiLink.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Handlers\ErrorHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Handlers\CollectionsHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Handlers\ExamplePaymentProvider.cs" />
