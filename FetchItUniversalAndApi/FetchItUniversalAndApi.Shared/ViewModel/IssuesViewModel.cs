@@ -12,10 +12,21 @@ namespace FetchItUniversalAndApi.ViewModel
         // Author: Jakub Czapski
     {
         private IssueModel _selectedIssue;
+        private ObservableCollection<IssueModel> _allIssues;
         public IssueHandler IssueHandler { get; set; }
-        public  ObservableCollection<IssueModel> AllIssues { get; set; }
+
+        public ObservableCollection<IssueModel> AllIssues
+        {
+            get { return _allIssues; }
+            set
+            {
+                _allIssues = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string WelcomeText { get; set; }
-        public ObservableCollection<IssueModel> CurrentUsersIssues { get; set; }
+        //public ObservableCollection<IssueModel> CurrentUsersIssues { get; set; }
 
         public ObservableCollection<IssueModel> IssuesToDisplay { get; set; }
 
@@ -33,8 +44,9 @@ namespace FetchItUniversalAndApi.ViewModel
         {
             var ph = ProfileHandler.GetInstance();
             IssueHandler = new IssueHandler();
-            PopulateAllIssues();
             IssuesToDisplay = new ObservableCollection<IssueModel>();
+            AllIssues = new ObservableCollection<IssueModel>();
+            PopulateAllIssues();
             if (ph.CurrentLoggedInProfile.FK_ProfileLevel >= (int)ProfileHandler.ProfileLevel.Administrator)
             {
                 IssuesToDisplay = AllIssues;
@@ -42,13 +54,14 @@ namespace FetchItUniversalAndApi.ViewModel
             }
             else
             {
-                CurrentUsersIssues =
-                                AllIssues.Where(
-                                    issue =>
-                                    issue.FK_IssueCreator == ph.CurrentLoggedInProfile.ProfileId ||
-                                    issue.FK_IssueTarget == ph.CurrentLoggedInProfile.ProfileId).ToObservableCollection();
+                IssuesToDisplay =
+                    new ObservableCollection<IssueModel>(
+                        AllIssues.Where(
+                            issue =>
+                            issue.FK_IssueCreator == ph.CurrentLoggedInProfile.ProfileId ||
+                            issue.FK_IssueTarget == ph.CurrentLoggedInProfile.ProfileId)
+                    );
 
-                IssuesToDisplay = CurrentUsersIssues;
                 WelcomeText = "Welcome " + ph.CurrentLoggedInProfile.ProfileName + ", here are all the issues you are involved in";
 
             }
