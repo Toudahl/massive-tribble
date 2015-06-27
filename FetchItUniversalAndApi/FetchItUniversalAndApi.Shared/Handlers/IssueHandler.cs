@@ -89,7 +89,6 @@ namespace FetchItUniversalAndApi.Handlers
             apiLink = new ApiLink<IssueModel>();
         }
 
-
         #region Create method
         //Fixed by Morten Toudahl.
         // Now it is checking properly, and setting values correctly before using the new ApiLink class to talk with the api.
@@ -152,6 +151,8 @@ namespace FetchItUniversalAndApi.Handlers
         #endregion
 
         #region GetAllIssues method
+        // Updated by Morten Toudahl
+        // It now uses the ApiLink class
         /// <summary>
         /// Gets all the issue objects from the databae.
         /// </summary>
@@ -178,6 +179,8 @@ namespace FetchItUniversalAndApi.Handlers
         #endregion
 
         #region Delete method
+        // Fixed by Morten Toudahl
+        // It now uses the argument being passed to it, instead of an other property.
         /// <summary>
         /// Sets the selected issues type to deleted in the database
         /// </summary>
@@ -191,6 +194,8 @@ namespace FetchItUniversalAndApi.Handlers
         #endregion
 
         #region Disable method
+        // Fixed by Morten Toudahl
+        // It now uses the argument being passed to it, instead of an other property.
         /// <summary>
         /// Sets the selected issues type to disabled in the database
         /// </summary>
@@ -203,22 +208,33 @@ namespace FetchItUniversalAndApi.Handlers
         }
         #endregion
 
+        #region Search method
         /// <summary>
         /// Searches for issues in the database that contains a letter or a word you entered in search bar
         /// </summary>
-        /// <param name="obj">Issue that you were looking for or all issues if you dont enter anything.</param>
+        /// <param name="issue">Issue that you were looking for or all issues if you dont enter anything.</param>
         /// <returns></returns>
-        public async Task<IEnumerable<IssueModel>> Search(IssueModel obj)
+        public async Task<IEnumerable<IssueModel>> Search(IssueModel issue)
         {
-            string userinput = _userInput;
+            var issues = await GetAllIssues();
 
-            return null; _currentIssues.Where(issue => issue.IssueTitle.Contains(userinput)) ;
-            //foreach (IssueModel issueModel in _currentIssues.Where(issue => issue.IssueTitle.Contains(userinput)))
-            //{
-            //    return issueModel.IssueDetails;
-            //}
-            //return  _currentIssues;
+            if (issue.IssueId != 0)
+            {
+                return issues.Where(i => i.IssueId == issue.IssueId);
+            }
+
+            if (!string.IsNullOrEmpty(issue.IssueTitle) || !string.IsNullOrWhiteSpace(issue.IssueTitle))
+            {
+                return issues.Where(i => i.IssueTitle.Contains(issue.IssueTitle));
+            }
+
+            if (!string.IsNullOrEmpty(issue.IssueDescription) || !string.IsNullOrWhiteSpace(issue.IssueDescription))
+            {
+                return issues.Where(i => i.IssueTitle.Contains(issue.IssueDescription));
+            }
+            return null;
         }
+        #endregion
         /// <summary>
         /// Sets the selected issues type to suspended in the database
         /// </summary>
