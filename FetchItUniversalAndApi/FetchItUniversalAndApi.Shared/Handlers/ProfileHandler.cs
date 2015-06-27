@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 using Windows.Security.Cryptography;
+using Windows.Security.Cryptography.Core;
+using Windows.Storage.Streams;
 using Windows.UI.Popups;
 using FetchItUniversalAndApi.Handlers.Interfaces;
 using FetchItUniversalAndApi.Models;
@@ -83,22 +86,23 @@ namespace FetchItUniversalAndApi.Handlers
             get { return _currentLoggedInProfile; }
             private set
             {
-                if (value == SelectedProfile) return;
-                _currentLoggedInProfile = value;
-                if (value != null)
+                if (value == null)
                 {
-                    if (LogInEvent != null)
-                    {
-                        LogInEvent();
-                    }
-                }
-                else
-                {
+                    _currentLoggedInProfile = value;
                     if (LogOutEvent != null)
                     {
                         LogOutEvent();
                     }
+                    return;
                 }
+                if (value == SelectedProfile) return;
+
+                _currentLoggedInProfile = value;
+                if (LogInEvent != null)
+                {
+                    LogInEvent();
+                }
+
             }
         }
 
@@ -168,21 +172,21 @@ namespace FetchItUniversalAndApi.Handlers
         /// <summary>
         /// This method adds a new user to the profile. By default, it will be an Activated User that has not been verified.
         /// </summary>
-        /// <param name="obj">Pass in a ProfileModel with the state that you wish to create the profile in.</param>
-        public async void Create(ProfileModel obj)
+        /// <param name="profile">Pass in a ProfileModel with the state that you wish to create the profile in.</param>
+        public async void Create(ProfileModel profile)
         {
-            if (obj == null) return;
-            obj.FK_ProfileLevel = (int)ProfileLevel.User;
-            obj.FK_ProfileStatus = (int)ProfileStatus.Active;
-            obj.ProfileIsVerified = false;
-            obj.FK_ProfileVerificationType = (int)ProfileVerificationType.NotVerified;
-            obj.ProfileCanReport = 1;
+            if (profile == null) return;
+            profile.FK_ProfileLevel = (int)ProfileLevel.User;
+            profile.FK_ProfileStatus = (int)ProfileStatus.Active;
+            profile.ProfileIsVerified = false;
+            profile.FK_ProfileVerificationType = (int)ProfileVerificationType.NotVerified;
+            profile.ProfileCanReport = 1;
 
             //TODO create method to generate a salt, and hash the users password with it.
-            obj.ProfilePasswordSalt = GenerateSalt();
-            //newProfile.ProfilePassword = HashPassword(newProfile.ProfilePassword, newProfile.ProfilePasswordSalt);
+            profile.ProfilePasswordSalt = GenerateSalt();
+            profile.ProfilePassword = HashPassword(profile.ProfilePassword, profile.ProfilePasswordSalt);
 
-            using (var result = await apiLink.PostAsJsonAsync(obj))
+            using (var result = await apiLink.PostAsJsonAsync(profile))
             {
                 if (result != null)
                 {
@@ -355,8 +359,7 @@ namespace FetchItUniversalAndApi.Handlers
                                 p =>
                                     p.ProfileName.ToLower() == profile.ProfileName.ToLower() &&
                                     p.ProfilePassword ==
-                                    /*HashPassword(profile.ProfilePassword, p.ProfilePasswordSalt)*/
-                                    profile.ProfilePassword);
+                                    HashPassword(profile.ProfilePassword, p.ProfilePasswordSalt));
 
                         if (selectedProfile.FK_ProfileStatus == (int) ProfileStatus.Active)
                         {
@@ -393,6 +396,7 @@ namespace FetchItUniversalAndApi.Handlers
         #endregion
 
         #region 'Supporting methods'
+        #region DoStatusUpdate(args)
         /// <summary>
         /// Used internally to make status updates to a profile. Used by, Disable, Delete and Suspend
         /// </summary>
@@ -439,7 +443,9 @@ namespace FetchItUniversalAndApi.Handlers
                 }
             }
         }
+        #endregion
 
+        #region GetAllProfiles()
         /// <summary>
         /// Using this method will update the content of <see cref="AllProfiles"/>
         /// </summary>
@@ -460,39 +466,47 @@ namespace FetchItUniversalAndApi.Handlers
                 }
             }
         }
-
+        #endregion
 
         #region GenerateSalt()
         /// <summary>
         /// This will generate a cryptographic grade random string
         /// </summary>
         /// <returns>Random string</returns>
-        private string GenerateSalt()
+        public long GenerateSalt()
         {
-            return CryptographicBuffer.EncodeToBase64String(CryptographicBuffer.GenerateRandom(64));
+            //This is a very weak salt. The database was set up incorrectly.
+            // TODO: Change the EF generated models in API, to work with a better database data type
+            string randomnumber = CryptographicBuffer.GenerateRandomNumber().ToString();
+            string eightDigits = "";
+            for (int i = 0; i < 8; i++)
+            {
+                eightDigits += randomnumber[i];
+            }
+            return Convert.ToInt64(eightDigits); //CryptographicBuffer.EncodeToBase64String(CryptographicBuffer.GenerateRandom(64));
         }
         #endregion
 
-        //#region HashPassword()
-        ///// <summary>
-        ///// This method hashes the input, for use as a password.
-        ///// </summary>
-        ///// <param name="password">The string you wish to Hash</param>
-        ///// <param name="salt">The salt</param>
-        ///// <returns>The hashed result of the two inputs</returns>
-        //private string HashPassword(string password, string salt)
-        //{
-        //    var passwordAndSalt = password + salt;
-        //    var pwdAsBytesArray = Encoding.UTF8.GetBytes(passwordAndSalt);
-        //    string result = "";
-        //    var sha256 = HashAlgorithmProvider.OpenAlgorithm("SHA256");
-            
-        //        // https://msdn.microsoft.com/en-us/library/bb548651.aspx
-        //        // Take the current, and the next as arguement. Concatenate them, and save in current.
-        //        // Do it for all the occurances in the byte array, and add all of it to result
-        //        return sha256.ComputeHash(pwdAsBytesArray).Aggregate(result, (current, next) => current + next);
-        //}
-        //#endregion
+        #region HashPassword()
+        /// <summary>
+        /// This method hashes the input, for use as a password.
+        /// </summary>
+        /// <param name="password">The string you wish to Hash</param>
+        /// <param name="salt">The salt</param>
+        /// <returns>The hashed result of the two inputs</returns>
+        private string HashPassword(string password, long salt)
+        {
+            var passwordAndSalt = password + salt;
+            var provider = HashAlgorithmProvider.OpenAlgorithm(HashAlgorithmNames.Sha512);
+            var hash = provider.CreateHash();
+
+            IBuffer buffer = CryptographicBuffer.ConvertStringToBinary(passwordAndSalt, BinaryStringEncoding.Utf8);
+            hash.Append(buffer);
+            IBuffer hashedBuffer = hash.GetValueAndReset();
+
+            return CryptographicBuffer.EncodeToBase64String(hashedBuffer);
+        }
+        #endregion
 
         #endregion
     }

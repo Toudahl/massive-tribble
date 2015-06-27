@@ -85,7 +85,6 @@ namespace FetchItUniversalAndApi.View
         #region AppBar Buttons
         private void profileButton_Click(object sender, RoutedEventArgs e)
         {
-            
             this.Frame.Navigate(typeof(ProfileDetailPage));
         }
 
