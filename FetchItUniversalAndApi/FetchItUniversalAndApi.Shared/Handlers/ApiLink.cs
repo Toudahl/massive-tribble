@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -29,9 +30,8 @@ namespace FetchItUniversalAndApi.Handlers
             }
             catch (Exception e)
             {
-                new MessageDialog(e.Message).ShowAsync();
+                return FailedClient(e);
             }
-            return null;
         }
         #endregion
 
@@ -52,9 +52,8 @@ namespace FetchItUniversalAndApi.Handlers
             }
             catch (Exception e)
             {
-                new MessageDialog(e.Message).ShowAsync();
+                return FailedClient(e);
             }
-            return null;
         }
         #endregion
 
@@ -76,9 +75,8 @@ namespace FetchItUniversalAndApi.Handlers
             }
             catch (Exception e)
             {
-                new MessageDialog(e.Message).ShowAsync();
+                return FailedClient(e);
             }
-            return null;
         }
         #endregion
 
@@ -93,6 +91,19 @@ namespace FetchItUniversalAndApi.Handlers
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.Timeout = new TimeSpan(0,0,30);
             return client;
+        }
+        #endregion
+
+        #region FailedClient
+        /// <summary>
+        /// Any method that returns a HttpResponseMessage will return this upon an exception
+        /// </summary>
+        /// <returns>HttpStatusCode.NoContent</returns>
+        private HttpResponseMessage FailedClient(Exception e)
+        {
+            var response = new HttpResponseMessage();
+            response.ReasonPhrase = e.Message;
+            return new HttpResponseMessage(HttpStatusCode.NoContent);
         }
         #endregion
     }

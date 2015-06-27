@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Windows.Security.Cryptography;
 using Windows.UI.Popups;
 using FetchItUniversalAndApi.Handlers.Interfaces;
 using FetchItUniversalAndApi.Models;
@@ -67,7 +68,6 @@ namespace FetchItUniversalAndApi.Handlers
         #endregion
 
         #region Fields and properties.
-
         private ProfileModel _currentLoggedInProfile;
         private ProfileModel _selectedProfile;
         private IEnumerable<ProfileModel> _allProfiles;
@@ -166,7 +166,7 @@ namespace FetchItUniversalAndApi.Handlers
 
         #region Create method
         /// <summary>
-        /// This method adds a new user to the profile. By default, it will be an Unactivated User that has not been verified.
+        /// This method adds a new user to the profile. By default, it will be an Activated User that has not been verified.
         /// </summary>
         /// <param name="obj">Pass in a ProfileModel with the state that you wish to create the profile in.</param>
         public async void Create(ProfileModel obj)
@@ -179,7 +179,7 @@ namespace FetchItUniversalAndApi.Handlers
             obj.ProfileCanReport = 1;
 
             //TODO create method to generate a salt, and hash the users password with it.
-            obj.ProfilePasswordSalt = 12345678; //GenerateSalt();
+            obj.ProfilePasswordSalt = GenerateSalt();
             //newProfile.ProfilePassword = HashPassword(newProfile.ProfilePassword, newProfile.ProfilePasswordSalt);
 
             using (var result = await apiLink.PostAsJsonAsync(obj))
@@ -292,42 +292,36 @@ namespace FetchItUniversalAndApi.Handlers
         /// </summary>
         /// <param name="obj">Object with the information to search for.</param>
         /// <returns>A list of objects that matches the search criteria</returns>
-        public async Task<IEnumerable<ProfileModel>> Search(ProfileModel obj)
+        public async Task<IEnumerable<ProfileModel>> Search(ProfileModel needle)
         {
-            if (obj is ProfileModel)
+            IEnumerable<ProfileModel> haystack = null;
+            using (var result = await apiLink.GetAsync())
             {
-                var needle = obj as ProfileModel;
-                IEnumerable<ProfileModel> haystack = null;
-                using (var result = await apiLink.GetAsync())
+                if (result != null)
                 {
-                    if (result != null)
+                    if (result.IsSuccessStatusCode)
                     {
-                        if (result.IsSuccessStatusCode)
-                        {
-                            haystack = await result.Content.ReadAsAsync<IEnumerable<ProfileModel>>();
-                        }
-                        else
-                        {
-                            await new MessageDialog(result.ReasonPhrase).ShowAsync();
-                        }
+                        haystack = await result.Content.ReadAsAsync<IEnumerable<ProfileModel>>();
+                    }
+                    else
+                    {
+                        await new MessageDialog(result.ReasonPhrase).ShowAsync();
                     }
                 }
-
-                if (needle.ProfileId != 0)
-                {
-                    return haystack.Where(p => p.ProfileId == needle.ProfileId);
-                }
-                if (needle.ProfileName != null)
-                {
-                    return haystack.Where(p => p.ProfileName.Contains(needle.ProfileName));
-                }
-                if (needle.ProfileEmail != null)
-                {
-                    return haystack.Where(p => p.ProfileEmail == needle.ProfileEmail);
-                }
-                return null;
             }
-            ErrorHandler.WrongModelError(obj, new ProfileModel());
+
+            if (needle.ProfileId != 0)
+            {
+                return haystack.Where(p => p.ProfileId == needle.ProfileId);
+            }
+            if (needle.ProfileName != null)
+            {
+                return haystack.Where(p => p.ProfileName.Contains(needle.ProfileName));
+            }
+            if (needle.ProfileEmail != null)
+            {
+                return haystack.Where(p => p.ProfileEmail == needle.ProfileEmail);
+            }
             return null;
         }
         #endregion
@@ -339,49 +333,53 @@ namespace FetchItUniversalAndApi.Handlers
         /// <param name="profile">Must contain password and username</param>
         public async void LogIn(ProfileModel profile)
         {
-            if (profile.ProfilePassword != null && profile.ProfileName != null)
+            if (profile.ProfilePassword == null || profile.ProfileName == null)
             {
-                using (var result = await apiLink.GetAsync())
+                ErrorHandler.RequiredFields(new List<string> {"Username", "Password"});
+                return;
+            }
+            using (var result = await apiLink.GetAsync())
+            {
+                // TODO update the webapi, so i dont have to request all the information like this.
+                // All the user information is up for graps each time someone logs in.
+                try
                 {
-                    // TODO update the webapi, so i dont have to request all the information like this.
-                    // All the user information is up for graps each time someone logs in.
+                    if (result == null) return;
+                    if (!result.IsSuccessStatusCode) return;
+                    var listOfProfiles = await result.Content.ReadAsAsync<IEnumerable<ProfileModel>>();
                     try
                     {
-                        if (result == null) return;
-                        if (!result.IsSuccessStatusCode) return;
-                        var listOfProfiles = await result.Content.ReadAsAsync<IEnumerable<ProfileModel>>();
-                        try
-                        {
-                            //TODO after making the hashing and salting work. Change this, so it uses the hashed password for the check
-                            var selectedProfile =
-                                listOfProfiles.FirstOrDefault(p => p.ProfileName.ToLower() == profile.ProfileName.ToLower() && p.ProfilePassword ==  /*HashPassword(profile.ProfilePassword, p.ProfilePasswordSalt)*/ profile.ProfilePassword);
+                        //TODO after making the hashing and salting work. Change this, so it uses the hashed password for the check
+                        var selectedProfile =
+                            listOfProfiles.FirstOrDefault(
+                                p =>
+                                    p.ProfileName.ToLower() == profile.ProfileName.ToLower() &&
+                                    p.ProfilePassword ==
+                                    /*HashPassword(profile.ProfilePassword, p.ProfilePasswordSalt)*/
+                                    profile.ProfilePassword);
 
-                            if (selectedProfile.FK_ProfileStatus == (int)ProfileStatus.Active)
-                            {
-                                CurrentLoggedInProfile = selectedProfile;
-                            }
-                            else
-                            {
-                                ErrorHandler.WrongProfileStatus();
-                            }
-                        }
-                        catch (Exception)
+                        if (selectedProfile.FK_ProfileStatus == (int) ProfileStatus.Active)
                         {
-                            ErrorHandler.FailedLogIn(profile.ProfileName);
+                            CurrentLoggedInProfile = selectedProfile;
+                        }
+                        else
+                        {
+                            ErrorHandler.WrongProfileStatus();
                         }
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
-                        new MessageDialog(e.Message).ShowAsync();
-                        //ErrorHandler.NoResponseFromApi();
+                        ErrorHandler.FailedLogIn(profile.ProfileName);
                     }
                 }
-            }
-            else
-            {
-                ErrorHandler.RequiredFields(new List<string>{"Username","Password"});
+                catch (Exception e)
+                {
+                    new MessageDialog(e.Message).ShowAsync();
+                    //ErrorHandler.NoResponseFromApi();
+                }
             }
         }
+
         #endregion
 
         #region LogOut method
@@ -442,36 +440,6 @@ namespace FetchItUniversalAndApi.Handlers
             }
         }
 
-
-        /// <summary>
-        /// This method is used internally by the class in all methods that modify the status of the profile.
-        /// </summary>
-        /// <param name="profileToModify">Which profile should be modifiled.</param>
-        /// <param name="newStatus">What should the new status be.</param>
-        //private async void ChangeStatus(ProfileModel profileToModify, ProfileStatus newStatus)
-        //{
-        //    profileToModify.FK_ProfileStatus = (int)newStatus;
-
-        //    using (var result = await apiLink.PutAsJsonAsync(profileToModify,profileToModify.ProfileId))
-        //    {
-        //        if (result != null)
-        //        {
-        //            if (result.IsSuccessStatusCode)
-        //            {
-        //                await new MessageDialog(profileToModify.ProfileName + " has been " + newStatus).ShowAsync();
-        //            }
-        //            else
-        //            {
-        //                await new MessageDialog("Update failed", result.ReasonPhrase).ShowAsync();
-        //            }
-        //            if (UpdateEvent != null)
-        //            {
-        //                UpdateEvent(result.IsSuccessStatusCode);
-        //            }
-        //        }
-        //    }
-        //}
-
         /// <summary>
         /// Using this method will update the content of <see cref="AllProfiles"/>
         /// </summary>
@@ -494,28 +462,16 @@ namespace FetchItUniversalAndApi.Handlers
         }
 
 
-        //#region GenerateSalt()
-        ///// <summary>
-        ///// This will generate a cryptographic grade random string
-        ///// </summary>
-        ///// <returns>Random string</returns>
-        //private string GenerateSalt()
-        //{
-        //    // http://stackoverflow.com/questions/7272771/encrypting-the-password-using-salt-in-c-sharp
-        //    var bytes = new Byte[32];
-        //    using (var random = new RNGCryptoServiceProvider())
-        //    {
-        //        random.GetBytes(bytes);
-        //        string result = "";
-        //        // TODO: look into stringbuilders
-        //        foreach (byte b in bytes)
-        //        {
-        //            result += b;
-        //        }
-        //        return result;
-        //    }
-        //}
-        //#endregion
+        #region GenerateSalt()
+        /// <summary>
+        /// This will generate a cryptographic grade random string
+        /// </summary>
+        /// <returns>Random string</returns>
+        private string GenerateSalt()
+        {
+            return CryptographicBuffer.EncodeToBase64String(CryptographicBuffer.GenerateRandom(64));
+        }
+        #endregion
 
         //#region HashPassword()
         ///// <summary>
