@@ -177,34 +177,31 @@ namespace FetchItUniversalAndApi.Handlers
         }
         #endregion
 
+        #region Delete method
         /// <summary>
         /// Sets the selected issues type to deleted in the database
         /// </summary>
-        /// <param name="obj">Issue you want to delete.</param>
+        /// <param name="issue">Issue you want to delete.</param>
         /// <returns></returns>
-        public void Delete(IssueModel obj)
+        public void Delete(IssueModel issue)
         {
-            
-            if (obj is IssueModel)
-            {
-                _selectedIssue.FK_IssueStatus = (int)IssueStatus.Deleted;
-                Update(_selectedIssue);
-            }
-            else
-            {
-                CreateLog();
-            }
+            issue.FK_IssueStatus = (int)IssueStatus.Deleted;
+            Update(issue);
         }
+        #endregion
+
+        #region Disable method
         /// <summary>
         /// Sets the selected issues type to disabled in the database
         /// </summary>
-        /// <param name="obj">Issue you want to disable.</param>
+        /// <param name="issue">Issue you want to disable.</param>
         /// <returns></returns>
-        public void Disable(IssueModel obj)
+        public void Disable(IssueModel issue)
         {
-            obj.FK_IssueStatus = (int)IssueStatus.Disabled;
-            Update(obj);
+            issue.FK_IssueStatus = (int)IssueStatus.Disabled;
+            Update(issue);
         }
+        #endregion
 
         /// <summary>
         /// Searches for issues in the database that contains a letter or a word you entered in search bar
