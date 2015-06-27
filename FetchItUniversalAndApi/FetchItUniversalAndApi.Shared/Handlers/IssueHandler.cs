@@ -10,16 +10,17 @@ using FetchItUniversalAndApi.Models;
 
 namespace FetchItUniversalAndApi.Handlers
 {
+    //Author: Jakub Czapski
+    /// <summary>
+    /// Handles getting and maintaining issues made by users.
+    /// Currently only getting issues is used in the app.
+    /// 
+    /// 
+    /// 
+    /// </summary>
     public class IssueHandler : ICreate<IssueModel>, IDelete<IssueModel>, IDisable<IssueModel>, ISuspend<IssueModel>, IUpdate<IssueModel>//, ISearch<IssueModel>
     {
-      //Author: Jakub Czapski
-        /// <summary>
-        /// Handles getting and maintaining issues made by users.
-        /// Currently only getting issues is used in the app.
-        /// 
-        /// 
-        /// 
-        /// </summary>
+        #region Fields and properties
         private IssueModel _newIssue;
         private IssueModel _selectedIssue;
         private IssueHandler _handler;
@@ -31,34 +32,19 @@ namespace FetchItUniversalAndApi.Handlers
         private TaskHandler th;
         private ApiLink<IssueModel> apiLink;
 
-        public IssueHandler()
+        public ProfileModel SelecteProfile
         {
-            ph = ProfileHandler.GetInstance();
-            th = TaskHandler.GetInstance();
-            apiLink = new ApiLink<IssueModel>();
+            get { return _selecteProfile; }
+            set { _selecteProfile = value; }
         }
 
-      public ProfileModel SelecteProfile
-      {
-          get { return _selecteProfile; }
-          set { _selecteProfile = value; }
-      }
-
-      public enum IssueStatus
+        public string UserInput
         {
-            Deleted = 6,
-            Suspended = 7,
-            Disabled = 8,
-            Active = 9,
-            Unactivated = 10
+            get { return _userInput; }
+            set { _userInput = value; }
         }
-      public string UserInput
-      {
-          get { return _userInput; }
-          set { _userInput = value; }
-      }
 
-      public IEnumerable<IssueModel> CurrentIssues
+        public IEnumerable<IssueModel> CurrentIssues
         {
             get { return _currentIssues; }
             set { _currentIssues = value; }
@@ -81,6 +67,30 @@ namespace FetchItUniversalAndApi.Handlers
             get { return _selectedIssue; }
             set { _selectedIssue = value; }
         }
+
+
+        #endregion
+
+        #region Enum(s)
+        public enum IssueStatus
+        {
+            Deleted = 6,
+            Suspended = 7,
+            Disabled = 8,
+            Active = 9,
+            Unactivated = 10
+        }
+        #endregion
+
+        public IssueHandler()
+        {
+            ph = ProfileHandler.GetInstance();
+            th = TaskHandler.GetInstance();
+            apiLink = new ApiLink<IssueModel>();
+        }
+
+
+        #region Create method
         //Fixed by Morten Toudahl.
         // Now it is checking properly, and setting values correctly before using the new ApiLink class to talk with the api.
         /// <summary>
@@ -123,41 +133,51 @@ namespace FetchItUniversalAndApi.Handlers
             {
                 return;
             }
-
-            using (var result = await apiLink.PostAsJsonAsync(issue))
+            try
             {
-                if (result.IsSuccessStatusCode)
+                using (var result = await apiLink.PostAsJsonAsync(issue))
                 {
-                    MessageHandler.SendNotification(_userInput, _selecteProfile);
+                    if (result.IsSuccessStatusCode)
+                    {
+                        MessageHandler.SendNotification(_userInput, _selecteProfile);
+                    }
                 }
             }
+            catch (Exception)
+            {
+                //TODO Handle this exception
+                throw;
+            }
         }
+        #endregion
 
-      /// <summary>
+        #region GetAllIssues method
+        /// <summary>
         /// Gets all the issue objects from the databae.
         /// </summary>
         /// <returns></returns>
-      public  ObservableCollection<IssueModel> GetAllIssues()
-      {
-          using (HttpClient Client=new HttpClient())
-          {
-              Client.BaseAddress = new Uri(issuemodelurl);
-              Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-              try
-              {
-            var allIssues = Task.Run(async () => await Client.GetAsync("IssueModels"));
-            var allIsuesContent = allIssues.Result.Content;
-             return   allIsuesContent.ReadAsAsync<ObservableCollection<IssueModel>>().Result;
-              }
-              catch (Exception)
-              {
-                  ErrorHandler.NoResponseFromApi();
-                  return null;
-              }
-          }
-          
-      }
-      /// <summary>
+        public async Task<ObservableCollection<IssueModel>> GetAllIssues()
+        {
+            try
+            {
+                using (var result = await apiLink.GetAsync())
+                {
+                    if (result.IsSuccessStatusCode)
+                    {
+                        return await result.Content.ReadAsAsync<ObservableCollection<IssueModel>>();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+            return null;
+        }
+        #endregion
+
+          /// <summary>
       /// Sets the selected issues type to deleted in the database
       /// </summary>
       /// <param name="obj">Issue you want to delete.</param>

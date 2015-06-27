@@ -33,7 +33,7 @@ namespace FetchItUniversalAndApi.ViewModel
         {
             var ph = ProfileHandler.GetInstance();
             IssueHandler = new IssueHandler();
-          AllIssues=IssueHandler.GetAllIssues();
+          PopulateAllIssues();
             CurrentUsersIssues =
                 AllIssues.Where(
                     issue =>
@@ -52,6 +52,11 @@ namespace FetchItUniversalAndApi.ViewModel
 
             }
 
+        }
+
+        private async void PopulateAllIssues()
+        {
+            AllIssues = await IssueHandler.GetAllIssues();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
