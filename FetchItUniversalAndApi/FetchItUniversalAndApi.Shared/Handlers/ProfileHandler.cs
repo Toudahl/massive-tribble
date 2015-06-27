@@ -182,7 +182,6 @@ namespace FetchItUniversalAndApi.Handlers
             profile.FK_ProfileVerificationType = (int)ProfileVerificationType.NotVerified;
             profile.ProfileCanReport = 1;
 
-            //TODO create method to generate a salt, and hash the users password with it.
             profile.ProfilePasswordSalt = GenerateSalt();
             profile.ProfilePassword = HashPassword(profile.ProfilePassword, profile.ProfilePasswordSalt);
 
@@ -353,7 +352,6 @@ namespace FetchItUniversalAndApi.Handlers
                     var listOfProfiles = await result.Content.ReadAsAsync<IEnumerable<ProfileModel>>();
                     try
                     {
-                        //TODO after making the hashing and salting work. Change this, so it uses the hashed password for the check
                         var selectedProfile =
                             listOfProfiles.FirstOrDefault(
                                 p =>
