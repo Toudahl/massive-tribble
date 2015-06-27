@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using FetchItUniversalAndApi.Handlers.Interfaces;
 using FetchItUniversalAndApi.Models;
@@ -79,7 +78,8 @@ namespace FetchItUniversalAndApi.Handlers
         /// <returns></returns>
         public async void Create(IssueModel obj)
         {
-            if (obj == null) return;
+            //TODO: Make some proper checks on the object, and set the date time etc.
+            //if (obj == null) return;
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("appliaction/json"));

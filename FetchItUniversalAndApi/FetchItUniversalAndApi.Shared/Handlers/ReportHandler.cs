@@ -105,8 +105,8 @@ namespace FetchItUniversalAndApi.Handlers
 		public void FindProfiles(ReportModel report)
 		{
 			var ph = ProfileHandler.GetInstance();
-			report.ReportedProfile = ph.AllProfiles.Where(profile => profile.ProfileId == report.FK_ReportedProfile).Select(profile => profile).ToList().First();
-			report.ReportingProfile = ph.AllProfiles.Where(profile => profile.ProfileId == report.FK_ReportingProfile).Select(profile => profile).ToList().First();
+			report.FK_ReportedProfile = ph.AllProfiles.Where(profile => profile.ProfileId == report.FK_ReportedProfile).Select(profile => profile).ToList().First().ProfileId;
+			report.FK_ReportingProfile = ph.AllProfiles.Where(profile => profile.ProfileId == report.FK_ReportingProfile).Select(profile => profile).ToList().First().ProfileId;
 		}
 
 		/// <summary>
@@ -115,10 +115,8 @@ namespace FetchItUniversalAndApi.Handlers
 		/// <param name="obj">The report object to POST</param>
 		public async void Create(ReportModel obj)
 		{
-		    if (obj == null) return;
-		    //Sets the navigational properties to null, to make sure that the report can POSTed
-            obj.ReportedProfile = null;
-            obj.ReportingProfile = null;
+            //TODO: Make some proper checks, and set dates etc.
+		    //if (obj == null) return;
 		    using (Client = new HttpClient())
 		    {
 			    Client.BaseAddress = new Uri(_serverUrl);
@@ -145,118 +143,107 @@ namespace FetchItUniversalAndApi.Handlers
 		/// Deletes the specified Report from the database.
 		/// </summary>
 		/// <param name="obj">The report object to DELETE.</param>
-        public async void Delete(ReportModel obj)
+        public async void Delete(ReportModel reportToDelete)
 		{
-			var reportToDelete = obj as ReportModel;
-			if (reportToDelete != null)
-			{
-				using (Client = new HttpClient())
-				{
-					Client.BaseAddress = new Uri(_serverUrl);
-					try
-					{
-						await Client.DeleteAsync("reportmodels/" + reportToDelete.ReportId);
-					}
+            //TODO: Make some proper checks
+            //var reportToDelete = obj as ReportModel;
+            //if (reportToDelete == null)
+            //{
+            //    ErrorHandler.WrongModelError(obj, new ReportModel());
+            //}
+		        using (Client = new HttpClient())
+		        {
+		            Client.BaseAddress = new Uri(_serverUrl);
+		            try
+		            {
+		                await Client.DeleteAsync("reportmodels/" + reportToDelete.ReportId);
+		            }
 
-					catch (Exception)
-					{
-						ErrorHandler.DeletingError(new ReportModel());
-					}
-				}
-			}
-			else
-			{
-				ErrorHandler.WrongModelError(obj, new ReportModel());
-			}
+		            catch (Exception)
+		            {
+		                ErrorHandler.DeletingError(new ReportModel());
+		            }
+		        }
 		}
 
-		/// <summary>
+	    /// <summary>
 		/// Changes the status of the Report to Disabled.
 		/// </summary>
 		/// <param name="obj">The report object to disable.</param>
-        public void Disable(ReportModel obj)
-		{
-			var reportToDisable = obj as ReportModel;
-			if (reportToDisable != null)
-			{
-				//Todo: Both ReportModel in solution and in Database need a ReportStatusId.
-				//reportToDisable.ReportStatusId = (int)ReportStatus.Disabled;
-				try
-				{
-					Update(reportToDisable);
-				}
-				catch (Exception)
-				{
-					ErrorHandler.DisablingError(new ReportModel());
-				}
-			}
-			else
-			{
-				ErrorHandler.WrongModelError(obj, new ReportModel());
-			}
-		}
+        public void Disable(ReportModel reportToDisable)
+	    {
+            //var reportToDisable = obj as ReportModel;
+            //if (reportToDisable == null)
+            //{
+            //    ErrorHandler.WrongModelError(obj, new ReportModel());
+            //}
+	            //Todo: Both ReportModel in solution and in Database need a ReportStatusId.
+	            //reportToDisable.ReportStatusId = (int)ReportStatus.Disabled;
+	            try
+	            {
+	                Update(reportToDisable);
+	            }
+	            catch (Exception)
+	            {
+	                ErrorHandler.DisablingError(new ReportModel());
+	            }
+	    }
 
-		/// <summary>
+	    /// <summary>
 		/// Changes the status of the Report to Suspended.
 		/// </summary>
 		/// <param name="obj">The report object to suspend.</param>
-        public void Suspend(ReportModel obj)
-		{
-			var reportToSuspend = obj as ReportModel;
-			if (reportToSuspend != null)
-			{
-				//Todo: Both ReportModel in solution and in Database need a ReportStatusId.
-				//reportToSuspend.ReportStatusId = (int)ReportStatus.Suspended;
-				try
-				{
-					Update(reportToSuspend);
-				}
-				catch (Exception)
-				{
-					ErrorHandler.SuspendingError(new ReportModel());
-				}
-			}
-			else
-			{
-				ErrorHandler.WrongModelError(obj, new ReportModel());
-			}
-		}
+        public void Suspend(ReportModel reportToSuspend)
+	    {
+            //TODO: Make some proper checks
+            //var reportToSuspend = obj as ReportModel;
+            //if (reportToSuspend == null)
+            //{
+            //    ErrorHandler.WrongModelError(obj, new ReportModel());
+            //}
+	            //Todo: Both ReportModel in solution and in Database need a ReportStatusId.
+	            //reportToSuspend.ReportStatusId = (int)ReportStatus.Suspended;
+	            try
+	            {
+	                Update(reportToSuspend);
+	            }
+	            catch (Exception)
+	            {
+	                ErrorHandler.SuspendingError(new ReportModel());
+	            }
+	    }
 
-		/// <summary>
+	    /// <summary>
 		/// Updates the specified Report in the database.
 		/// </summary>
 		/// <param name="obj">The report object to update (PUT).</param>
-        public async void Update(ReportModel obj)
-		{
-			var reportToUpdate = obj as ReportModel;
-			if (reportToUpdate != null)
-			{
-				reportToUpdate.ReportedProfile = null;
-				reportToUpdate.ReportingProfile = null;
-				using (Client = new HttpClient())
-				{
-					Client.BaseAddress = new Uri(_serverUrl);
-					Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-					try
-					{
-						await Client.PutAsJsonAsync("reportmodels/" + reportToUpdate.ReportId, reportToUpdate);
-						FindProfiles(reportToUpdate);
-					}
+        public async void Update(ReportModel reportToUpdate)
+	    {
+            //TODO: Make some proper checks
+            //var reportToUpdate = obj as ReportModel;
+            //if (reportToUpdate == null)
+            //{
+            //    ErrorHandler.WrongModelError(obj, new ReportModel());
+            //}
+	            using (Client = new HttpClient())
+	            {
+	                Client.BaseAddress = new Uri(_serverUrl);
+	                Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+	                try
+	                {
+	                    await Client.PutAsJsonAsync("reportmodels/" + reportToUpdate.ReportId, reportToUpdate);
+	                    FindProfiles(reportToUpdate);
+	                }
 
-					catch (Exception)
-					{
-						ErrorHandler.UpdatingError(new ReportModel());
-						FindProfiles(reportToUpdate);
-					}
-				}
-			}
-			else
-			{
-				ErrorHandler.WrongModelError(obj, new ReportModel());
-			}
-		}
+	                catch (Exception)
+	                {
+	                    ErrorHandler.UpdatingError(new ReportModel());
+	                    FindProfiles(reportToUpdate);
+	                }
+	            }
+	    }
 
-		/// <summary>
+	    /// <summary>
 		/// Creates a new Report based on the parameters passed to it.
 		/// </summary>
 		/// <param name="target">The target profile of the report.</param>
@@ -264,30 +251,35 @@ namespace FetchItUniversalAndApi.Handlers
 		/// <param name="reportsContent">The comment provided with the report.</param>
 		public ReportModel CreateNewReport(ProfileModel target, string reportsContent)
 		{
-			ReportModel newReport = null;
-			try
-			{
-				newReport = new ReportModel
-				{
-					//Fills in all the fields except for the ReportId
-					//Todo: Both ReportModel in solution and in Database need a ReportStatusId.
-					FK_ReportedProfile = target.ProfileId,
-					FK_ReportingProfile = ph.CurrentLoggedInProfile.ProfileId,
-					ReportMessage = reportsContent,
-					ReportTime = DateTime.UtcNow,
+            return new ReportModel
+            {
+                //Fills in all the fields except for the ReportId
+                FK_ReportedProfile = target.ProfileId,
+                FK_ReportingProfile = ph.CurrentLoggedInProfile.ProfileId,
+                ReportMessage = reportsContent,
+                ReportTime = DateTime.UtcNow,
+            };
 
-					//Fills in the navigational properties, it is working because all the methods
-					//in ReportHandler involving POST and PUT have working checks.
-					ReportedProfile = target,
-					ReportingProfile = ProfileHandler.GetInstance().CurrentLoggedInProfile,
-					//ReportStatusId = (int)ReportStatus.Active,
-				};
-			}
-			catch (Exception)
-			{
-				ErrorHandler.DisplayErrorMessage("Creating the report object failed", "Contact support");
-			}
-			return newReport;
+            //ReportModel newReport = new ReportModel();
+            //try
+            //{
+            //    newReport = new ReportModel
+            //    {
+            //        //Fills in all the fields except for the ReportId
+            //        //Todo: Both ReportModel in solution and in Database need a ReportStatusId.
+            //        FK_ReportedProfile = target.ProfileId,
+            //        FK_ReportingProfile = ph.CurrentLoggedInProfile.ProfileId,
+            //        ReportMessage = reportsContent,
+            //        ReportTime = DateTime.UtcNow,
+
+            //        //ReportStatusId = (int)ReportStatus.Active,
+            //    };
+            //}
+            //catch (Exception)
+            //{
+            //    ErrorHandler.DisplayErrorMessage("Creating the report object failed", "Contact support");
+            //}
+            //return newReport;
 		}
 		#endregion
 	}

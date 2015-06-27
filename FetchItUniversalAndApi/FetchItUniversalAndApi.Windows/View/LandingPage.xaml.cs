@@ -1,13 +1,10 @@
 ﻿using System.Threading.Tasks;
 using FetchItUniversalAndApi.Common;
-using System;
-using Windows.Globalization.NumberFormatting;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using FetchItUniversalAndApi.Handlers;
-using FetchItUniversalAndApi.Models;
 
 namespace FetchItUniversalAndApi.View
 {

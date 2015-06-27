@@ -4,7 +4,7 @@ using FetchItUniversalAndApi.Handlers;
 
 namespace FetchItUniversalAndApi.Models
 {
-    public partial class CommentModel
+    public class CommentModel
     {
         public int CommentId { get; set; }
         public string FK_CommentNotificationReferenceId { get; set; }
@@ -12,9 +12,6 @@ namespace FetchItUniversalAndApi.Models
         public System.DateTime CommentTimeCreated { get; set; }
         public int FK_CommentCreator { get; set; }
         public int FK_CommentTask { get; set; }
-
-        public virtual ProfileModel Profile { get; set; }
-        public virtual TaskModel Task { get; set; }
 
 	    public override string ToString()
 	    {

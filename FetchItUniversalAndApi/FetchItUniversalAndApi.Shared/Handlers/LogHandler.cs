@@ -72,7 +72,10 @@ namespace FetchItUniversalAndApi.Handlers
         /// <param name="objectBeingLogged">A LogModel object</param>
         public void Create(LogModel objectBeingLogged)
         {
-            if (objectBeingLogged == null) return;
+            if (string.IsNullOrEmpty(objectBeingLogged.LogMessage) || string.IsNullOrWhiteSpace(objectBeingLogged.LogMessage))
+            {
+                return;
+            }
             objectBeingLogged.LogTime = DateTime.UtcNow;
             try
             {

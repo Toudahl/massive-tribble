@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows.Input;
-using Windows.UI.Popups;
+﻿using System.Windows.Input;
 using FetchItUniversalAndApi.Common;
 using FetchItUniversalAndApi.Handlers;
 using FetchItUniversalAndApi.Models;

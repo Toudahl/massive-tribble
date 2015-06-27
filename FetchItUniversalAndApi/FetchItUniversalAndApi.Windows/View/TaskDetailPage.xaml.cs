@@ -1,25 +1,13 @@
-﻿using System.ServiceModel.Channels;
-using System.Threading.Tasks;
-using Windows.UI.Popups;
+﻿using System.Threading.Tasks;
 using FetchItUniversalAndApi.Common;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 using FetchItUniversalAndApi.Handlers;
-using FetchItUniversalAndApi.Models;
 using FetchItUniversalAndApi.ViewModel;
 
 namespace FetchItUniversalAndApi.View
@@ -126,10 +114,11 @@ namespace FetchItUniversalAndApi.View
 
 			if (th.SelectedTask.FK_TaskStatus == (int)TaskHandler.TaskStatus.Completed)
 			{
-				if (th.SelectedTask.Feedbacks.Count < 1 && ph.CurrentLoggedInProfile.ProfileId == th.SelectedTask.FK_TaskMaster)
-				{
-					CreateFeedbackButton.Visibility = Visibility.Visible;
-				}
+                //TODO: Fix this.
+                //if (th.SelectedTask.Feedbacks.Count < 1 && ph.CurrentLoggedInProfile.ProfileId == th.SelectedTask.FK_TaskMaster)
+                //{
+                //    CreateFeedbackButton.Visibility = Visibility.Visible;
+                //}
 			}
 			else
 			{

@@ -2,7 +2,7 @@
 
 namespace FetchItUniversalAndApi.Models
 {
-    public partial class NotificationModel
+    public struct NotificationModel
     {
         public int NotificationId { get; set; }
         public string FK_NotificationReferenceId { get; set; }
@@ -10,16 +10,13 @@ namespace FetchItUniversalAndApi.Models
         public int FK_NotificationTo { get; set; }
         public string NotificationContent { get; set; }
         public int FK_NotificationStatus { get; set; }
-        public System.DateTime NotificationSent { get; set; }
-        public Nullable<System.DateTime> NotificationRead { get; set; }
-
-        public virtual NotificationStatusModel NotificationStatus { get; set; }
-        public virtual ProfileModel FromProfile { get; set; }
-        public virtual ProfileModel ToProfile { get; set; }
+        public DateTime NotificationSent { get; set; }
+        public DateTime? NotificationRead { get; set; }
 
         public override string ToString()
         {
-            return "TODO Missing FromProfile string: " + NotificationContent;
+            return /*"TODO Missing FromProfile string: "
+                    * No its not. Get it from FK_NotificationFrom+*/ NotificationContent;
         }
     }
 }

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using FetchItUniversalAndApi.Annotations;
 using FetchItUniversalAndApi.Handlers;
 using FetchItUniversalAndApi.Models;
-using FetchItUniversalAndApi.View;
 
 namespace FetchItUniversalAndApi.ViewModel
 {
@@ -41,8 +37,8 @@ namespace FetchItUniversalAndApi.ViewModel
             CurrentUsersIssues =
                 AllIssues.Where(
                     issue =>
-                        issue.IssueCreator == ph.CurrentLoggedInProfile ||
-                        issue.IssueTarget == ph.CurrentLoggedInProfile).ToObservableCollection();
+                        issue.FK_IssueCreator == ph.CurrentLoggedInProfile.ProfileId ||
+                        issue.FK_IssueTarget == ph.CurrentLoggedInProfile.ProfileId).ToObservableCollection();
             if (ph.CurrentLoggedInProfile.FK_ProfileLevel >= (int)ProfileHandler.ProfileLevel.Administrator)
             {
                 IssuesToDisplay = AllIssues;

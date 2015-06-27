@@ -1,8 +1,5 @@
 ﻿// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-using System.Threading.Tasks;
-using Windows.System;
-using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using FetchItUniversalAndApi.Handlers;

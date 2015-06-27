@@ -4,7 +4,6 @@ using FetchItUniversalAndApi.Common;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using FetchItUniversalAndApi.Handlers;
-using FetchItUniversalAndApi.ViewModel;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Net.Http;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using FetchItUniversalAndApi.Annotations;
 using FetchItUniversalAndApi.Common;
 using FetchItUniversalAndApi.Handlers;

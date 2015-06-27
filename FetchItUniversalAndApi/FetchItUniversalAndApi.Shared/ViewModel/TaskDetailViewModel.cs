@@ -88,7 +88,7 @@ namespace FetchItUniversalAndApi.ViewModel
 				}
 
 				//Sets the feedbacks (if any)
-				FeedbackModel feedbackForThisTask = null;
+				FeedbackModel feedbackForThisTask = new FeedbackModel();
 				var feedbacks = MessageHandler.GetFeedback(MessageHandler.FeedbackStatus.Active).ToList();
 				try
 				{
@@ -102,13 +102,14 @@ namespace FetchItUniversalAndApi.ViewModel
 
 				//Here the .Feedbacks property is used, only so that the view knows if it
 				//should show the 'Create Feedback' button
-				if (feedbackForThisTask != null)
-				{
-					if (SelectedTask.Feedbacks.Count == 0)
-					{
-						SelectedTask.Feedbacks.Add(feedbackForThisTask);
-					}
-				}
+                //TODO: Fix this, so it does not deppend no non-functional navigational properties.
+                //if (feedbackForThisTask != null)
+                //{
+                //    if (SelectedTask.Feedbacks.Count == 0)
+                //    {
+                //        SelectedTask.Feedbacks.Add(feedbackForThisTask);
+                //    }
+                //}
 
 				TaskStatus = (TaskHandler.TaskStatus)SelectedTask.FK_TaskStatus;
 

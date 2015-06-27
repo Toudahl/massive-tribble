@@ -238,7 +238,7 @@ namespace FetchItUniversalAndApi.Handlers
                 newComment.FK_CommentTask = toTask.TaskId;
                 newComment.FK_CommentCreator = authorProfile.ProfileId;
                 #endregion
-                updatedTask.Comments.Add(newComment);
+                //updatedTask.Comments.Add(newComment);
                 try
                 {
 					await msgWebClient.PostAsJsonAsync("commentmodels", newComment);

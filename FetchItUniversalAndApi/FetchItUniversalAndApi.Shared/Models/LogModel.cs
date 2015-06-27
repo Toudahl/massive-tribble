@@ -2,7 +2,7 @@
 
 namespace FetchItUniversalAndApi.Models
 {
-    public partial class LogModel
+    public struct LogModel
     {
         public int LogId { get; set; }
         public string LogMessage { get; set; }

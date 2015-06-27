@@ -1,6 +1,6 @@
 ﻿namespace FetchItUniversalAndApi.Models
 {
-    class EmailModel
+    struct EmailModel
     {
         private string _message;
         private string _subject;

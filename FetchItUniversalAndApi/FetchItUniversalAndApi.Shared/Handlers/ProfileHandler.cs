@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
@@ -11,7 +9,6 @@ using Windows.Storage.Streams;
 using Windows.UI.Popups;
 using FetchItUniversalAndApi.Handlers.Interfaces;
 using FetchItUniversalAndApi.Models;
-using Newtonsoft.Json;
 
 namespace FetchItUniversalAndApi.Handlers
 {
