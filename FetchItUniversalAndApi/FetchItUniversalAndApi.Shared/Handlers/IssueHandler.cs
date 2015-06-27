@@ -235,23 +235,21 @@ namespace FetchItUniversalAndApi.Handlers
             return null;
         }
         #endregion
+
+        #region Suspend method
+        // Fixed by Morten Toudahl
+        // It now uses the argument being passed to it, instead of an other property.
         /// <summary>
         /// Sets the selected issues type to suspended in the database
         /// </summary>
-        /// <param name="obj">Issue you want to suspend.</param>
+        /// <param name="issue">Issue you want to suspend.</param>
         /// <returns></returns>
-        public void Suspend(IssueModel obj)
+        public void Suspend(IssueModel issue)
         {
-            if (obj is IssueModel)
-            {
-                _selectedIssue.FK_IssueStatus = (int)IssueStatus.Suspended;
-                Update(_selectedIssue);
-            }
-            else
-            {
-           CreateLog(); 
-            }
+            issue.FK_IssueStatus = (int)IssueStatus.Suspended;
+            Update(issue);
         }
+        #endregion
 
 
         /// <summary>
