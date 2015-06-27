@@ -62,6 +62,9 @@ namespace FetchItUniversalAndApi.Handlers
 		#endregion
 
         #region GetReports method
+        // Updated by Morten Toudahl
+        // Now using ApiLink and returning a task of ienumerable instead of just the ienumerable
+        // and checking if user is logged in.
         /// <summary>
 		/// Gets all the report objects from the database that have the specified report status.
 		/// </summary>
@@ -94,6 +97,8 @@ namespace FetchItUniversalAndApi.Handlers
         #endregion
 
         #region Update method
+        // Updated by Morten Toudahl
+        // Now using ApiLink and checking if the user is logged in.
         /// <summary>
         /// Updates the specified Report in the database.
         /// </summary>
@@ -121,12 +126,15 @@ namespace FetchItUniversalAndApi.Handlers
         #endregion
 
         #region Create method
+        // Updated by Morten Toudahl
+        // Now using ApiLink and making checks on content of report model, and if user is logged in.
         /// <summary>
         /// Creates a Report from the object passed to it and POSTs it to the database.
         /// </summary>
         /// <param name="report">The report object to POST</param>
         public async void Create(ReportModel report)
         {
+            if (ph.CurrentLoggedInProfile == null) return;
             if (report.FK_ReportedProfile == 0) return;
             if (string.IsNullOrEmpty(report.ReportMessage) || string.IsNullOrWhiteSpace(report.ReportMessage)) return;
             report.FK_ReportingProfile = ph.CurrentLoggedInProfile.ProfileId; // will only work if the value was 0
@@ -152,6 +160,8 @@ namespace FetchItUniversalAndApi.Handlers
         #endregion
 
         #region CreateNewReport method
+        // Updated by Morten Toudahl
+        // Removed redundant try/catch, and simplified the return part.
         /// <summary>
         /// Creates a new Report based on the parameters passed to it.
         /// </summary>
