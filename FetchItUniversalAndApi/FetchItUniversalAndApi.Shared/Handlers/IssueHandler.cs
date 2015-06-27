@@ -251,70 +251,43 @@ namespace FetchItUniversalAndApi.Handlers
         }
         #endregion
 
-
         /// <summary>
         /// Updates the selected issues info in the database.
         /// </summary>
-        /// <param name="obj">Issue you want to update.</param>
+        /// <param name="issue">Issue you want to update.</param>
         /// <returns></returns>
-        public async void Update(IssueModel obj)
+        public async void Update(IssueModel issue)
         {
-            if (obj is IssueModel)
+            try
             {
-
-                
-                using (HttpClient client = new HttpClient())
+                using (var result = await apiLink.PutAsJsonAsync(issue, issue.IssueId))
                 {
-                    client.BaseAddress = new Uri(issuemodelurl);
-                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    try
-                    {
-                        await client.PutAsJsonAsync("IssueModels/"+_selectedIssue.IssueId,_selectedIssue);
 
-                    }
-                    catch (Exception)
-                    {
-                        
-                    }
                 }
             }
+            catch (Exception)
+            {
+                //TODO react to exception
+                throw;
+            }
         }
+
         /// <summary>
         /// Creates a log using loghandler.
         /// </summary>      
         /// <returns></returns>
-      public void CreateLog()
-      {
-          LogModel logModel = new LogModel
-          {
-              LogMessage = "The supplied model was not of the expected type",
-              LogTime = DateTime.UtcNow
-          };
-          var lh = LogHandler.GetInstance();
-          lh.Create(logModel);
-      }
+        public void CreateLog()
+        {
+            LogModel logModel = new LogModel
+            {
+                LogMessage = "The supplied model was not of the expected type",
+                LogTime = DateTime.UtcNow
+            };
+            var lh = LogHandler.GetInstance();
+            lh.Create(logModel);
+        }
 
      
     }
 
-
-    public class WrongModel : Exception
-    {
-        public WrongModel()
-        {
-            
-        }
-        public WrongModel(string message) :base(message)
-        {
-
-        }
-
-        public WrongModel(string message, Exception inner):base(message,inner)
-        {
-            
-        }
-
-    }
-    
-    
 }
